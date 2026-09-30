@@ -15,7 +15,7 @@ import json, os, sys, time, datetime as dt, urllib.parse, urllib.request
 HOST = os.environ.get("IG_GRAPH_HOST", "https://graph.instagram.com").rstrip("/")
 VER = os.environ.get("IG_API_VERSION", "v23.0")
 TOKEN = os.environ.get("IG_ACCESS_TOKEN", "")
-BASE = os.environ.get("MEDIA_BASE_URL", "").rstrip("/")
+BASES = [b.strip().rstrip("/") for b in os.environ.get("MEDIA_BASE_URL", "").split(",") if b.strip()]
 DRY = os.environ.get("DRY_RUN") == "1"
 QUEUE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "queue.json")
 
@@ -44,27 +44,30 @@ def main():
     if not due:
         print("Nothing due."); return
     item = sorted(due, key=lambda i: i["publish_after"])[0]
-    video_url = f"{BASE}/{item['file']}"
-    print(f"Posting {item['id']} -> {video_url}")
+    print(f"Posting {item['id']}")
     if DRY:
+        for b in BASES: print("  would try", f"{b}/{item['file']}")
         print("DRY RUN caption:\n" + item["caption"][:300]); return
     if not TOKEN:
         raise SystemExit("IG_ACCESS_TOKEN secret is missing.")
     uid = os.environ.get("IG_USER_ID") or api("GET", "me", {"fields": "user_id,id,username"}).get("user_id") or api("GET", "me", {"fields": "id"})["id"]
-    c = api("POST", f"{uid}/media", {"media_type": "REELS", "video_url": video_url, "caption": item["caption"], "share_to_feed": "true"})
-    cid = c["id"]
-    for attempt in range(40):  # up to ~10 minutes
-        s = api("GET", cid, {"fields": "status_code,status"})
-        code = s.get("status_code")
-        print("container status:", code)
-        if code == "FINISHED": break
-        if code in ("ERROR", "EXPIRED"):
-            item["status"] = "error"; item["error"] = str(s)[:300]
-            json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
-            raise SystemExit(f"Container {cid} failed: {s}")
-        time.sleep(15)
-    else:
-        raise SystemExit("Timed out waiting for Instagram to process the video; will retry next run.")
+    cid, last = None, None
+    for b in BASES:
+        video_url = f"{b}/{item['file']}"
+        print("trying", video_url)
+        c = api("POST", f"{uid}/media", {"media_type": "REELS", "video_url": video_url, "caption": item["caption"], "share_to_feed": "true"})
+        for attempt in range(40):  # up to ~10 minutes
+            s = api("GET", c["id"], {"fields": "status_code,status"})
+            code = s.get("status_code"); print("container status:", code)
+            if code in ("FINISHED", "ERROR", "EXPIRED"): break
+            time.sleep(15)
+        if code == "FINISHED":
+            cid = c["id"]; break
+        last = s
+    if not cid:
+        item["status"] = "error"; item["error"] = str(last)[:300]
+        json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
+        raise SystemExit(f"Instagram could not process the video: {last}")
     p = api("POST", f"{uid}/media_publish", {"creation_id": cid})
     item.update(status="posted", media_id=p.get("id"), posted_at=now.isoformat())
     json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)

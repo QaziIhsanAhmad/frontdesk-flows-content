@@ -20,7 +20,7 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_GRAPH_HOST: ${{ vars.IG_GRAPH_HOST || 'https://graph.instagram.com' }}
-          MEDIA_BASE_URL: https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.sha }}/videos
+          MEDIA_BASE_URL: https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.sha }}/videos,https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/videos
           DRY_RUN: ${{ github.event.inputs.dry_run || '0' }}
         run: python3 scripts/post_next.py
       - name: Save queue status
