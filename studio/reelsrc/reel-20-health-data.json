@@ -1,0 +1,49 @@
+{
+ "n": 20,
+ "slug": "reel-20-health-data",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Clinic enquiries contain health data",
+   "hl": -1,
+   "say": "If you automate clinic enquiries, remember: they often contain health information."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Under UK GDPR",
+     "color": "amber",
+     "lines": [
+      "Health data is 'special category' data and needs extra care."
+     ]
+    }
+   ],
+   "say": "Under U K data protection law, health data is special category data, and it needs extra care.",
+   "caption": "Health data = special category data (UK GDPR)"
+  },
+  {
+   "type": "list",
+   "title": "Practical basics",
+   "items": [
+    "Tell people how their data is used",
+    "Limit who can open the sheet",
+    "Choose AI providers carefully",
+    "Delete what you don't need"
+   ],
+   "say": "The basics: tell people how their data is used, limit who can open the sheet, choose your AI provider carefully, and delete what you don't need.",
+   "caption": "Privacy notice, access, provider, retention"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Clinic enquiries often include health details, and under UK GDPR health data is 'special category' data.\n\nBasics: a clear privacy notice, limited sheet access, a carefully chosen AI provider, and deleting what you don't need. Not legal advice; the clinic should confirm its own obligations.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "n": 13,
+ "slug": "reel-13-honeypot",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Stop form spam without a CAPTCHA",
+   "hl": -1,
+   "say": "Here's how to stop most form spam without an annoying captcha."
+  },
+  {
+   "type": "code",
+   "title": "The honeypot field",
+   "code": "<input name=\"website\"\n  tabindex=\"-1\"\n  autocomplete=\"off\"\n  style=\"position:absolute;left:-9999px\">",
+   "say": "Add a hidden field that real visitors never see. Many simple bots fill in every field they find.",
+   "caption": "A hidden field humans never see"
+  },
+  {
+   "type": "code",
+   "title": "In n8n",
+   "code": "const trap = body.website;\nif (trap) return reject('spam');",
+   "say": "In n8n, if that field has anything in it, reject the submission before it costs you an AI call.",
+   "caption": "Filled in? Reject before any AI call"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Honeypot trick: add a hidden 'website' field to the form. Humans never see it; many simple bots fill every field. If it's filled, reject the submission in n8n before spending an AI call.\n\nNot perfect, but it stops a lot of junk.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

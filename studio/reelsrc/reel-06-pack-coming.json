@@ -1,0 +1,54 @@
+{
+ "n": 6,
+ "slug": "reel-06-pack-coming",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "6 workflows that run a clinic's front desk",
+   "hl": -1,
+   "say": "Six workflows that run a clinic's front desk. Here's what's coming in the full pack."
+  },
+  {
+   "type": "list",
+   "title": "The clinic pack",
+   "items": [
+    "Enquiry triage with AI replies",
+    "Appointment reminders",
+    "No-show follow-up",
+    "Review requests after visits",
+    "FAQ answers from clinic documents",
+    "Weekly summary for the owner"
+   ],
+   "say": "Enquiry triage, appointment reminders, no-show follow-up, review requests, an FAQ assistant that answers from the clinic's own documents, and a weekly summary for the owner.",
+   "caption": "Enquiries, reminders, no-shows, reviews, FAQs, weekly summary"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Every workflow comes with",
+     "color": "teal",
+     "lines": [
+      "• a written setup guide",
+      "• test data",
+      "• a video walkthrough",
+      "• licence for your client projects"
+     ]
+    }
+   ],
+   "say": "Each one comes with a setup guide, test data and a video walkthrough, and you can use them on your client projects.",
+   "caption": "Setup guide, test data, video, client licence"
+  },
+  {
+   "type": "cta",
+   "big": "Coming in the pack",
+   "sub": "Six tested clinic workflows, with setup guides and videos.",
+   "button": "DM me PACK",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "This one is part of the full clinic automation pack. Send me a message with the word pack for the early-bird price."
+  }
+ ],
+ "post": {
+  "caption": "The full FrontDesk Flows clinic pack:\n1. Enquiry triage with AI replies (+ WhatsApp version)\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests\n5. FAQ assistant from clinic documents\n6. Weekly owner summary\n\nEach with a setup guide, test data and a video walkthrough.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness"
+ }
+}

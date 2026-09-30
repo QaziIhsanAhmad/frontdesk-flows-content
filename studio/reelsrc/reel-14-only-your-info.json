@@ -1,0 +1,44 @@
+{
+ "n": 14,
+ "slug": "reel-14-only-your-info",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Your AI will make up prices. Unless…",
+   "hl": -1,
+   "say": "Left alone, an AI assistant will happily make up prices and opening hours. Unless you stop it."
+  },
+  {
+   "type": "code",
+   "title": "The prompt rule",
+   "code": "Use ONLY the facts in BUSINESS INFO.\nNever promise prices, availability or\noutcomes that are not listed.\nIf unsure, say a team member\nwill reply within one working day.",
+   "say": "Put one rule in the prompt: use only the facts in the business info. Never promise prices or availability that aren't listed. If unsure, say a team member will reply.",
+   "caption": "Only the facts you give it"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "And still check",
+     "color": "amber",
+     "lines": [
+      "Read the first 20 real replies before trusting it fully."
+     ]
+    }
+   ],
+   "say": "And still read the first twenty real replies before you trust it.",
+   "caption": "Review the first 20 replies"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "The fastest way to lose a client's trust: the AI invents a price.\n\nGive it a BUSINESS INFO block and one rule: use only those facts, never promise prices or availability that aren't listed, and hand off when unsure. Then review the first 20 replies anyway.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

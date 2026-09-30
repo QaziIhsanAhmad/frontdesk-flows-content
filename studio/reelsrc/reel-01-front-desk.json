@@ -1,0 +1,75 @@
+{
+ "slug": "reel-01-front-desk",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Clinic enquiries at 11pm go unanswered.",
+   "hl": 1,
+   "sub": "By morning, that patient has booked somewhere else.",
+   "say": "A clinic enquiry at eleven p.m. usually waits until morning. By then, that patient may have booked somewhere else.",
+   "caption": "Enquiries at 11pm wait until morning"
+  },
+  {
+   "type": "shot",
+   "img": "editor-clean.png",
+   "crop": [
+    1650,
+    495,
+    2940,
+    1260
+   ],
+   "label": "The real workflow in n8n",
+   "say": "So I built an n8n workflow that answers every website enquiry automatically.",
+   "caption": "This n8n workflow answers every enquiry automatically"
+  },
+  {
+   "type": "shot",
+   "img": "form.png",
+   "label": "1. A patient sends the website form",
+   "say": "A patient fills in the clinic's website form.",
+   "caption": "A patient sends the website form"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "AI reply sent to the patient",
+     "lines": [
+      "Hi Priya, thanks for getting in touch. You can book a 45-minute first assessment using our booking link. We're open Mon–Fri 8am–7pm and Sat 9am–1pm, with free parking on site.",
+      "— The Harbourline Physio team"
+     ],
+     "foot": "Example reply · demo clinic"
+    }
+   ],
+   "say": "The AI sorts the message and writes a reply using only the clinic's own details, and it's emailed back within seconds.",
+   "caption": "AI replies using only the clinic's own details"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Google Sheet · new lead",
+     "color": "ink",
+     "mono": true,
+     "lines": [
+      "Name:     Priya",
+      "Category: booking",
+      "Urgent:   –",
+      "Summary:  First assessment for knee pain",
+      "Status:   New"
+     ]
+    }
+   ],
+   "say": "And every lead lands in a Google Sheet, tagged as a booking, a question, or urgent.",
+   "caption": "Every lead is logged and tagged"
+  },
+  {
+   "type": "cta",
+   "big": "It's free.",
+   "sub": "The workflow, setup guide and website form.",
+   "button": "Link in bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "It's free. Get the workflow, the setup guide and the website form from the link in my bio."
+  }
+ ]
+}

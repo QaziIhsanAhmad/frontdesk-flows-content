@@ -1,0 +1,53 @@
+{
+ "n": 7,
+ "slug": "reel-07-reminders",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Missed appointments cost clinics real money",
+   "hl": -1,
+   "say": "Missed appointments are lost income for a clinic. Reminders are the simplest fix."
+  },
+  {
+   "type": "flow",
+   "title": "Reminder workflow",
+   "steps": [
+    "Every hour: read upcoming bookings",
+    "24 hours before: friendly reminder",
+    "2 hours before: short nudge",
+    "Reply C to cancel: slot freed"
+   ],
+   "hl": [
+    1,
+    2
+   ],
+   "say": "Every hour, the workflow reads upcoming bookings. It sends a friendly reminder a day before, a short nudge two hours before, and if the patient replies to cancel, the slot is freed.",
+   "caption": "24h reminder, 2h nudge, easy cancel"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Build tip",
+     "color": "ink",
+     "lines": [
+      "Store 'reminder sent' in the booking row so a patient never gets the same message twice."
+     ]
+    }
+   ],
+   "say": "Tip: mark each reminder as sent in the booking row, so nobody gets the same message twice.",
+   "caption": "Mark reminders as sent to avoid duplicates"
+  },
+  {
+   "type": "cta",
+   "big": "Coming in the pack",
+   "sub": "Six tested clinic workflows, with setup guides and videos.",
+   "button": "DM me PACK",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "This one is part of the full clinic automation pack. Send me a message with the word pack for the early-bird price."
+  }
+ ],
+ "post": {
+  "caption": "Appointment reminders are the easiest automation to sell to a clinic.\n\nHourly check → 24-hour reminder → 2-hour nudge → reply to cancel frees the slot. Store 'reminder sent' in the booking row so nothing goes out twice.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

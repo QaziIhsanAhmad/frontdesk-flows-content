@@ -1,0 +1,66 @@
+{
+ "slug": "reel-03-spam-outage",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "2 things most AI chatbot tutorials skip",
+   "hl": -1,
+   "say": "Two things most AI chatbot tutorials skip.",
+   "caption": "2 things tutorials skip"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "1. Spam never reaches the AI",
+     "color": "ink",
+     "lines": [
+      "• Hidden honeypot field",
+      "• Email format check",
+      "• Too many links = blocked",
+      "= No AI call, no cost, no reply to bots"
+     ]
+    }
+   ],
+   "say": "One: spam. A hidden honeypot field and a few simple checks stop bots before they cost you an AI call.",
+   "caption": "1. Stop spam before it costs an AI call"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "2. AI provider down? Still a reply",
+     "color": "teal",
+     "lines": [
+      "Hi Ali,",
+      "Thanks for getting in touch with Harbourline Physio. A member of our team will reply within one working day."
+     ],
+     "foot": "Automatic fallback reply · tested"
+    }
+   ],
+   "say": "Two: outages. If the AI provider goes down, the patient still gets a polite reply, and the lead is still logged.",
+   "caption": "2. AI down? The patient still gets a reply"
+  },
+  {
+   "type": "shot",
+   "img": "executions.png",
+   "crop": [
+    96,
+    160,
+    700,
+    940
+   ],
+   "label": "Five test runs, all succeeded",
+   "say": "I tested a booking, an urgent message, spam, a bad email, and an outage. Every run succeeded.",
+   "caption": "Tested: booking, urgent, spam, bad email, outage"
+  },
+  {
+   "type": "cta",
+   "big": "It's free.",
+   "sub": "The workflow, setup guide and website form.",
+   "button": "Link in bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "It's free. Get the workflow, the setup guide and the website form from the link in my bio."
+  }
+ ]
+}

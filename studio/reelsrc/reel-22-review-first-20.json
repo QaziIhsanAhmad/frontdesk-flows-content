@@ -1,0 +1,38 @@
+{
+ "n": 22,
+ "slug": "reel-22-review-first-20",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Never switch on AI replies and walk away",
+   "hl": -1,
+   "say": "The biggest mistake with AI replies: switching them on and walking away."
+  },
+  {
+   "type": "flow",
+   "title": "A safer launch",
+   "steps": [
+    "Week 1: AI drafts, staff approve",
+    "Fix the business info and prompt",
+    "Week 2: auto-send simple categories",
+    "Keep urgent and complaints for humans"
+   ],
+   "hl": [
+    0
+   ],
+   "say": "Launch safely. First week, the AI drafts and staff approve. Fix the business info. Then auto-send the simple categories, and keep urgent messages and complaints for humans.",
+   "caption": "Draft first, then automate the simple cases"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Safer AI reply rollout for a client:\nWeek 1: AI drafts, staff approve\nThen: fix business info + prompt\nWeek 2: auto-send simple categories only\nAlways: urgent messages and complaints go to a human.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

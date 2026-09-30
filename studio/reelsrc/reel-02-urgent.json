@@ -1,0 +1,80 @@
+{
+ "slug": "reel-02-urgent",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "What should an AI do when a patient writes \"chest pain\"?",
+   "hl": -1,
+   "say": "What should an AI assistant do when a patient writes chest pain?",
+   "caption": "What should AI do with \"chest pain\"?"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Website enquiry",
+     "color": "ink",
+     "lines": [
+      "From: Sam",
+      "\"I have chest pain after my session today, what should I do?\""
+     ]
+    }
+   ],
+   "say": "This message came in through the clinic's website form.",
+   "caption": "A worrying message arrives"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Reply to Sam",
+     "color": "red",
+     "lines": [
+      "Please call 999 now or go to the nearest emergency department.",
+      "— The Harbourline Physio team"
+     ],
+     "foot": "Example reply · demo clinic"
+    }
+   ],
+   "say": "The workflow never diagnoses. It tells the person to contact emergency services straight away.",
+   "caption": "It never diagnoses. It says: call emergency services"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "URGENT enquiry from Sam",
+     "color": "amber",
+     "lines": [
+      "Please call back as soon as possible.",
+      "Phone: 07700 900456",
+      "AI summary: reports chest pain after exercise."
+     ]
+    }
+   ],
+   "say": "At the same moment, it emails the front desk, so a real person can call back.",
+   "caption": "…and alerts staff so a human calls back"
+  },
+  {
+   "type": "shot",
+   "img": "exec-urgent.png",
+   "crop": [
+    1995,
+    570,
+    2985,
+    1170
+   ],
+   "label": "The real run in n8n",
+   "say": "Here's the actual run. The green path goes all the way to the staff alert.",
+   "caption": "The real run: green path to the staff alert"
+  },
+  {
+   "type": "cta",
+   "big": "It's free.",
+   "sub": "The workflow, setup guide and website form.",
+   "button": "Link in bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "It's free. Get the workflow, the setup guide and the website form from the link in my bio."
+  }
+ ]
+}

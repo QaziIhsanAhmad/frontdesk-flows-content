@@ -1,0 +1,50 @@
+{
+ "n": 21,
+ "slug": "reel-21-five-automations",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "5 automations every small clinic should have",
+   "hl": -1,
+   "say": "Five automations every small clinic should have."
+  },
+  {
+   "type": "list",
+   "title": "The five",
+   "items": [
+    "Instant reply to every enquiry",
+    "Reminders before appointments",
+    "Follow-up after no-shows",
+    "Review requests after visits",
+    "Urgent messages sent to staff"
+   ],
+   "say": "An instant reply to every enquiry. Reminders before appointments. A follow-up after no-shows. Review requests after visits. And urgent messages sent straight to staff.",
+   "caption": "Reply, remind, follow up, review, escalate"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Start with one",
+     "color": "teal",
+     "lines": [
+      "Enquiry replies are the easiest to prove: the clinic sees results the first day."
+     ]
+    }
+   ],
+   "say": "If you're selling these, start with enquiry replies. The clinic sees them working on day one.",
+   "caption": "Start with enquiry replies"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "5 automations every small clinic should have:\n1. Instant reply to every enquiry\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests after visits\n5. Urgent messages routed to staff\n\nSelling them? Start with #1.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice #freelancer #nocode #smallbusiness"
+ }
+}

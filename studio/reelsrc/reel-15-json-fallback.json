@@ -1,0 +1,37 @@
+{
+ "n": 15,
+ "slug": "reel-15-json-fallback",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "The line that stops AI workflows breaking",
+   "hl": -1,
+   "say": "Most AI workflows break on one thing: the model's answer isn't in the format you expected."
+  },
+  {
+   "type": "code",
+   "title": "Ask for JSON",
+   "code": "response_format:\n  { type: 'json_object' }\n\nkeys: category, urgent,\n      summary, reply",
+   "say": "Ask the model for JSON with fixed keys: category, urgent, summary and reply.",
+   "caption": "Ask for JSON with fixed keys"
+  },
+  {
+   "type": "code",
+   "title": "Parse safely",
+   "code": "try { ai = JSON.parse(text) }\ncatch { ai = {} }\nreply = ai.reply || fallbackReply",
+   "say": "Then parse it inside a try block. If anything is off, use a polite fallback reply, so the patient still hears back.",
+   "caption": "try/catch + a polite fallback"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Two habits that stop AI workflows from breaking:\n1. Ask for JSON with fixed keys (category, urgent, summary, reply)\n2. Parse inside try/catch and fall back to a polite default reply\n\nThe patient always hears back, even when the model misbehaves.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

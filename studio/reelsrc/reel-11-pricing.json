@@ -1,0 +1,57 @@
+{
+ "n": 11,
+ "slug": "reel-11-pricing",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Stop charging by the hour for automations",
+   "hl": -1,
+   "say": "If you build automations, stop charging by the hour."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Hourly",
+     "color": "ink",
+     "lines": [
+      "You get faster, you earn less.",
+      "Clients watch the clock."
+     ]
+    },
+    {
+     "title": "Fixed setup + monthly care",
+     "color": "teal",
+     "lines": [
+      "Clear price for a clear result.",
+      "Monthly fee covers fixes, updates and monitoring."
+     ]
+    }
+   ],
+   "say": "Hourly pricing punishes you for getting faster. A fixed setup price plus a monthly care fee gives the client a clear price, and you a steady income for fixes and updates.",
+   "caption": "Fixed setup + monthly care beats hourly"
+  },
+  {
+   "type": "list",
+   "title": "Monthly care includes",
+   "items": [
+    "Watching for failed runs",
+    "Updating prompts and business info",
+    "Fixing broken connections"
+   ],
+   "say": "Define what monthly care includes: watching for failed runs, updating prompts and business info, and fixing broken connections.",
+   "caption": "Spell out what the monthly fee covers"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Hourly billing punishes you for getting faster.\n\nPrice automations as a fixed setup + a monthly care plan (monitoring failed runs, updating prompts and business info, fixing connections). Clear for the client, steady for you.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness"
+ }
+}

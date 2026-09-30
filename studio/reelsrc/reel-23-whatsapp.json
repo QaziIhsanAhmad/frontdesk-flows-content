@@ -1,0 +1,49 @@
+{
+ "n": 23,
+ "slug": "reel-23-whatsapp",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Want this on WhatsApp? Here's what it takes",
+   "hl": -1,
+   "say": "Clients always ask: can this work on WhatsApp? Yes, but here's what it takes."
+  },
+  {
+   "type": "list",
+   "title": "What you need",
+   "items": [
+    "WhatsApp Business Platform (Cloud API)",
+    "A Meta business account and a verified number",
+    "Approved message templates for outbound",
+    "A webhook into n8n for replies"
+   ],
+   "say": "You need the WhatsApp Business Platform, a Meta business account with a verified number, approved templates for messages you start, and a webhook into n8n.",
+   "caption": "Cloud API, Meta business, templates, webhook"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Tell the client upfront",
+     "color": "amber",
+     "lines": [
+      "Meta charges for some messages, and setup takes longer than email."
+     ]
+    }
+   ],
+   "say": "Tell the client upfront: Meta charges for some messages, and setup takes longer than email.",
+   "caption": "Set expectations on cost and setup time"
+  },
+  {
+   "type": "cta",
+   "big": "Coming in the pack",
+   "sub": "Six tested clinic workflows, with setup guides and videos.",
+   "button": "DM me PACK",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "This one is part of the full clinic automation pack. Send me a message with the word pack for the early-bird price."
+  }
+ ],
+ "post": {
+  "caption": "The enquiry workflow can run on WhatsApp, but set expectations: you need the WhatsApp Business Platform (Cloud API), a Meta business account with a verified number, approved templates for outbound messages, and a webhook into n8n. Meta charges for some messages.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness"
+ }
+}

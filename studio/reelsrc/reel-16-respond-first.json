@@ -1,0 +1,51 @@
+{
+ "n": 16,
+ "slug": "reel-16-respond-first",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Don't make the visitor wait for your AI",
+   "hl": -1,
+   "say": "Don't make the website visitor wait while your AI thinks."
+  },
+  {
+   "type": "flow",
+   "steps": [
+    "Webhook receives the form",
+    "Respond to Webhook: \"Thanks!\"",
+    "Then: AI, email, sheet, alerts"
+   ],
+   "hl": [
+    1
+   ],
+   "say": "Put the respond to webhook node right after your checks. The visitor sees thanks instantly, and the AI, email and logging carry on in the background.",
+   "caption": "Reply to the browser first, then do the work"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Why it matters",
+     "color": "teal",
+     "lines": [
+      "AI calls can take seconds.",
+      "A spinning button makes people submit twice."
+     ]
+    }
+   ],
+   "say": "AI calls can take several seconds, and a spinning button makes people submit twice.",
+   "caption": "No spinner, no double submissions"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "n8n tip: add 'Respond to Webhook' right after validation. The visitor gets an instant thank-you while the AI reply, email and logging continue in the background. No spinner, no duplicate submissions.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

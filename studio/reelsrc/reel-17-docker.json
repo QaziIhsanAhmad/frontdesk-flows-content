@@ -1,0 +1,48 @@
+{
+ "n": 17,
+ "slug": "reel-17-docker",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Self-host n8n with one command",
+   "hl": -1,
+   "say": "You can self-host n8n with one Docker command."
+  },
+  {
+   "type": "code",
+   "title": "From the n8n docs",
+   "size": 30,
+   "wrap": 50,
+   "code": "docker volume create n8n_data\n\ndocker run -it --rm --name n8n \\\n  -p 5678:5678 \\\n  -v n8n_data:/home/node/.n8n \\\n  docker.n8n.io/n8nio/n8n",
+   "say": "Create a volume for your data, then run the official image on port five six seven eight.",
+   "caption": "Official image, data in a volume"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Before you use it for clients",
+     "color": "amber",
+     "lines": [
+      "Put it behind HTTPS",
+      "Set up backups",
+      "Keep it updated"
+     ]
+    }
+   ],
+   "say": "Before you run client workflows on it, put it behind HTTPS, set up backups, and keep it updated.",
+   "caption": "HTTPS, backups, updates"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Self-hosting n8n starts with one Docker command (from the official docs): create a volume, run the image on port 5678.\n\nFor client work, add HTTPS, backups and updates before anything else.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

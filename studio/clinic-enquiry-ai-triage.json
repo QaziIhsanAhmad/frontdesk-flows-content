@@ -1,0 +1,575 @@
+{
+  "name": "FrontDesk Flows – Clinic Enquiry AI Triage (free sample)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "clinic-enquiry",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "a4e8ed04-656b-4e69-85c4-c16c462c2005",
+      "name": "Website Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "47865189-931a-4244-91c4-466211a8ce8f"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2654f1c1-5e68-403b-984a-43056222b971",
+              "name": "businessName",
+              "value": "Harbourline Physio",
+              "type": "string"
+            },
+            {
+              "id": "f163ffea-a781-4e17-bd67-6be33226f10c",
+              "name": "businessType",
+              "value": "physiotherapy clinic",
+              "type": "string"
+            },
+            {
+              "id": "2211a205-c770-4f2e-bcf0-7023f06c7fc8",
+              "name": "businessInfo",
+              "value": "Opening hours: Mon-Fri 8am-7pm, Sat 9am-1pm.\nServices: physiotherapy assessment (45 min), follow-up treatment (30 min), sports massage, post-surgery rehab.\nNew patients: first assessment includes a treatment plan.\nParking: free on-site.\nInsurance: we accept most major health insurers; bring your policy number.",
+              "type": "string"
+            },
+            {
+              "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
+              "name": "bookingLink",
+              "value": "https://example.com/book",
+              "type": "string"
+            },
+            {
+              "id": "37df4ebb-1cbf-4bf9-95ed-01bebaa28f3e",
+              "name": "responseTime",
+              "value": "one working day",
+              "type": "string"
+            },
+            {
+              "id": "01889d26-7fb1-45fa-ba02-b71c1a5b7300",
+              "name": "emergencyAdvice",
+              "value": "your local emergency number (999 in the UK, 911 in the US) or go to the nearest emergency department",
+              "type": "string"
+            },
+            {
+              "id": "0958221e-f3ca-4bb1-a2fb-4f4e12219422",
+              "name": "signature",
+              "value": "The Harbourline Physio team",
+              "type": "string"
+            },
+            {
+              "id": "accf490f-357e-449b-8a05-033db10d036e",
+              "name": "staffEmail",
+              "value": "frontdesk@example.com",
+              "type": "string"
+            },
+            {
+              "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
+              "name": "fromEmail",
+              "value": "hello@example.com",
+              "type": "string"
+            },
+            {
+              "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
+              "name": "llmBaseUrl",
+              "value": "https://api.groq.com/openai/v1",
+              "type": "string"
+            },
+            {
+              "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
+              "name": "llmModel",
+              "value": "llama-3.1-8b-instant",
+              "type": "string"
+            },
+            {
+              "id": "a393a45a-ae8e-4725-8a06-76975fc3adcd",
+              "name": "sheetUrl",
+              "value": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "bf9bb9ec-b1b2-4b51-83e4-13eb322edd3c",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ],
+      "notes": "EDIT ME: your business details, emails, AI provider and Google Sheet. Nothing else needs changing.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Clean up the form submission and catch obvious spam before spending an AI call.\nconst out = [];\nfor (const item of $input.all()) {\n  const b = item.json.body || item.json || {};\n  const pick = (...keys) => { for (const k of keys) if (b[k] !== undefined && String(b[k]).trim() !== '') return String(b[k]).trim(); return ''; };\n  const name = pick('name', 'full_name', 'fullName').slice(0, 120);\n  const email = pick('email', 'Email').toLowerCase().slice(0, 160);\n  const phone = pick('phone', 'tel', 'mobile').slice(0, 40);\n  const message = pick('message', 'enquiry', 'comments').slice(0, 3000);\n  const honeypot = pick('website', 'company_website');           // hidden field real people leave empty\n  const emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email);\n  const links = (message.match(/https?:\\/\\//g) || []).length;\n  const valid = emailOk && message.length >= 5 && !honeypot && links < 3;\n  out.push({ json: {\n    receivedAt: new Date().toISOString(), name: name || 'there', email, phone, message,\n    source: pick('source') || 'website form', valid,\n    rejectReason: valid ? '' : (!emailOk ? 'invalid email' : honeypot ? 'honeypot filled' : links >= 3 ? 'too many links' : 'message too short'),\n  }});\n}\nreturn out;"
+      },
+      "id": "c2dc6c32-8dde-4820-aaab-d4d9ca55a226",
+      "name": "Clean & Check",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: $json.valid, message: $json.valid ? 'Thanks! We will be in touch shortly.' : 'Please check your email address and message.' }) }}",
+        "options": {}
+      },
+      "id": "869c95de-5848-41ee-a68d-5a6820253178",
+      "name": "Reply to Form",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "227b2594-14a3-4df5-886f-010085a3cf69",
+      "name": "Is Valid?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Settings').item.json.llmBaseUrl }}/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: $('Settings').item.json.llmModel, temperature: 0.2, response_format: { type: 'json_object' }, messages: [ { role: 'system', content: \"You are the front-desk assistant for \" + $('Settings').item.json.businessName + \", a \" + $('Settings').item.json.businessType + \". Read a website enquiry and return ONLY a JSON object with these keys: category (one of: booking, question, pricing, complaint, urgent, spam, other), urgent (true if the person describes severe pain, an injury that just happened, chest pain, breathing difficulty, heavy bleeding, or anything that sounds like an emergency; otherwise false), summary (one sentence for staff), reply (a warm, short email reply, max 110 words, signed '\" + $('Settings').item.json.signature + \"'). Rules for the reply: use ONLY the facts in BUSINESS INFO; never diagnose or give medical advice; never promise prices, availability or outcomes that are not in BUSINESS INFO; if urgent, tell them to call \" + $('Settings').item.json.emergencyAdvice + \" and do not try to help further; for bookings, share the booking link; if you don't know, say a team member will reply within \" + $('Settings').item.json.responseTime + \". Write in the same language as the enquiry. For spam, reply with an empty string.\\n\\nBUSINESS INFO:\\n\" + $('Settings').item.json.businessInfo + \"\\nBooking link: \" + $('Settings').item.json.bookingLink + \"\" }, { role: 'user', content: 'Name: ' + $json.name + '\\nEmail: ' + $json.email + '\\nPhone: ' + $json.phone + '\\nMessage: ' + $json.message }] }) }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "b0452b28-fc03-4d1f-afae-ba816d2202ec",
+      "name": "AI Triage & Draft",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        200
+      ],
+      "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Is Valid?').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
+      },
+      "id": "e701eae6-a99a-4744-a682-37686f5e89f0",
+      "name": "Read AI Answer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "d10ed603-ad8c-4576-bbd4-8aba677e624e",
+              "leftValue": "={{ $json.category }}",
+              "rightValue": "spam",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e4c816a2-2a66-430e-905a-88623bf2831c",
+      "name": "Not Spam?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Re: your enquiry to {{ $('Settings').item.json.businessName }}",
+        "emailFormat": "text",
+        "text": "={{ $json.reply }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "702c8089-3ee6-4f74-9752-7ed9afa623ae",
+      "name": "Email Reply to Lead",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Settings').item.json.sheetUrl }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Received": "={{ $json.receivedAt }}",
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Phone": "={{ $json.phone }}",
+            "Category": "={{ $json.category }}",
+            "Urgent": "={{ $json.urgent ? 'YES' : '' }}",
+            "Summary": "={{ $json.summary }}",
+            "Message": "={{ $json.message }}",
+            "Auto-reply sent": "={{ $json.reply ? 'yes' : 'no' }}",
+            "Status": "New"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Received",
+              "displayName": "Received",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Urgent",
+              "displayName": "Urgent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Auto-reply sent",
+              "displayName": "Auto-reply sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1721449-b1a2-469a-8acc-d0be11ad7679",
+      "name": "Log Lead to Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1760,
+        200
+      ],
+      "notes": "Create a Google Sheet with these column headers in row 1: Received, Name, Email, Phone, Category, Urgent, Summary, Message, Auto-reply sent, Status."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "2a36aa2a-5525-4fc0-8365-8d320b9002ae",
+              "leftValue": "={{ $json.urgent }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "4977b773-290c-4007-a0aa-665a253265d9",
+      "name": "Urgent?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+        "toEmail": "={{ $('Settings').item.json.staffEmail }}",
+        "subject": "=URGENT enquiry from {{ $json.name }} – please call back",
+        "emailFormat": "text",
+        "text": "=Urgent enquiry received {{ $json.receivedAt }}\n\nName: {{ $json.name }}\nPhone: {{ $json.phone }}\nEmail: {{ $json.email }}\n\nAI summary: {{ $json.summary }}\n\nMessage:\n{{ $json.message }}\n\nThe sender was told to contact emergency services if this is an emergency. Please call them back as soon as possible.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "adfc30bc-9d57-4c6d-b990-41bb79f514ca",
+      "name": "Alert Staff Now",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Website Form": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Clean & Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean & Check": {
+      "main": [
+        [
+          {
+            "node": "Reply to Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reply to Form": {
+      "main": [
+        [
+          {
+            "node": "Is Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Valid?": {
+      "main": [
+        [
+          {
+            "node": "AI Triage & Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Triage & Draft": {
+      "main": [
+        [
+          {
+            "node": "Read AI Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read AI Answer": {
+      "main": [
+        [
+          {
+            "node": "Not Spam?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log Lead to Sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Urgent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Not Spam?": {
+      "main": [
+        [
+          {
+            "node": "Email Reply to Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Urgent?": {
+      "main": [
+        [
+          {
+            "node": "Alert Staff Now",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

@@ -1,0 +1,52 @@
+{
+ "n": 9,
+ "slug": "reel-09-reviews-policy",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Don't only ask happy patients for reviews",
+   "hl": -1,
+   "say": "A common automation mistake: only asking happy patients for reviews."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Google's review policy",
+     "color": "red",
+     "lines": [
+      "Businesses must not discourage negative reviews or selectively ask only happy customers for reviews."
+     ]
+    }
+   ],
+   "say": "Google's policy says businesses must not discourage negative reviews, or selectively ask only happy customers. That filtering is called review gating.",
+   "caption": "\"Review gating\" breaks Google's rules"
+  },
+  {
+   "type": "flow",
+   "title": "The compliant version",
+   "steps": [
+    "Visit completed",
+    "Thank-you message to every patient",
+    "One link to leave a Google review",
+    "Separate link for private feedback"
+   ],
+   "hl": [
+    1
+   ],
+   "say": "The compliant version: thank every patient after their visit, give them the review link, and optionally a separate link for private feedback.",
+   "caption": "Ask everyone. Offer feedback separately."
+  },
+  {
+   "type": "cta",
+   "big": "Coming in the pack",
+   "sub": "Six tested clinic workflows, with setup guides and videos.",
+   "button": "DM me PACK",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "This one is part of the full clinic automation pack. Send me a message with the word pack for the early-bird price."
+  }
+ ],
+ "post": {
+  "caption": "Review-request automations often filter out unhappy patients first. That's called review gating, and Google's policy doesn't allow it.\n\nSend the same review link to every patient, and offer a separate private feedback option if you like.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "n": 10,
+ "slug": "reel-10-sell-to-clinic",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "How to sell automation to a clinic",
+   "hl": -1,
+   "say": "How to sell an automation to a clinic, in four steps."
+  },
+  {
+   "type": "list",
+   "title": "4 steps",
+   "items": [
+    "Find clinics with phone-only or slow booking",
+    "Record a 60-second demo on their use case",
+    "Offer a fixed-price setup",
+    "Add a small monthly fee for support"
+   ],
+   "say": "Find clinics that only take bookings by phone. Record a one-minute demo for their situation. Offer a fixed-price setup, then a small monthly fee to keep it running.",
+   "caption": "Spot the gap, demo, fixed setup, monthly support"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "What owners care about",
+     "color": "teal",
+     "lines": [
+      "Fewer missed enquiries",
+      "Less time on the phone",
+      "Nothing breaks when staff are busy"
+     ]
+    }
+   ],
+   "say": "Talk about what owners care about: fewer missed enquiries, less phone time, and nothing breaking when staff are busy. Not nodes and APIs.",
+   "caption": "Sell outcomes, not nodes"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "How freelancers can sell automation to clinics:\n1. Find clinics with phone-only or slow booking\n2. Record a 60-second demo for their case\n3. Offer a fixed-price setup\n4. Add a small monthly support fee\n\nTalk outcomes (fewer missed enquiries), not nodes.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness"
+ }
+}

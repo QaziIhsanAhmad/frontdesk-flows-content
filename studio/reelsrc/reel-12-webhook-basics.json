@@ -1,0 +1,52 @@
+{
+ "n": 12,
+ "slug": "reel-12-webhook-basics",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "How a website form talks to n8n",
+   "hl": -1,
+   "say": "How does a website form actually talk to n8n? One webhook."
+  },
+  {
+   "type": "flow",
+   "steps": [
+    "Visitor clicks Send",
+    "Browser POSTs the form as JSON",
+    "n8n Webhook node receives it",
+    "Workflow runs the next steps"
+   ],
+   "hl": [
+    2
+   ],
+   "say": "When the visitor clicks send, the browser posts the form as JSON to your n8n webhook URL. The webhook node receives it, and the workflow runs.",
+   "caption": "Form, then JSON, then Webhook node, then workflow"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Two URLs, don't mix them up",
+     "color": "amber",
+     "lines": [
+      "Test URL: only while you click 'Listen'.",
+      "Production URL: only when the workflow is active."
+     ]
+    }
+   ],
+   "say": "One gotcha: n8n gives you a test URL and a production URL. Put the production URL on the website, and activate the workflow.",
+   "caption": "Use the production URL and activate the workflow"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "A website form talks to n8n through one Webhook node: the browser POSTs the form as JSON, the workflow runs.\n\nMost common mistake: pasting the test URL on the live site. Use the production URL and activate the workflow.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "n": 5,
+ "slug": "reel-05-almost-free",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Run an AI front desk for almost nothing",
+   "hl": -1,
+   "say": "You can run an AI front desk for almost nothing. Here's the stack."
+  },
+  {
+   "type": "list",
+   "title": "The low-cost stack",
+   "items": [
+    "n8n Community Edition: free to self-host",
+    "AI: Groq free tier, or a local model with Ollama",
+    "Email: the clinic's own mailbox over SMTP",
+    "CRM: a Google Sheet"
+   ],
+   "say": "n8n's community edition is free to self-host. For the AI, use a free tier or a local model with Ollama. Send email through the clinic's own mailbox, and use a Google Sheet as the CRM.",
+   "caption": "Self-hosted n8n + free-tier or local AI + Google Sheet"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Honest limits",
+     "color": "amber",
+     "lines": [
+      "Free tiers have rate limits.",
+      "Local models need a decent machine.",
+      "Hosting n8n still needs a server or a spare PC."
+     ]
+    }
+   ],
+   "say": "Be honest with clients about the limits. Free tiers have rate limits, local models need decent hardware, and n8n still needs somewhere to run.",
+   "caption": "Know the limits before you promise \"free\""
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "The cheapest way to run an AI enquiry assistant:\n• n8n Community Edition (self-hosted)\n• Groq free tier or a local model via Ollama\n• the clinic's own mailbox (SMTP)\n• Google Sheets as the CRM\n\nJust be upfront about rate limits and hosting.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

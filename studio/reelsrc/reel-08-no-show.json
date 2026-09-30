@@ -1,0 +1,52 @@
+{
+ "n": 8,
+ "slug": "reel-08-no-show",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "What happens after a no-show?",
+   "hl": -1,
+   "say": "What happens at your client's clinic after a patient doesn't show up? Usually, nothing."
+  },
+  {
+   "type": "flow",
+   "steps": [
+    "Booking marked 'no-show'",
+    "Same day: kind message with a rebook link",
+    "3 days later: one gentle follow-up",
+    "Still nothing: flag for a staff call"
+   ],
+   "hl": [
+    1
+   ],
+   "say": "When a booking is marked as a no-show, the patient gets a kind message with a rebooking link. Three days later, one gentle follow-up. If there's still no reply, staff get a flag to call.",
+   "caption": "Kind message, one follow-up, then a human"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Keep it kind",
+     "color": "teal",
+     "lines": [
+      "No guilt, no fees in the message.",
+      "\"We missed you today. Would you like to rebook?\""
+     ]
+    }
+   ],
+   "say": "Keep the tone kind. No guilt and no talk of fees. Just: we missed you, would you like to rebook?",
+   "caption": "Tone matters: we missed you, want to rebook?"
+  },
+  {
+   "type": "cta",
+   "big": "Coming in the pack",
+   "sub": "Six tested clinic workflows, with setup guides and videos.",
+   "button": "DM me PACK",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "This one is part of the full clinic automation pack. Send me a message with the word pack for the early-bird price."
+  }
+ ],
+ "post": {
+  "caption": "No-show follow-up in three steps: a kind same-day message with a rebook link, one gentle follow-up after 3 days, then a flag for a staff call. No guilt, no fees in the text.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}

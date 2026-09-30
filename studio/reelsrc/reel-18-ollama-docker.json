@@ -1,0 +1,62 @@
+{
+ "n": 18,
+ "slug": "reel-18-ollama-docker",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "n8n can't reach Ollama? Check this",
+   "hl": -1,
+   "say": "Running n8n in Docker and it can't reach your local Ollama model? It's usually one word."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Inside a container",
+     "color": "red",
+     "mono": true,
+     "lines": [
+      "localhost = the container itself"
+     ]
+    },
+    {
+     "title": "Use instead",
+     "color": "teal",
+     "mono": true,
+     "lines": [
+      "http://host.docker.internal:11434/v1"
+     ]
+    }
+   ],
+   "say": "Inside a container, localhost means the container itself, not your computer. Use host dot docker dot internal instead.",
+   "caption": "Use host.docker.internal, not localhost"
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "On Linux",
+     "color": "ink",
+     "lines": [
+      "You may need to add this to docker run:",
+      "--add-host=",
+      "host.docker.internal:host-gateway"
+     ]
+    }
+   ],
+   "say": "On Linux you may also need to add the host gateway mapping to your docker run command.",
+   "caption": "Linux: add the host-gateway mapping"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "If n8n runs in Docker, 'localhost' points at the container, not your machine. To reach Ollama use http://host.docker.internal:11434/v1 (on Linux add --add-host=host.docker.internal:host-gateway).\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource"
+ }
+}

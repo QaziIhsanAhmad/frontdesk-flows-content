@@ -1,0 +1,57 @@
+{
+ "n": 4,
+ "slug": "reel-04-one-node",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "Change one node. Fit any clinic.",
+   "hl": 1,
+   "say": "You don't rebuild this workflow for every client. You change one node."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Settings node",
+     "color": "ink",
+     "mono": true,
+     "lines": [
+      "businessName  Bright Smile Dental",
+      "businessType  dental practice",
+      "businessInfo  hours, services, parking",
+      "bookingLink   your booking page",
+      "staffEmail    front desk inbox"
+     ]
+    }
+   ],
+   "say": "Everything client-specific lives in one Settings node: name, type, hours, services and the booking link.",
+   "caption": "All client details live in one Settings node"
+  },
+  {
+   "type": "flow",
+   "title": "Same workflow, new client",
+   "steps": [
+    "Duplicate the workflow",
+    "Edit the Settings node",
+    "Connect their email and sheet",
+    "Test three messages"
+   ],
+   "hl": [
+    1
+   ],
+   "say": "Duplicate it, edit the settings, connect their email and sheet, test three messages. That's a new client set up.",
+   "caption": "Duplicate, edit, connect, test"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Stop rebuilding automations for every client.\n\nPut everything client-specific in one Settings node: business name, hours, services, booking link, staff email. Then a new clinic is: duplicate, edit one node, connect their accounts, test.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness"
+ }
+}

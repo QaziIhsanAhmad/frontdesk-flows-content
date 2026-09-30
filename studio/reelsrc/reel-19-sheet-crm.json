@@ -1,0 +1,52 @@
+{
+ "n": 19,
+ "slug": "reel-19-sheet-crm",
+ "scenes": [
+  {
+   "type": "hook",
+   "big": "A Google Sheet is enough CRM for most clinics",
+   "hl": -1,
+   "say": "Most small clinics don't need a CRM. A Google Sheet is enough, if you set it up right."
+  },
+  {
+   "type": "card",
+   "cards": [
+    {
+     "title": "Columns that matter",
+     "color": "ink",
+     "mono": true,
+     "lines": [
+      "Received  Name  Email  Phone",
+      "Category  Urgent  Summary",
+      "Auto-reply sent  Status"
+     ]
+    }
+   ],
+   "say": "Log when it arrived, who it's from, the category, whether it's urgent, a one-line summary, and whether a reply went out.",
+   "caption": "Log the category, urgency and a summary"
+  },
+  {
+   "type": "list",
+   "title": "The Status column",
+   "items": [
+    "New",
+    "Contacted",
+    "Booked",
+    "Not a fit"
+   ],
+   "say": "Then one status column staff update by hand: new, contacted, booked, not a fit. That's a pipeline.",
+   "caption": "One Status column = a simple pipeline"
+  },
+  {
+   "type": "cta",
+   "big": "Free workflow",
+   "sub": "Clinic enquiry AI triage: workflow, setup guide and website form.",
+   "button": "See bio",
+   "small": "Works with n8n Cloud or self-hosted, and any OpenAI-compatible AI.",
+   "say": "Want the free workflow? Check the link in my bio, or send me a message with the word flow."
+  }
+ ],
+ "post": {
+  "caption": "Most small clinics don't need a CRM. A Google Sheet works if every enquiry is logged with category, urgency, a one-line AI summary and a Status column (New → Contacted → Booked → Not a fit). Keep access limited: enquiries can include health details.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice"
+ }
+}
