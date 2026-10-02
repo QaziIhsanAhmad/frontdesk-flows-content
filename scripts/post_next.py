@@ -74,9 +74,29 @@ def main():
     print("Published media", p.get("id"))
 
 
+MIN_GAP_HOURS = 12  # catch-up posts are spread out: never two Reels within 12 hours
+
+
+def recently_posted(q, now):
+    times = [dt.datetime.fromisoformat(i["posted_at"]) for i in q["items"] if i.get("status") == "posted" and i.get("posted_at")]
+    return bool(times) and (now - max(times)).total_seconds() < MIN_GAP_HOURS * 3600
+
+
+def set_health(q, ok, msg, now):
+    """Only touch queue.json when health actually changes, so hourly runs don't create noise commits."""
+    h = q.get("health") or {}
+    if h.get("ok") == ok and h.get("error", "") == msg:
+        return False
+    q["health"] = {"ok": ok, "error": msg, "since": now.isoformat()}
+    return True
+
+
 def run():
     """Run main(); record the outcome in queue.json "health" so failures are visible without Actions logs."""
-    now = dt.datetime.now(dt.timezone.utc).isoformat()
+    now = dt.datetime.now(dt.timezone.utc)
+    q = json.load(open(QUEUE))
+    if recently_posted(q, now):
+        print(f"A Reel was posted less than {MIN_GAP_HOURS}h ago; waiting."); return
     try:
         main()
     except SystemExit as e:
@@ -84,18 +104,24 @@ def run():
             raise
         msg = str(e.code)[:400]
         q = json.load(open(QUEUE))
-        q["health"] = {"ok": False, "error": msg, "at": now}
-        due = [i for i in q["items"] if i["status"] == "queued" and dt.datetime.fromisoformat(i["publish_after"]) <= dt.datetime.now(dt.timezone.utc)]
-        if due:
-            it = sorted(due, key=lambda i: i["publish_after"])[0]
-            it["attempts"] = it.get("attempts", 0) + 1
-            it["last_error"] = msg
-        json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
+        changed = set_health(q, False, msg, now)
+        config_problem = "secret is missing" in msg
+        if not config_problem:  # count real attempts only, not hourly checks while the token is absent
+            due = [i for i in q["items"] if i["status"] == "queued" and dt.datetime.fromisoformat(i["publish_after"]) <= now]
+            if due:
+                it = sorted(due, key=lambda i: i["publish_after"])[0]
+                it["attempts"] = it.get("attempts", 0) + 1
+                it["last_error"] = msg
+                changed = True
+        if changed:
+            json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
         print("FAILED:", msg)
+        if config_problem:
+            return  # recorded in health; avoid an hourly failure e-mail until the secret is added
         raise
     q = json.load(open(QUEUE))
-    q["health"] = {"ok": True, "error": "", "at": now}
-    json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
+    if set_health(q, True, "", now):
+        json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
 
 
 if __name__ == "__main__":

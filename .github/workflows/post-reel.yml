@@ -1,7 +1,7 @@
 name: Post next Reel
 on:
   schedule:
-    - cron: "7 15 * * *"   # daily 15:07 UTC = 20:07 Pakistan; posts only when an item is due
+    - cron: "17 * * * *"   # hourly; posts only when an item is due, at most one Reel per 12 hours
   workflow_dispatch:
     inputs:
       dry_run:
