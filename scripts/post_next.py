@@ -74,5 +74,29 @@ def main():
     print("Published media", p.get("id"))
 
 
+def run():
+    """Run main(); record the outcome in queue.json "health" so failures are visible without Actions logs."""
+    now = dt.datetime.now(dt.timezone.utc).isoformat()
+    try:
+        main()
+    except SystemExit as e:
+        if e.code in (None, 0):
+            raise
+        msg = str(e.code)[:400]
+        q = json.load(open(QUEUE))
+        q["health"] = {"ok": False, "error": msg, "at": now}
+        due = [i for i in q["items"] if i["status"] == "queued" and dt.datetime.fromisoformat(i["publish_after"]) <= dt.datetime.now(dt.timezone.utc)]
+        if due:
+            it = sorted(due, key=lambda i: i["publish_after"])[0]
+            it["attempts"] = it.get("attempts", 0) + 1
+            it["last_error"] = msg
+        json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
+        print("FAILED:", msg)
+        raise
+    q = json.load(open(QUEUE))
+    q["health"] = {"ok": True, "error": "", "at": now}
+    json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
+
+
 if __name__ == "__main__":
-    main()
+    run()
