@@ -7,7 +7,9 @@
    "file": "reel-01-front-desk.mp4",
    "caption": "Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somewhere else.\n\nThis n8n workflow replies in seconds, using only the clinic's own details, logs every lead in Google Sheets and flags urgent ones for staff.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #freelancer #nocode",
    "publish_after": "2026-10-02T15:00:00+00:00",
-   "status": "queued"
+   "status": "queued",
+   "attempts": 1,
+   "last_error": "IG_ACCESS_TOKEN secret is missing."
   },
   {
    "id": "reel-02-urgent",
@@ -163,5 +165,10 @@
    "publish_after": "2026-11-09T15:00:00+00:00",
    "status": "queued"
   }
- ]
+ ],
+ "health": {
+  "ok": false,
+  "error": "IG_ACCESS_TOKEN secret is missing.",
+  "at": "2026-10-02T15:58:21.817812+00:00"
+ }
 }
