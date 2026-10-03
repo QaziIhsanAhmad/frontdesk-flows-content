@@ -169,8 +169,8 @@
   }
  ],
  "health": {
-  "ok": false,
-  "error": "IG_ACCESS_TOKEN secret is missing.",
-  "at": "2026-10-02T15:58:21.817812+00:00"
+  "ok": true,
+  "error": "",
+  "since": "2026-10-03T06:33:27.596472+00:00"
  }
 }
