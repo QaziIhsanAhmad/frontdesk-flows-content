@@ -10,7 +10,7 @@ Env:
   DRY_RUN=1         print what would happen, publish nothing
 Posts at most one item per run: the earliest item whose publish_after <= now and status == "queued".
 """
-import json, os, sys, time, datetime as dt, urllib.parse, urllib.request
+import json, os, sys, time, hashlib, subprocess, datetime as dt, urllib.parse, urllib.request
 
 HOST = os.environ.get("IG_GRAPH_HOST", "https://graph.instagram.com").rstrip("/")
 VER = os.environ.get("IG_API_VERSION", "v23.0")
@@ -18,6 +18,74 @@ TOKEN = os.environ.get("IG_ACCESS_TOKEN", "")
 BASES = [b.strip().rstrip("/") for b in os.environ.get("MEDIA_BASE_URL", "").split(",") if b.strip()]
 DRY = os.environ.get("DRY_RUN") == "1"
 QUEUE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "queue.json")
+# Refreshed tokens are kept in the repo ONLY as AES-256 ciphertext. The key is derived from the
+# IG_ACCESS_TOKEN secret, which never leaves GitHub secrets, so the public file is useless without it.
+# When Qazi replaces the secret, the old file no longer decrypts and the new secret is used instead.
+TOKEN_STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".token", "ig_token.enc")
+REFRESH_EVERY_DAYS = 7     # Instagram long-lived tokens last 60 days; refresh well before that
+WARN_DAYS_LEFT = 10
+
+
+def _key(secret):
+    return hashlib.sha256(("frontdesk-ig-store:" + secret).encode()).hexdigest()
+
+
+def load_stored_token(secret):
+    if not secret or not os.path.exists(TOKEN_STORE):
+        return None
+    try:
+        r = subprocess.run(["openssl", "enc", "-d", "-aes-256-cbc", "-pbkdf2", "-iter", "200000", "-a", "-A",
+                            "-pass", "env:IG_STORE_KEY", "-in", TOKEN_STORE],
+                           capture_output=True, env={**os.environ, "IG_STORE_KEY": _key(secret)})
+        if r.returncode != 0:
+            return None
+        return json.loads(r.stdout.decode("utf8"))
+    except Exception:  # wrong key (secret was replaced) or damaged file: fall back to the secret
+        return None
+
+
+def save_stored_token(secret, data):
+    os.makedirs(os.path.dirname(TOKEN_STORE), exist_ok=True)
+    r = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-iter", "200000", "-salt", "-a", "-A",
+                        "-pass", "env:IG_STORE_KEY", "-out", TOKEN_STORE],
+                       input=json.dumps(data), capture_output=True, text=True,
+                       env={**os.environ, "IG_STORE_KEY": _key(secret)})
+    if r.returncode != 0:
+        raise RuntimeError("could not encrypt refreshed token: " + r.stderr[:200])
+
+
+def choose_and_refresh_token(now):
+    """Pick the freshest usable token and refresh it when due. Returns (token, info dict for health)."""
+    secret = os.environ.get("IG_ACCESS_TOKEN", "")
+    if not secret:
+        return "", {}
+    stored = load_stored_token(secret) or {}
+    token = stored.get("token") or secret
+    info = {"token_source": "refreshed" if stored.get("token") else "secret"}
+    if stored.get("expires_at"):
+        info["token_expires_at"] = stored["expires_at"]
+    last = stored.get("refreshed_at")
+    due = (not last) or (now - dt.datetime.fromisoformat(last)).days >= REFRESH_EVERY_DAYS
+    if due and "graph.instagram.com" in HOST and not DRY:
+        url = f"{HOST}/refresh_access_token?" + urllib.parse.urlencode({"grant_type": "ig_refresh_token", "access_token": token})
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                d = json.load(r)
+            new, secs = d.get("access_token"), int(d.get("expires_in") or 0)
+            if new:
+                exp = (now + dt.timedelta(seconds=secs)).isoformat() if secs else None
+                save_stored_token(secret, {"token": new, "refreshed_at": now.isoformat(), "expires_at": exp})
+                token = new
+                info.update(token_source="refreshed", token_expires_at=exp, token_refreshed_at=now.isoformat())
+                print("Token refreshed; new expiry", exp)
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf8", "replace")[:300]
+            print("Token refresh failed (will still try to post):", e.code, body)
+            info["token_refresh_error"] = f"HTTP {e.code} {body}"
+        except Exception as e:  # network etc. - never block posting on a refresh problem
+            print("Token refresh failed (will still try to post):", e)
+            info["token_refresh_error"] = str(e)[:300]
+    return token, info
 
 
 def api(method, path, params=None):
@@ -34,7 +102,10 @@ def api(method, path, params=None):
             return json.load(r)
     except urllib.error.HTTPError as e:
         body = e.read().decode("utf8", "replace")
-        raise SystemExit(f"Graph API {method} {path} failed: HTTP {e.code} {body[:500]}")
+        hint = ""
+        if '"code":190' in body.replace(" ", ""):
+            hint = " [token invalid or expired: replace the IG_ACCESS_TOKEN secret]"
+        raise SystemExit(f"Graph API {method} {path} failed: HTTP {e.code} {body[:500]}{hint}")
 
 
 def main():
@@ -91,10 +162,33 @@ def set_health(q, ok, msg, now):
     return True
 
 
+def update_token_info(q, tinfo, now):
+    """Keep non-secret token facts (expiry, refresh errors) in queue.json so the monitor can warn early."""
+    if not tinfo:
+        return False
+    old = q.get("token") or {}
+    new = {k: v for k, v in {**old, **tinfo}.items() if v is not None}
+    if "token_refresh_error" not in tinfo:
+        new.pop("token_refresh_error", None)
+    exp = new.get("token_expires_at")
+    if exp:
+        days = (dt.datetime.fromisoformat(exp) - now).days
+        new["warning"] = (f"Instagram token expires in {days} days and could not be refreshed automatically."
+                          if days <= WARN_DAYS_LEFT else "")
+    if new == old:
+        return False
+    q["token"] = new
+    return True
+
+
 def run():
     """Run main(); record the outcome in queue.json "health" so failures are visible without Actions logs."""
+    global TOKEN
     now = dt.datetime.now(dt.timezone.utc)
+    TOKEN, tinfo = choose_and_refresh_token(now)
     q = json.load(open(QUEUE))
+    if update_token_info(q, tinfo, now):
+        json.dump(q, open(QUEUE, "w"), indent=1, ensure_ascii=False)
     if recently_posted(q, now):
         print(f"A Reel was posted less than {MIN_GAP_HOURS}h ago; waiting."); return
     try:
