@@ -17,154 +17,174 @@
    "id": "reel-02-urgent",
    "file": "reel-02-urgent.mp4",
    "caption": "An AI assistant should never play doctor.\n\nWhen a message sounds urgent, this workflow tells the person to contact emergency services and emails the front desk at the same moment, so a human calls back. Tested with real runs, not just a diagram.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #aiagents #healthtech #automation #physiotherapy #freelancing",
-   "publish_after": "2026-10-08T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:54.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:54.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-02-urgent.mp4"
   },
   {
    "id": "reel-03-spam-outage",
    "file": "reel-03-spam-outage.mp4",
    "caption": "Most AI chatbot tutorials skip these two:\n1. Spam: a hidden honeypot and link checks stop bots before they cost an AI call.\n2. Outages: if the AI provider is down, the patient still gets a polite reply.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #freelancer #smallbusiness",
-   "publish_after": "2026-10-09T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:55.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:55.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-03-spam-outage.mp4"
   },
   {
    "id": "reel-04-one-node",
    "file": "reel-04-one-node.mp4",
    "caption": "Stop rebuilding automations for every client.\n\nPut everything client-specific in one Settings node: business name, hours, services, booking link, staff email. Then a new clinic is: duplicate, edit one node, connect their accounts, test.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-10T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:56.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:56.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-04-one-node.mp4"
   },
   {
    "id": "reel-05-almost-free",
    "file": "reel-05-almost-free.mp4",
    "caption": "The cheapest way to run an AI enquiry assistant:\n• n8n Community Edition (self-hosted)\n• Groq free tier or a local model via Ollama\n• the clinic's own mailbox (SMTP)\n• Google Sheets as the CRM\n\nJust be upfront about rate limits and hosting.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-11T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:57.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:57.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-05-almost-free.mp4"
   },
   {
    "id": "reel-06-pack-coming",
    "file": "reel-06-pack-coming.mp4",
    "caption": "The full FrontDesk Flows clinic pack:\n1. Enquiry triage with AI replies (+ WhatsApp version)\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests\n5. FAQ assistant from clinic documents\n6. Weekly owner summary\n\nEach with a setup guide, test data and a video walkthrough.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-12T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:58.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:58.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-06-pack-coming.mp4"
   },
   {
    "id": "reel-07-reminders",
    "file": "reel-07-reminders.mp4",
    "caption": "Appointment reminders are the easiest automation to sell to a clinic.\n\nHourly check → 24-hour reminder → 2-hour nudge → reply to cancel frees the slot. Store 'reminder sent' in the booking row so nothing goes out twice.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-13T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:17:59.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:17:59.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-07-reminders.mp4"
   },
   {
    "id": "reel-08-no-show",
    "file": "reel-08-no-show.mp4",
    "caption": "No-show follow-up in three steps: a kind same-day message with a rebook link, one gentle follow-up after 3 days, then a flag for a staff call. No guilt, no fees in the text.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-14T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:18:00.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:18:00.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-08-no-show.mp4"
   },
   {
    "id": "reel-09-reviews-policy",
    "file": "reel-09-reviews-policy.mp4",
    "caption": "Review-request automations often filter out unhappy patients first. That's called review gating, and Google's policy doesn't allow it.\n\nSend the same review link to every patient, and offer a separate private feedback option if you like.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-15T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:18:01.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:18:01.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-09-reviews-policy.mp4"
   },
   {
    "id": "reel-10-sell-to-clinic",
    "file": "reel-10-sell-to-clinic.mp4",
    "caption": "How freelancers can sell automation to clinics:\n1. Find clinics with phone-only or slow booking\n2. Record a 60-second demo for their case\n3. Offer a fixed-price setup\n4. Add a small monthly support fee\n\nTalk outcomes (fewer missed enquiries), not nodes.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-16T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:18:02.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:18:02.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-10-sell-to-clinic.mp4"
   },
   {
    "id": "reel-11-pricing",
    "file": "reel-11-pricing.mp4",
    "caption": "Hourly billing punishes you for getting faster.\n\nPrice automations as a fixed setup + a monthly care plan (monitoring failed runs, updating prompts and business info, fixing connections). Clear for the client, steady for you.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-17T15:00:00+00:00",
-   "status": "queued"
+   "publish_after": "2026-10-07T18:18:03.215164+00:00",
+   "status": "feed",
+   "fed_at": "2026-10-07T18:18:03.215164+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-11-pricing.mp4"
   },
   {
    "id": "reel-12-webhook-basics",
    "file": "reel-12-webhook-basics.mp4",
    "caption": "A website form talks to n8n through one Webhook node: the browser POSTs the form as JSON, the workflow runs.\n\nMost common mistake: pasting the test URL on the live site. Use the production URL and activate the workflow.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-18T15:00:00+00:00",
+   "publish_after": "2026-10-08T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-13-honeypot",
    "file": "reel-13-honeypot.mp4",
    "caption": "Honeypot trick: add a hidden 'website' field to the form. Humans never see it; many simple bots fill every field. If it's filled, reject the submission in n8n before spending an AI call.\n\nNot perfect, but it stops a lot of junk.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-19T15:00:00+00:00",
+   "publish_after": "2026-10-09T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-14-only-your-info",
    "file": "reel-14-only-your-info.mp4",
    "caption": "The fastest way to lose a client's trust: the AI invents a price.\n\nGive it a BUSINESS INFO block and one rule: use only those facts, never promise prices or availability that aren't listed, and hand off when unsure. Then review the first 20 replies anyway.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-20T15:00:00+00:00",
+   "publish_after": "2026-10-10T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-15-json-fallback",
    "file": "reel-15-json-fallback.mp4",
    "caption": "Two habits that stop AI workflows from breaking:\n1. Ask for JSON with fixed keys (category, urgent, summary, reply)\n2. Parse inside try/catch and fall back to a polite default reply\n\nThe patient always hears back, even when the model misbehaves.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-21T15:00:00+00:00",
+   "publish_after": "2026-10-11T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-16-respond-first",
    "file": "reel-16-respond-first.mp4",
    "caption": "n8n tip: add 'Respond to Webhook' right after validation. The visitor gets an instant thank-you while the AI reply, email and logging continue in the background. No spinner, no duplicate submissions.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-22T15:00:00+00:00",
+   "publish_after": "2026-10-12T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-17-docker",
    "file": "reel-17-docker.mp4",
    "caption": "Self-hosting n8n starts with one Docker command (from the official docs): create a volume, run the image on port 5678.\n\nFor client work, add HTTPS, backups and updates before anything else.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-23T15:00:00+00:00",
+   "publish_after": "2026-10-13T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-18-ollama-docker",
    "file": "reel-18-ollama-docker.mp4",
    "caption": "If n8n runs in Docker, 'localhost' points at the container, not your machine. To reach Ollama use http://host.docker.internal:11434/v1 (on Linux add --add-host=host.docker.internal:host-gateway).\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
-   "publish_after": "2026-10-24T15:00:00+00:00",
+   "publish_after": "2026-10-14T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-19-sheet-crm",
    "file": "reel-19-sheet-crm.mp4",
    "caption": "Most small clinics don't need a CRM. A Google Sheet works if every enquiry is logged with category, urgency, a one-line AI summary and a Status column (New → Contacted → Booked → Not a fit). Keep access limited: enquiries can include health details.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-25T15:00:00+00:00",
+   "publish_after": "2026-10-15T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-20-health-data",
    "file": "reel-20-health-data.mp4",
    "caption": "Clinic enquiries often include health details, and under UK GDPR health data is 'special category' data.\n\nBasics: a clear privacy notice, limited sheet access, a carefully chosen AI provider, and deleting what you don't need. Not legal advice; the clinic should confirm its own obligations.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-26T15:00:00+00:00",
+   "publish_after": "2026-10-16T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-21-five-automations",
    "file": "reel-21-five-automations.mp4",
    "caption": "5 automations every small clinic should have:\n1. Instant reply to every enquiry\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests after visits\n5. Urgent messages routed to staff\n\nSelling them? Start with #1.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-27T15:00:00+00:00",
+   "publish_after": "2026-10-17T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-22-review-first-20",
    "file": "reel-22-review-first-20.mp4",
    "caption": "Safer AI reply rollout for a client:\nWeek 1: AI drafts, staff approve\nThen: fix business info + prompt\nWeek 2: auto-send simple categories only\nAlways: urgent messages and complaints go to a human.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
-   "publish_after": "2026-10-28T15:00:00+00:00",
+   "publish_after": "2026-10-18T15:00:00+00:00",
    "status": "queued"
   },
   {
    "id": "reel-23-whatsapp",
    "file": "reel-23-whatsapp.mp4",
    "caption": "The enquiry workflow can run on WhatsApp, but set expectations: you need the WhatsApp Business Platform (Cloud API), a Meta business account with a verified number, approved templates for outbound messages, and a webhook into n8n. Meta charges for some messages.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
-   "publish_after": "2026-10-29T15:00:00+00:00",
+   "publish_after": "2026-10-19T15:00:00+00:00",
    "status": "queued"
   }
  ],
