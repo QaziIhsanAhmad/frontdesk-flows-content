@@ -13,8 +13,13 @@ concurrency: post-reel
 jobs:
   post:
     runs-on: ubuntu-latest
+    env:
+      HAS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Make.com feed lane (only while IG_ACCESS_TOKEN is not set)
+        if: env.HAS_TOKEN != 'true'
+        run: python3 scripts/build_reel_feed.py
       - name: Publish due Reel
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
@@ -28,6 +33,6 @@ jobs:
         run: |
           git config user.name "reel-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add queue.json .token 2>/dev/null || git add queue.json
+          git add queue.json reels-feed.xml .token 2>/dev/null || git add queue.json reels-feed.xml 2>/dev/null || git add queue.json
           git commit -m "Queue: post status $(date -u +%F)" || echo "no change"
           git push
