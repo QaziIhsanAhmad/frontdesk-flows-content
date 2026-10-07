@@ -35,9 +35,13 @@ def main():
            "<title>FrontDesk Flows Reels</title>",
            "<link>https://www.instagram.com/frontdeskflows/</link>",
            "<description>Reels due for @frontdeskflows</description>"]
-    for i in sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"]):
+    # Seed with the last Reel already posted so the feed is never empty (Make's RSS
+    # module is set to start "From now on", so this seed item is never re-posted).
+    posted = sorted((i for i in items if i["status"] == "posted"), key=lambda i: i.get("posted_at", ""))
+    feed = posted[-1:] + sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"])
+    for i in feed:
         url = i.get("media_url") or BASE + i["file"]
-        when = format_datetime(dt.datetime.fromisoformat(i["fed_at"]))
+        when = format_datetime(dt.datetime.fromisoformat(i.get("fed_at") or i.get("posted_at") or i["publish_after"]))
         out += ["<item>", f"<title>{escape(i['id'])}</title>",
                 f'<guid isPermaLink="false">{escape(i["id"])}</guid>',
                 f"<link>{escape(url)}</link>", f"<pubDate>{when}</pubDate>",

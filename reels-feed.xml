@@ -3,4 +3,18 @@
 <title>FrontDesk Flows Reels</title>
 <link>https://www.instagram.com/frontdeskflows/</link>
 <description>Reels due for @frontdeskflows</description>
+<item>
+<title>reel-01-front-desk</title>
+<guid isPermaLink="false">reel-01-front-desk</guid>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-01-front-desk.mp4</link>
+<pubDate>Fri, 02 Oct 2026 16:24:00 +0000</pubDate>
+<description>Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somewhere else.
+
+This n8n workflow replies in seconds, using only the clinic's own details, logs every lead in Google Sheets and flags urgent ones for staff.
+
+Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+
+#n8n #automation #aiautomation #clinicmarketing #freelancer #nocode</description>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-01-front-desk.mp4" type="video/mp4" length="0"/>
+</item>
 </channel></rss>
