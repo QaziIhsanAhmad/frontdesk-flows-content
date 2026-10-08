@@ -1,6 +1,66 @@
 {
- "at": "2026-10-08T11:55:55.248843Z",
- "action": "audit",
+ "at": "2026-10-08T11:58:29.610199Z",
+ "action": "fix:7717461:7200:2",
+ "feed_checks": [],
+ "patch": {
+  "scenario": {
+   "id": 7717461,
+   "name": "Integration RSS",
+   "teamId": 3012165,
+   "hookId": null,
+   "devices": [],
+   "deviceId": null,
+   "deviceScope": null,
+   "concept": false,
+   "description": "",
+   "folderId": null,
+   "slots": null,
+   "isinvalid": true,
+   "islinked": false,
+   "islocked": false,
+   "isPaused": false,
+   "usedPackages": [
+    "rss",
+    "instagram-business"
+   ],
+   "lastEdit": "2026-10-08T11:58:30.429Z",
+   "scheduling": {
+    "type": "indefinitely",
+    "interval": 7200
+   },
+   "iswaiting": false,
+   "dlqCount": 0,
+   "allDlqCount": 0,
+   "createdByUser": {
+    "id": 9469033,
+    "name": "frontdesk flows",
+    "email": "frontdeskflows96@gmail.com"
+   },
+   "updatedByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "nextExec": null,
+   "created": "2026-10-01T12:55:06.664Z",
+   "chainingRole": "none",
+   "type": "scenario",
+   "isShared": false,
+   "isActive": false
+  },
+  "scenarioVersion": {
+   "scenarioId": 7717461,
+   "version": 7,
+   "draft": false
+  }
+ },
+ "start": {
+  "scenario": {
+   "id": 7717461,
+   "islinked": true,
+   "isActive": true
+  }
+ },
  "teams": {
   "teams": [
    {
@@ -32,18 +92,18 @@
     "description": "",
     "folderId": null,
     "slots": null,
-    "isinvalid": true,
-    "islinked": false,
+    "isinvalid": false,
+    "islinked": true,
     "islocked": false,
     "isPaused": false,
     "usedPackages": [
      "rss",
      "instagram-business"
     ],
-    "lastEdit": "2026-10-07T18:18:51.817Z",
+    "lastEdit": "2026-10-08T11:58:30.429Z",
     "scheduling": {
      "type": "indefinitely",
-     "interval": 3600
+     "interval": 7200
     },
     "iswaiting": false,
     "dlqCount": 0,
@@ -54,11 +114,11 @@
      "email": "frontdeskflows96@gmail.com"
     },
     "updatedByUser": {
-     "id": 9469033,
-     "name": "frontdesk flows",
-     "email": "frontdeskflows96@gmail.com"
+     "id": 5359472,
+     "name": "Qazi Ehsan",
+     "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": null,
+    "nextExec": "2026-10-08T11:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -77,7 +137,7 @@
      }
     ],
     "labels": [],
-    "isActive": false
+    "isActive": true
    },
    "blueprint": {
     "code": "OK",
@@ -296,7 +356,7 @@
          "include": [],
          "password": "<redacted>",
          "username": "",
-         "maxResults": 10
+         "maxResults": 2
         }
        },
        {
@@ -304,7 +364,7 @@
         "mapper": {
          "caption": "{{1.description}}",
          "accountId": "17841416945478586",
-         "video_url": "{{1.url}}{{1.id}}",
+         "video_url": "{{1.url}}",
          "thumb_offset": "1500",
          "share_to_feed": true
         },
@@ -446,17 +506,17 @@
      },
      "scheduling": {
       "type": "indefinitely",
-      "interval": 3600
+      "interval": 7200
      },
      "concept": false,
      "created": "2026-10-01T12:55:06.664Z",
-     "last_edit": "2026-10-07T18:18:51.817Z",
+     "last_edit": "2026-10-08T11:58:30.429Z",
      "metadata": {
       "input_spec": [],
       "output_spec": []
      },
      "idSequence": 4,
-     "version": 6
+     "version": 7
     }
    },
    "logs": [
