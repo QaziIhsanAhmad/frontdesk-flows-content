@@ -9,7 +9,7 @@ TOK = os.environ["MAKE_EU1_TOKEN"]
 
 def call(path, method="GET", body=None):
     req = urllib.request.Request(BASE + path, method=method,
-        headers={"Authorization": "Token " + TOK, "Content-Type": "application/json"},
+        headers={"Authorization": "Token " + TOK, "Content-Type": "application/json", "Accept": "application/json", "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) fdf-audit/1.0"},
         data=json.dumps(body).encode() if body is not None else None)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
