@@ -48,7 +48,7 @@ def main():
             print("retry:", i["id"], i["retries"])
     # No seed item: an empty RSS channel is valid, and a posted seed risked a duplicate post.
     posted = sorted((i for i in items if i["status"] == "posted"), key=lambda i: i.get("posted_at", ""))
-    feed = sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"])
+    feed = sorted((i for i in items if i["status"] == "feed" and dt.datetime.fromisoformat(i["fed_at"]) <= now), key=lambda i: i["fed_at"])  # staggered catch-up: items appear at fed_at
     for i in feed:
         url = BASE + i["file"]
         when = format_datetime(dt.datetime.fromisoformat(i.get("fed_at") or i.get("posted_at") or i["publish_after"]))

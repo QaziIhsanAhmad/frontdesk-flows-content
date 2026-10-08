@@ -19,8 +19,9 @@
    "caption": "An AI assistant should never play doctor.\n\nWhen a message sounds urgent, this workflow tells the person to contact emergency services and emails the front desk at the same moment, so a human calls back. Tested with real runs, not just a diagram.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #aiagents #healthtech #automation #physiotherapy #freelancing",
    "publish_after": "2026-10-07T18:17:54.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:54.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-02-urgent.mp4"
+   "fed_at": "2026-10-08T12:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-02-urgent.mp4",
+   "catchup": true
   },
   {
    "id": "reel-03-spam-outage",
@@ -28,8 +29,9 @@
    "caption": "Most AI chatbot tutorials skip these two:\n1. Spam: a hidden honeypot and link checks stop bots before they cost an AI call.\n2. Outages: if the AI provider is down, the patient still gets a polite reply.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #freelancer #smallbusiness",
    "publish_after": "2026-10-07T18:17:55.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:55.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-03-spam-outage.mp4"
+   "fed_at": "2026-10-08T14:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-03-spam-outage.mp4",
+   "catchup": true
   },
   {
    "id": "reel-04-one-node",
@@ -37,8 +39,9 @@
    "caption": "Stop rebuilding automations for every client.\n\nPut everything client-specific in one Settings node: business name, hours, services, booking link, staff email. Then a new clinic is: duplicate, edit one node, connect their accounts, test.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
    "publish_after": "2026-10-07T18:17:56.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:56.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-04-one-node.mp4"
+   "fed_at": "2026-10-08T16:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-04-one-node.mp4",
+   "catchup": true
   },
   {
    "id": "reel-05-almost-free",
@@ -46,8 +49,9 @@
    "caption": "The cheapest way to run an AI enquiry assistant:\n• n8n Community Edition (self-hosted)\n• Groq free tier or a local model via Ollama\n• the clinic's own mailbox (SMTP)\n• Google Sheets as the CRM\n\nJust be upfront about rate limits and hosting.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #selfhosted #opensource",
    "publish_after": "2026-10-07T18:17:57.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:57.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-05-almost-free.mp4"
+   "fed_at": "2026-10-08T18:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-05-almost-free.mp4",
+   "catchup": true
   },
   {
    "id": "reel-06-pack-coming",
@@ -55,8 +59,9 @@
    "caption": "The full FrontDesk Flows clinic pack:\n1. Enquiry triage with AI replies (+ WhatsApp version)\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests\n5. FAQ assistant from clinic documents\n6. Weekly owner summary\n\nEach with a setup guide, test data and a video walkthrough.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
    "publish_after": "2026-10-07T18:17:58.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:58.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-06-pack-coming.mp4"
+   "fed_at": "2026-10-08T20:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-06-pack-coming.mp4",
+   "catchup": true
   },
   {
    "id": "reel-07-reminders",
@@ -64,8 +69,9 @@
    "caption": "Appointment reminders are the easiest automation to sell to a clinic.\n\nHourly check → 24-hour reminder → 2-hour nudge → reply to cancel frees the slot. Store 'reminder sent' in the booking row so nothing goes out twice.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
    "publish_after": "2026-10-07T18:17:59.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:17:59.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-07-reminders.mp4"
+   "fed_at": "2026-10-08T22:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-07-reminders.mp4",
+   "catchup": true
   },
   {
    "id": "reel-08-no-show",
@@ -73,8 +79,9 @@
    "caption": "No-show follow-up in three steps: a kind same-day message with a rebook link, one gentle follow-up after 3 days, then a flag for a staff call. No guilt, no fees in the text.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
    "publish_after": "2026-10-07T18:18:00.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:18:00.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-08-no-show.mp4"
+   "fed_at": "2026-10-09T00:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-08-no-show.mp4",
+   "catchup": true
   },
   {
    "id": "reel-09-reviews-policy",
@@ -82,8 +89,9 @@
    "caption": "Review-request automations often filter out unhappy patients first. That's called review gating, and Google's policy doesn't allow it.\n\nSend the same review link to every patient, and offer a separate private feedback option if you like.\n\nPart of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice",
    "publish_after": "2026-10-07T18:18:01.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:18:01.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-09-reviews-policy.mp4"
+   "fed_at": "2026-10-09T02:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-09-reviews-policy.mp4",
+   "catchup": true
   },
   {
    "id": "reel-10-sell-to-clinic",
@@ -91,8 +99,9 @@
    "caption": "How freelancers can sell automation to clinics:\n1. Find clinics with phone-only or slow booking\n2. Record a 60-second demo for their case\n3. Offer a fixed-price setup\n4. Add a small monthly support fee\n\nTalk outcomes (fewer missed enquiries), not nodes.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
    "publish_after": "2026-10-07T18:18:02.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:18:02.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-10-sell-to-clinic.mp4"
+   "fed_at": "2026-10-09T04:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-10-sell-to-clinic.mp4",
+   "catchup": true
   },
   {
    "id": "reel-11-pricing",
@@ -100,8 +109,9 @@
    "caption": "Hourly billing punishes you for getting faster.\n\nPrice automations as a fixed setup + a monthly care plan (monitoring failed runs, updating prompts and business info, fixing connections). Clear for the client, steady for you.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #automation #aiautomation #freelancer #nocode #smallbusiness",
    "publish_after": "2026-10-07T18:18:03.215164+00:00",
    "status": "feed",
-   "fed_at": "2026-10-07T18:18:03.215164+00:00",
-   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-11-pricing.mp4"
+   "fed_at": "2026-10-09T06:30:00+00:00",
+   "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-11-pricing.mp4",
+   "catchup": true
   },
   {
    "id": "reel-12-webhook-basics",
