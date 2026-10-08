@@ -62,6 +62,19 @@ elif act[0] == "conns":
 elif act[0] == "rpc":
     # rpc:<app>:<version>:<rpcName>:<connId>  -> option list (e.g. facebook-pages Pages)
     out["result"] = call(f"/rpcs/{act[1]}/{act[2]}/{act[3]}?teamId=3012165", "POST", {"data": {"__IMTCONN__": int(act[4])}})
+elif act[0] == "fbreel":
+    # fbreel:<scenarioId>:<connId>  -> add/refresh Facebook Page Reel step after the IG step (same RSS item, so no duplicates)
+    sid, conn = act[1], int(act[2])
+    out["pages_rpc"] = call(f"/rpcs/facebook-pages/6/Pages?teamId=3012165", "POST", {"data": {"__IMTCONN__": conn}})
+    bp = call(f"/scenarios/{sid}/blueprint")["response"]["blueprint"]
+    bp["flow"] = [m for m in bp["flow"] if m["module"] != "facebook-pages:uploadAReel"]
+    bp["flow"].append({"id": 4, "module": "facebook-pages:uploadAReel", "version": 6,
+        "parameters": {"__IMTCONN__": conn},
+        "mapper": {"page_id": "1354185007779555", "uploadMethod": "url", "url": "{{1.url}}",
+                   "description": "{{replace(replace(1.description; \"see the link in bio, or DM me FLOW\"; \"message this Page with the word FLOW\"); \"link in bio\"; \"message this Page\")}}"},
+        "metadata": {"designer": {"x": 600, "y": 0}},
+        "onerror": [{"id": 5, "module": "builtin:Resume", "version": 1, "mapper": {}, "metadata": {"designer": {"x": 600, "y": 300}}}]})
+    out["patch"] = call(f"/scenarios/{sid}", "PATCH", {"blueprint": json.dumps(bp)})
 elif act[0] == "daily":
     out["result"] = call(f"/scenarios/{act[1]}", "PATCH", {"scheduling": json.dumps({"type": "daily", "time": act[2]})})
 
