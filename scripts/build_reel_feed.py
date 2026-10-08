@@ -38,6 +38,14 @@ def main():
            "<title>FrontDesk Flows Reels</title>",
            "<link>https://www.instagram.com/frontdeskflows/</link>",
            "<description>Reels due for @frontdeskflows</description>"]
+    # Retry lane: an item marked status "retry" (because Make History showed it failed
+    # or never ran) re-enters the feed under a NEW guid "<id>-rN", so Make treats it as
+    # a new item exactly once. Items that did post must be marked "posted", never "retry".
+    for i in items:
+        if i["status"] == "retry":
+            i["retries"] = i.get("retries", 0) + 1
+            i.update(status="feed", fed_at=now.isoformat())
+            print("retry:", i["id"], i["retries"])
     # Seed with the last Reel already posted so the feed is never empty (Make's RSS
     # module is set to start "From now on", so this seed item is never re-posted).
     posted = sorted((i for i in items if i["status"] == "posted"), key=lambda i: i.get("posted_at", ""))
@@ -45,8 +53,9 @@ def main():
     for i in feed:
         url = BASE + i["file"]
         when = format_datetime(dt.datetime.fromisoformat(i.get("fed_at") or i.get("posted_at") or i["publish_after"]))
-        out += ["<item>", f"<title>{escape(i['id'])}</title>",
-                f'<guid isPermaLink="false">{escape(i["id"])}</guid>',
+        gid = i["id"] + (f"-r{i['retries']}" if i.get("retries") else "")
+        out += ["<item>", f"<title>{escape(gid)}</title>",
+                f'<guid isPermaLink="false">{escape(gid)}</guid>',
                 f"<link>{escape(url)}</link>", f"<pubDate>{when}</pubDate>",
                 f"<description>{escape(i['caption'])}</description>",
                 f'<enclosure url="{escape(url)}" type="video/mp4" length="0"/>', "</item>"]
