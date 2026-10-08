@@ -4,51 +4,37 @@
 <link>https://www.instagram.com/frontdeskflows/</link>
 <description>Reels due for @frontdeskflows</description>
 <item>
-<title>reel-02-urgent</title>
-<guid isPermaLink="false">reel-02-urgent</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-02-urgent.mp4</link>
-<pubDate>Thu, 08 Oct 2026 12:50:02 +0000</pubDate>
-<description>An AI assistant should never play doctor.
-
-When a message sounds urgent, this workflow tells the person to contact emergency services and emails the front desk at the same moment, so a human calls back. Tested with real runs, not just a diagram.
-
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
-
-#n8n #aiagents #healthtech #automation #physiotherapy #freelancing</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-02-urgent.mp4" type="video/mp4" length="0"/>
-</item>
-<item>
 <title>reel-03-spam-outage</title>
 <guid isPermaLink="false">reel-03-spam-outage</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-03-spam-outage.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-03-spam-outage.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:51:02 +0000</pubDate>
 <description>Most AI chatbot tutorials skip these two:
 1. Spam: a hidden honeypot and link checks stop bots before they cost an AI call.
 2. Outages: if the AI provider is down, the patient still gets a polite reply.
 
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+Free clinic enquiry workflow: DM me FLOW and I'll send it.
 
 #n8n #automation #aiautomation #webdev #freelancer #smallbusiness</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-03-spam-outage.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-03-spam-outage.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-04-one-node</title>
 <guid isPermaLink="false">reel-04-one-node</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-04-one-node.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-04-one-node.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:52:02 +0000</pubDate>
 <description>Stop rebuilding automations for every client.
 
 Put everything client-specific in one Settings node: business name, hours, services, booking link, staff email. Then a new clinic is: duplicate, edit one node, connect their accounts, test.
 
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+Free clinic enquiry workflow: DM me FLOW and I'll send it.
 
 #n8n #automation #aiautomation #freelancer #nocode #smallbusiness</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-04-one-node.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-04-one-node.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-05-almost-free</title>
 <guid isPermaLink="false">reel-05-almost-free</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-05-almost-free.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-05-almost-free.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:53:02 +0000</pubDate>
 <description>The cheapest way to run an AI enquiry assistant:
 • n8n Community Edition (self-hosted)
@@ -58,15 +44,15 @@ Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
 
 Just be upfront about rate limits and hosting.
 
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+Free clinic enquiry workflow: DM me FLOW and I'll send it.
 
 #n8n #automation #aiautomation #webdev #selfhosted #opensource</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-05-almost-free.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-05-almost-free.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-06-pack-coming</title>
 <guid isPermaLink="false">reel-06-pack-coming</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-06-pack-coming.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-06-pack-coming.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:54:02 +0000</pubDate>
 <description>The full FrontDesk Flows clinic pack:
 1. Enquiry triage with AI replies (+ WhatsApp version)
@@ -81,12 +67,12 @@ Each with a setup guide, test data and a video walkthrough.
 Part of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.
 
 #n8n #automation #aiautomation #freelancer #nocode #smallbusiness</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-06-pack-coming.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-06-pack-coming.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-07-reminders</title>
 <guid isPermaLink="false">reel-07-reminders</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-07-reminders.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-07-reminders.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:55:02 +0000</pubDate>
 <description>Appointment reminders are the easiest automation to sell to a clinic.
 
@@ -95,24 +81,24 @@ Hourly check → 24-hour reminder → 2-hour nudge → reply to cancel frees the
 Part of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.
 
 #n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-07-reminders.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-07-reminders.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-08-no-show</title>
 <guid isPermaLink="false">reel-08-no-show</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-08-no-show.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-08-no-show.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:56:02 +0000</pubDate>
 <description>No-show follow-up in three steps: a kind same-day message with a rebook link, one gentle follow-up after 3 days, then a flag for a staff call. No guilt, no fees in the text.
 
 Part of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.
 
 #n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-08-no-show.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-08-no-show.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-09-reviews-policy</title>
 <guid isPermaLink="false">reel-09-reviews-policy</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-09-reviews-policy.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-09-reviews-policy.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:57:02 +0000</pubDate>
 <description>Review-request automations often filter out unhappy patients first. That's called review gating, and Google's policy doesn't allow it.
 
@@ -121,12 +107,12 @@ Send the same review link to every patient, and offer a separate private feedbac
 Part of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price.
 
 #n8n #automation #aiautomation #clinicmarketing #physiotherapy #dentalpractice</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-09-reviews-policy.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-09-reviews-policy.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-10-sell-to-clinic</title>
 <guid isPermaLink="false">reel-10-sell-to-clinic</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-10-sell-to-clinic.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-10-sell-to-clinic.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:58:02 +0000</pubDate>
 <description>How freelancers can sell automation to clinics:
 1. Find clinics with phone-only or slow booking
@@ -136,23 +122,23 @@ Part of the upcoming 6-workflow clinic pack. DM me PACK for the early-bird price
 
 Talk outcomes (fewer missed enquiries), not nodes.
 
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+Free clinic enquiry workflow: DM me FLOW and I'll send it.
 
 #n8n #automation #aiautomation #freelancer #nocode #smallbusiness</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-10-sell-to-clinic.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-10-sell-to-clinic.mp4" type="video/mp4" length="0"/>
 </item>
 <item>
 <title>reel-11-pricing</title>
 <guid isPermaLink="false">reel-11-pricing</guid>
-<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-11-pricing.mp4</link>
+<link>https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-11-pricing.mp4</link>
 <pubDate>Thu, 08 Oct 2026 12:59:02 +0000</pubDate>
 <description>Hourly billing punishes you for getting faster.
 
 Price automations as a fixed setup + a monthly care plan (monitoring failed runs, updating prompts and business info, fixing connections). Clear for the client, steady for you.
 
-Free clinic enquiry workflow: see the link in bio, or DM me FLOW.
+Free clinic enquiry workflow: DM me FLOW and I'll send it.
 
 #n8n #automation #aiautomation #freelancer #nocode #smallbusiness</description>
-<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@df6aadf1d6401c197f36e949c1785cbe28603bf4/videos/reel-11-pricing.mp4" type="video/mp4" length="0"/>
+<enclosure url="https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@d0783bcd74649978e337d4eabe4b54b0b1d6fe85/videos/reel-11-pricing.mp4" type="video/mp4" length="0"/>
 </item>
 </channel></rss>
