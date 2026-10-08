@@ -1,77 +1,6 @@
 {
- "at": "2026-10-08T14:16:54.600228Z",
- "action": "fbreel:7717461:11476526",
- "pages_rpc": {
-  "code": "OK",
-  "response": [
-   {
-    "label": "FrontDesk Flows",
-    "value": "1354185007779555"
-   },
-   {
-    "label": "Xenova Solutions (Bahawalpur)",
-    "value": "1267773913096573"
-   },
-   {
-    "label": "Xenova Solutions",
-    "value": "1297050506825126"
-   }
-  ]
- },
- "patch": {
-  "scenario": {
-   "id": 7717461,
-   "name": "Integration RSS",
-   "teamId": 3012165,
-   "hookId": null,
-   "devices": [],
-   "deviceId": null,
-   "deviceScope": null,
-   "concept": false,
-   "description": "",
-   "folderId": null,
-   "slots": null,
-   "isinvalid": false,
-   "islinked": true,
-   "islocked": false,
-   "isPaused": false,
-   "usedPackages": [
-    "rss",
-    "instagram-business",
-    "facebook-pages",
-    "builtin"
-   ],
-   "lastEdit": "2026-10-08T14:16:56.816Z",
-   "scheduling": {
-    "type": "indefinitely",
-    "interval": 7200
-   },
-   "iswaiting": false,
-   "dlqCount": 0,
-   "allDlqCount": 0,
-   "createdByUser": {
-    "id": 9469033,
-    "name": "frontdesk flows",
-    "email": "frontdeskflows96@gmail.com"
-   },
-   "updatedByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "nextExec": "2026-10-08T15:58:30.976Z",
-   "created": "2026-10-01T12:55:06.664Z",
-   "chainingRole": "none",
-   "type": "scenario",
-   "isShared": false,
-   "isActive": true
-  },
-  "scenarioVersion": {
-   "scenarioId": 7717461,
-   "version": 8,
-   "draft": false
-  }
- },
+ "at": "2026-10-08T21:28:50.385621Z",
+ "action": "audit",
  "teams": {
   "teams": [
    {
@@ -131,14 +60,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-08T15:58:30.976Z",
+    "nextExec": "2026-10-08T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 12,
-    "centicredits": 1200,
-    "transfer": 7735,
+    "operations": 19,
+    "centicredits": 1900,
+    "transfer": 11961,
     "usedModules": [
      {
       "moduleName": "TriggerNewArticle",
@@ -575,6 +504,79 @@
     }
    },
    "logs": [
+    {
+     "log": {
+      "imtId": "1791475113139_0b866f862a9b4e8bb2520121318eec73",
+      "scenarioName": "Integration RSS",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7717461,
+      "instant": false,
+      "duration": 131004,
+      "centicredits": 500,
+      "operations": 5,
+      "transfer": 4226,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "0b866f862a9b4e8bb2520121318eec73",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-08T16:00:44.146Z",
+      "timestamp": "2026-10-08T15:58:33.139Z",
+      "status": 1,
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1791475113139_0b866f862a9b4e8bb2520121318eec73",
+       "eventType": "EXECUTION_END",
+       "id": "0b866f862a9b4e8bb2520121318eec73",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-08T15:58:33.139Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "scenarioId": 7717461,
+       "duration": 131004,
+       "centicredits": 500,
+       "operations": 5,
+       "transfer": 4226,
+       "endedAt": "2026-10-08T16:00:44.146Z",
+       "status": 1,
+       "isReplayable": true
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791469016816_72295200",
+      "id": "72295200",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 5359472,
+      "timestamp": "2026-10-08T14:16:56.816Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
     {
      "log": {
       "imtId": "1791467913379_2f502640506a4666b2724ed711a3ae02",
