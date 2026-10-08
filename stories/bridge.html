@@ -1,6 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>FDF bridge</title><body style="font-family:sans-serif">Sending files to Business Suite…<pre id="l"></pre>
-<script>
-(async()=>{const q=new URLSearchParams(location.search);const files=(q.get('f')||'').split(',').filter(Boolean);const L=document.getElementById('l');
-for(const f of files){try{const r=await fetch(f);const b=await r.blob();window.opener.postMessage({fdf:true,name:f.split('/').pop(),type:b.type||(f.endsWith('.mp4')?'video/mp4':'image/jpeg'),blob:b},'*');L.textContent+='sent '+f+' '+b.size+'\n';}catch(e){L.textContent+='ERR '+f+' '+e+'\n';window.opener.postMessage({fdf:true,err:String(e),name:f},'*');}}
-window.opener.postMessage({fdfDone:true,n:files.length},'*');L.textContent+='done';setTimeout(()=>window.close(),800);})();
-</script>
