@@ -1,0 +1,9 @@
+{
+ "at": "2026-10-08T11:54:33.084178Z",
+ "action": "audit",
+ "teams": {
+  "_error": 403,
+  "_body": "error code: 1010\n"
+ },
+ "scenarios": []
+}
