@@ -1,6 +1,47 @@
 {
- "at": "2026-10-08T13:24:18.883610Z",
- "action": "audit",
+ "at": "2026-10-08T14:15:09.309877Z",
+ "action": "conns",
+ "connections": [
+  {
+   "id": 11476468,
+   "name": "frontdesk's Facebook connection",
+   "accountName": "facebook",
+   "accountLabel": "Facebook",
+   "scoped": true,
+   "scopes": null,
+   "expire": "2026-11-30T12:50:40.709Z",
+   "editable": true,
+   "metadata": {
+    "type": "text",
+    "value": "Adeel Zafar"
+   }
+  },
+  {
+   "id": 11476526,
+   "name": "frontdesk's Facebook connection",
+   "accountName": "facebook",
+   "accountLabel": "Facebook",
+   "scoped": true,
+   "scopes": null,
+   "expire": "2026-11-30T12:52:18.521Z",
+   "editable": true,
+   "metadata": {
+    "type": "text",
+    "value": "Adeel Zafar"
+   }
+  },
+  {
+   "id": 11476140,
+   "name": "Make's AI Provider (default)",
+   "accountName": "ai-provider",
+   "accountLabel": "Make's AI Provider",
+   "scoped": true,
+   "scopes": null,
+   "expire": null,
+   "editable": false,
+   "metadata": null
+  }
+ ],
  "teams": {
   "teams": [
    {
@@ -58,14 +99,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-08T13:58:30.976Z",
+    "nextExec": "2026-10-08T15:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 9,
-    "centicredits": 900,
-    "transfer": 3811,
+    "operations": 12,
+    "centicredits": 1200,
+    "transfer": 7735,
     "usedModules": [
      {
       "moduleName": "TriggerNewArticle",
@@ -460,6 +501,59 @@
     }
    },
    "logs": [
+    {
+     "log": {
+      "imtId": "1791467913379_2f502640506a4666b2724ed711a3ae02",
+      "scenarioName": "Integration RSS",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7717461,
+      "instant": false,
+      "duration": 110179,
+      "centicredits": 300,
+      "operations": 3,
+      "transfer": 3924,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "2f502640506a4666b2724ed711a3ae02",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-08T14:00:23.560Z",
+      "timestamp": "2026-10-08T13:58:33.379Z",
+      "status": 1,
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1791467913379_2f502640506a4666b2724ed711a3ae02",
+       "eventType": "EXECUTION_END",
+       "id": "2f502640506a4666b2724ed711a3ae02",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-08T13:58:33.379Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "scenarioId": 7717461,
+       "duration": 110179,
+       "centicredits": 300,
+       "operations": 3,
+       "transfer": 3924,
+       "endedAt": "2026-10-08T14:00:23.560Z",
+       "status": 1,
+       "isReplayable": true
+      }
+     }
+    },
     {
      "log": {
       "imtId": "1791465638465_4d947dd5722f4878aeb32a78e05108b9",
