@@ -30,6 +30,32 @@ if act[0] == "run":
     out["result"] = call(f"/scenarios/{act[1]}/run", "POST", {"responsive": True})
 elif act[0] == "activate":
     out["result"] = call(f"/scenarios/{act[1]}/start", "POST", {})
+elif act[0] == "fix":
+    # fix:<id>:<intervalSeconds>:<maxResults>  -> correct video_url mapping, throttle, reschedule, start
+    sid, interval, maxr = act[1], int(act[2]), int(act[3])
+    bp = call(f"/scenarios/{sid}/blueprint")["response"]["blueprint"]
+    for m in bp["flow"]:
+        if m["module"].startswith("rss:"):
+            m["parameters"]["maxResults"] = maxr
+        if m["module"] == "instagram-business:CreateAReelPost":
+            m["mapper"]["video_url"] = "{{1.url}}"
+    # check feed video URLs are reachable before enabling
+    import re
+    feed = urllib.request.urlopen(urllib.request.Request("https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/reels-feed.xml", headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read().decode()
+    links = re.findall(r"<link>(https://cdn[^<]+)</link>", feed)
+    checks = []
+    for u in links:
+        try:
+            r = urllib.request.urlopen(urllib.request.Request(u, method="HEAD", headers={"User-Agent": "Mozilla/5.0"}), timeout=30)
+            checks.append([u[-40:], r.status, r.headers.get("Content-Length"), r.headers.get("Content-Type")])
+        except Exception as e:
+            checks.append([u[-40:], str(e)])
+    out["feed_checks"] = checks
+    out["patch"] = call(f"/scenarios/{sid}", "PATCH", {"blueprint": json.dumps(bp), "scheduling": json.dumps({"type": "indefinitely", "interval": interval})})
+    if all(len(c) > 2 and c[1] == 200 for c in checks):
+        out["start"] = call(f"/scenarios/{sid}/start", "POST", {})
+    else:
+        out["start"] = "skipped: feed URL check failed"
 elif act[0] == "daily":
     out["result"] = call(f"/scenarios/{act[1]}", "PATCH", {"scheduling": json.dumps({"type": "daily", "time": act[2]})})
 

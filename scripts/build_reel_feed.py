@@ -46,10 +46,9 @@ def main():
             i["retries"] = i.get("retries", 0) + 1
             i.update(status="feed", fed_at=now.isoformat())
             print("retry:", i["id"], i["retries"])
-    # Seed with the last Reel already posted so the feed is never empty (Make's RSS
-    # module is set to start "From now on", so this seed item is never re-posted).
+    # No seed item: an empty RSS channel is valid, and a posted seed risked a duplicate post.
     posted = sorted((i for i in items if i["status"] == "posted"), key=lambda i: i.get("posted_at", ""))
-    feed = posted[-1:] + sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"])
+    feed = sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"])
     for i in feed:
         url = BASE + i["file"]
         when = format_datetime(dt.datetime.fromisoformat(i.get("fed_at") or i.get("posted_at") or i["publish_after"]))
