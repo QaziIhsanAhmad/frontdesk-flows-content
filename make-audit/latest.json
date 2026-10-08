@@ -1,10 +1,6 @@
 {
- "at": "2026-10-08T13:20:37.910415Z",
- "action": "run:7717461",
- "result": {
-  "executionId": "4d947dd5722f4878aeb32a78e05108b9",
-  "statusUrl": "https://eu1.make.com/api/v2/scenarios/7717461/executions/4d947dd5722f4878aeb32a78e05108b9"
- },
+ "at": "2026-10-08T13:24:18.883610Z",
+ "action": "audit",
  "teams": {
   "teams": [
    {
@@ -67,9 +63,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 6,
-    "centicredits": 600,
-    "transfer": 0,
+    "operations": 9,
+    "centicredits": 900,
+    "transfer": 3811,
     "usedModules": [
      {
       "moduleName": "TriggerNewArticle",
@@ -471,23 +467,32 @@
        "id": null,
        "executionId": null
       },
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
+      "scenarioName": "Integration RSS",
       "replayOfExecutionId": null,
-      "eventType": "EXECUTION_START",
-      "id": "4d947dd5722f4878aeb32a78e05108b9",
+      "eventType": "EXECUTION_END",
       "teamId": 3012165,
       "type": "auto",
+      "scenarioId": 7717461,
+      "instant": false,
+      "duration": 131561,
+      "centicredits": 300,
+      "operations": 3,
+      "transfer": 3811,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "4d947dd5722f4878aeb32a78e05108b9",
       "authorId": 5359472,
       "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-08T13:22:50.028Z",
       "timestamp": "2026-10-08T13:20:38.465Z",
-      "instant": false,
+      "status": 1,
+      "isReplayable": true,
       "authorName": "Qazi Ehsan"
      },
      "detail": {
       "scenarioLog": {
        "imtId": "1791465638465_4d947dd5722f4878aeb32a78e05108b9",
-       "eventType": "EXECUTION_START",
+       "eventType": "EXECUTION_END",
        "id": "4d947dd5722f4878aeb32a78e05108b9",
        "@kindId": 7717461,
        "timestamp": "2026-10-08T13:20:38.465Z",
@@ -503,6 +508,15 @@
        "replayOfExecutionId": null,
        "replayOfExecutionName": null,
        "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "scenarioId": 7717461,
+       "duration": 131561,
+       "centicredits": 300,
+       "operations": 3,
+       "transfer": 3811,
+       "endedAt": "2026-10-08T13:22:50.028Z",
+       "status": 1,
        "isReplayable": true
       }
      }
@@ -672,6 +686,7 @@
       "endedAt": "2026-10-07T18:08:29.489Z",
       "timestamp": "2026-10-07T18:08:29.135Z",
       "status": 3,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -835,6 +850,7 @@
       "endedAt": "2026-10-01T12:55:11.825Z",
       "timestamp": "2026-10-01T12:55:11.521Z",
       "status": 3,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
