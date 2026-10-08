@@ -11,17 +11,21 @@
    "attempts": 1,
    "last_error": "IG_ACCESS_TOKEN secret is missing.",
    "note": "Published via Meta Business Suite (crossposted Instagram @frontdeskflows + FrontDesk Flows Page), verified in Business Suite Content > Published.",
-   "posted_at": "2026-10-02T16:24:00+00:00"
+   "posted_at": "2026-10-02T16:24:00+00:00",
+   "permalink": "https://www.instagram.com/reel/Dd_6DZSkQk4/"
   },
   {
    "id": "reel-02-urgent",
    "file": "reel-02-urgent.mp4",
    "caption": "An AI assistant should never play doctor.\n\nWhen a message sounds urgent, this workflow tells the person to contact emergency services and emails the front desk at the same moment, so a human calls back. Tested with real runs, not just a diagram.\n\nFree clinic enquiry workflow: see the link in bio, or DM me FLOW.\n\n#n8n #aiagents #healthtech #automation #physiotherapy #freelancing",
    "publish_after": "2026-10-07T18:17:54.215164+00:00",
-   "status": "feed",
+   "status": "posted",
    "fed_at": "2026-10-08T12:50:02.683003+00:00",
    "media_url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-02-urgent.mp4",
-   "catchup": true
+   "catchup": true,
+   "posted_at": "2026-10-08T13:22:05+00:00",
+   "permalink": "https://www.instagram.com/reel/DePB39eiMxQ/",
+   "verification": "Instagram API via Make (GetUserMedia)"
   },
   {
    "id": "reel-03-spam-outage",
