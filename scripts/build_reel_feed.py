@@ -13,7 +13,10 @@ from email.utils import format_datetime
 from xml.sax.saxutils import escape
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "QaziIhsanAhmad/frontdesk-flows-content")
-BASE = f"https://cdn.jsdelivr.net/gh/{REPO}@main/videos/"
+import subprocess
+SHA = os.environ.get("GITHUB_SHA") or subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+# Pin to a commit: jsDelivr caches @main for hours, which served stale video files.
+BASE = f"https://cdn.jsdelivr.net/gh/{REPO}@{SHA}/videos/"
 MIN_GAP = dt.timedelta(hours=20)
 
 
@@ -40,7 +43,7 @@ def main():
     posted = sorted((i for i in items if i["status"] == "posted"), key=lambda i: i.get("posted_at", ""))
     feed = posted[-1:] + sorted((i for i in items if i["status"] == "feed"), key=lambda i: i["fed_at"])
     for i in feed:
-        url = i.get("media_url") or BASE + i["file"]
+        url = BASE + i["file"]
         when = format_datetime(dt.datetime.fromisoformat(i.get("fed_at") or i.get("posted_at") or i["publish_after"]))
         out += ["<item>", f"<title>{escape(i['id'])}</title>",
                 f'<guid isPermaLink="false">{escape(i["id"])}</guid>',
