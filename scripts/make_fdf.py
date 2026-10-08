@@ -56,6 +56,12 @@ elif act[0] == "fix":
         out["start"] = call(f"/scenarios/{sid}/start", "POST", {})
     else:
         out["start"] = "skipped: feed URL check failed"
+elif act[0] == "conns":
+    c = call("/connections?teamId=3012165")
+    out["connections"] = [{k: x.get(k) for k in ("id","name","accountName","accountLabel","scoped","scopes","expire","editable","metadata")} for x in c.get("connections", [])]
+elif act[0] == "rpc":
+    # rpc:<app>:<version>:<rpcName>:<connId>  -> option list (e.g. facebook-pages Pages)
+    out["result"] = call(f"/rpcs/{act[1]}/{act[2]}/{act[3]}?teamId=3012165", "POST", {"data": {"__IMTCONN__": int(act[4])}})
 elif act[0] == "daily":
     out["result"] = call(f"/scenarios/{act[1]}", "PATCH", {"scheduling": json.dumps({"type": "daily", "time": act[2]})})
 
