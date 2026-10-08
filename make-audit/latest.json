@@ -1,9 +1,812 @@
 {
- "at": "2026-10-08T11:54:33.084178Z",
+ "at": "2026-10-08T11:55:55.248843Z",
  "action": "audit",
  "teams": {
-  "_error": 403,
-  "_body": "error code: 1010\n"
+  "teams": [
+   {
+    "id": 3012165,
+    "name": "My Team",
+    "organizationId": 9158640,
+    "globalAgentsEnabled": false
+   }
+  ],
+  "pg": {
+   "sortBy": "name",
+   "limit": 10000,
+   "sortDir": "asc",
+   "offset": 0,
+   "returnTotalCount": false
+  }
  },
- "scenarios": []
+ "scenarios": [
+  {
+   "scenario": {
+    "id": 7717461,
+    "name": "Integration RSS",
+    "teamId": 3012165,
+    "hookId": null,
+    "devices": [],
+    "deviceId": null,
+    "deviceScope": null,
+    "concept": false,
+    "description": "",
+    "folderId": null,
+    "slots": null,
+    "isinvalid": true,
+    "islinked": false,
+    "islocked": false,
+    "isPaused": false,
+    "usedPackages": [
+     "rss",
+     "instagram-business"
+    ],
+    "lastEdit": "2026-10-07T18:18:51.817Z",
+    "scheduling": {
+     "type": "indefinitely",
+     "interval": 3600
+    },
+    "iswaiting": false,
+    "dlqCount": 0,
+    "allDlqCount": 0,
+    "createdByUser": {
+     "id": 9469033,
+     "name": "frontdesk flows",
+     "email": "frontdeskflows96@gmail.com"
+    },
+    "updatedByUser": {
+     "id": 9469033,
+     "name": "frontdesk flows",
+     "email": "frontdeskflows96@gmail.com"
+    },
+    "nextExec": null,
+    "created": "2026-10-01T12:55:06.664Z",
+    "chainingRole": "none",
+    "type": "scenario",
+    "isShared": false,
+    "operations": 5,
+    "centicredits": 500,
+    "transfer": 0,
+    "usedModules": [
+     {
+      "moduleName": "TriggerNewArticle",
+      "packageName": "rss"
+     },
+     {
+      "moduleName": "CreateAReelPost",
+      "packageName": "instagram-business"
+     }
+    ],
+    "labels": [],
+    "isActive": false
+   },
+   "blueprint": {
+    "code": "OK",
+    "response": {
+     "blueprint": {
+      "flow": [
+       {
+        "id": 1,
+        "mapper": {},
+        "module": "rss:TriggerNewArticle",
+        "version": 4,
+        "metadata": {
+         "restore": {},
+         "designer": {
+          "x": 0,
+          "y": 0
+         },
+         "interface": [
+          {
+           "name": "title",
+           "type": "text",
+           "label": "Title"
+          },
+          {
+           "name": "description",
+           "type": "text",
+           "label": "Description"
+          },
+          {
+           "name": "summary",
+           "type": "text",
+           "label": "Summary"
+          },
+          {
+           "name": "author",
+           "type": "text",
+           "label": "Author"
+          },
+          {
+           "name": "url",
+           "type": "url",
+           "label": "URL"
+          },
+          {
+           "name": "dateUpdated",
+           "type": "date",
+           "label": "Date updated"
+          },
+          {
+           "name": "dateCreated",
+           "type": "date",
+           "label": "Date created"
+          },
+          {
+           "name": "comments",
+           "type": "url",
+           "label": "Comments"
+          },
+          {
+           "name": "image",
+           "spec": [
+            {
+             "name": "title",
+             "type": "text",
+             "label": "Name"
+            },
+            {
+             "name": "url",
+             "type": "url",
+             "label": "URL"
+            }
+           ],
+           "type": "collection",
+           "label": "Image"
+          },
+          {
+           "name": "categories",
+           "spec": {
+            "type": "text"
+           },
+           "type": "array",
+           "label": "Categories"
+          },
+          {
+           "name": "source",
+           "spec": [
+            {
+             "name": "title",
+             "type": "text",
+             "label": "Name"
+            },
+            {
+             "name": "url",
+             "type": "url",
+             "label": "URL"
+            }
+           ],
+           "type": "collection",
+           "label": "Source"
+          },
+          {
+           "name": "enclosures",
+           "spec": [
+            {
+             "name": "url",
+             "type": "url",
+             "label": "URL"
+            },
+            {
+             "name": "type",
+             "type": "text",
+             "label": "Type"
+            },
+            {
+             "name": "length",
+             "type": "number",
+             "label": "Length"
+            }
+           ],
+           "type": "array",
+           "label": "Enclosures"
+          },
+          {
+           "help": "Other RSS fields. All values are in text format.",
+           "name": "rssFields",
+           "spec": [
+            {
+             "name": "title",
+             "type": "text",
+             "label": "title"
+            },
+            {
+             "name": "guid",
+             "type": "text",
+             "label": "guid"
+            },
+            {
+             "name": "link",
+             "type": "text",
+             "label": "link"
+            },
+            {
+             "name": "pubdate",
+             "type": "text",
+             "label": "pubdate"
+            },
+            {
+             "name": "description",
+             "type": "text",
+             "label": "description"
+            },
+            {
+             "name": "enclosure",
+             "type": "text",
+             "label": "enclosure"
+            }
+           ],
+           "type": "collection",
+           "label": "RSS fields"
+          }
+         ],
+         "parameters": [
+          {
+           "name": "url",
+           "type": "url",
+           "label": "URL",
+           "required": true
+          },
+          {
+           "name": "maxResults",
+           "type": "number",
+           "label": "Maximum number of returned items",
+           "required": true
+          },
+          {
+           "name": "username",
+           "type": "text",
+           "label": "User name"
+          },
+          {
+           "name": "password",
+           "type": "text",
+           "label": "Password"
+          },
+          {
+           "name": "include",
+           "type": "select",
+           "label": "Process RSS fields",
+           "multiple": true,
+           "validate": {
+            "enum": [
+             "google-merchant-center",
+             "itunes"
+            ]
+           }
+          },
+          {
+           "name": "gzip",
+           "type": "boolean",
+           "label": "Request compressed content",
+           "required": true
+          }
+         ],
+         "setupValidation": {
+          "result": {
+           "valid": true,
+           "fields": []
+          },
+          "version": 1,
+          "configuration": "5800b7083e9927ce"
+         }
+        },
+        "parameters": {
+         "url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/reels-feed.xml",
+         "gzip": true,
+         "include": [],
+         "password": "<redacted>",
+         "username": "",
+         "maxResults": 10
+        }
+       },
+       {
+        "id": 3,
+        "mapper": {
+         "caption": "{{1.description}}",
+         "accountId": "17841416945478586",
+         "video_url": "{{1.url}}{{1.id}}",
+         "thumb_offset": "1500",
+         "share_to_feed": true
+        },
+        "module": "instagram-business:CreateAReelPost",
+        "version": 1,
+        "metadata": {
+         "expect": [
+          {
+           "name": "accountId",
+           "type": "select",
+           "label": "Page",
+           "required": true
+          },
+          {
+           "name": "video_url",
+           "type": "url",
+           "label": "Video URL",
+           "required": true
+          },
+          {
+           "name": "caption",
+           "type": "text",
+           "label": "Caption"
+          },
+          {
+           "name": "thumb_offset",
+           "type": "number",
+           "label": "Cover Frame"
+          },
+          {
+           "name": "location_id",
+           "type": "text",
+           "label": "Location ID"
+          },
+          {
+           "name": "share_to_feed",
+           "type": "boolean",
+           "label": "Share to Feed",
+           "required": true
+          }
+         ],
+         "restore": {
+          "expect": {
+           "accountId": {
+            "mode": "chose",
+            "label": "FrontDesk Flows (@frontdeskflows)"
+           },
+           "share_to_feed": {
+            "mode": "chose"
+           }
+          },
+          "parameters": {
+           "__IMTCONN__": {
+            "data": {
+             "scoped": "true",
+             "connection": "facebook"
+            },
+            "label": "frontdesk's Facebook connection (Adeel Zafar)"
+           }
+          }
+         },
+         "designer": {
+          "x": 300,
+          "y": 0
+         },
+         "parameters": [
+          {
+           "name": "__IMTCONN__",
+           "type": "account:facebook",
+           "label": "Connection",
+           "required": true
+          }
+         ],
+         "setupValidation": {
+          "result": {
+           "valid": true,
+           "fields": []
+          },
+          "version": 1,
+          "configuration": "5915b12bb0b97c18"
+         }
+        },
+        "parameters": {
+         "__IMTCONN__": 11476468
+        }
+       }
+      ],
+      "name": "Integration RSS",
+      "metadata": {
+       "instant": false,
+       "version": 1,
+       "designer": {
+        "orphans": [],
+        "samples": {
+         "1": {
+          "id": "reel-01-front-desk",
+          "url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-01-front-desk.mp...",
+          "date": "2026-10-02T16:24:00.000Z",
+          "image": {},
+          "title": "reel-01-front-desk",
+          "author": "",
+          "source": {},
+          "summary": "Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somew...",
+          "comments": "",
+          "rssFields": {
+           "guid": "reel-01-front-desk",
+           "link": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-01-front-desk.mp...",
+           "title": "reel-01-front-desk",
+           "pubdate": "Fri, 02 Oct 2026 16:24:00 +0000",
+           "description": "Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somew..."
+          },
+          "categories": [],
+          "enclosures": [
+           {
+            "url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/videos/reel-01-front-desk.mp...",
+            "type": "video/mp4",
+            "length": "0"
+           }
+          ],
+          "dateCreated": "2026-10-02T16:24:00.000Z",
+          "dateUpdated": "2026-10-02T16:24:00.000Z",
+          "description": "Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somew..."
+         }
+        }
+       },
+       "scenario": {
+        "dlq": false,
+        "slots": null,
+        "dataloss": false,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "roundtrips": 1,
+        "sequential": false,
+        "confidential": false,
+        "freshVariables": false,
+        "autoCommitTriggerLast": true
+       }
+      }
+     },
+     "scheduling": {
+      "type": "indefinitely",
+      "interval": 3600
+     },
+     "concept": false,
+     "created": "2026-10-01T12:55:06.664Z",
+     "last_edit": "2026-10-07T18:18:51.817Z",
+     "metadata": {
+      "input_spec": [],
+      "output_spec": []
+     },
+     "idSequence": 4,
+     "version": 6
+    }
+   },
+   "logs": [
+    {
+     "log": {
+      "imtId": "1791397131817_72151878",
+      "id": "72151878",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-07T18:18:51.817Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791397020835_72151661",
+      "id": "72151661",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-07T18:17:00.835Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791396718207_72150976",
+      "id": "72150976",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-07T18:11:58.207Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791396509516_undefined",
+      "detail": {
+       "reason": "Error: 404 Not Found"
+      },
+      "type": "warning",
+      "timestamp": "2026-10-07T18:08:29.516Z",
+      "authorName": null
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791396509135_639e874e8d5e404494f5c3e9b5b0f398",
+      "scenarioName": "Integration RSS",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "error": {
+       "name": "DataError",
+       "message": "Error: 404 Not Found",
+       "causeModule": {
+        "appName": "rss",
+        "name": "TriggerNewArticle"
+       }
+      },
+      "scenarioId": 7717461,
+      "instant": false,
+      "duration": 352,
+      "centicredits": 100,
+      "operations": 1,
+      "transfer": 0,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "639e874e8d5e404494f5c3e9b5b0f398",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-07T18:08:29.489Z",
+      "timestamp": "2026-10-07T18:08:29.135Z",
+      "status": 3,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1791396509135_639e874e8d5e404494f5c3e9b5b0f398",
+       "eventType": "EXECUTION_END",
+       "id": "639e874e8d5e404494f5c3e9b5b0f398",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-07T18:08:29.135Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "error": {
+        "name": "DataError",
+        "message": "Error: 404 Not Found",
+        "causeModule": {
+         "appName": "rss",
+         "name": "TriggerNewArticle"
+        }
+       },
+       "scenarioId": 7717461,
+       "duration": 352,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-07T18:08:29.489Z",
+       "status": 3,
+       "isReplayable": false
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1791396507687_72150543",
+      "id": "72150543",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "start",
+      "authorId": 9469033,
+      "timestamp": "2026-10-07T18:08:27.687Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790860315773_71196054",
+      "id": "71196054",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-01T13:11:55.773Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859342513_71192618",
+      "id": "71192618",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "schedule",
+      "authorId": 9469033,
+      "timestamp": "2026-10-01T12:55:42.513Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859342513_71192617",
+      "id": "71192617",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-01T12:55:42.513Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859311861_undefined",
+      "detail": {
+       "reason": "Error: 404 Not Found"
+      },
+      "type": "warning",
+      "timestamp": "2026-10-01T12:55:11.861Z",
+      "authorName": null
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
+      "scenarioName": "Integration RSS",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "error": {
+       "name": "DataError",
+       "message": "Error: 404 Not Found",
+       "causeModule": {
+        "name": "TriggerNewArticle",
+        "appName": "rss"
+       }
+      },
+      "scenarioId": 7717461,
+      "instant": false,
+      "duration": 300,
+      "centicredits": 100,
+      "operations": 1,
+      "transfer": 0,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "7f208fb06c5b424d921bbfe0866a2eb3",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-01T12:55:11.825Z",
+      "timestamp": "2026-10-01T12:55:11.521Z",
+      "status": 3,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
+       "eventType": "EXECUTION_END",
+       "id": "7f208fb06c5b424d921bbfe0866a2eb3",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-01T12:55:11.521Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "error": {
+        "name": "DataError",
+        "message": "Error: 404 Not Found",
+        "causeModule": {
+         "name": "TriggerNewArticle",
+         "appName": "rss"
+        }
+       },
+       "scenarioId": 7717461,
+       "duration": 300,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-01T12:55:11.825Z",
+       "status": 3,
+       "isReplayable": false
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859307462_71192512",
+      "id": "71192512",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "start",
+      "authorId": 9469033,
+      "timestamp": "2026-10-01T12:55:07.462Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1790859306664_71192508",
+      "id": "71192508",
+      "detail": {
+       "author": {
+        "name": "frontdesk flows",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 9469033,
+      "timestamp": "2026-10-01T12:55:06.664Z",
+      "authorName": "frontdesk flows"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    }
+   ]
+  }
+ ]
 }
