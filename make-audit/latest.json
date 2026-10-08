@@ -1,47 +1,77 @@
 {
- "at": "2026-10-08T14:15:09.309877Z",
- "action": "conns",
- "connections": [
-  {
-   "id": 11476468,
-   "name": "frontdesk's Facebook connection",
-   "accountName": "facebook",
-   "accountLabel": "Facebook",
-   "scoped": true,
-   "scopes": null,
-   "expire": "2026-11-30T12:50:40.709Z",
-   "editable": true,
-   "metadata": {
-    "type": "text",
-    "value": "Adeel Zafar"
+ "at": "2026-10-08T14:16:54.600228Z",
+ "action": "fbreel:7717461:11476526",
+ "pages_rpc": {
+  "code": "OK",
+  "response": [
+   {
+    "label": "FrontDesk Flows",
+    "value": "1354185007779555"
+   },
+   {
+    "label": "Xenova Solutions (Bahawalpur)",
+    "value": "1267773913096573"
+   },
+   {
+    "label": "Xenova Solutions",
+    "value": "1297050506825126"
    }
+  ]
+ },
+ "patch": {
+  "scenario": {
+   "id": 7717461,
+   "name": "Integration RSS",
+   "teamId": 3012165,
+   "hookId": null,
+   "devices": [],
+   "deviceId": null,
+   "deviceScope": null,
+   "concept": false,
+   "description": "",
+   "folderId": null,
+   "slots": null,
+   "isinvalid": false,
+   "islinked": true,
+   "islocked": false,
+   "isPaused": false,
+   "usedPackages": [
+    "rss",
+    "instagram-business",
+    "facebook-pages",
+    "builtin"
+   ],
+   "lastEdit": "2026-10-08T14:16:56.816Z",
+   "scheduling": {
+    "type": "indefinitely",
+    "interval": 7200
+   },
+   "iswaiting": false,
+   "dlqCount": 0,
+   "allDlqCount": 0,
+   "createdByUser": {
+    "id": 9469033,
+    "name": "frontdesk flows",
+    "email": "frontdeskflows96@gmail.com"
+   },
+   "updatedByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "nextExec": "2026-10-08T15:58:30.976Z",
+   "created": "2026-10-01T12:55:06.664Z",
+   "chainingRole": "none",
+   "type": "scenario",
+   "isShared": false,
+   "isActive": true
   },
-  {
-   "id": 11476526,
-   "name": "frontdesk's Facebook connection",
-   "accountName": "facebook",
-   "accountLabel": "Facebook",
-   "scoped": true,
-   "scopes": null,
-   "expire": "2026-11-30T12:52:18.521Z",
-   "editable": true,
-   "metadata": {
-    "type": "text",
-    "value": "Adeel Zafar"
-   }
-  },
-  {
-   "id": 11476140,
-   "name": "Make's AI Provider (default)",
-   "accountName": "ai-provider",
-   "accountLabel": "Make's AI Provider",
-   "scoped": true,
-   "scopes": null,
-   "expire": null,
-   "editable": false,
-   "metadata": null
+  "scenarioVersion": {
+   "scenarioId": 7717461,
+   "version": 8,
+   "draft": false
   }
- ],
+ },
  "teams": {
   "teams": [
    {
@@ -79,9 +109,11 @@
     "isPaused": false,
     "usedPackages": [
      "rss",
-     "instagram-business"
+     "instagram-business",
+     "facebook-pages",
+     "builtin"
     ],
-    "lastEdit": "2026-10-08T11:58:30.429Z",
+    "lastEdit": "2026-10-08T14:16:56.816Z",
     "scheduling": {
      "type": "indefinitely",
      "interval": 7200
@@ -115,6 +147,14 @@
      {
       "moduleName": "CreateAReelPost",
       "packageName": "instagram-business"
+     },
+     {
+      "moduleName": "uploadAReel",
+      "packageName": "facebook-pages"
+     },
+     {
+      "moduleName": "Resume",
+      "packageName": "builtin"
      }
     ],
     "labels": [],
@@ -431,6 +471,40 @@
         "parameters": {
          "__IMTCONN__": 11476468
         }
+       },
+       {
+        "id": 4,
+        "mapper": {
+         "url": "{{1.url}}",
+         "page_id": "1354185007779555",
+         "description": "{{replace(replace(1.description; \"see the link in bio, or DM me FLOW\"; \"message this Page with the word FLOW\"); \"link in bio\"; \"message this Page\")}}",
+         "uploadMethod": "url"
+        },
+        "module": "facebook-pages:uploadAReel",
+        "onerror": [
+         {
+          "id": 5,
+          "mapper": {},
+          "module": "builtin:Resume",
+          "version": 1,
+          "metadata": {
+           "designer": {
+            "x": 600,
+            "y": 300
+           }
+          }
+         }
+        ],
+        "version": 6,
+        "metadata": {
+         "designer": {
+          "x": 600,
+          "y": 0
+         }
+        },
+        "parameters": {
+         "__IMTCONN__": 11476526
+        }
        }
       ],
       "name": "Integration RSS",
@@ -491,13 +565,13 @@
      },
      "concept": false,
      "created": "2026-10-01T12:55:06.664Z",
-     "last_edit": "2026-10-08T11:58:30.429Z",
+     "last_edit": "2026-10-08T14:16:56.816Z",
      "metadata": {
       "input_spec": [],
       "output_spec": []
      },
-     "idSequence": 4,
-     "version": 7
+     "idSequence": 6,
+     "version": 8
     }
    },
    "logs": [
