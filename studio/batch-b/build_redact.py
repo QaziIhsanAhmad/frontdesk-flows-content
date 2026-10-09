@@ -12,8 +12,8 @@ pos = {'Website Form':[0,300],'Settings':[220,300],'Clean & Check':[440,300],'Re
 code = r"""// Strip identifiers before anything leaves for the AI provider.
 // The full details stay inside n8n for the email reply.
 const rules = [
-  // DOB: 14/03/1986, 14-3-86, 14 March 1986, March 14th, 1986
-  [/\b(?:DOB|D\.O\.B\.?|date of birth|born(?: on)?)\s*:?\s*(?:\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\.?,?\s+\d{2,4}|[A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{2,4})/gi, '[DOB removed]'],
+  // DOB: 14/03/1986, 14-3-86, 1986-03-14, 14 March 1986, March 14th, 1986
+  [/\b(?:DOB|D\.O\.B\.?|date of birth|born(?: on)?)\s*:?\s*(?:\d{4}[\/.-]\d{1,2}[\/.-]\d{1,2}|\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\.?,?\s+\d{2,4}|[A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{2,4})/gi, '[DOB removed]'],
   // NHS number: 10 digits, often 3-3-4
   [/\b[1-9]\d{2}[\s-]?\d{3}[\s-]?\d{4}\b/g, '[NHS no. removed]'],
   // UK postcode

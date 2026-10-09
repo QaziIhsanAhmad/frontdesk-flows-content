@@ -68,7 +68,7 @@ Covers are branded title-card Stories (`studio/batch-b/hl.html`), posted to Inst
 The workflow builders and reel scripts are in `studio/batch-b/`. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
 
 The importable versions were hardened after the recordings were made, following the code review on PR #3:
-- **Redaction:** wider rules (written dates such as "14 March 1986", landlines and spaced mobile numbers, +44 numbers).
-- **CSV log:** the path is a Settings value (default `/home/node/.n8n-files/leads.csv`, n8n's file folder in Docker). The header is written when the file is first created, and cells are quoted and protected against spreadsheet formulas.
-- **WhatsApp:** a "Not Spam?" check runs before sending.
+- **Redaction:** wider rules (ISO dates like 1986-03-14, written dates such as "14 March 1986", landlines and spaced mobile numbers, +44 numbers).
+- **CSV log:** the path is a Settings value (default `/home/node/.n8n-files/leads.csv`, n8n's file folder in Docker). In Docker, mount that folder too or the log is lost when the container is recreated, e.g. `docker run -it --rm -p 5678:5678 -v n8n_data:/home/node/.n8n -v n8n_files:/home/node/.n8n-files docker.n8n.io/n8nio/n8n`. The header is written when the file is first created, and cells are quoted and protected against spreadsheet formulas.
+- **WhatsApp:** delivery and read status callbacks (no message) are ignored before any AI call, and a "Not Spam?" check runs before sending.
 - **Review approval:** the email links to an n8n form, so the workflow only resumes when the owner presses Submit; link scanners can't trigger it. An empty or failed AI draft emails the owner instead of asking for approval.

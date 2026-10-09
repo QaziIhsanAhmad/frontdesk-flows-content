@@ -10,7 +10,7 @@
      "allowedOrigins": "*"
     }
    },
-   "id": "df132382-5676-4e56-a8a2-e97dfd292122",
+   "id": "b277bf46-a3f7-4831-8d16-6b63166fcc0f",
    "name": "Website Form",
    "type": "n8n-nodes-base.webhook",
    "typeVersion": 2,
@@ -18,7 +18,7 @@
     0,
     300
    ],
-   "webhookId": "47e7445b-74b0-4418-b465-89eff529bbea"
+   "webhookId": "53ee7718-fb37-4ae0-83bf-8857f557813d"
   },
   {
    "parameters": {
@@ -101,7 +101,7 @@
     "includeOtherFields": true,
     "options": {}
    },
-   "id": "6cb8512c-2b0e-4fa1-b2d9-0ed3fe5ae956",
+   "id": "27de4dc2-019c-4cc8-a5d0-05e4bb3da507",
    "name": "Settings",
    "type": "n8n-nodes-base.set",
    "typeVersion": 3.4,
@@ -116,7 +116,7 @@
    "parameters": {
     "jsCode": "// Clean up the form submission and catch obvious spam before spending an AI call.\nconst out = [];\nfor (const item of $input.all()) {\n  const b = item.json.body || item.json || {};\n  const pick = (...keys) => { for (const k of keys) if (b[k] !== undefined && String(b[k]).trim() !== '') return String(b[k]).trim(); return ''; };\n  const name = pick('name', 'full_name', 'fullName').slice(0, 120);\n  const email = pick('email', 'Email').toLowerCase().slice(0, 160);\n  const phone = pick('phone', 'tel', 'mobile').slice(0, 40);\n  const message = pick('message', 'enquiry', 'comments').slice(0, 3000);\n  const honeypot = pick('website', 'company_website');           // hidden field real people leave empty\n  const emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email);\n  const links = (message.match(/https?:\\/\\//g) || []).length;\n  const valid = emailOk && message.length >= 5 && !honeypot && links < 3;\n  out.push({ json: {\n    receivedAt: new Date().toISOString(), name: name || 'there', email, phone, message,\n    source: pick('source') || 'website form', valid,\n    rejectReason: valid ? '' : (!emailOk ? 'invalid email' : honeypot ? 'honeypot filled' : links >= 3 ? 'too many links' : 'message too short'),\n  }});\n}\nreturn out;"
    },
-   "id": "917181c3-6145-4c11-85f9-fc1beec6ea73",
+   "id": "f27c3c93-2430-4059-9e31-c4ac34b1999e",
    "name": "Clean & Check",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -131,7 +131,7 @@
     "responseBody": "={{ JSON.stringify({ ok: $json.valid, message: $json.valid ? 'Thanks! We will be in touch shortly.' : 'Please check your email address and message.' }) }}",
     "options": {}
    },
-   "id": "05878b03-ece2-409f-8968-3e414deadd64",
+   "id": "fd613344-3839-4fde-8b01-80c026e46712",
    "name": "Reply to Form",
    "type": "n8n-nodes-base.respondToWebhook",
    "typeVersion": 1.1,
@@ -164,7 +164,7 @@
     },
     "options": {}
    },
-   "id": "9e604051-b0a8-41f1-a36a-915ea4b3f757",
+   "id": "bf977d09-283d-4925-aba5-27851fdcefa5",
    "name": "Is Valid?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
@@ -186,7 +186,7 @@
      "timeout": 30000
     }
    },
-   "id": "33271eac-b458-444b-8a30-bb4901949c9e",
+   "id": "25ef2f75-a5a6-405d-9abe-f0188fdd0d77",
    "name": "AI Triage & Draft",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -203,7 +203,7 @@
    "parameters": {
     "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Is Valid?').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
    },
-   "id": "51b43dda-a87e-412e-a326-e8ae78edb8f7",
+   "id": "7c31d890-d7df-4e9c-8e50-2e1366222008",
    "name": "Read AI Answer",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -235,7 +235,7 @@
     },
     "options": {}
    },
-   "id": "505d5714-8232-4a4b-b97e-8611f5edf8f4",
+   "id": "ca4f4eaf-a76d-4e43-98de-234971bd5381",
    "name": "Not Spam?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
@@ -255,7 +255,7 @@
      "appendAttribution": false
     }
    },
-   "id": "d124c66a-3546-4218-a61d-d080420e3840",
+   "id": "5771c24d-defd-47af-b6f5-bb37d1ae194a",
    "name": "Email Reply to Lead",
    "type": "n8n-nodes-base.emailSend",
    "typeVersion": 2.1,
@@ -265,7 +265,7 @@
    ]
   },
   {
-   "id": "84d88d2b-acd8-4a5c-a4f3-4dabf27f0430",
+   "id": "6443e144-6138-4dd2-b972-2daa94e4d18d",
    "name": "Redact Health Data",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -274,7 +274,7 @@
     300
    ],
    "parameters": {
-    "jsCode": "// Strip identifiers before anything leaves for the AI provider.\n// The full details stay inside n8n for the email reply.\nconst rules = [\n  // DOB: 14/03/1986, 14-3-86, 14 March 1986, March 14th, 1986\n  [/\\b(?:DOB|D\\.O\\.B\\.?|date of birth|born(?: on)?)\\s*:?\\s*(?:\\d{1,2}[\\/.-]\\d{1,2}[\\/.-]\\d{2,4}|\\d{1,2}(?:st|nd|rd|th)?\\s+[A-Za-z]{3,9}\\.?,?\\s+\\d{2,4}|[A-Za-z]{3,9}\\.?\\s+\\d{1,2}(?:st|nd|rd|th)?,?\\s+\\d{2,4})/gi, '[DOB removed]'],\n  // NHS number: 10 digits, often 3-3-4\n  [/\\b[1-9]\\d{2}[\\s-]?\\d{3}[\\s-]?\\d{4}\\b/g, '[NHS no. removed]'],\n  // UK postcode\n  [/\\b[A-Z]{1,2}\\d[A-Z\\d]?\\s*\\d[A-Z]{2}\\b/gi, '[postcode removed]'],\n  // UK phone numbers, mobile or landline, any spacing: 07700 900 123, 020 7946 0958, +44 7700 900123\n  [/(?:\\+44\\s?\\(?0?\\)?\\s?|\\b0)\\d(?:[\\s-]?\\d){8,9}\\b/g, '[phone removed]'],\n  // Email\n  [/[\\w.+-]+@[\\w-]+\\.[\\w.]+/g, '[email removed]'],\n];\nreturn $input.all().map(item => {\n  let msg = item.json.message || '';\n  let removed = 0;\n  const full = String(item.json.name || '').trim();\n  if (full.includes(' ')) msg = msg.split(full).join(full.split(' ')[0]);\n  for (const [re, tag] of rules) msg = msg.replace(re, () => { removed++; return tag; });\n  const first = String(item.json.name || '').split(' ')[0];\n  return { json: { name: first, email: '[not sent to AI]', phone: '[not sent to AI]', message: msg, removed } };\n});"
+    "jsCode": "// Strip identifiers before anything leaves for the AI provider.\n// The full details stay inside n8n for the email reply.\nconst rules = [\n  // DOB: 14/03/1986, 14-3-86, 1986-03-14, 14 March 1986, March 14th, 1986\n  [/\\b(?:DOB|D\\.O\\.B\\.?|date of birth|born(?: on)?)\\s*:?\\s*(?:\\d{4}[\\/.-]\\d{1,2}[\\/.-]\\d{1,2}|\\d{1,2}[\\/.-]\\d{1,2}[\\/.-]\\d{2,4}|\\d{1,2}(?:st|nd|rd|th)?\\s+[A-Za-z]{3,9}\\.?,?\\s+\\d{2,4}|[A-Za-z]{3,9}\\.?\\s+\\d{1,2}(?:st|nd|rd|th)?,?\\s+\\d{2,4})/gi, '[DOB removed]'],\n  // NHS number: 10 digits, often 3-3-4\n  [/\\b[1-9]\\d{2}[\\s-]?\\d{3}[\\s-]?\\d{4}\\b/g, '[NHS no. removed]'],\n  // UK postcode\n  [/\\b[A-Z]{1,2}\\d[A-Z\\d]?\\s*\\d[A-Z]{2}\\b/gi, '[postcode removed]'],\n  // UK phone numbers, mobile or landline, any spacing: 07700 900 123, 020 7946 0958, +44 7700 900123\n  [/(?:\\+44\\s?\\(?0?\\)?\\s?|\\b0)\\d(?:[\\s-]?\\d){8,9}\\b/g, '[phone removed]'],\n  // Email\n  [/[\\w.+-]+@[\\w-]+\\.[\\w.]+/g, '[email removed]'],\n];\nreturn $input.all().map(item => {\n  let msg = item.json.message || '';\n  let removed = 0;\n  const full = String(item.json.name || '').trim();\n  if (full.includes(' ')) msg = msg.split(full).join(full.split(' ')[0]);\n  for (const [re, tag] of rules) msg = msg.replace(re, () => { removed++; return tag; });\n  const first = String(item.json.name || '').split(' ')[0];\n  return { json: { name: first, email: '[not sent to AI]', phone: '[not sent to AI]', message: msg, removed } };\n});"
    }
   }
  ],

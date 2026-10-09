@@ -11,7 +11,7 @@
      "allowedOrigins": "*"
     }
    },
-   "id": "3ba2f401-851f-4f8c-80a4-e25533c4b3a6",
+   "id": "8979855b-084a-4b5e-b114-2893677aef51",
    "name": "WhatsApp Message",
    "type": "n8n-nodes-base.webhook",
    "typeVersion": 2,
@@ -19,7 +19,7 @@
     0,
     300
    ],
-   "webhookId": "1ea63444-57de-4a37-9780-12abf18aae28"
+   "webhookId": "3f54d79f-f523-410f-ae60-566731b0445b"
   },
   {
    "parameters": {
@@ -102,7 +102,7 @@
     "includeOtherFields": true,
     "options": {}
    },
-   "id": "ae29ef3d-6bb2-44c0-86db-05c5ab5e1563",
+   "id": "8c446839-7964-48dd-ae06-621a6b4dd7d7",
    "name": "Settings",
    "type": "n8n-nodes-base.set",
    "typeVersion": 3.4,
@@ -114,12 +114,12 @@
    "notesInFlow": true
   },
   {
-   "id": "2e6afc01-1461-49ac-b60f-6c4a9144edfe",
+   "id": "6342cfb6-8610-4638-b120-179965b30b08",
    "name": "Read Message",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
    "parameters": {
-    "jsCode": "// WhatsApp Cloud API style payload -> one clean lead\nconst b = $json.body || {};\nconst m = b.entry?.[0]?.changes?.[0]?.value?.messages?.[0] || {};\nconst c = b.entry?.[0]?.changes?.[0]?.value?.contacts?.[0] || {};\nreturn [{ json: {\n  name: c.profile?.name || 'there',\n  phone: m.from || '',\n  email: '',\n  message: m.text?.body || '',\n  receivedAt: new Date().toISOString(),\n  channel: 'whatsapp'\n} }];"
+    "jsCode": "// WhatsApp Cloud API style payload -> one clean lead\nconst b = $json.body || {};\nconst m = b.entry?.[0]?.changes?.[0]?.value?.messages?.[0];\n// Delivery/read status callbacks arrive on the same webhook with no message: stop here.\nif (!m || m.type !== 'text' || !m.text?.body) return [];\nconst c = b.entry?.[0]?.changes?.[0]?.value?.contacts?.[0] || {};\nreturn [{ json: {\n  name: c.profile?.name || 'there',\n  phone: m.from || '',\n  email: '',\n  message: m.text?.body || '',\n  receivedAt: new Date().toISOString(),\n  channel: 'whatsapp'\n} }];"
    },
    "position": [
     480,
@@ -139,7 +139,7 @@
      "timeout": 30000
     }
    },
-   "id": "98f1b44f-3af3-40bb-b2b7-687405b20f1a",
+   "id": "86cdde81-d7a7-4a9a-b8f5-9d0dc153b8b0",
    "name": "AI Triage & Draft",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -156,7 +156,7 @@
    "parameters": {
     "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Read Message').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
    },
-   "id": "aaacde33-c5f1-4be6-90e5-26e96a11ee8e",
+   "id": "60c254c1-d3f6-4358-8836-876ae341a7f8",
    "name": "Read AI Answer",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -188,7 +188,7 @@
     },
     "options": {}
    },
-   "id": "9c715e5d-caab-47ae-8b34-5d862415778b",
+   "id": "9c45b525-4f94-4b77-8d14-2103ed278482",
    "name": "Not Spam?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
@@ -198,7 +198,7 @@
    ]
   },
   {
-   "id": "7ceba69f-3be4-4a41-a57f-7a11120c93fc",
+   "id": "d1385491-00e0-4bc9-aa7f-3448103f45d4",
    "name": "Send WhatsApp Reply",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,

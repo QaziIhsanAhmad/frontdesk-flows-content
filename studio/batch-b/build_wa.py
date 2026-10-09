@@ -7,7 +7,9 @@ wh['parameters'] = {"httpMethod": "POST", "path": "whatsapp-inbound", "responseM
 settings = by['Settings']
 readmsg = {"id": "", "name": "Read Message", "type": "n8n-nodes-base.code", "typeVersion": 2, "parameters": {"jsCode": r"""// WhatsApp Cloud API style payload -> one clean lead
 const b = $json.body || {};
-const m = b.entry?.[0]?.changes?.[0]?.value?.messages?.[0] || {};
+const m = b.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+// Delivery/read status callbacks arrive on the same webhook with no message: stop here.
+if (!m || m.type !== 'text' || !m.text?.body) return [];
 const c = b.entry?.[0]?.changes?.[0]?.value?.contacts?.[0] || {};
 return [{ json: {
   name: c.profile?.name || 'there',
