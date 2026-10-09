@@ -4,7 +4,9 @@ const fs = require('fs'), path = require('path');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const SC = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 const OUT = path.join(__dirname, 'takes4k', SC.id);
-const WFID = SC.workflowIdFile ? fs.readFileSync(SC.workflowIdFile, 'utf8').trim() : fs.readFileSync('/home/claude/n8n/prodid', 'utf8').trim();
+const W = process.env.STUDIO_DIR || '/home/claude/studio'; const N = path.join(W, 'n8n'); const SB = path.join(W, 'sandbox');
+const idFile = f => path.isAbsolute(f) ? f : path.join(N, f);
+const WFID = fs.readFileSync(idFile(SC.workflowIdFile || 'prodid'), 'utf8').trim();
 const HOOK = SC.hookPath || 'clinic-enquiry';
 
 async function screencast(page, dir, t0, log) {
@@ -23,8 +25,8 @@ async function screencast(page, dir, t0, log) {
 (async () => {
   fs.rmSync(OUT, { recursive: true, force: true }); fs.mkdirSync(OUT, { recursive: true });
   // sandbox state
-  fs.writeFileSync('/home/claude/sandbox/ai_mode.json', JSON.stringify(SC.ai));
-  for (const f of fs.readdirSync('/home/claude/sandbox/mail')) fs.unlinkSync('/home/claude/sandbox/mail/' + f);
+  fs.writeFileSync(path.join(SB, 'ai_mode.json'), JSON.stringify(SC.ai));
+  for (const f of fs.readdirSync(path.join(SB, 'mail'))) fs.unlinkSync(path.join(SB, 'mail', f));
   const t0 = Date.now(); const meta = { marks: {}, nodeTimes: {}, rects: {} };
   const mark = k => { meta.marks[k] = (Date.now() - t0) / 1000; };
 
@@ -98,13 +100,13 @@ async function screencast(page, dir, t0, log) {
     let url = null;
     for (let k = 0; k < 120 && !url; k++) {
       await sleep(250);
-      for (const f of fs.readdirSync('/home/claude/sandbox/mail')) {
-        const m = JSON.parse(fs.readFileSync('/home/claude/sandbox/mail/' + f));
-        const mm = /(http\S+\?approve=yes)/.exec(m.text || ''); if (mm && m.at * 1000 > t0) url = mm[1];
+      for (const f of fs.readdirSync(path.join(SB, 'mail'))) {
+        const m = JSON.parse(fs.readFileSync(path.join(SB, 'mail', f)));
+        const mm = /(http\S+\/form-waiting\/\S+)/.exec(m.text || ''); if (mm && m.at * 1000 > t0) url = mm[1];
       }
     }
     await sleep(SC.approveDelay || 1800); mark('approve');
-    if (url) await fetch(url).catch(() => {});
+    if (url) { const fd = new FormData(); fd.append('field-0', SC.decision || 'Approve and post'); await fetch(url, { method: 'POST', body: fd }).catch(() => {}); }
     await pA.waitForFunction(n => window.__nt && window.__nt[n + ':success'], SC.lastNode, { timeout: 30000 }).catch(() => {});
   }
   else await pB.click(SEND);
@@ -133,9 +135,9 @@ async function screencast(page, dir, t0, log) {
     await pA.keyboard.press('Escape'); await sleep(600);
   }
   await bA.close();
-  const mails = fs.readdirSync('/home/claude/sandbox/mail').sort().map(f => JSON.parse(fs.readFileSync('/home/claude/sandbox/mail/' + f)));
+  const mails = fs.readdirSync(path.join(SB, 'mail')).sort().map(f => JSON.parse(fs.readFileSync(path.join(SB, 'mail', f))));
   meta.mails = mails.map(m => ({ ...m, rel: m.at - t0 / 1000 }));
-  try { meta.aiRequest = JSON.parse(fs.readFileSync('/home/claude/sandbox/ai_last.json', 'utf8')); } catch (e) {}
+  try { meta.aiRequest = JSON.parse(fs.readFileSync(path.join(SB, 'ai_last.json'), 'utf8')); } catch (e) {}
   fs.writeFileSync(path.join(OUT, 'meta.json'), JSON.stringify(meta, null, 1));
   console.log(JSON.stringify({ marks: meta.marks, nodeTimes: meta.nodeTimes, mails: meta.mails.map(m => [m.subject, m.rel.toFixed(2)]) }, null, 1));
 })();

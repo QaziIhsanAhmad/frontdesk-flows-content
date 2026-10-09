@@ -65,7 +65,7 @@ Covers are branded title-card Stories (`studio/batch-b/hl.html`), posted to Inst
 | c19-csv-crm | Each enquiry appended as a row to leads.csv (no Sheet or CRM) | AI answer |
 | c22-review-approve | AI drafts a review reply, the owner approves by email, and a Wait node resumes | review trigger, AI draft, Google post |
 
-The workflow builders, reel scripts, take scenarios (`scenarios/`), the recorder (`rec3.js` and `prep.py`), the WhatsApp demo chat page (`chat.html`) and the panel screenshot the redaction Reel needs (`takes/t20-redact/p_redact.png`) are in `studio/batch-b/`. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
+Everything needed to rebuild these Reels is in `studio/batch-b/`: workflow builders, take scenarios (`scenarios/`), reel scripts (`reels2/`), the recorder (`rec3.js`, `prep.py`), the renderer (`cine_build.py`, `cine_render.js`, `cine.html`, `finalize.sh`, `story.py`), music/SFX generator (`music.py`), the sandbox server with WhatsApp and review endpoints, the demo chat page and the redaction panel screenshot (`takes4k/t20-redact/`). After `studio/v2/setup.sh` and `import.py`, run `studio/batch-b/setup.sh` (same `STUDIO_DIR`); it prints the record and render commands. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
 
 The importable versions were hardened after the recordings were made, following the code review on PR #3:
 - **Redaction:** wider rules (ISO dates like 1986-03-14, written dates such as "14 March 1986", landlines including (020) style, spaced mobile numbers, +44 numbers).
