@@ -1,0 +1,41 @@
+{
+ "id": "c19-csv-crm",
+ "take": "t19-csv",
+ "music": 0,
+ "voice": "am_liam",
+ "speed": 1.1,
+ "style": {"a": "#a3e635", "b": "#22d3ee"},
+ "path": ["Website Form","Settings","Clean & Check","Reply to Form","Is Valid?","AI Triage & Draft","Read AI Answer","Build CRM Row","Convert to CSV","Append to leads.csv"],
+ "from": {"Build CRM Row": "Read AI Answer"},
+ "sim": ["AI Triage & Draft"],
+ "cover": "No CRM yet?|[a]Log leads free.[/a]",
+ "coverFocus": "Append to leads.csv",
+ "scenes": [
+  {"type": "hook", "min": 2.4, "nodes": ["Build CRM Row","Convert to CSV","Append to leads.csv"], "camW": 680, "rot": 2, "lead": 0.9, "tail": 0.15, "src": "pre",
+   "lines": ["No CRM yet?", "[a]Start with a CSV.[/a]"], "ksize": 88,
+   "trigger": {"at": 0.05, "flyAt": 0.85, "y": 980, "av": "B", "avbg": "#65a30d", "t1": "Ben Carter · website form", "t2": "just now",
+     "body": "My knee hurts after running. Do you have a Monday evening slot?"},
+   "say": "No CRM yet? *Every enquiry can still land in one tidy file.*"},
+  {"type": "canvas", "min": 4.6, "nodes": ["Website Form","Settings","Clean & Check","Reply to Form","Is Valid?","AI Triage & Draft","Read AI Answer","Build CRM Row","Convert to CSV","Append to leads.csv"],
+   "camW": 720, "lead": 0.3, "tail": 0.5,
+   "stepsCfg": [
+     {"node": "AI Triage & Draft", "title": "AI sorts it", "sub": "[b]simulated[/b] in this demo"},
+     {"node": "Build CRM Row", "title": "One tidy row", "sub": "name · category · summary"},
+     {"node": "Append to leads.csv", "title": "Saved to file", "sub": "real write · no Google Sheet"}],
+   "say": "The AI sorts it, then n8n *appends one row* to a CSV file."},
+  {"type": "code", "min": 3.6, "lines": ["Your free", "[a]lead log:[/a]"], "ksize": 80, "title": "leads.csv · after the run (columns trimmed)", "cy": 600,
+   "code": [
+     {"t": "name        category  status"},
+     {"t": "Tom Reed    booking   Booked"},
+     {"t": "Aisha Khan  question  Replied"},
+     {"t": "Ben Carter  booking   New", "hl": true, "at": 0.6},
+     {"t": "  knee pain, wants Monday evening", "hl": true, "at": 1.0}],
+   "say": "Ben's enquiry is *row three*. Opens in Excel or Numbers."},
+  {"type": "canvas", "min": 2.6, "nodes": ["Email Reply to Lead"], "camW": 900, "src": "end", "lead": 0.1, "tail": 0.2, "noFlow": true,
+   "result": {"at": 0.15, "y": 700, "size": 30, "tag": "Reply sent too · demo inbox"},
+   "say": "And Ben still gets *a reply in seconds*."},
+  {"type": "cta", "min": 2.5, "lines": ["Start simple.", "[a]Upgrade later.[/a]"], "button": "DM “FLOW” for a free sample", "small": "Free sample · ready to import into n8n", "noBadge": true,
+   "say": "Want this workflow? *DM me FLOW*."}
+ ],
+ "caption": "No CRM yet? Start with a CSV file.\n\nThis n8n workflow answers the enquiry, then builds one tidy row (name, contact, category, AI summary, status) and appends it to leads.csv. It opens in Excel or Numbers, costs nothing, and you can move to a CRM later without changing the rest of the flow.\n\nReal n8n run on a demo clinic site. The AI answer is simulated and labelled; the file write and email are real (demo inbox).\n\nSave this for your first client build, and DM me FLOW for the free clinic workflow.\n\n#n8n #automation #aiautomation #clinicmarketing #nocode #smallbusiness"
+}

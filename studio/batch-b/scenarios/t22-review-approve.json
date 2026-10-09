@@ -1,0 +1,39 @@
+{
+ "id": "t22-review-approve",
+ "workflowIdFile": "/home/claude/n8n/revid",
+ "manual": true,
+ "approve": true,
+ "approveDelay": 2200,
+ "lastNode": "Post Reply to Google",
+ "pin": {
+  "New Google Review": [
+   {
+    "json": {
+     "reviewer": "Hannah Lee",
+     "stars": 5,
+     "text": "Tom fixed my shoulder in three sessions. Clear exercises and he actually explained what was going on. Thank you!"
+    }
+   }
+  ]
+ },
+ "ai": {
+  "mode": "normal",
+  "delay": 1.0,
+  "answer": {
+   "reply": "Thank you so much, Hannah! We're really glad the exercises made sense and that you're feeling the difference after three sessions. Tom will be delighted to hear it. See you if you ever need us again. The Harbourline Physio team"
+  }
+ },
+ "panels": [
+  [
+   "Ask Owner to Approve",
+   "p_email.png"
+  ],
+  [
+   "Approved?",
+   "p_approved.png"
+  ]
+ ],
+ "settle": 1200,
+ "zoomSteps": 1,
+ "form": {}
+}

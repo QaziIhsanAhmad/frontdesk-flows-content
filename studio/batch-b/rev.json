@@ -1,0 +1,417 @@
+{
+ "name": "FrontDesk Flows \u2013 Review replies with owner approval",
+ "active": false,
+ "nodes": [
+  {
+   "id": "de8d034b-0d0e-400d-8331-5c0ffe52a5e0",
+   "name": "New Google Review",
+   "type": "n8n-nodes-base.manualTrigger",
+   "typeVersion": 1,
+   "parameters": {},
+   "position": [
+    0,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "2654f1c1-5e68-403b-984a-43056222b971",
+       "name": "businessName",
+       "value": "Harbourline Physio",
+       "type": "string"
+      },
+      {
+       "id": "f163ffea-a781-4e17-bd67-6be33226f10c",
+       "name": "businessType",
+       "value": "physiotherapy clinic",
+       "type": "string"
+      },
+      {
+       "id": "2211a205-c770-4f2e-bcf0-7023f06c7fc8",
+       "name": "businessInfo",
+       "value": "Opening hours: Mon-Fri 8am-7pm, Sat 9am-1pm.\nServices: physiotherapy assessment (45 min), follow-up treatment (30 min), sports massage, post-surgery rehab.\nNew patients: first assessment includes a treatment plan.\nParking: free on-site.\nInsurance: we accept most major health insurers; bring your policy number.",
+       "type": "string"
+      },
+      {
+       "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
+       "name": "bookingLink",
+       "value": "https://example.com/book",
+       "type": "string"
+      },
+      {
+       "id": "37df4ebb-1cbf-4bf9-95ed-01bebaa28f3e",
+       "name": "responseTime",
+       "value": "one working day",
+       "type": "string"
+      },
+      {
+       "id": "01889d26-7fb1-45fa-ba02-b71c1a5b7300",
+       "name": "emergencyAdvice",
+       "value": "your local emergency number (999 in the UK, 911 in the US) or go to the nearest emergency department",
+       "type": "string"
+      },
+      {
+       "id": "0958221e-f3ca-4bb1-a2fb-4f4e12219422",
+       "name": "signature",
+       "value": "The Harbourline Physio team",
+       "type": "string"
+      },
+      {
+       "id": "accf490f-357e-449b-8a05-033db10d036e",
+       "name": "staffEmail",
+       "value": "frontdesk@example.com",
+       "type": "string"
+      },
+      {
+       "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
+       "name": "fromEmail",
+       "value": "hello@example.com",
+       "type": "string"
+      },
+      {
+       "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
+       "name": "llmBaseUrl",
+       "value": "https://api.groq.com/openai/v1",
+       "type": "string"
+      },
+      {
+       "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
+       "name": "llmModel",
+       "value": "llama-3.1-8b-instant",
+       "type": "string"
+      },
+      {
+       "id": "a393a45a-ae8e-4725-8a06-76975fc3adcd",
+       "name": "sheetUrl",
+       "value": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   },
+   "id": "cf352db9-b123-4711-9aa6-c9d536aab673",
+   "name": "Settings",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    230,
+    300
+   ],
+   "notes": "EDIT ME: your business details, emails, AI provider and Google Sheet. Nothing else needs changing.",
+   "notesInFlow": true
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $('Settings').item.json.llmBaseUrl }}/chat/completions",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ model: $('Settings').item.json.llmModel, temperature: 0.3, response_format: { type: 'json_object' }, messages: [ { role: 'system', content: 'You reply to Google reviews for ' + $('Settings').item.json.businessName + '. Return JSON {reply}. Thank the reviewer by first name, mention one specific thing they said, max 60 words, no medical advice, never mention their condition or treatment details publicly, sign as ' + $('Settings').item.json.signature + '.' }, { role: 'user', content: 'Reviewer: ' + $('New Google Review').item.json.reviewer + '\\nStars: ' + $('New Google Review').item.json.stars + '\\nReview: ' + $('New Google Review').item.json.text } ] }) }}",
+    "options": {
+     "timeout": 30000
+    }
+   },
+   "id": "9458c532-642e-4b4a-9abf-a863d706da60",
+   "name": "AI Drafts Reply",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    460,
+    300
+   ],
+   "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
+   "retryOnFail": true,
+   "maxTries": 2,
+   "onError": "continueRegularOutput"
+  },
+  {
+   "id": "d3779c00-58ef-46b4-962d-ce26c404dc58",
+   "name": "Read Draft",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "parameters": {
+    "jsCode": "const r = $('New Google Review').first().json;\nlet reply = '';\ntry { reply = JSON.parse($json.choices[0].message.content).reply || ''; } catch (e) {}\nreturn [{ json: { ...r, reply } }];"
+   },
+   "position": [
+    690,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
+       "leftValue": "={{ ($json.reply || '').trim().length }}",
+       "rightValue": 20,
+       "operator": {
+        "type": "number",
+        "operation": "gt"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "5e0bd4f6-c44e-4bd4-9594-4d70ce44c014",
+   "name": "Draft OK?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    920,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+    "toEmail": "={{ $('Settings').item.json.staffEmail }}",
+    "subject": "=Approve reply to {{ $json.reviewer }}'s {{ $json.stars }}-star review?",
+    "emailFormat": "text",
+    "text": "=New {{ $json.stars }}-star Google review from {{ $json.reviewer }}:\n\"{{ $json.text }}\"\n\nSuggested reply:\n{{ $json.reply }}\n\nReview and decide here (opens a page, nothing is posted until you press Submit):\n{{ $execution.resumeFormUrl }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "id": "c3d22a95-93d7-4395-a97d-a00e4b5f3a75",
+   "name": "Ask Owner to Approve",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1150,
+    300
+   ]
+  },
+  {
+   "id": "a35f2e43-d80f-43bf-ad7f-f309eb3f3700",
+   "name": "Wait for Approval",
+   "type": "n8n-nodes-base.wait",
+   "typeVersion": 1.1,
+   "parameters": {
+    "resume": "form",
+    "formTitle": "Approve this review reply?",
+    "formDescription": "={{ $('Read Draft').item.json.reply }}",
+    "formFields": {
+     "values": [
+      {
+       "fieldLabel": "Decision",
+       "fieldType": "dropdown",
+       "requiredField": true,
+       "fieldOptions": {
+        "values": [
+         {
+          "option": "Approve and post"
+         },
+         {
+          "option": "Skip"
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "options": {}
+   },
+   "webhookId": "276f0720-fea9-4383-a531-3644e73074d1",
+   "position": [
+    1380,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
+       "leftValue": "={{ $json.Decision }}",
+       "rightValue": "Approve and post",
+       "operator": {
+        "type": "string",
+        "operation": "equals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "03129171-9480-41bd-86a4-269a5cb5a8c7",
+   "name": "Approved?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    1610,
+    300
+   ]
+  },
+  {
+   "id": "bb03dd9f-c134-489f-a1e1-02b35af162f3",
+   "name": "Post Reply to Google",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "parameters": {
+    "method": "POST",
+    "url": "http://reviews.sandbox/v4/reviews/reply",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ reviewer: $('Read Draft').item.json.reviewer, comment: $('Read Draft').item.json.reply }) }}",
+    "options": {}
+   },
+   "position": [
+    1840,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+    "toEmail": "={{ $('Settings').item.json.staffEmail }}",
+    "subject": "=Please reply to {{ $json.reviewer }}'s review yourself",
+    "emailFormat": "text",
+    "text": "=The AI draft for {{ $json.reviewer }}'s {{ $json.stars }}-star review failed, so nothing was posted.\n\nReview:\n\"{{ $json.text }}\"",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "id": "7ef3239e-e85d-4d6d-8196-f1362f2932d9",
+   "name": "Tell Owner: Draft Failed",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1150,
+    520
+   ]
+  }
+ ],
+ "connections": {
+  "New Google Review": {
+   "main": [
+    [
+     {
+      "node": "Settings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Settings": {
+   "main": [
+    [
+     {
+      "node": "AI Drafts Reply",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "AI Drafts Reply": {
+   "main": [
+    [
+     {
+      "node": "Read Draft",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read Draft": {
+   "main": [
+    [
+     {
+      "node": "Draft OK?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Draft OK?": {
+   "main": [
+    [
+     {
+      "node": "Ask Owner to Approve",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Tell Owner: Draft Failed",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Ask Owner to Approve": {
+   "main": [
+    [
+     {
+      "node": "Wait for Approval",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Wait for Approval": {
+   "main": [
+    [
+     {
+      "node": "Approved?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Approved?": {
+   "main": [
+    [
+     {
+      "node": "Post Reply to Google",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {
+  "New Google Review": [
+   {
+    "json": {
+     "reviewer": "Hannah Lee",
+     "stars": 5,
+     "text": "Tom fixed my shoulder in three sessions. Clear exercises and he actually explained what was going on. Thank you!"
+    }
+   }
+  ]
+ }
+}

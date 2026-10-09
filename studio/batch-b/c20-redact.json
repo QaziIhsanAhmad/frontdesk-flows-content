@@ -1,0 +1,205 @@
+{
+ "id": "c20-redact",
+ "take": "t20-redact",
+ "music": 2,
+ "voice": "bf_isabella",
+ "speed": 1.1,
+ "style": {
+  "a": "#38bdf8",
+  "b": "#fb7185"
+ },
+ "path": [
+  "Website Form",
+  "Settings",
+  "Clean & Check",
+  "Reply to Form",
+  "Is Valid?",
+  "Redact Health Data",
+  "AI Triage & Draft",
+  "Read AI Answer",
+  "Not Spam?",
+  "Email Reply to Lead"
+ ],
+ "from": {},
+ "sim": [
+  "AI Triage & Draft"
+ ],
+ "cover": "NHS number|[b]sent to AI?[/b]",
+ "coverFocus": "Redact Health Data",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.5,
+   "nodes": [
+    "Is Valid?",
+    "Redact Health Data",
+    "AI Triage & Draft"
+   ],
+   "camW": 660,
+   "rot": -2,
+   "lead": 0.9,
+   "tail": 0.15,
+   "src": "pre",
+   "lines": [
+    "Patient's NHS number",
+    "[b]sent to an AI?[/b]"
+   ],
+   "ksize": 84,
+   "trigger": {
+    "at": 0.05,
+    "flyAt": 0.9,
+    "y": 980,
+    "av": "S",
+    "avbg": "#0284c7",
+    "t1": "Sarah Collins \u00b7 website form",
+    "t2": "just now",
+    "body": "DOB 14/03/1986, NHS number 485 777 3456, postcode LS6 2AB. Lower back pain since a fall\u2026"
+   },
+   "say": "Is your AI assistant sending *patients' NHS numbers* to an AI company?"
+  },
+  {
+   "type": "form",
+   "min": 2.4,
+   "lines": [
+    "She [b]overshares.[/b]"
+   ],
+   "ksize": 80,
+   "subTop": 390,
+   "py": 500,
+   "pw": 740,
+   "ph": 1080,
+   "px": 170,
+   "say": "Patients overshare. Date of birth, *NHS number*, postcode."
+  },
+  {
+   "type": "canvas",
+   "min": 4.4,
+   "nodes": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "Redact Health Data",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead"
+   ],
+   "camW": 720,
+   "lead": 0.3,
+   "tail": 0.5,
+   "stepsCfg": [
+    {
+     "node": "Redact Health Data",
+     "title": "Strip identifiers",
+     "sub": "DOB \u00b7 NHS no. \u00b7 postcode"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI drafts reply",
+     "sub": "[b]simulated[/b] in this demo"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Reply emailed",
+     "sub": "real SMTP \u00b7 demo inbox"
+    }
+   ],
+   "say": "One Code node strips them out *before* the AI step runs."
+  },
+  {
+   "type": "code",
+   "min": 3.4,
+   "lines": [
+    "What the AI",
+    "[a]actually received:[/a]"
+   ],
+   "ksize": 76,
+   "title": "AI TRIAGE & DRAFT \u00b7 captured request",
+   "cy": 600,
+   "code": [
+    {
+     "t": "Name: Sarah"
+    },
+    {
+     "t": "Email: [not sent to AI]",
+     "hl": true,
+     "at": 0.4
+    },
+    {
+     "t": "Hi, I'm Sarah, [DOB removed],",
+     "hl": true,
+     "at": 0.9
+    },
+    {
+     "t": "NHS number [NHS no. removed],",
+     "hl": true,
+     "at": 1.4
+    },
+    {
+     "t": "postcode [postcode removed]. I've had"
+    },
+    {
+     "t": "lower back pain since a fall last week."
+    }
+   ],
+   "say": "The AI still gets the symptom. *Not the identity*."
+  },
+  {
+   "type": "panel",
+   "min": 2.8,
+   "img": "p_redact.png",
+   "crop": [
+    660,
+    740,
+    2100,
+    1260
+   ],
+   "hlSrc": [
+    680,
+    860,
+    2100,
+    1215
+   ],
+   "top": 560,
+   "lines": [
+    "Five regex rules"
+   ],
+   "ksize": 70,
+   "say": "Five simple rules. *No extra tools*, no extra cost."
+  },
+  {
+   "type": "canvas",
+   "min": 2.6,
+   "nodes": [
+    "Email Reply to Lead"
+   ],
+   "camW": 900,
+   "src": "end",
+   "lead": 0.1,
+   "tail": 0.2,
+   "noFlow": true,
+   "result": {
+    "at": 0.15,
+    "y": 700,
+    "size": 30,
+    "tag": "Full details stay in n8n \u00b7 demo inbox"
+   },
+   "say": "Sarah still gets a *personal reply*."
+  },
+  {
+   "type": "cta",
+   "min": 2.5,
+   "lines": [
+    "Private",
+    "[a]by design[/a]"
+   ],
+   "button": "DM \u201cFLOW\u201d for a free sample",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "noBadge": true,
+   "say": "Want the redaction step? *DM me FLOW*."
+  }
+ ],
+ "caption": "Is your AI assistant sending patients' NHS numbers to an AI company?\n\nPatients overshare in website forms. This n8n workflow adds one Code node before the AI step: it strips date of birth, NHS number, postcode, phone and email, so the AI only sees what it needs to triage the message. The full details stay inside n8n for the personal reply.\n\nReal n8n run on a demo clinic site. The AI answer is simulated and labelled; the redacted text shown is the real request n8n sent.\n\nSave this before your next healthcare build, and DM me FLOW for the free clinic workflow.\n\n#n8n #automation #aiautomation #clinicmarketing #nocode #dataprivacy"
+}

@@ -1,0 +1,13 @@
+{
+ "id": "t19-csv",
+ "workflowIdFile": "/home/claude/n8n/csvid",
+ "hookPath": "clinic-enquiry-csv",
+ "ai": {"mode": "normal", "delay": 1.0, "answer": {
+   "category": "booking", "urgent": false,
+   "summary": "New patient, knee pain from running, wants a Monday evening slot",
+   "reply": "Hi Ben,\n\nThanks for contacting Harbourline Physio. We'd be happy to look at your knee. We're open until 7pm on weekdays, and you can pick a Monday evening slot here: harbourlinephysio.test/book\n\nThe Harbourline Physio team"}},
+ "form": {"name": "Ben Carter", "email": "ben.carter@example.com", "phone": "07700 900845",
+   "message": "Hi, my knee hurts after running. Do you have a Monday evening slot for a new patient?"},
+ "panels": [["Build CRM Row", "p_row.png"], ["Append to leads.csv", "p_append.png"]],
+ "zoomSteps": 1
+}
