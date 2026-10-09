@@ -78,7 +78,7 @@ async function screencast(page, dir, t0, log) {
     if (F.website) { if (SC.reveal) { await pB.click('#website'); await pB.keyboard.type(F.website, { delay: 25 }); } else { await pB.evaluate(v => { document.getElementById('website').value = v; }, F.website); } mark('honeypot_filled'); }
   }
   await sleep(350); mark('submit');
-  meta.sendRect = await pB.evaluate(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.x, r.y, r.width, r.height]; // already in zoomed (screencast) pixels }, SEND);
+  meta.sendRect = await pB.evaluate(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.x, r.y, r.width, r.height]; /* already in zoomed (screencast) pixels */ }, SEND);
   if (SC.manual) { await pA.click('[data-test-id="execute-workflow-button"]'); }
   else await pB.click(SEND);
   if (!SC.manual) await pB.waitForFunction(() => { const o = document.getElementById('ok'); return o && getComputedStyle(o).display === 'block'; }, null, { timeout: 30000 }).catch(() => {});

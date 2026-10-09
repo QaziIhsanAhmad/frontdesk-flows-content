@@ -6,6 +6,10 @@ W=${STUDIO_DIR:-/home/claude/studio}; mkdir -p "$W" && cd "$W"
 cp -r "$V2"/{rec2.js,build.py,stage2.html,render2.js,cover2.html,cover2.js,music.py,prep.py,story.html,storycard.js,scenarios,reels} .
 # committed sources use /home/claude/{n8n,sandbox,tts}; point them at this studio folder
 [ "$W" = /home/claude ] || sed -i "s#/home/claude/\(n8n\|sandbox\|tts\)#$W/\1#g" rec2.js build.py prep.py scenarios/*.json
+# original music and sound effects (generated, no licensing needed)
+mkdir -p audio/sfx
+for v in 0 1 2; do [ -f audio/music$v.wav ] || python3 music.py 60 $v audio/music$v.wav; done
+for k in whoosh pop ding buzz tick; do [ -f audio/sfx/$k.wav ] || { python3 music.py 1 0 /tmp/sfx-seed.wav audio/sfx; break; }; done
 # Playwright + fonts
 [ -d node_modules/playwright ] || npm i --no-audit --no-fund playwright@1.56.1 @fontsource/poppins@5.1.0
 # n8n (xlsx override: cdn.sheetjs.com is not reachable)

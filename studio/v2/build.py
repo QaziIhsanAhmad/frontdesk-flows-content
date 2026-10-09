@@ -39,13 +39,14 @@ def tts(text, name):
     global _k
     f = os.path.join(WORK, name + '.wav')
     clean = re.sub(r'[*]', '', text)
-    stale = not (os.path.exists(f) and os.path.exists(f + '.txt') and open(f + '.txt').read() == clean)
+    key = '%s|%s|%s' % (R.get('voice', 'af_heart'), R.get('speed', 1.12), clean)  # every synthesis input
+    stale = not (os.path.exists(f) and os.path.exists(f + '.txt') and open(f + '.txt').read() == key)
     if stale:
         if _k is None: _k = Kokoro('/home/claude/tts/kokoro-v1.0.onnx', '/home/claude/tts/voices-v1.0.bin')
         s, sr = _k.create(clean, voice=R.get('voice', 'af_heart'), speed=R.get('speed', 1.12), lang='en-us')
         # trim silence
         idx = np.where(np.abs(s) > 0.01)[0]; s = s[max(0, idx[0] - 600): idx[-1] + 2400]
-        sf.write(f, s, sr); open(f + '.txt', 'w').write(clean)
+        sf.write(f, s, sr); open(f + '.txt', 'w').write(key)
     x, sr = sf.read(f)
     return f, len(x) / sr
 
@@ -217,7 +218,7 @@ def jsafe(sc):
 # mini image for CTA = final canvas crop
 im = Image.open(lead_frame); xs = [r[0] for r in rects.values()]; xe = [r[0] + r[2] for r in rects.values()]
 ys = [r[1] for r in rects.values()]; ye = [r[1] + r[3] for r in rects.values()]
-mini = im.crop((int(min(xs) - 60), int(min(ys) - 60), int(max(xe) + 140), int(max(ye) + 90))); mini_p = os.path.join(WORK, 'mini.jpg'); mini.save(mini_p, quality=92)
+mini = im.crop((int(min(xs) - 60), int(min(ys) - 60), int(max(xe) + 140), int(max(ye) + 90))); mini_p = os.path.join(WORK, 'mini.jpg'); mini.save(mini_p, quality=92); mini.save(os.path.join(WORK, 'coverbg.jpg'), quality=92)  # cover2.js background
 D = {'cfg': R, 'sched': [jsafe(s) for s in scenes], 'total': TOTAL, 'subs': subs, 'bg': 'file://' + lead_frame, 'mini': 'file://' + mini_p}
 json.dump({'D': D, 'frames': frames}, open(os.path.join(WORK, 'render.json'), 'w'))
 
