@@ -1,0 +1,35 @@
+{
+ "ai": {
+  "mode": "normal",
+  "delay": 1.4,
+  "answer": {
+   "category": "question",
+   "urgent": false,
+   "summary": "Asks about parking",
+   "reply": "Hi Tom,\n\nThanks for getting in touch with Harbourline Physio. Yes, we have free parking on site.\n\nIf you'd like to book, you can do it here: harbourlinephysio.test/book\n\nThe Harbourline Physio team"
+  }
+ },
+ "form": {
+  "name": "Tom Reid",
+  "email": "tom.reid@example.com",
+  "phone": "07700 900321",
+  "message": "Hi, is there parking at the clinic?"
+ },
+ "sheetRow": {
+  "Received": "now",
+  "Name": "Tom Reid",
+  "Category": "question",
+  "Urgent": "",
+  "Summary": "Asks about parking",
+  "Auto-reply sent": "yes",
+  "Status": "New"
+ },
+ "panels": [
+  [
+   "Website Form",
+   "p_hook.png"
+  ]
+ ],
+ "id": "t12-webhook",
+ "zoomSteps": 1
+}

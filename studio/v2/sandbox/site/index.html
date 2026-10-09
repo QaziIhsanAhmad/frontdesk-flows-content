@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact – Harbourline Physio (demo clinic)</title>
+<style>
+@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0}
+body{font-family:P,sans-serif;background:#eef4f3;color:#0f2b2a}
+.top{background:#0f766e;color:#fff;padding:18px 22px;display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;border-radius:10px;background:#fff;color:#0f766e;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:20px}
+.top b{font-size:19px} .top small{display:block;font-size:12px;opacity:.85;font-weight:500}
+.demo{background:#fde68a;color:#78350f;font-size:12px;font-weight:600;text-align:center;padding:5px}
+.card{margin:18px;background:#fff;border-radius:18px;padding:22px;box-shadow:0 6px 24px rgba(15,43,42,.08)}
+h1{font-size:23px;margin-bottom:4px} p.s{font-size:14px;color:#4b6664;margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px}
+input,textarea{width:100%;font-family:P;font-size:16px;border:2px solid #d5e3e1;border-radius:12px;padding:11px 13px;color:#0f2b2a;background:#fbfdfd}
+input:focus,textarea:focus{outline:none;border-color:#0f766e}
+textarea{height:118px;resize:none;line-height:1.4}
+.hp{position:absolute;left:-9999px}
+body.reveal .hpwrap{display:block!important}
+.hpwrap{display:none;margin-top:12px;border:3px dashed #dc2626;border-radius:12px;padding:8px 10px;background:#fff1f2}
+.hpwrap label{color:#b91c1c;margin:0 0 4px}
+body.reveal .hpwrap .hp{position:static}
+button{margin-top:16px;width:100%;border:0;border-radius:12px;background:#0f766e;color:#fff;font-family:P;font-weight:700;font-size:17px;padding:14px}
+.ok{display:none;margin-top:14px;border-radius:12px;padding:13px 14px;font-weight:600;font-size:15px;background:#dcfce7;color:#166534}
+.ok.bad{background:#fee2e2;color:#991b1b}
+.hours{margin:0 18px;font-size:13px;color:#4b6664}
+.hours b{color:#b45309}
+</style></head>
+<body>
+<div class="top"><div class="logo">H</div><div><b>Harbourline Physio</b><small>Physiotherapy · Sports massage · Rehab</small></div></div>
+<div class="demo">Demo clinic for a FrontDesk Flows workflow test</div>
+<div class="card">
+  <h1>Book or ask a question</h1>
+  <p class="s">We usually reply within a few hours.</p>
+  <form id="f" autocomplete="off">
+    <label>Your name</label><input name="name" id="name">
+    <label>Email</label><input name="email" id="email">
+    <label>Phone</label><input name="phone" id="phone">
+    <label>Message</label><textarea name="message" id="message"></textarea>
+    <div class="hpwrap"><label>Hidden field “website” (humans never see it)</label><input class="hp" name="website" id="website" tabindex="-1"></div>
+    <button type="submit" id="send">Send enquiry</button>
+  </form>
+  <div class="ok" id="ok"></div>
+</div>
+<div class="hours" id="hours">Clinic hours: Mon–Fri 8am–7pm · Sat 9am–1pm</div>
+<script>
+if(new URLSearchParams(location.search).get('reveal'))document.body.classList.add('reveal');
+const hook=new URLSearchParams(location.search).get('hook')||'http://localhost:5678/webhook-test/clinic-enquiry';
+document.getElementById('f').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const b=document.getElementById('send'); b.textContent='Sending…';
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  try{
+    const r=await fetch(hook,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});
+    const j=await r.json(); const ok=document.getElementById('ok');
+    ok.textContent=(j.ok?'✓ ':'')+j.message; ok.className='ok'+(j.ok?'':' bad'); ok.style.display='block';
+  }catch(err){document.getElementById('ok').textContent='Could not send';}
+  b.textContent='Send enquiry';
+});
+</script>
+</body></html>

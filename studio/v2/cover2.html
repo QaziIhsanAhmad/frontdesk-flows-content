@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2);font-weight:800}
+@font-face{font-family:P;src:url(node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2);font-weight:700}
+*{margin:0;box-sizing:border-box}body{width:1080px;height:1920px;background:#0b1220;font-family:P;color:#f4f6fb;position:relative;overflow:hidden}
+.bg{position:absolute;left:-60px;right:-60px;top:760px;height:640px;background-size:cover;background-position:center;filter:saturate(1.2);border-top:3px solid #24304a;border-bottom:3px solid #24304a}
+.bg:after{content:"";position:absolute;inset:0;background:linear-gradient(#0b1220 0%,transparent 22%,transparent 78%,#0b1220 100%)}
+.k{position:absolute;top:330px;left:0;right:0;text-align:center;font-weight:700;font-size:32px;letter-spacing:4px;color:#f5a623}
+h1{position:absolute;top:390px;left:50px;right:50px;text-align:center;font-weight:800;font-size:116px;line-height:1.0;letter-spacing:-3px}
+h1 span{color:#34d17f} h1 b{color:#f5a623}
+.b{position:absolute;top:1440px;left:0;right:0;text-align:center}
+.b span{display:inline-block;background:#f5a623;color:#111;font-weight:800;font-size:40px;padding:14px 34px;border-radius:50px}
+</style></head><body><div class="bg" id="bg"></div><div class="k" id="k"></div><h1 id="h"></h1><div class="b"><span id="b"></span></div>
+<script>const q=new URLSearchParams(location.search);document.getElementById('k').textContent=q.get('k');document.getElementById('h').innerHTML=q.get('h');document.getElementById('b').textContent=q.get('b');document.getElementById('bg').style.backgroundImage=`url("${q.get('img')}")`;</script></body></html>

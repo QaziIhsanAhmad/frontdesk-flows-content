@@ -1,0 +1,35 @@
+{
+ "ai": {
+  "mode": "normal",
+  "delay": 4.5,
+  "answer": {
+   "category": "question",
+   "urgent": false,
+   "summary": "Asks if insurance is accepted for sports massage",
+   "reply": "Hi James,\n\nThanks for getting in touch with Harbourline Physio. We accept most major health insurers, so please bring your policy number to your appointment.\n\nYou can book a sports massage here: harbourlinephysio.test/book\n\nThe Harbourline Physio team"
+  }
+ },
+ "form": {
+  "name": "James Patel",
+  "email": "james.patel@example.com",
+  "phone": "07700 900456",
+  "message": "Hi, do you accept health insurance for sports massage?"
+ },
+ "sheetRow": {
+  "Received": "now",
+  "Name": "James Patel",
+  "Category": "question",
+  "Urgent": "",
+  "Summary": "Asks if insurance is accepted for sports massage",
+  "Auto-reply sent": "yes",
+  "Status": "New"
+ },
+ "panels": [
+  [
+   "Reply to Form",
+   "p_reply.png"
+  ]
+ ],
+ "id": "t16-respond-first",
+ "zoomSteps": 1
+}

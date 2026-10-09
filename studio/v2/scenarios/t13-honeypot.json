@@ -1,0 +1,27 @@
+{
+ "reveal": true,
+ "ai": {
+  "mode": "normal",
+  "delay": 1.2,
+  "answer": {}
+ },
+ "form": {
+  "name": "Best SEO Deals",
+  "email": "offers@seo-deals.example",
+  "phone": "",
+  "message": "Get 300% more patients fast with our SEO package. Visit cheap-seo.example today!",
+  "website": "cheap-seo.example"
+ },
+ "panels": [
+  [
+   "Is Valid?",
+   "p_valid.png"
+  ],
+  [
+   "Clean & Check",
+   "p_clean.png"
+  ]
+ ],
+ "id": "t13-honeypot",
+ "zoomSteps": 1
+}

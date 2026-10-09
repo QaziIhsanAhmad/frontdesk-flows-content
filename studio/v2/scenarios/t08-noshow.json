@@ -1,0 +1,2 @@
+{"id":"t08-noshow","workflowIdFile":"/home/claude/n8n/noshowid","hookPath":"booking-update","page":"admin.html?mode=noshow&focus=a2","doneTimeout":6000,"settle":1500,
+ "ai":{"mode":"normal","delay":1},"panels":[["Write Kind Message","p_msg.png"],["Wait 3 Days","p_wait.png"]],"zoomSteps":1}

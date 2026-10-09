@@ -1,0 +1,2 @@
+{"id":"t09-reviews","workflowIdFile":"/home/claude/n8n/reviewsid","hookPath":"visit-completed","page":"admin.html?mode=visit&focus=a3","doneTimeout":8000,
+ "ai":{"mode":"normal","delay":1},"panels":[["Write Thank-you","p_msg.png"]],"zoomSteps":1}

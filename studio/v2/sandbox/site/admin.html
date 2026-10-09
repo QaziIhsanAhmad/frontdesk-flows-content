@@ -1,0 +1,46 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bookings – Harbourline Physio (demo)</title>
+<style>
+@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:P;src:url(poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(poppins-latin-700-normal.woff2);font-weight:700}
+*{box-sizing:border-box;margin:0}
+body{font-family:P,sans-serif;background:#eef4f3;color:#0f2b2a}
+.top{background:#0f766e;color:#fff;padding:18px 22px;display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;border-radius:10px;background:#fff;color:#0f766e;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:20px}
+.top b{font-size:19px} .top small{display:block;font-size:12px;opacity:.85;font-weight:500}
+.demo{background:#fde68a;color:#78350f;font-size:12px;font-weight:600;text-align:center;padding:5px}
+h1{font-size:22px;margin:18px 18px 4px} p.s{font-size:14px;color:#4b6664;margin:0 18px 12px}
+.ap{margin:10px 18px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 6px 24px rgba(15,43,42,.08)}
+.row{display:flex;justify-content:space-between;align-items:center}
+.t{font-weight:700;font-size:17px} .n{font-size:16px;font-weight:600} .k{font-size:13px;color:#4b6664}
+.st{font-size:12px;font-weight:700;border-radius:20px;padding:4px 10px;background:#e2e8f0;color:#334155}
+.st.done{background:#dcfce7;color:#166534} .st.ns{background:#fee2e2;color:#991b1b} .st.up{background:#e0f2fe;color:#075985}
+.btns{display:flex;gap:8px;margin-top:10px}
+button{flex:1;border:0;border-radius:10px;font-family:P;font-weight:700;font-size:14px;padding:10px}
+.b1{background:#0f766e;color:#fff} .b2{background:#fff;color:#b91c1c;border:2px solid #fecaca!important}
+.toast{display:none;margin:12px 18px;border-radius:12px;padding:12px 14px;font-weight:600;font-size:14px;background:#dcfce7;color:#166534}
+</style></head>
+<body>
+<div class="top"><div class="logo">H</div><div><b>Harbourline Physio</b><small>Bookings · Today</small></div></div>
+<div class="demo">Demo booking screen for a FrontDesk Flows workflow test</div>
+<h1>Today's appointments</h1><p class="s">Thursday · 3 booked</p>
+<div id="list"></div>
+<div class="toast" id="toast"></div>
+<script>
+const q=new URLSearchParams(location.search); const hook=q.get('hook'); const mode=q.get('mode')||'noshow';
+const A=[{id:'a1',time:'09:30',name:'Olivia Brown',type:'Sports massage · 60 min',st:'done',email:'olivia.brown@example.com'},
+ {id:'a2',time:'14:30',name:'Daniel Hughes',type:'Physio follow-up · 30 min',st:'up',email:'daniel.hughes@example.com'},
+ {id:'a3',time:'16:00',name:'Grace Wilson',type:'First assessment · 45 min',st:'up',email:'grace.wilson@example.com'}];
+const focus=q.get('focus')||'a2';
+if(mode==='tomorrow'){document.querySelector('h1').textContent="Tomorrow's appointments";document.querySelector('p.s').textContent='Friday · 3 booked · reminders go out at 6pm';A.forEach(a=>a.st='up');}
+function draw(){document.getElementById('list').innerHTML=A.map(a=>`<div class="ap" id="${a.id}"><div class="row"><div><div class="t">${a.time}</div><div class="n">${a.name}</div><div class="k">${a.type}</div></div><span class="st ${a.st==='done'?'done':a.st==='ns'?'ns':'up'}">${a.st==='done'?'Completed':a.st==='ns'?'No-show':'Booked'}</span></div>${mode!=='tomorrow'&&a.id===focus&&a.st==='up'?`<div class="btns">${mode==='noshow'?`<button class="b2" id="act">Mark as no-show</button>`:`<button class="b1" id="act">Mark visit complete</button>`}</div>`:''}</div>`).join('');
+ const b=document.getElementById('act'); if(b) b.onclick=send;}
+async function send(){const a=A.find(x=>x.id===focus); a.st=mode==='noshow'?'ns':'done'; draw();
+ const body={event:mode==='noshow'?'booking.no_show':'booking.completed',status:mode==='noshow'?'no_show':'completed',name:a.name,email:a.email,time:a.time,service:a.type};
+ try{await fetch(hook,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});}catch(e){}
+ const t=document.getElementById('toast'); t.textContent='✓ Booking updated · sent to n8n'; t.style.display='block'; t.id='ok';}
+draw();
+</script>
+</body></html>

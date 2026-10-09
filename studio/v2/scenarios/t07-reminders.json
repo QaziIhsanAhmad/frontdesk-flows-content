@@ -1,0 +1,2 @@
+{"id":"t07-reminders","workflowIdFile":"/home/claude/n8n/remid","page":"admin.html?mode=tomorrow","manual":true,"doneTimeout":12000,
+ "ai":{"mode":"normal","delay":1},"panels":[["Write Reminder","p_msg.png"]],"zoomSteps":1}

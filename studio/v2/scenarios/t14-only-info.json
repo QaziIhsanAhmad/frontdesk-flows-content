@@ -1,0 +1,39 @@
+{
+ "ai": {
+  "mode": "normal",
+  "delay": 1.5,
+  "answer": {
+   "category": "pricing",
+   "urgent": false,
+   "summary": "Asks the price of a sports massage",
+   "reply": "Hi Priya,\n\nThanks for getting in touch with Harbourline Physio. I don't want to give you the wrong price, so a member of our team will reply within one working day with our current sports massage price.\n\nIn the meantime, you can see available times here: harbourlinephysio.test/book\n\nThe Harbourline Physio team"
+  }
+ },
+ "form": {
+  "name": "Priya Shah",
+  "email": "priya.shah@example.com",
+  "phone": "07700 900654",
+  "message": "How much does a 60 minute sports massage cost?"
+ },
+ "sheetRow": {
+  "Received": "now",
+  "Name": "Priya Shah",
+  "Category": "pricing",
+  "Urgent": "",
+  "Summary": "Asks the price of a sports massage",
+  "Auto-reply sent": "yes",
+  "Status": "New"
+ },
+ "panels": [
+  [
+   "Settings",
+   "p_settings.png"
+  ],
+  [
+   "AI Triage & Draft",
+   "p_ai.png"
+  ]
+ ],
+ "id": "t14-only-info",
+ "zoomSteps": 1
+}
