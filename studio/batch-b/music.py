@@ -91,7 +91,7 @@ def track(seconds, variant=0):
     st = np.stack([L, R], 1)
     st = np.tanh(st * 1.6) / 1.6
     # fade in/out
-    fi = int(0.05 * SR); fo = int(1.2 * SR)
+    fi = min(int(0.05 * SR), len(st)); fo = min(int(1.2 * SR), len(st) - fi)
     st[:fi] *= np.linspace(0, 1, fi)[:, None]; st[-fo:] *= np.linspace(1, 0, fo)[:, None]
     return st / np.max(np.abs(st)) * 0.85
 

@@ -6,6 +6,7 @@ W=${STUDIO_DIR:-/home/claude/studio}; mkdir -p "$W" && cd "$W"
 cp -r "$V2"/{rec2.js,build.py,stage2.html,render2.js,cover2.html,cover2.js,music.py,prep.py,story.html,storycard.js,scenarios,reels} .
 # committed sources use /home/claude/{n8n,sandbox,tts}; point them at this studio folder
 [ "$W" = /home/claude ] || sed -i "s#/home/claude/\(n8n\|sandbox\|tts\)#$W/\1#g" rec2.js build.py prep.py scenarios/*.json
+pip install --break-system-packages -q kokoro-onnx soundfile aiosmtpd numpy pillow
 # original music and sound effects (generated, no licensing needed)
 mkdir -p audio/sfx
 for v in 0 1 2; do [ -f audio/music$v.wav ] || python3 music.py 60 $v audio/music$v.wav; done
@@ -18,7 +19,6 @@ node -e 'process.exit(require("fs").existsSync(require("playwright").chromium.ex
 if [ ! -x n8n/node_modules/.bin/n8n ]; then
   mkdir -p n8n && (cd n8n && npm init -y >/dev/null && node -e 'const p=require("./package.json");p.overrides={xlsx:"0.18.5"};require("fs").writeFileSync("package.json",JSON.stringify(p))' && npm i --no-audit --no-fund n8n@1.95.3)
 fi
-pip install --break-system-packages -q kokoro-onnx soundfile aiosmtpd numpy pillow
 mkdir -p tts && for f in kokoro-v1.0.onnx voices-v1.0.bin; do [ -f tts/$f ] || curl -sSL -o tts/$f https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/$f; done
 # sandbox hosts + servers
 for h in ai.sandbox harbourlinephysio.test whatsapp.sandbox; do grep -q " $h" /etc/hosts || echo "127.0.0.1 $h" >> /etc/hosts; done
