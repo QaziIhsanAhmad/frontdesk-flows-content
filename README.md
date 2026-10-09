@@ -65,10 +65,10 @@ Covers are branded title-card Stories (`studio/batch-b/hl.html`), posted to Inst
 | c19-csv-crm | Each enquiry appended as a row to leads.csv (no Sheet or CRM) | AI answer |
 | c22-review-approve | AI drafts a review reply, the owner approves by email, and a Wait node resumes | review trigger, AI draft, Google post |
 
-The workflow builders and reel scripts are in `studio/batch-b/`. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
+The workflow builders, reel scripts, take scenarios (`scenarios/`), the recorder (`rec3.js` and `prep.py`), the WhatsApp demo chat page (`chat.html`) and the panel screenshot the redaction Reel needs (`takes/t20-redact/p_redact.png`) are in `studio/batch-b/`. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
 
 The importable versions were hardened after the recordings were made, following the code review on PR #3:
-- **Redaction:** wider rules (ISO dates like 1986-03-14, written dates such as "14 March 1986", landlines and spaced mobile numbers, +44 numbers).
-- **CSV log:** the path is a Settings value (default `/home/node/.n8n-files/leads.csv`, n8n's file folder in Docker). In Docker, mount that folder too or the log is lost when the container is recreated, e.g. `docker run -it --rm -p 5678:5678 -v n8n_data:/home/node/.n8n -v n8n_files:/home/node/.n8n-files docker.n8n.io/n8nio/n8n`. The header is written when the file is first created, and cells are quoted and protected against spreadsheet formulas.
+- **Redaction:** wider rules (ISO dates like 1986-03-14, written dates such as "14 March 1986", landlines including (020) style, spaced mobile numbers, +44 numbers).
+- **CSV log:** the path is a Settings value (default `/home/node/.n8n-files/leads.csv`, n8n's file folder in Docker). In Docker, mount that folder too or the log is lost when the container is recreated, e.g. `docker run -it --rm -p 5678:5678 -v n8n_data:/home/node/.n8n -v n8n_files:/home/node/.n8n-files docker.n8n.io/n8nio/n8n`. The header is written when the file is first created, and cells are quoted and protected against spreadsheet formulas. If two enquiries can arrive in the same second before the file exists, create `leads.csv` with the header row once yourself to avoid a duplicate header.
 - **WhatsApp:** delivery and read status callbacks (no message) are ignored before any AI call, and a "Not Spam?" check runs before sending.
 - **Review approval:** the email links to an n8n form, so the workflow only resumes when the owner presses Submit; link scanners can't trigger it. An empty or failed AI draft emails the owner instead of asking for approval.

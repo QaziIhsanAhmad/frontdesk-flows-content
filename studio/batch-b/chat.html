@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@font-face{font-family:P;src:url(poppins-latin-500-normal.woff2)}@font-face{font-family:P;font-weight:600;src:url(poppins-latin-600-normal.woff2)}
+*{box-sizing:border-box}body{margin:0;font-family:P,system-ui,sans-serif;background:#0b141a;color:#e9edef;height:1050px;overflow:hidden;display:flex;flex-direction:column}
+.top{background:#202c33;padding:14px 16px;display:flex;gap:12px;align-items:center}.av{width:40px;height:40px;border-radius:50%;background:#0f766e;display:flex;align-items:center;justify-content:center;font-weight:600}
+.top b{display:block;font-size:20px}.top small{color:#8696a0;font-size:12px}
+.demo{background:#3b2f0b;color:#fcd34d;font-size:11px;text-align:center;padding:4px}
+.chat{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:8px;background:#0b141a radial-gradient(#ffffff0a 1px,transparent 1px);background-size:18px 18px}
+.day{align-self:center;background:#182229;color:#8696a0;font-size:11px;padding:4px 10px;border-radius:8px}
+.m{max-width:86%;padding:10px 12px 22px;border-radius:10px;font-size:21px;line-height:1.35;position:relative;white-space:pre-wrap}
+.m i{position:absolute;right:8px;bottom:3px;font-size:12px;color:#8696a0;font-style:normal}
+.in{align-self:flex-start;background:#202c33}.out{align-self:flex-end;background:#005c4b}
+.typing{align-self:flex-start;background:#202c33;color:#8696a0;font-size:13px;padding:8px 12px;border-radius:10px;display:none}
+.bar{background:#202c33;padding:10px;display:flex;gap:8px}#message{flex:1;background:#2a3942;border:0;border-radius:20px;color:#e9edef;padding:10px 14px;font:inherit;font-size:14.5px}
+#send{width:44px;height:44px;border-radius:50%;border:0;background:#00a884;color:#fff;font-size:18px}
+#ok{display:none;position:absolute;left:-9999px}
+</style></head><body>
+<div class="top"><div class="av">H</div><div><b>Harbourline Physio</b><small>Business account · demo</small></div></div>
+<div class="demo">Demo chat · messages go to a WhatsApp API sandbox, not real WhatsApp</div>
+<div class="chat" id="chat"><div class="day">TODAY</div><div class="typing" id="typing">typing…</div></div>
+<div class="bar"><input id="message" placeholder="Message" autocomplete="off"><button id="send">➤</button></div>
+<div id="ok"></div>
+<script>
+const q=new URLSearchParams(location.search);const hook=q.get('hook');const chat=document.getElementById('chat');const typing=document.getElementById('typing');
+const now=()=>new Date().toTimeString().slice(0,5);
+function add(t,cls){const d=document.createElement('div');d.className='m '+cls;d.textContent=t;const i=document.createElement('i');i.textContent=now()+(cls==='out'?' ✓✓':'');d.appendChild(i);chat.insertBefore(d,typing);}
+document.getElementById('send').onclick=async()=>{const t=document.getElementById('message').value.trim();if(!t)return;add(t,'out');document.getElementById('message').value='';
+ const sent=Date.now()/1000;typing.style.display='block';
+ fetch(hook,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({object:'whatsapp_business_account',entry:[{changes:[{value:{contacts:[{profile:{name:q.get('name')||'Liam'}}],messages:[{from:q.get('phone')||'447700900513',type:'text',text:{body:t}}]}}]}]})}).catch(()=>{});
+ for(let k=0;k<120;k++){await new Promise(r=>setTimeout(r,250));const r=await (await fetch('/api/wa_last')).json();if(r.at&&r.at>sent){typing.style.display='none';add(r.text.body,'in');const ok=document.getElementById('ok');ok.textContent=r.text.body;ok.style.display='block';break;}}
+};
+</script></body></html>

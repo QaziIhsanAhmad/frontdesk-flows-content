@@ -18,8 +18,8 @@ const rules = [
   [/\b[1-9]\d{2}[\s-]?\d{3}[\s-]?\d{4}\b/g, '[NHS no. removed]'],
   // UK postcode
   [/\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/gi, '[postcode removed]'],
-  // UK phone numbers, mobile or landline, any spacing: 07700 900 123, 020 7946 0958, +44 7700 900123
-  [/(?:\+44\s?\(?0?\)?\s?|\b0)\d(?:[\s-]?\d){8,9}\b/g, '[phone removed]'],
+  // UK phone numbers, mobile or landline, any spacing: 07700 900 123, 020 7946 0958, (020) 7946 0958, +44 7700 900123
+  [/(?:\+44\s?\(?0?\)?\s?|\(?\b0)\d(?:[\s-]?\)?[\s-]?\d){8,9}\b/g, '[phone removed]'],
   // Email
   [/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email removed]'],
 ];
