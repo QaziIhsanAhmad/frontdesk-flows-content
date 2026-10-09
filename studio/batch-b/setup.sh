@@ -6,6 +6,8 @@ set -e
 B="$(cd "$(dirname "$0")" && pwd)"
 W=${STUDIO_DIR:-/home/claude/studio}; N="$W/n8n"; cd "$W"
 
+# ffmpeg + ffprobe are needed by the builders and finalize.sh
+command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null || { (apt-get update -qq && apt-get install -y -qq ffmpeg) || { echo "Install ffmpeg (includes ffprobe) and re-run"; exit 1; }; }
 # recorder + renderer + scenarios + reel scripts + committed panel screenshots
 cp "$B"/{rec3.js,prep.py,cine_build.py,cine_render.js,cine.html,finalize.sh,story.py,music.py} .
 mkdir -p scenarios reels2 takes4k work2 out2 audio/sfx
@@ -24,7 +26,7 @@ pkill -f "sandbox/server.py" || true; (setsid nohup python3 sandbox/server.py > 
 # CSV lead log folder: restart n8n so it is allowed to write there (same env as studio/v2/setup.sh)
 mkdir -p clinic-files
 pkill -f "n8n start" || true; sleep 3
-export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false N8N_RESTRICT_FILE_ACCESS_TO=$W/clinic-files
+export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false N8N_LISTEN_ADDRESS=127.0.0.1 N8N_RESTRICT_FILE_ACCESS_TO=$W/clinic-files
 (cd n8n && setsid nohup npx n8n start > n8n.log 2>&1 &)
 for i in $(seq 1 60); do curl -s -o /dev/null localhost:5678/healthz && break; sleep 2; done
 curl -s -c "$N/cj" -H 'content-type: application/json' -d '{"emailOrLdapLoginId":"demo@frontdeskflows.test","password":"DemoPass123!"}' localhost:5678/rest/login > /dev/null

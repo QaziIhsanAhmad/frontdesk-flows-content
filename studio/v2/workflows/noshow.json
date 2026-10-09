@@ -201,6 +201,20 @@
      "name": ""
     }
    }
+  },
+  {
+   "parameters": {
+    "url": "={{ 'http://harbourlinephysio.test/api/booking_status?email=' + encodeURIComponent($('Write Kind Message').first().json.to) + '&after=' + encodeURIComponent($('Booking Updated').first().json.body.time || '') }}",
+    "options": {}
+   },
+   "name": "Check Booking System",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "id": "611b5a4c-38a8-4a38-9660-bfbd155f5d1b",
+   "position": [
+    1210,
+    340
+   ]
   }
  ],
  "connections": {
@@ -263,7 +277,7 @@
    "main": [
     [
      {
-      "node": "Rebooked?",
+      "node": "Check Booking System",
       "type": "main",
       "index": 0
      }
@@ -276,6 +290,17 @@
     [
      {
       "node": "Gentle Follow-up",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Check Booking System": {
+   "main": [
+    [
+     {
+      "node": "Rebooked?",
       "type": "main",
       "index": 0
      }

@@ -11,6 +11,8 @@ pip install --break-system-packages -q kokoro-onnx soundfile aiosmtpd numpy pill
 mkdir -p audio/sfx
 for v in 0 1 2; do [ -f audio/music$v.wav ] || python3 music.py 60 $v audio/music$v.wav; done
 for k in whoosh pop ding buzz tick; do [ -f audio/sfx/$k.wav ] || { python3 music.py 1 0 /tmp/sfx-seed.wav audio/sfx; break; }; done
+# ffmpeg + ffprobe are needed by the builders and finalize.sh
+command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null || { (apt-get update -qq && apt-get install -y -qq ffmpeg) || { echo "Install ffmpeg (includes ffprobe) and re-run"; exit 1; }; }
 # Playwright + fonts
 [ -d node_modules/playwright ] || npm i --no-audit --no-fund playwright@1.56.1 @fontsource/poppins@5.1.0
 # Chromium for Playwright (skipped when a matching browser is already installed)
@@ -26,7 +28,7 @@ mkdir -p sandbox/mail && cp -r "$V2"/sandbox/* sandbox/ && cp node_modules/@font
 [ "$W" = /home/claude ] || sed -i "s#/home/claude/sandbox#$W/sandbox#g" sandbox/server.py
 (setsid nohup python3 sandbox/server.py > sandbox/server.log 2>&1 &)
 # n8n
-export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false
+export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false N8N_LISTEN_ADDRESS=127.0.0.1
 (cd n8n && setsid nohup npx n8n start > n8n.log 2>&1 &)
 for i in $(seq 1 60); do curl -s -o /dev/null localhost:5678/healthz && break; sleep 2; done
 echo "Studio ready in $W. Next: create the n8n owner + credentials + import workflows (see import.py)."

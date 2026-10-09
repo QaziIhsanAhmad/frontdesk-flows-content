@@ -33,6 +33,9 @@ class H(http.server.BaseHTTPRequestHandler):
                 {'name': 'Olivia Brown', 'email': 'olivia.brown@example.com', 'time': '09:30', 'service': 'Sports massage (60 min)'},
                 {'name': 'Daniel Hughes', 'email': 'daniel.hughes@example.com', 'time': '14:30', 'service': 'Physio follow-up (30 min)'},
                 {'name': 'Grace Wilson', 'email': 'grace.wilson@example.com', 'time': '16:00', 'service': 'First assessment (45 min)'}]}))
+        if 'harbourline' in host and self.path.startswith('/api/booking_status'):
+            # demo booking system: has this patient booked again since the missed visit?
+            return self._send(200, json.dumps({'rebooked': 'no', 'nextAppointment': None}))
         if 'harbourline' in host and self.path.startswith('/api/wa_last'):
             try: return self._send(200, open(D + '/wa_last.json').read())
             except Exception: return self._send(200, '{}')
