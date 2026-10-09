@@ -12,6 +12,8 @@ for v in 0 1 2; do [ -f audio/music$v.wav ] || python3 music.py 60 $v audio/musi
 for k in whoosh pop ding buzz tick; do [ -f audio/sfx/$k.wav ] || { python3 music.py 1 0 /tmp/sfx-seed.wav audio/sfx; break; }; done
 # Playwright + fonts
 [ -d node_modules/playwright ] || npm i --no-audit --no-fund playwright@1.56.1 @fontsource/poppins@5.1.0
+# Chromium for Playwright (skipped when a matching browser is already installed)
+node -e 'process.exit(require("fs").existsSync(require("playwright").chromium.executablePath())?0:1)' || npx playwright install --with-deps chromium
 # n8n (xlsx override: cdn.sheetjs.com is not reachable)
 if [ ! -x n8n/node_modules/.bin/n8n ]; then
   mkdir -p n8n && (cd n8n && npm init -y >/dev/null && node -e 'const p=require("./package.json");p.overrides={xlsx:"0.18.5"};require("fs").writeFileSync("package.json",JSON.stringify(p))' && npm i --no-audit --no-fund n8n@1.95.3)
