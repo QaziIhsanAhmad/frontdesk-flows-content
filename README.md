@@ -31,3 +31,23 @@ Each Reel goes to the FrontDesk Flows Facebook Page and @frontdeskflows on Insta
 Notes:
 - The Reel composer often drops a pasted caption. Fix it afterwards via Scheduled → ⋯ → Manage post → Edit Post (FB) or Edit Reel (IG).
 - The Story composer stays on "Processing media" while the Chrome window is off-screen.
+
+## Stories and Highlights (9 Oct 2026)
+
+- Starter Stories published on 9 Oct, about 11:52–11:56 PKT, to both IG and FB: Demos (st-demos-spam), Bookings (st-bookings-midnight), Reminders (st-reminders-6pm), Free Sample (st-free-sample).
+- Instagram Highlights created in Business Suite (Content → Stories → Instagram highlights): Demos, Bookings, Reminders, Free Sample.
+- Preview Stories (rec/story.py "preview" kind, files sp-<reel>.mp4) are scheduled to IG + FB at 20:30 PKT, 30 minutes after each Reel:
+
+| Date | Preview of |
+|---|---|
+| Sat 10 Oct | c16-respond-first |
+| Sun 11 Oct | c15-ai-outage |
+| Mon 12 Oct | c08-no-show |
+| Tue 13 Oct | c12-webhook |
+| Wed 14 Oct | c09-reviews |
+| Thu 15 Oct | c14-only-your-info |
+| Fri 16 Oct | c01-after-hours |
+| Sat 17 Oct | c02-urgent |
+| Sun 18 Oct | c07-reminders |
+
+Note: the Story composer only finishes "Processing media" while the Business Suite tab is visible on screen.
