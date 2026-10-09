@@ -30,14 +30,15 @@ for i in $(seq 1 60); do curl -s -o /dev/null localhost:5678/healthz && break; s
 curl -s -c "$N/cj" -H 'content-type: application/json' -d '{"emailOrLdapLoginId":"demo@frontdeskflows.test","password":"DemoPass123!"}' localhost:5678/rest/login > /dev/null
 
 # build + import the four workflows, pointing them at the sandbox credentials and folders
-for b in redact csv wa rev; do python3 "$B/build_$b.py" "$B/../clinic-enquiry-ai-triage.json"; done
+mkdir -p "$W/workflows"
+for b in redact csv wa rev; do python3 "$B/build_$b.py" "$B/../clinic-enquiry-ai-triage.json" "$W/workflows"; done
 python3 - "$B" "$W" <<'EOF'
 import json, os, subprocess, sys
 B, W = sys.argv[1], sys.argv[2]; N = f'{W}/n8n'
 def curl(*a): return subprocess.run(['curl', '-s', '-b', f'{N}/cj', *a], capture_output=True, text=True).stdout
 creds = {c['type']: {'id': c['id'], 'name': c['name']} for c in json.loads(curl('localhost:5678/rest/credentials'))['data']}
 for f, idf in (('redact.json', 'redactid'), ('csv.json', 'csvid'), ('wa.json', 'waid'), ('rev.json', 'revid')):
-    w = json.load(open(f'{B}/{f}')); w['active'] = False
+    w = json.load(open(f'{W}/workflows/{f}')); w['active'] = False
     for n in w['nodes']:
         p = n.get('parameters', {})
         if n['type'] == 'n8n-nodes-base.httpRequest' and p.get('authentication') == 'genericCredentialType':
@@ -51,5 +52,5 @@ for f, idf in (('redact.json', 'redactid'), ('csv.json', 'csvid'), ('wa.json', '
     r = json.loads(curl('-X', 'POST', 'localhost:5678/rest/workflows', '-H', 'content-type: application/json', '-d', json.dumps(w)))
     open(f'{N}/{idf}', 'w').write(r['data']['id']); print(f, r['data']['id'])
 EOF
-echo "Batch B studio ready. Record:  python3 prep.py scenarios/t20-redact.json && node rec3.js scenarios/t20-redact.json"
-echo "Render:  python3 cine_build.py reels2/c20-redact.json && node cine_render.js c20-redact && ./finalize.sh c20-redact"
+echo "Batch B studio ready. Record:  cd $W && python3 prep.py scenarios/t20-redact.json && node rec3.js scenarios/t20-redact.json"
+echo "Render:  cd $W && python3 cine_build.py reels2/c20-redact.json && node cine_render.js c20-redact && ./finalize.sh c20-redact"

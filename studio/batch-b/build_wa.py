@@ -34,4 +34,4 @@ conns = {}
 for a, b in zip(names, names[1:]):
     conns[a] = {"main": [[{"node": b, "type": "main", "index": 0}]]}
 wf = {"name": "FrontDesk Flows – WhatsApp AI replies", "active": False, "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}}
-json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'wa.json'),'w'), indent=1)
+json.dump(wf, open(os.path.join(sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.abspath(__file__)), 'wa.json'),'w'), indent=1)

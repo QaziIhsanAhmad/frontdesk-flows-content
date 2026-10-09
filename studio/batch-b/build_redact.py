@@ -42,5 +42,5 @@ for a,b in [('Website Form','Settings'),('Settings','Clean & Check'),('Clean & C
             ('Read AI Answer','Not Spam?'),('Not Spam?','Email Reply to Lead')]:
     conns.update(C(a,b))
 wf = {"name": "FrontDesk Flows – Private AI Triage (redacted)", "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}}
-json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'redact.json'),'w'), indent=1)
+json.dump(wf, open(os.path.join(sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.abspath(__file__)), 'redact.json'),'w'), indent=1)
 print('ok', len(nodes))
