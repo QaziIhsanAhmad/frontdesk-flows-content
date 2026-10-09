@@ -45,4 +45,4 @@ for a,b in [('Website Form','Settings'),('Settings','Clean & Check'),('Clean & C
             ('Not Spam?','Email Reply to Lead'),('Build CRM Row','Convert to CSV'),('Convert to CSV','Append to leads.csv')]:
     C(a,b)
 wf = {"name": "FrontDesk Flows – Free CSV lead log", "active": False, "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}}
-json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'csv.json'),'w'), indent=1)
+json.dump(wf, open(os.path.join(sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.abspath(__file__)), 'csv.json'),'w'), indent=1)

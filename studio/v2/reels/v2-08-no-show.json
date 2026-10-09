@@ -1,0 +1,99 @@
+{
+ "take": "t08-noshow",
+ "music": 1,
+ "post_id": "reel-08-no-show",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notif": "",
+   "lines": [
+    "Patient no-show?",
+    "Rebook email in {EMAIL}s."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "A patient didn't turn up. Watch n8n send a *kind rebook message*."
+  },
+  {
+   "type": "form",
+   "min": 2.4,
+   "head": "\u2460 Staff tap <span class='or'>No-show</span>",
+   "say": "Reception marks the booking as a *no-show*."
+  },
+  {
+   "type": "run",
+   "min": 7.4,
+   "head": "\u2461 <span class='or'>n8n</span> follows up",
+   "path": [
+    "Booking Updated",
+    "Settings",
+    "Is No-Show?",
+    "Write Kind Message",
+    "Email Rebook Link",
+    "Wait 3 Days"
+   ],
+   "waitNode": "Write Kind Message",
+   "steps": [
+    {
+     "node": "Booking Updated",
+     "title": "Booking update received",
+     "sub": "Webhook from the booking system"
+    },
+    {
+     "node": "Is No-Show?",
+     "title": "No-show? Yes",
+     "sub": "Other updates are ignored"
+    },
+    {
+     "node": "Write Kind Message",
+     "title": "Kind message",
+     "sub": "No guilt, no fees, rebook link"
+    },
+    {
+     "node": "Email Rebook Link",
+     "title": "Email sent",
+     "sub": "Real SMTP send (demo inbox)"
+    },
+    {
+     "node": "Wait 3 Days",
+     "title": "Waits 3 days",
+     "sub": "Then one gentle follow-up"
+    }
+   ],
+   "say": "n8n writes a kind message with a rebook link, emails it, then *waits three days* before one gentle follow-up."
+  },
+  {
+   "type": "result",
+   "min": 2.4,
+   "head": "\u2462 What Daniel gets",
+   "say": "This is what Daniel receives. *No guilt*."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "No-show = lost patient",
+    "Nobody follows up"
+   ],
+   "after": [
+    "Rebook link in {EMAIL}s",
+    "One kind follow-up, then a human"
+   ],
+   "say": "Before: a lost patient. After: *an easy rebook*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "No-show follow-up, running live in n8n: reception marks the booking as a no-show, n8n sends a kind message with a rebook link (no guilt, no fees), then waits 3 days before one gentle follow-up.\n\nReal n8n run with a demo booking screen and a demo inbox.\n\nWant a free clinic workflow to start with? DM me FLOW.\n\n#n8n #automation #clinicmarketing #physiotherapy #dentalpractice",
+ "id": "v2-08-no-show",
+ "layout": "bleed"
+}

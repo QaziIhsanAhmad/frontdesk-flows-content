@@ -1,0 +1,110 @@
+{
+ "id": "v2-02-urgent",
+ "take": "t02-urgent",
+ "music": 2,
+ "post_id": "reel-02-urgent",
+ "layout": "bleed",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "Website enquiry \u00b7 11:12pm",
+   "notif": "Mark: I've had sudden chest pain while lifting at the gym...",
+   "lines": [
+    "\"Chest pain\" at night?",
+    "Staff alerted in {ALERT}s."
+   ],
+   "color": [
+    "",
+    "or"
+   ],
+   "say": "A patient writes *chest pain* late at night. Watch what n8n does."
+  },
+  {
+   "type": "form",
+   "min": 2.4,
+   "head": "\u2460 An urgent message arrives",
+   "say": "The message lands through the website form."
+  },
+  {
+   "type": "run",
+   "min": 7.0,
+   "head": "\u2461 <span class='or'>Urgent</span> path",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Urgent?",
+    "Alert Staff Now"
+   ],
+   "sim": [
+    "AI Triage & Draft"
+   ],
+   "steps": [
+    {
+     "node": "Website Form",
+     "title": "Enquiry received",
+     "sub": "Webhook trigger"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI flags it urgent",
+     "sub": "Reply simulated in this demo"
+    },
+    {
+     "node": "Urgent?",
+     "title": "Urgent? Yes",
+     "sub": "Never treated as a normal booking"
+    },
+    {
+     "node": "Alert Staff Now",
+     "title": "Staff alert emailed",
+     "sub": "Real SMTP send (demo inbox)"
+    }
+   ],
+   "simNote": "Simulated: AI answer + Sheet row. Both emails were really sent.",
+   "say": "The AI flags it urgent, so n8n *alerts staff* straight away instead of treating it like a booking."
+  },
+  {
+   "type": "result",
+   "min": 2.6,
+   "mailIndex": 1,
+   "fromName": "FrontDesk Flows alert",
+   "head": "\u2462 The staff alert",
+   "say": "Staff get this, with his phone number."
+  },
+  {
+   "type": "result",
+   "min": 2.8,
+   "mailIndex": 0,
+   "head": "\u2463 And the patient is told to call 999",
+   "say": "And the patient is told to call *nine nine nine*. No diagnosis, no booking link."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "Urgent message waits overnight",
+    "Read at 9am with the booking requests"
+   ],
+   "after": [
+    "Staff alerted in {ALERT}s",
+    "Patient told to call 999 straight away"
+   ],
+   "say": "Before: it waits. After: *a human knows right away*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "An AI front desk should never play doctor.\n\nWhen a message sounds urgent (chest pain, breathing trouble, heavy bleeding), this n8n workflow skips the normal reply: staff get an alert email with the phone number, and the patient is told to call 999. No diagnosis, no booking link.\n\nReal n8n run on a demo clinic site; both emails were really sent. The AI's urgent classification is simulated (labelled).\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #aiautomation #healthcare #clinicmarketing #automation"
+}

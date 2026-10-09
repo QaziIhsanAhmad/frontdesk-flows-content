@@ -1,0 +1,121 @@
+{
+ "id": "v2-07-reminders",
+ "take": "t07-reminders",
+ "music": 0,
+ "post_id": "reel-07-reminders",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notif": "",
+   "lines": [
+    "3 patients tomorrow.",
+    "All reminded at 6pm."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "Three patients booked tomorrow. Watch n8n *remind every one* of them."
+  },
+  {
+   "type": "split",
+   "min": 5.0,
+   "head": "6pm: n8n <span class='or'>wakes up</span>",
+   "preRoll": 0.6,
+   "postRoll": 1.0,
+   "formScroll": [
+    [
+     0,
+     0
+    ],
+    [
+     5,
+     0
+    ]
+   ],
+   "tags": [
+    {
+     "at": -5,
+     "text": ""
+    },
+    {
+     "at": 0.1,
+     "text": "Schedule trigger fires"
+    },
+    {
+     "at": 0.5,
+     "text": "Reads tomorrow's bookings"
+    }
+   ],
+   "say": "At six p.m., n8n reads tomorrow's bookings from the booking system."
+  },
+  {
+   "type": "run",
+   "min": 6.0,
+   "head": "\u2461 One reminder <span class='or'>per patient</span>",
+   "path": [
+    "Every Day 6pm",
+    "Get Tomorrow's Bookings",
+    "One Item per Patient",
+    "Write Reminder",
+    "Email Reminder"
+   ],
+   "waitNode": "Every Day 6pm",
+   "camW": 700,
+   "steps": [
+    {
+     "node": "Every Day 6pm",
+     "title": "Schedule trigger",
+     "sub": "Every day at 6pm"
+    },
+    {
+     "node": "Get Tomorrow's Bookings",
+     "title": "Tomorrow's bookings",
+     "sub": "From the demo booking system"
+    },
+    {
+     "node": "One Item per Patient",
+     "title": "Split into 3 patients",
+     "sub": "One run per booking"
+    },
+    {
+     "node": "Email Reminder",
+     "title": "3 reminders sent",
+     "sub": "Real SMTP sends (demo inbox)"
+    }
+   ],
+   "say": "It splits them into one item per patient, writes a personal reminder, and *emails each one*."
+  },
+  {
+   "type": "result",
+   "min": 3.0,
+   "listAll": true,
+   "when": "6:00pm",
+   "head": "\u2462 Three reminders, <span class='gr'>sent</span>",
+   "say": "Three personal reminders, each with a reschedule link."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "Staff phone every patient",
+    "Or nobody gets reminded"
+   ],
+   "after": [
+    "Everyone reminded at 6pm",
+    "With an easy reschedule link"
+   ],
+   "say": "Before: phone calls. After: *nobody forgets*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "Appointment reminders, running live in n8n: every day at 6pm it reads tomorrow's bookings, splits them into one item per patient, writes a personal reminder and emails each one, with a reschedule link.\n\nReal n8n run with a demo booking system and a demo inbox.\n\nWant a free clinic workflow to start with? DM me FLOW.\n\n#n8n #automation #appointmentreminders #clinicmarketing #physiotherapy"
+}

@@ -1,0 +1,106 @@
+{
+ "take": "t13-honeypot",
+ "music": 1,
+ "post_id": "reel-13-honeypot",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "New website enquiry",
+   "notif": "\"Get 300% more patients fast with our SEO package...\"",
+   "lines": [
+    "Spam bot vs clinic form.",
+    "Blocked. 0 AI calls."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "A spam bot just hit this clinic's form. Watch n8n *block it*."
+  },
+  {
+   "type": "form",
+   "min": 2.6,
+   "head": "\u2460 The bot fills a <span class='or'>hidden field</span>",
+   "say": "Bots fill every field, even one *humans never see*."
+  },
+  {
+   "type": "run",
+   "min": 6.0,
+   "head": "\u2461 <span class='or'>n8n</span> checks it",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?"
+   ],
+   "steps": [
+    {
+     "node": "Website Form",
+     "title": "Form received",
+     "sub": "Webhook trigger"
+    },
+    {
+     "node": "Clean & Check",
+     "title": "Honeypot check",
+     "sub": "Hidden 'website' field is filled"
+    },
+    {
+     "node": "Reply to Form",
+     "title": "Polite browser response",
+     "sub": "No error shown to the bot"
+    },
+    {
+     "node": "Is Valid?",
+     "title": "Invalid \u2192 stop here",
+     "sub": "No AI call. No email. No cost."
+    }
+   ],
+   "waitNode": "zzz",
+   "say": "n8n spots the filled honeypot and *stops* at Is Valid. No AI call, no email."
+  },
+  {
+   "type": "panel",
+   "min": 2.6,
+   "img": "p_valid.png",
+   "crop": [
+    75,
+    300,
+    1550,
+    1250
+   ],
+   "hlSrc": [
+    205,
+    1060,
+    640,
+    1240
+   ],
+   "head": "\u2462 The real execution data",
+   "say": "Valid: false. Reason: *honeypot filled*."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "Every bot = an AI call",
+    "Spam fills the inbox and the bill"
+   ],
+   "after": [
+    "Bots stopped at step 3",
+    "Real patients still get replies"
+   ],
+   "say": "Before: bots cost you money. After: *blocked for free*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "A hidden form field that humans never see. Many spam bots fill every field, so n8n rejects the submission at 'Is Valid?' before it costs you an AI call or an email.\n\nReal n8n run on a demo clinic site. Nothing simulated in this one.\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #freelancer #smallbusiness",
+ "id": "v2-13-honeypot"
+}

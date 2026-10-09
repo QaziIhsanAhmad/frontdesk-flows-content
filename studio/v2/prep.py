@@ -1,9 +1,7 @@
-import json,sys,subprocess,os
-N=os.path.join(os.environ.get('STUDIO_DIR','/home/claude/studio'),'n8n')
+import json,sys,subprocess
 sc=json.load(open(sys.argv[1]))
-f=sc.get('workflowIdFile','prodid')
-wid=open(f if os.path.isabs(f) else os.path.join(N,f)).read().strip()
-def curl(*a): return subprocess.run(['curl','-s','-b',os.path.join(N,'cj'),*a],capture_output=True,text=True).stdout
+wid=open(sc.get('workflowIdFile','/home/claude/n8n/prodid')).read().strip()
+def curl(*a): return subprocess.run(['curl','-s','-b','/home/claude/n8n/cj',*a],capture_output=True,text=True).stdout
 d=json.loads(curl(f'localhost:5678/rest/workflows/{wid}'))['data']
 pin={}
 if sc.get('pin'): pin.update(sc['pin'])

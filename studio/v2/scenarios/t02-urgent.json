@@ -1,0 +1,5 @@
+{"id":"t02-urgent",
+ "ai":{"mode":"normal","delay":1.5,"answer":{"category":"urgent","urgent":true,"summary":"Sudden chest pain while lifting at the gym, asking to be seen today","reply":"Hi Mark,\n\nThank you for getting in touch. Chest pain can be serious, so please call 999 now or go to your nearest emergency department. Please don't wait for an appointment with us.\n\nOur team has been alerted and will call you back.\n\nThe Harbourline Physio team"}},
+ "form":{"name":"Mark Evans","email":"mark.evans@example.com","phone":"07700 900987","message":"I've had sudden chest pain while lifting at the gym. Can someone see me today?"},
+ "sheetRow":{"Received":"now","Name":"Mark Evans","Category":"urgent","Urgent":"YES","Summary":"Sudden chest pain while lifting at the gym","Auto-reply sent":"yes","Status":"New"},
+ "panels":[["Urgent?","p_urgent.png"]],"zoomSteps":1}

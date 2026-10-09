@@ -1,0 +1,145 @@
+{
+ "take": "t16-respond-first",
+ "music": 2,
+ "post_id": "reel-16-respond-first",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "Website form",
+   "notif": "James: Do you accept health insurance for sports massage?",
+   "lines": [
+    "Your AI is slow.",
+    "Thank-you in {FORM}s."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "Your AI takes seconds to think. Your patient *shouldn't wait*."
+  },
+  {
+   "type": "form",
+   "min": 2.0,
+   "head": "\u2460 The patient hits <span class='or'>send</span>",
+   "say": "He hits send."
+  },
+  {
+   "type": "split",
+   "min": 6.4,
+   "head": "Live, <span class='or'>side by side</span>",
+   "preRoll": 0.8,
+   "postRoll": 0.8,
+   "formScroll": [
+    [
+     0,
+     820
+    ],
+    [
+     6.4,
+     820
+    ]
+   ],
+   "tags": [
+    {
+     "at": -5,
+     "text": ""
+    },
+    {
+     "at": 0.2,
+     "text": "\u2713 Browser shows thank-you"
+    },
+    {
+     "at": 0.6,
+     "text": "\u2026 AI still drafting (4.5s simulated delay)"
+    },
+    {
+     "at": 4.7,
+     "text": "\u2713 Full answer emailed"
+    }
+   ],
+   "say": "Watch the timer. Thank-you on screen almost instantly, while the AI is *still working*.",
+   "ncamNodes": [
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead"
+   ]
+  },
+  {
+   "type": "run",
+   "min": 5.2,
+   "head": "\u2461 Reply first, <span class='or'>then</span> think",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead",
+    "Log Lead to Sheet"
+   ],
+   "from": {
+    "Log Lead to Sheet": "Read AI Answer"
+   },
+   "sim": [
+    "AI Triage & Draft",
+    "Log Lead to Sheet"
+   ],
+   "steps": [
+    {
+     "node": "Reply to Form",
+     "title": "Thank-you sent first",
+     "sub": "Browser gets it in {FORM}s"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI still working...",
+     "sub": "4.5s delay in this demo"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Full answer emailed",
+     "sub": "Real SMTP send (demo inbox)"
+    }
+   ],
+   "simNote": "Simulated: AI answer (4.5s delay) + Sheet row. The rest ran for real.",
+   "say": "The trick: Respond to Webhook sits *before* the AI node."
+  },
+  {
+   "type": "result",
+   "min": 2.4,
+   "head": "\u2462 Full answer, by email",
+   "say": "And the full answer lands in *his inbox*."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "Spinner for 5+ seconds",
+    "People click send twice"
+   ],
+   "after": [
+    "Thank-you in {FORM}s",
+    "The AI works in the background"
+   ],
+   "say": "Before: a spinner and double submits. After: *instant thanks*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "n8n tip: put 'Respond to Webhook' right after validation. The visitor gets a thank-you in a fraction of a second while the AI reply, email and logging carry on in the background. No spinner, no double submissions.\n\nReal n8n run on a demo clinic site. The AI answer and Sheet row are simulated (labelled in the video).\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #automation #aiautomation #webdev #nocode",
+ "id": "v2-16-respond-first"
+}

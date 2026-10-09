@@ -3,22 +3,32 @@
 set -e
 V2="$(cd "$(dirname "$0")" && pwd)"
 W=${STUDIO_DIR:-/home/claude/studio}; mkdir -p "$W" && cd "$W"
-cp -r "$V2"/{rec2.js,build.py,stage2.html,render2.js,cover2.html,cover2.js,music.py,prep.py,story.html,storycard.js,scenarios,reels} . 2>/dev/null || true
+cp -r "$V2"/{rec2.js,build.py,stage2.html,render2.js,cover2.html,cover2.js,music.py,prep.py,story.html,storycard.js,scenarios,reels} .
+# committed sources use /home/claude/{n8n,sandbox,tts}; point them at this studio folder
+[ "$W" = /home/claude ] || sed -i "s#/home/claude/\(n8n\|sandbox\|tts\)#$W/\1#g" rec2.js build.py prep.py scenarios/*.json
+pip install --break-system-packages -q kokoro-onnx soundfile aiosmtpd numpy pillow
+# original music and sound effects (generated, no licensing needed)
+mkdir -p audio/sfx
+for v in 0 1 2; do [ -f audio/music$v.wav ] || python3 music.py 60 $v audio/music$v.wav; done
+for k in whoosh pop ding buzz tick; do [ -f audio/sfx/$k.wav ] || { python3 music.py 1 0 /tmp/sfx-seed.wav audio/sfx; break; }; done
+# ffmpeg + ffprobe are needed by the builders and finalize.sh
+command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null || { (apt-get update -qq && apt-get install -y -qq ffmpeg) || { echo "Install ffmpeg (includes ffprobe) and re-run"; exit 1; }; }
 # Playwright + fonts
 [ -d node_modules/playwright ] || npm i --no-audit --no-fund playwright@1.56.1 @fontsource/poppins@5.1.0
+# Chromium for Playwright (skipped when a matching browser is already installed)
+node -e 'process.exit(require("fs").existsSync(require("playwright").chromium.executablePath())?0:1)' || npx playwright install --with-deps chromium
 # n8n (xlsx override: cdn.sheetjs.com is not reachable)
 if [ ! -x n8n/node_modules/.bin/n8n ]; then
   mkdir -p n8n && (cd n8n && npm init -y >/dev/null && node -e 'const p=require("./package.json");p.overrides={xlsx:"0.18.5"};require("fs").writeFileSync("package.json",JSON.stringify(p))' && npm i --no-audit --no-fund n8n@1.95.3)
 fi
-pip install --break-system-packages -q kokoro-onnx soundfile aiosmtpd numpy pillow
 mkdir -p tts && for f in kokoro-v1.0.onnx voices-v1.0.bin; do [ -f tts/$f ] || curl -sSL -o tts/$f https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/$f; done
 # sandbox hosts + servers
 for h in ai.sandbox harbourlinephysio.test whatsapp.sandbox; do grep -q " $h" /etc/hosts || echo "127.0.0.1 $h" >> /etc/hosts; done
 mkdir -p sandbox/mail && cp -r "$V2"/sandbox/* sandbox/ && cp node_modules/@fontsource/poppins/files/poppins-latin-{500,600,700}-normal.woff2 sandbox/site/
-sed -i "s#/home/claude/sandbox#$W/sandbox#g" sandbox/server.py
+[ "$W" = /home/claude ] || sed -i "s#/home/claude/sandbox#$W/sandbox#g" sandbox/server.py
 (setsid nohup python3 sandbox/server.py > sandbox/server.log 2>&1 &)
 # n8n
-export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false
+export N8N_USER_FOLDER=$W/n8n/data N8N_DIAGNOSTICS_ENABLED=false N8N_PERSONALIZATION_ENABLED=false N8N_VERSION_NOTIFICATIONS_ENABLED=false N8N_TEMPLATES_ENABLED=false N8N_SECURE_COOKIE=false N8N_RUNNERS_ENABLED=false N8N_LISTEN_ADDRESS=127.0.0.1
 (cd n8n && setsid nohup npx n8n start > n8n.log 2>&1 &)
 for i in $(seq 1 60); do curl -s -o /dev/null localhost:5678/healthz && break; sleep 2; done
 echo "Studio ready in $W. Next: create the n8n owner + credentials + import workflows (see import.py)."

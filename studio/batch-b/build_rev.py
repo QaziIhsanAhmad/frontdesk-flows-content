@@ -41,4 +41,4 @@ conns = {a: {"main": [[{"node": b, "type": "main", "index": 0}]]} for a, b in zi
 conns['Draft OK?']['main'].append([{"node": "Tell Owner: Draft Failed", "type": "main", "index": 0}])
 pin = {"New Google Review": [{"json": {"reviewer": "Hannah Lee", "stars": 5, "text": "Tom fixed my shoulder in three sessions. Clear exercises and he actually explained what was going on. Thank you!"}}]}
 wf = {"name": "FrontDesk Flows – Review replies with owner approval", "active": False, "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}, "pinData": pin}
-json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'rev.json'),'w'), indent=1)
+json.dump(wf, open(os.path.join(sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.abspath(__file__)), 'rev.json'),'w'), indent=1)

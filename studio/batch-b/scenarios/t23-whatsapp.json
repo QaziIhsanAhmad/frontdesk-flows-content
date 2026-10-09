@@ -1,14 +1,31 @@
 {
  "id": "t23-whatsapp",
- "workflowIdFile": "/home/claude/n8n/waid",
+ "workflowIdFile": "waid",
  "hookPath": "whatsapp-inbound",
  "formPage": "chat.html?name=Liam%20Price&phone=447700900513",
- "ai": {"mode": "normal", "delay": 1.0, "answer": {
-   "category": "booking", "urgent": false,
+ "ai": {
+  "mode": "normal",
+  "delay": 1.0,
+  "answer": {
+   "category": "booking",
+   "urgent": false,
    "summary": "Wants a Saturday morning appointment for a stiff neck",
-   "reply": "Hi Liam! Thanks for messaging Harbourline Physio. We're open Saturdays 9am-1pm and can help with a stiff neck. Pick a Saturday slot here: harbourlinephysio.test/book. Reply here if you'd like us to book it for you."}},
- "form": {"message": "Hi, do you have anything Saturday morning? My neck's been really stiff all week"},
- "panels": [["Read Message", "p_read.png"], ["Send WhatsApp Reply", "p_send.png"]],
+   "reply": "Hi Liam! Thanks for messaging Harbourline Physio. We're open Saturdays 9am-1pm and can help with a stiff neck. Pick a Saturday slot here: harbourlinephysio.test/book. Reply here if you'd like us to book it for you."
+  }
+ },
+ "form": {
+  "message": "Hi, do you have anything Saturday morning? My neck's been really stiff all week"
+ },
+ "panels": [
+  [
+   "Read Message",
+   "p_read.png"
+  ],
+  [
+   "Send WhatsApp Reply",
+   "p_send.png"
+  ]
+ ],
  "settle": 1200,
  "zoomSteps": 1
 }

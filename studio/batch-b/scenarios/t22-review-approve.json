@@ -1,6 +1,6 @@
 {
  "id": "t22-review-approve",
- "workflowIdFile": "/home/claude/n8n/revid",
+ "workflowIdFile": "revid",
  "manual": true,
  "approve": true,
  "approveDelay": 2200,

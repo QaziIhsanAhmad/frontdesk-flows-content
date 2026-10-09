@@ -1,0 +1,6 @@
+{"id":"s01-after-hours",
+ "ai":{"mode":"normal","delay":1.6,"answer":{"category":"booking","urgent":false,"summary":"Wants an appointment tomorrow for a stiff lower back","reply":"Hi Sarah,\n\nThanks for getting in touch with Harbourline Physio. You can see tomorrow's free slots and book a 45-minute physiotherapy assessment here: harbourlinephysio.test/book\n\nWe're open Mon-Fri 8am-7pm and Sat 9am-1pm, with free parking on site.\n\nThe Harbourline Physio team"}},
+ "form":{"name":"Sarah Ahmed","email":"sarah.ahmed@example.com","phone":"07700 900123","message":"Hi, do you have any appointments tomorrow? My lower back has been really stiff since the weekend."},
+ "sheetRow":{"Received":"23:47","Name":"Sarah Ahmed","Category":"booking","Urgent":"","Summary":"Wants an appointment tomorrow for a stiff lower back","Auto-reply sent":"yes","Status":"New"},
+ "panels":[["Clean & Check","p_clean.png"],["Read AI Answer","p_ai.png"]],
+ "zoomSteps":1}

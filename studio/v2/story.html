@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:P;src:url(node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2);font-weight:600}
+@font-face{font-family:P;src:url(node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:P;src:url(node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2);font-weight:800}
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;background:#0b1220;font-family:P;color:#f4f6fb;position:relative;overflow:hidden}
+.g{position:absolute;inset:0;background:radial-gradient(900px 900px at 50% 40%,rgba(245,166,35,.13),transparent 70%)}
+.bug{position:absolute;left:70px;top:250px;display:flex;gap:14px;align-items:center;font-weight:600;font-size:30px;color:#cbd5e1}
+.bug b{width:48px;height:48px;border-radius:13px;background:#f5a623;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800}
+.k{position:absolute;left:70px;top:360px;font-weight:700;font-size:30px;letter-spacing:4px;color:#f5a623}
+h1{position:absolute;left:70px;right:70px;top:420px;font-weight:800;font-size:96px;line-height:1.04;letter-spacing:-2px}
+h1 span{color:#f5a623} h1 em{font-style:normal;color:#34d17f}
+.body{position:absolute;left:70px;right:90px;top:var(--bt,900px);font-weight:600;font-size:44px;line-height:1.35;color:#cbd5e1}
+.body li{margin:0 0 22px 0;list-style:none;padding-left:56px;position:relative}
+.body li:before{content:"";position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;background:#34d17f}
+.cta{position:absolute;left:70px;right:70px;bottom:330px;background:#f5a623;color:#111;border-radius:32px;text-align:center;padding:34px 20px;font-weight:800;font-size:54px}
+.small{position:absolute;left:0;right:0;bottom:270px;text-align:center;font-weight:600;font-size:30px;color:#9aa6bf}
+.img{position:absolute;left:70px;right:70px;top:var(--it,1000px);border-radius:26px;overflow:hidden;border:3px solid #24304a}
+.img img{width:100%;display:block}
+</style></head><body><div class="g"></div>
+<div class="bug"><b>F</b>FrontDesk Flows</div>
+<div class="k" id="k"></div><h1 id="h"></h1><div class="body" id="b"></div><div class="img" id="iw" style="display:none"><img id="im"></div>
+<div class="cta" id="c"></div><div class="small" id="s"></div>
+<script>const q=new URLSearchParams(location.search);
+k.textContent=q.get('k')||'';h.innerHTML=q.get('h')||'';b.innerHTML=q.get('b')||'';c.textContent=q.get('c')||'';s.textContent=q.get('s')||'';
+if(!q.get('c'))c.style.display='none'; if(q.get('bt'))b.style.setProperty('--bt',q.get('bt')+'px');
+if(q.get('img')){iw.style.display='block';im.src=q.get('img');if(q.get('it'))iw.style.setProperty('--it',q.get('it')+'px');}
+</script></body></html>

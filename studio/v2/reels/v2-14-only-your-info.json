@@ -1,0 +1,127 @@
+{
+ "take": "t14-only-info",
+ "music": 1,
+ "post_id": "reel-14-only-your-info",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "Website form",
+   "notif": "Priya: How much does a 60 minute sports massage cost?",
+   "lines": [
+    "Will your AI",
+    "make up a price?"
+   ],
+   "color": [
+    "",
+    "or"
+   ],
+   "say": "Ask an AI assistant about prices, and it might just *make one up*."
+  },
+  {
+   "type": "form",
+   "min": 2.4,
+   "head": "\u2460 A patient asks a <span class='or'>price</span>",
+   "say": "A patient asks what a sports massage costs."
+  },
+  {
+   "type": "run",
+   "min": 5.2,
+   "head": "\u2461 <span class='or'>n8n</span> sends the AI the rules",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead",
+    "Log Lead to Sheet"
+   ],
+   "from": {
+    "Log Lead to Sheet": "Read AI Answer"
+   },
+   "sim": [
+    "AI Triage & Draft",
+    "Log Lead to Sheet"
+   ],
+   "steps": [
+    {
+     "node": "Settings",
+     "title": "Business info",
+     "sub": "The only facts the AI may use"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI drafts the reply",
+     "sub": "Reply simulated in this demo"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Reply emailed",
+     "sub": "Real SMTP send (demo inbox)"
+    }
+   ],
+   "simNote": "Simulated: AI answer + Sheet row. The prompt shown is real.",
+   "say": "n8n sends the AI the clinic's business info, with *one rule*."
+  },
+  {
+   "type": "card",
+   "min": 3.2,
+   "head": "\u2462 The prompt n8n <span class='or'>actually sent</span>",
+   "title": "AI TRIAGE & DRAFT \u00b7 SYSTEM PROMPT (excerpt)",
+   "lines": [
+    {
+     "t": "Rules for the reply:"
+    },
+    {
+     "t": "use ONLY the facts in BUSINESS INFO;",
+     "hl": true,
+     "at": 0.5
+    },
+    {
+     "t": "never promise prices, availability or outcomes that are not in BUSINESS INFO;",
+     "hl": true,
+     "at": 1.2
+    },
+    {
+     "t": "if you don't know, say a team member will reply within one working day.",
+     "hl": true,
+     "at": 1.9
+    }
+   ],
+   "say": "Use only these facts. *Never promise prices* that aren't listed."
+  },
+  {
+   "type": "result",
+   "min": 2.6,
+   "head": "\u2463 No made-up price",
+   "say": "So no invented price. *A human follows up*."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "AI invents a price",
+    "The clinic has to walk it back"
+   ],
+   "after": [
+    "Only the clinic's own facts",
+    "Unknown? A team member replies"
+   ],
+   "say": "Before: a guessed price. After: *only real facts*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "The fastest way to lose a client's trust: the AI invents a price.\n\nGive it a BUSINESS INFO block and one rule: use only those facts, never promise prices or availability that aren't listed, and hand off to a human when unsure. Then still read the first replies yourself.\n\nReal n8n run on a demo clinic site. The AI answer is simulated (labelled); the prompt shown is the real one n8n sent.\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #aiautomation #chatgpt #automation #smallbusiness",
+ "id": "v2-14-only-your-info"
+}
