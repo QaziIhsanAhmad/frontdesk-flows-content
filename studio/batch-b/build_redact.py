@@ -1,5 +1,6 @@
-import json, uuid, copy
-d = json.load(open('/home/claude/n8n/prod.json'))
+import json, uuid, copy, os, sys
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'clinic-enquiry-ai-triage.json')
+d = json.load(open(SRC))
 keep = ['Website Form','Settings','Clean & Check','Reply to Form','Is Valid?','AI Triage & Draft','Read AI Answer','Not Spam?','Email Reply to Lead']
 nodes = [copy.deepcopy(n) for n in d['nodes'] if n['name'] in keep]
 for n in nodes:
@@ -11,10 +12,15 @@ pos = {'Website Form':[0,300],'Settings':[220,300],'Clean & Check':[440,300],'Re
 code = r"""// Strip identifiers before anything leaves for the AI provider.
 // The full details stay inside n8n for the email reply.
 const rules = [
-  [/\b(?:DOB|date of birth)\s*:?\s*\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}/gi, '[DOB removed]'],
-  [/\b\d{3}\s?\d{3}\s?\d{4}\b/g, '[NHS no. removed]'],
+  // DOB: 14/03/1986, 14-3-86, 14 March 1986, March 14th, 1986
+  [/\b(?:DOB|D\.O\.B\.?|date of birth|born(?: on)?)\s*:?\s*(?:\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}|\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]{3,9}\.?,?\s+\d{2,4}|[A-Za-z]{3,9}\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{2,4})/gi, '[DOB removed]'],
+  // NHS number: 10 digits, often 3-3-4
+  [/\b[1-9]\d{2}[\s-]?\d{3}[\s-]?\d{4}\b/g, '[NHS no. removed]'],
+  // UK postcode
   [/\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/gi, '[postcode removed]'],
-  [/\b(?:\+44\s?|0)7\d{3}\s?\d{6}\b/g, '[phone removed]'],
+  // UK phone numbers, mobile or landline, any spacing: 07700 900 123, 020 7946 0958, +44 7700 900123
+  [/(?:\+44\s?\(?0?\)?\s?|\b0)\d(?:[\s-]?\d){8,9}\b/g, '[phone removed]'],
+  // Email
   [/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email removed]'],
 ];
 return $input.all().map(item => {
@@ -36,5 +42,5 @@ for a,b in [('Website Form','Settings'),('Settings','Clean & Check'),('Clean & C
             ('Read AI Answer','Not Spam?'),('Not Spam?','Email Reply to Lead')]:
     conns.update(C(a,b))
 wf = {"name": "FrontDesk Flows – Private AI Triage (redacted)", "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}}
-json.dump(wf, open('redact.json','w'), indent=1)
+json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'redact.json'),'w'), indent=1)
 print('ok', len(nodes))

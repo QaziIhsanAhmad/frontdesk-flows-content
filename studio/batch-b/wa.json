@@ -11,7 +11,7 @@
      "allowedOrigins": "*"
     }
    },
-   "id": "30ee4e3a-b7ff-4daa-b29b-3e9d861e15ee",
+   "id": "3ba2f401-851f-4f8c-80a4-e25533c4b3a6",
    "name": "WhatsApp Message",
    "type": "n8n-nodes-base.webhook",
    "typeVersion": 2,
@@ -19,7 +19,7 @@
     0,
     300
    ],
-   "webhookId": "1657756c-d8b6-4390-9564-118278477684"
+   "webhookId": "1ea63444-57de-4a37-9780-12abf18aae28"
   },
   {
    "parameters": {
@@ -46,7 +46,7 @@
       {
        "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
        "name": "bookingLink",
-       "value": "harbourlinephysio.test/book",
+       "value": "https://example.com/book",
        "type": "string"
       },
       {
@@ -70,25 +70,25 @@
       {
        "id": "accf490f-357e-449b-8a05-033db10d036e",
        "name": "staffEmail",
-       "value": "frontdesk@harbourlinephysio.test",
+       "value": "frontdesk@example.com",
        "type": "string"
       },
       {
        "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
        "name": "fromEmail",
-       "value": "hello@harbourlinephysio.test",
+       "value": "hello@example.com",
        "type": "string"
       },
       {
        "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
        "name": "llmBaseUrl",
-       "value": "http://ai.sandbox/v1",
+       "value": "https://api.groq.com/openai/v1",
        "type": "string"
       },
       {
        "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
        "name": "llmModel",
-       "value": "demo-sandbox",
+       "value": "llama-3.1-8b-instant",
        "type": "string"
       },
       {
@@ -102,7 +102,7 @@
     "includeOtherFields": true,
     "options": {}
    },
-   "id": "0f0395e5-1a7d-4e30-bc7f-eaf1ff37b270",
+   "id": "ae29ef3d-6bb2-44c0-86db-05c5ab5e1563",
    "name": "Settings",
    "type": "n8n-nodes-base.set",
    "typeVersion": 3.4,
@@ -114,7 +114,7 @@
    "notesInFlow": true
   },
   {
-   "id": "902fd571-b486-4482-8955-5d55b5f25802",
+   "id": "2e6afc01-1461-49ac-b60f-6c4a9144edfe",
    "name": "Read Message",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -139,7 +139,7 @@
      "timeout": 30000
     }
    },
-   "id": "e367a33d-f330-406f-a150-d65d852ceb27",
+   "id": "98f1b44f-3af3-40bb-b2b7-687405b20f1a",
    "name": "AI Triage & Draft",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -150,19 +150,13 @@
    "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
    "retryOnFail": true,
    "maxTries": 2,
-   "onError": "continueRegularOutput",
-   "credentials": {
-    "httpHeaderAuth": {
-     "id": "dI4jvoN1k8p2aJ2A",
-     "name": "Demo AI key (sandbox)"
-    }
-   }
+   "onError": "continueRegularOutput"
   },
   {
    "parameters": {
     "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Read Message').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
    },
-   "id": "d793ed32-2fd9-4ede-b18f-51be8a310bb4",
+   "id": "aaacde33-c5f1-4be6-90e5-26e96a11ee8e",
    "name": "Read AI Answer",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -172,7 +166,39 @@
    ]
   },
   {
-   "id": "4c6e771f-919a-4ac7-8b02-64385210c2a7",
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "d10ed603-ad8c-4576-bbd4-8aba677e624e",
+       "leftValue": "={{ $json.category }}",
+       "rightValue": "spam",
+       "operator": {
+        "type": "string",
+        "operation": "notEquals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "9c715e5d-caab-47ae-8b34-5d862415778b",
+   "name": "Not Spam?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    1200,
+    300
+   ]
+  },
+  {
+   "id": "7ceba69f-3be4-4a41-a57f-7a11120c93fc",
    "name": "Send WhatsApp Reply",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -185,7 +211,7 @@
     "options": {}
    },
    "position": [
-    1200,
+    1440,
     300
    ]
   }
@@ -236,6 +262,17 @@
    ]
   },
   "Read AI Answer": {
+   "main": [
+    [
+     {
+      "node": "Not Spam?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Not Spam?": {
    "main": [
     [
      {

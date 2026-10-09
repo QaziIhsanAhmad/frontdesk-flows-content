@@ -3,7 +3,7 @@
  "active": false,
  "nodes": [
   {
-   "id": "a6bbe624-7f5b-404b-8c85-2194f2beb605",
+   "id": "de8d034b-0d0e-400d-8331-5c0ffe52a5e0",
    "name": "New Google Review",
    "type": "n8n-nodes-base.manualTrigger",
    "typeVersion": 1,
@@ -38,7 +38,7 @@
       {
        "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
        "name": "bookingLink",
-       "value": "harbourlinephysio.test/book",
+       "value": "https://example.com/book",
        "type": "string"
       },
       {
@@ -62,25 +62,25 @@
       {
        "id": "accf490f-357e-449b-8a05-033db10d036e",
        "name": "staffEmail",
-       "value": "frontdesk@harbourlinephysio.test",
+       "value": "frontdesk@example.com",
        "type": "string"
       },
       {
        "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
        "name": "fromEmail",
-       "value": "hello@harbourlinephysio.test",
+       "value": "hello@example.com",
        "type": "string"
       },
       {
        "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
        "name": "llmBaseUrl",
-       "value": "http://ai.sandbox/v1",
+       "value": "https://api.groq.com/openai/v1",
        "type": "string"
       },
       {
        "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
        "name": "llmModel",
-       "value": "demo-sandbox",
+       "value": "llama-3.1-8b-instant",
        "type": "string"
       },
       {
@@ -94,7 +94,7 @@
     "includeOtherFields": true,
     "options": {}
    },
-   "id": "7b5134ff-e529-4f97-8a8e-bb7449152f26",
+   "id": "cf352db9-b123-4711-9aa6-c9d536aab673",
    "name": "Settings",
    "type": "n8n-nodes-base.set",
    "typeVersion": 3.4,
@@ -118,7 +118,7 @@
      "timeout": 30000
     }
    },
-   "id": "dec5b101-59bb-4539-8cb0-1ade83cd43fd",
+   "id": "9458c532-642e-4b4a-9abf-a863d706da60",
    "name": "AI Drafts Reply",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -129,16 +129,10 @@
    "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
    "retryOnFail": true,
    "maxTries": 2,
-   "onError": "continueRegularOutput",
-   "credentials": {
-    "httpHeaderAuth": {
-     "id": "dI4jvoN1k8p2aJ2A",
-     "name": "Demo AI key (sandbox)"
-    }
-   }
+   "onError": "continueRegularOutput"
   },
   {
-   "id": "94514716-9253-4c3c-838c-bbde1602022c",
+   "id": "d3779c00-58ef-46b4-962d-ce26c404dc58",
    "name": "Read Draft",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -147,48 +141,6 @@
    },
    "position": [
     690,
-    300
-   ]
-  },
-  {
-   "parameters": {
-    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
-    "toEmail": "={{ $('Settings').item.json.staffEmail }}",
-    "subject": "=Approve reply to {{ $json.reviewer }}'s {{ $json.stars }}-star review?",
-    "emailFormat": "text",
-    "text": "=New {{ $json.stars }}-star Google review from {{ $json.reviewer }}:\n\"{{ $json.text }}\"\n\nSuggested reply:\n{{ $json.reply }}\n\nApprove and post: {{ $execution.resumeUrl }}?approve=yes\nSkip: {{ $execution.resumeUrl }}?approve=no",
-    "options": {
-     "appendAttribution": false
-    }
-   },
-   "id": "00de5f35-f4cb-4f2a-866e-89f0e7b8a2a1",
-   "name": "Ask Owner to Approve",
-   "type": "n8n-nodes-base.emailSend",
-   "typeVersion": 2.1,
-   "position": [
-    920,
-    300
-   ],
-   "credentials": {
-    "smtp": {
-     "id": "yW4WK8R21Z0oer37",
-     "name": "Demo SMTP (sandbox inbox)"
-    }
-   }
-  },
-  {
-   "id": "0f693d6c-1bb9-4f59-af57-e0c81ec10455",
-   "name": "Wait for Approval",
-   "type": "n8n-nodes-base.wait",
-   "typeVersion": 1.1,
-   "parameters": {
-    "resume": "webhook",
-    "httpMethod": "GET",
-    "options": {}
-   },
-   "webhookId": "6cf47898-4b06-4ca4-a253-659e18aceeb5",
-   "position": [
-    1150,
     300
    ]
   },
@@ -203,8 +155,96 @@
      "conditions": [
       {
        "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
-       "leftValue": "={{ $json.query.approve }}",
-       "rightValue": "yes",
+       "leftValue": "={{ ($json.reply || '').trim().length }}",
+       "rightValue": 20,
+       "operator": {
+        "type": "number",
+        "operation": "gt"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "5e0bd4f6-c44e-4bd4-9594-4d70ce44c014",
+   "name": "Draft OK?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    920,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+    "toEmail": "={{ $('Settings').item.json.staffEmail }}",
+    "subject": "=Approve reply to {{ $json.reviewer }}'s {{ $json.stars }}-star review?",
+    "emailFormat": "text",
+    "text": "=New {{ $json.stars }}-star Google review from {{ $json.reviewer }}:\n\"{{ $json.text }}\"\n\nSuggested reply:\n{{ $json.reply }}\n\nReview and decide here (opens a page, nothing is posted until you press Submit):\n{{ $execution.resumeFormUrl }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "id": "c3d22a95-93d7-4395-a97d-a00e4b5f3a75",
+   "name": "Ask Owner to Approve",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1150,
+    300
+   ]
+  },
+  {
+   "id": "a35f2e43-d80f-43bf-ad7f-f309eb3f3700",
+   "name": "Wait for Approval",
+   "type": "n8n-nodes-base.wait",
+   "typeVersion": 1.1,
+   "parameters": {
+    "resume": "form",
+    "formTitle": "Approve this review reply?",
+    "formDescription": "={{ $('Read Draft').item.json.reply }}",
+    "formFields": {
+     "values": [
+      {
+       "fieldLabel": "Decision",
+       "fieldType": "dropdown",
+       "requiredField": true,
+       "fieldOptions": {
+        "values": [
+         {
+          "option": "Approve and post"
+         },
+         {
+          "option": "Skip"
+         }
+        ]
+       }
+      }
+     ]
+    },
+    "options": {}
+   },
+   "webhookId": "276f0720-fea9-4383-a531-3644e73074d1",
+   "position": [
+    1380,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
+       "leftValue": "={{ $json.Decision }}",
+       "rightValue": "Approve and post",
        "operator": {
         "type": "string",
         "operation": "equals"
@@ -215,17 +255,17 @@
     },
     "options": {}
    },
-   "id": "2809006e-ebb6-4031-ae24-d033690786dc",
+   "id": "03129171-9480-41bd-86a4-269a5cb5a8c7",
    "name": "Approved?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
    "position": [
-    1380,
+    1610,
     300
    ]
   },
   {
-   "id": "4c3db3e5-18bd-48dc-87bc-4fc2694f1c03",
+   "id": "bb03dd9f-c134-489f-a1e1-02b35af162f3",
    "name": "Post Reply to Google",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -238,8 +278,28 @@
     "options": {}
    },
    "position": [
-    1610,
+    1840,
     300
+   ]
+  },
+  {
+   "parameters": {
+    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+    "toEmail": "={{ $('Settings').item.json.staffEmail }}",
+    "subject": "=Please reply to {{ $json.reviewer }}'s review yourself",
+    "emailFormat": "text",
+    "text": "=The AI draft for {{ $json.reviewer }}'s {{ $json.stars }}-star review failed, so nothing was posted.\n\nReview:\n\"{{ $json.text }}\"",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "id": "7ef3239e-e85d-4d6d-8196-f1362f2932d9",
+   "name": "Tell Owner: Draft Failed",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1150,
+    520
    ]
   }
  ],
@@ -281,7 +341,25 @@
    "main": [
     [
      {
+      "node": "Draft OK?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Draft OK?": {
+   "main": [
+    [
+     {
       "node": "Ask Owner to Approve",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "Tell Owner: Draft Failed",
       "type": "main",
       "index": 0
      }

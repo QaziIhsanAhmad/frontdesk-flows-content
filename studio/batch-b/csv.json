@@ -11,7 +11,7 @@
      "allowedOrigins": "*"
     }
    },
-   "id": "a87c339f-335e-4e60-969a-0c4018ee7115",
+   "id": "9d99de8f-8397-44b7-a50d-d50347d3255a",
    "name": "Website Form",
    "type": "n8n-nodes-base.webhook",
    "typeVersion": 2,
@@ -19,7 +19,7 @@
     0,
     300
    ],
-   "webhookId": "6d29de06-7bf1-4e18-ad88-085331f72fc9"
+   "webhookId": "b288e0f1-ed48-4195-a73c-268745cc43ea"
   },
   {
    "parameters": {
@@ -46,7 +46,7 @@
       {
        "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
        "name": "bookingLink",
-       "value": "harbourlinephysio.test/book",
+       "value": "https://example.com/book",
        "type": "string"
       },
       {
@@ -70,25 +70,25 @@
       {
        "id": "accf490f-357e-449b-8a05-033db10d036e",
        "name": "staffEmail",
-       "value": "frontdesk@harbourlinephysio.test",
+       "value": "frontdesk@example.com",
        "type": "string"
       },
       {
        "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
        "name": "fromEmail",
-       "value": "hello@harbourlinephysio.test",
+       "value": "hello@example.com",
        "type": "string"
       },
       {
        "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
        "name": "llmBaseUrl",
-       "value": "http://ai.sandbox/v1",
+       "value": "https://api.groq.com/openai/v1",
        "type": "string"
       },
       {
        "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
        "name": "llmModel",
-       "value": "demo-sandbox",
+       "value": "llama-3.1-8b-instant",
        "type": "string"
       },
       {
@@ -96,13 +96,19 @@
        "name": "sheetUrl",
        "value": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
        "type": "string"
+      },
+      {
+       "id": "ccc0a1be-871f-416f-a07a-24112f09c699",
+       "name": "leadsCsvPath",
+       "value": "/home/node/.n8n-files/leads.csv",
+       "type": "string"
       }
      ]
     },
     "includeOtherFields": true,
     "options": {}
    },
-   "id": "a0b66d7f-4838-4122-b9d2-fac00c9f3ea7",
+   "id": "c89a3c68-c91f-4b4b-b478-f24d13a0174a",
    "name": "Settings",
    "type": "n8n-nodes-base.set",
    "typeVersion": 3.4,
@@ -117,7 +123,7 @@
    "parameters": {
     "jsCode": "// Clean up the form submission and catch obvious spam before spending an AI call.\nconst out = [];\nfor (const item of $input.all()) {\n  const b = item.json.body || item.json || {};\n  const pick = (...keys) => { for (const k of keys) if (b[k] !== undefined && String(b[k]).trim() !== '') return String(b[k]).trim(); return ''; };\n  const name = pick('name', 'full_name', 'fullName').slice(0, 120);\n  const email = pick('email', 'Email').toLowerCase().slice(0, 160);\n  const phone = pick('phone', 'tel', 'mobile').slice(0, 40);\n  const message = pick('message', 'enquiry', 'comments').slice(0, 3000);\n  const honeypot = pick('website', 'company_website');           // hidden field real people leave empty\n  const emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email);\n  const links = (message.match(/https?:\\/\\//g) || []).length;\n  const valid = emailOk && message.length >= 5 && !honeypot && links < 3;\n  out.push({ json: {\n    receivedAt: new Date().toISOString(), name: name || 'there', email, phone, message,\n    source: pick('source') || 'website form', valid,\n    rejectReason: valid ? '' : (!emailOk ? 'invalid email' : honeypot ? 'honeypot filled' : links >= 3 ? 'too many links' : 'message too short'),\n  }});\n}\nreturn out;"
    },
-   "id": "0f657935-9f2d-48eb-8a11-2f8e6093d42c",
+   "id": "becdc28a-f75b-4d21-ac90-ccfbe26e73a1",
    "name": "Clean & Check",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -132,7 +138,7 @@
     "responseBody": "={{ JSON.stringify({ ok: $json.valid, message: $json.valid ? 'Thanks! We will be in touch shortly.' : 'Please check your email address and message.' }) }}",
     "options": {}
    },
-   "id": "38ed418e-dc47-4e65-b144-31b7a9cfd4d6",
+   "id": "d72e2f88-0ce4-45cb-b27e-e93370c30e8e",
    "name": "Reply to Form",
    "type": "n8n-nodes-base.respondToWebhook",
    "typeVersion": 1.1,
@@ -165,7 +171,7 @@
     },
     "options": {}
    },
-   "id": "70a296f1-b070-4a9e-88e8-5f020fe44d7e",
+   "id": "6e30ffd7-91c7-4ce5-8ae7-f13518899f39",
    "name": "Is Valid?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
@@ -187,7 +193,7 @@
      "timeout": 30000
     }
    },
-   "id": "0f64c31f-520c-473b-8ad5-b6c4bc2e0b56",
+   "id": "e6638b81-833a-4095-836f-4d9089ee8451",
    "name": "AI Triage & Draft",
    "type": "n8n-nodes-base.httpRequest",
    "typeVersion": 4.2,
@@ -198,19 +204,13 @@
    "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
    "retryOnFail": true,
    "maxTries": 2,
-   "onError": "continueRegularOutput",
-   "credentials": {
-    "httpHeaderAuth": {
-     "id": "dI4jvoN1k8p2aJ2A",
-     "name": "Demo AI key (sandbox)"
-    }
-   }
+   "onError": "continueRegularOutput"
   },
   {
    "parameters": {
     "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Is Valid?').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
    },
-   "id": "a4439ef5-71db-47d2-9df1-4a20d452709e",
+   "id": "9a230ce9-d6ca-4dde-9abf-cad45137bbc9",
    "name": "Read AI Answer",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
@@ -242,13 +242,13 @@
     },
     "options": {}
    },
-   "id": "a005e565-a7fa-4b92-b52b-00b362cbe064",
+   "id": "ab22acbb-75c6-45f2-ab22-04645aceb635",
    "name": "Not Spam?",
    "type": "n8n-nodes-base.if",
    "typeVersion": 2,
    "position": [
     1540,
-    160
+    520
    ]
   },
   {
@@ -262,63 +262,73 @@
      "appendAttribution": false
     }
    },
-   "id": "f8e9be52-5835-4c85-82da-103f191a64ad",
+   "id": "5a886e76-8171-40e9-99d5-44701dd530f0",
    "name": "Email Reply to Lead",
    "type": "n8n-nodes-base.emailSend",
    "typeVersion": 2.1,
    "position": [
     1760,
-    160
-   ],
-   "credentials": {
-    "smtp": {
-     "id": "yW4WK8R21Z0oer37",
-     "name": "Demo SMTP (sandbox inbox)"
-    }
-   }
+    520
+   ]
   },
   {
-   "id": "bae880f5-d6b6-4dea-95c9-cfc32846454f",
+   "id": "8e834181-9f5a-45af-ad25-e27bfd9d4bae",
+   "name": "Read leads.csv",
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1,
+   "position": [
+    1540,
+    300
+   ],
+   "parameters": {
+    "fileSelector": "={{ $('Settings').first().json.leadsCsvPath }}",
+    "options": {}
+   },
+   "onError": "continueRegularOutput",
+   "alwaysOutputData": true
+  },
+  {
+   "id": "ff0cac2b-3646-422b-b6f9-155795a9c031",
    "name": "Build CRM Row",
    "type": "n8n-nodes-base.code",
    "typeVersion": 2,
    "position": [
-    1540,
-    440
+    1760,
+    300
    ],
    "parameters": {
-    "jsCode": "// One tidy row per enquiry. No Google Sheet, no paid CRM.\nconst a = $json; const lead = $('Is Valid?').first().json;\nreturn [{ json: {\n  received: lead.receivedAt,\n  name: lead.name,\n  email: lead.email,\n  phone: lead.phone,\n  category: a.category,\n  urgent: a.urgent ? 'YES' : '',\n  summary: a.summary,\n  status: 'New'\n} }];"
+    "jsCode": "// One tidy CSV row per enquiry. No Google Sheet, no paid CRM.\n// Cells are quoted, and anything a spreadsheet could run as a formula (= + - @) is prefixed with '.\nconst a = $('Read AI Answer').first().json; const lead = $('Is Valid?').first().json;\nconst cell = v => {\n  let s = String(v ?? '').replace(/\\r?\\n/g, ' ');\n  if (/^[=+\\-@\\t]/.test(s)) s = \"'\" + s;\n  return '\"' + s.replace(/\"/g, '\"\"') + '\"';\n};\nconst cols = ['received','name','email','phone','category','urgent','summary','status'];\nconst row = [lead.receivedAt, lead.name, lead.email, lead.phone, a.category, a.urgent ? 'YES' : '', a.summary, 'New'].map(cell).join(',');\nconst fileExists = !!$('Read leads.csv').first().binary;\nconst csv = (fileExists ? '' : cols.join(',') + '\\n') + row + '\\n';\nreturn [{ json: { csv } }];"
    }
   },
   {
-   "id": "f7c31ba6-e693-4d41-ba7a-c891af1eadf6",
+   "id": "c110eba5-b617-4429-974d-233e94ce66e1",
    "name": "Convert to CSV",
    "type": "n8n-nodes-base.convertToFile",
    "typeVersion": 1.1,
    "position": [
-    1760,
-    440
+    1980,
+    300
    ],
    "parameters": {
-    "operation": "csv",
+    "operation": "toText",
+    "sourceProperty": "csv",
     "options": {
-     "headerRow": false,
      "fileName": "leads.csv"
     }
    }
   },
   {
-   "id": "ff80713d-b210-44de-8c15-dfdf78eb07dd",
+   "id": "fe9ddd15-4493-4e4b-9d70-532bda01e68c",
    "name": "Append to leads.csv",
    "type": "n8n-nodes-base.readWriteFile",
    "typeVersion": 1,
    "position": [
-    1980,
-    440
+    2200,
+    300
    ],
    "parameters": {
     "operation": "write",
-    "fileName": "/home/claude/n8n/data/.n8n-files/leads.csv",
+    "fileName": "={{ $('Settings').first().json.leadsCsvPath }}",
     "options": {
      "append": true
     }
@@ -400,6 +410,17 @@
       "type": "main",
       "index": 0
      },
+     {
+      "node": "Read leads.csv",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read leads.csv": {
+   "main": [
+    [
      {
       "node": "Build CRM Row",
       "type": "main",

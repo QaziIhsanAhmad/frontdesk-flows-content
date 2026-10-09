@@ -1,5 +1,6 @@
-import json, uuid, copy
-d = json.load(open('/home/claude/n8n/prod.json'))
+import json, uuid, copy, os, sys
+SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'clinic-enquiry-ai-triage.json')
+d = json.load(open(SRC))
 by = {n['name']: copy.deepcopy(n) for n in d['nodes']}
 wh = by['Website Form']; wh['name'] = 'WhatsApp Message'; wh['webhookId'] = str(uuid.uuid4())
 wh['parameters'] = {"httpMethod": "POST", "path": "whatsapp-inbound", "responseMode": "onReceived", "options": {"allowedOrigins": "*"}}
@@ -22,12 +23,13 @@ read = by['Read AI Answer']; read['parameters']['jsCode'] = read['parameters']['
 send = {"id": "", "name": "Send WhatsApp Reply", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "parameters": {
   "method": "POST", "url": "http://whatsapp.sandbox/v1/messages", "sendBody": True, "specifyBody": "json",
   "jsonBody": "={{ JSON.stringify({ messaging_product: 'whatsapp', to: $json.phone, type: 'text', text: { body: $json.reply } }) }}", "options": {}}}
-nodes = [wh, settings, readmsg, ai, read, send]
-names = ['WhatsApp Message','Settings','Read Message','AI Triage & Draft','Read AI Answer','Send WhatsApp Reply']
+notspam = by['Not Spam?']   # spam gets an empty reply, so never send it
+nodes = [wh, settings, readmsg, ai, read, notspam, send]
+names = ['WhatsApp Message','Settings','Read Message','AI Triage & Draft','Read AI Answer','Not Spam?','Send WhatsApp Reply']
 for i, n in enumerate(nodes):
     n['id'] = str(uuid.uuid4()); n['position'] = [i*240, 300]
 conns = {}
 for a, b in zip(names, names[1:]):
     conns[a] = {"main": [[{"node": b, "type": "main", "index": 0}]]}
 wf = {"name": "FrontDesk Flows – WhatsApp AI replies", "active": False, "nodes": nodes, "connections": conns, "settings": {"executionOrder": "v1"}}
-json.dump(wf, open('wa.json','w'), indent=1)
+json.dump(wf, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'wa.json'),'w'), indent=1)

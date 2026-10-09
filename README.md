@@ -65,4 +65,10 @@ Covers are branded title-card Stories (`studio/batch-b/hl.html`), posted to Inst
 | c19-csv-crm | Each enquiry appended as a row to leads.csv (no Sheet or CRM) | AI answer |
 | c22-review-approve | AI drafts a review reply, the owner approves by email, and a Wait node resumes | review trigger, AI draft, Google post |
 
-The workflow builders and reel scripts are in `studio/batch-b/`.
+The workflow builders and reel scripts are in `studio/batch-b/`. Run `python3 studio/batch-b/build_<name>.py` to regenerate a workflow JSON from `studio/clinic-enquiry-ai-triage.json`.
+
+The importable versions were hardened after the recordings were made, following the code review on PR #3:
+- **Redaction:** wider rules (written dates such as "14 March 1986", landlines and spaced mobile numbers, +44 numbers).
+- **CSV log:** the path is a Settings value (default `/home/node/.n8n-files/leads.csv`, n8n's file folder in Docker). The header is written when the file is first created, and cells are quoted and protected against spreadsheet formulas.
+- **WhatsApp:** a "Not Spam?" check runs before sending.
+- **Review approval:** the email links to an n8n form, so the workflow only resumes when the owner presses Submit; link scanners can't trigger it. An empty or failed AI draft emails the owner instead of asking for approval.
