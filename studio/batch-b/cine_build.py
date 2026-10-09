@@ -29,7 +29,7 @@ _k = None
 def tts(text, name):
     global _k
     f = os.path.join(WORK, name + '.wav'); clean = re.sub(r'[*]', '', text)
-    key = clean + '|' + R.get('voice', 'af_heart') + '|' + str(R.get('speed', 1.15))
+    key = clean + '|' + R.get('voice', 'af_heart') + '|' + str(R.get('speed', 1.15)) + '|' + R.get('lang', 'en-us')
     if not (os.path.exists(f) and os.path.exists(f + '.txt') and open(f + '.txt').read() == key):
         if _k is None: _k = Kokoro(os.path.join(TTS, 'kokoro-v1.0.onnx'), os.path.join(TTS, 'voices-v1.0.bin'))
         s, sr = _k.create(clean, voice=R.get('voice', 'af_heart'), speed=R.get('speed', 1.15), lang=R.get('lang', 'en-us'))
