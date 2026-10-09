@@ -1,0 +1,124 @@
+{
+ "take": "t15-outage",
+ "music": 0,
+ "post_id": "reel-15-json-fallback",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "Website enquiry",
+   "notif": "Emma: Can I book a rehab assessment next week?",
+   "lines": [
+    "The AI went down.",
+    "She still got a reply."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "The AI provider just *went down*. Watch the patient still get a reply."
+  },
+  {
+   "type": "form",
+   "min": 2.4,
+   "head": "\u2460 An enquiry comes in",
+   "say": "A patient asks about rehab after knee surgery."
+  },
+  {
+   "type": "run",
+   "min": 6.4,
+   "head": "\u2461 The AI call <span class='or'>fails</span>",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead",
+    "Log Lead to Sheet"
+   ],
+   "from": {
+    "Log Lead to Sheet": "Read AI Answer"
+   },
+   "sim": [
+    "AI Triage & Draft",
+    "Log Lead to Sheet"
+   ],
+   "steps": [
+    {
+     "node": "Website Form",
+     "title": "Enquiry received",
+     "sub": "Webhook trigger"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI call fails: 503",
+     "sub": "Outage simulated in this demo"
+    },
+    {
+     "node": "Read AI Answer",
+     "title": "Catch \u2192 polite fallback",
+     "sub": "try / catch in a Code node"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Reply still sent",
+     "sub": "Real SMTP send (demo inbox)"
+    }
+   ],
+   "simNote": "Simulated: AI outage (503) + Sheet row. Fallback + email ran for real.",
+   "say": "The AI call fails, but Read AI Answer *catches it* and switches to a polite fallback."
+  },
+  {
+   "type": "panel",
+   "min": 2.4,
+   "img": "p_read.png",
+   "crop": [
+    680,
+    740,
+    1900,
+    1140
+   ],
+   "hlSrc": [
+    680,
+    950,
+    1900,
+    1125
+   ],
+   "head": "\u2462 The <span class='or'>try / catch</span> that saves it",
+   "say": "Here's the line that saves it."
+  },
+  {
+   "type": "result",
+   "min": 2.4,
+   "head": "\u2463 What Emma receives",
+   "say": "Emma still hears back, *straight away*."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "AI down = silence",
+    "The run errors and nobody replies"
+   ],
+   "after": [
+    "AI down = polite reply",
+    "A team member follows up"
+   ],
+   "say": "Before: silence. After: *a polite reply*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "Most AI workflows break when the AI provider is down or the answer isn't valid JSON.\n\nFix: set the AI step to continue on error, parse its answer inside try/catch, and fall back to a polite holding reply. The patient always hears back.\n\nReal n8n run on a demo clinic site. The outage is simulated (labelled in the video).\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #automation #aiautomation #javascript #nocode",
+ "id": "v2-15-ai-outage"
+}

@@ -1,0 +1,114 @@
+{
+ "take": "t12-webhook",
+ "music": 2,
+ "post_id": "reel-12-webhook-basics",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "notifFrom": "Website form",
+   "notif": "Tom: Is there parking at the clinic?",
+   "lines": [
+    "Website form \u2192 n8n.",
+    "One node."
+   ],
+   "color": [
+    "",
+    "or"
+   ],
+   "say": "How does a website form actually talk to n8n? *One node*."
+  },
+  {
+   "type": "form",
+   "min": 2.6,
+   "head": "\u2460 The patient hits <span class='or'>send</span>",
+   "say": "The browser posts the form as *JSON* to a webhook URL."
+  },
+  {
+   "type": "run",
+   "min": 5.6,
+   "head": "\u2461 The <span class='or'>Webhook</span> node fires",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead",
+    "Log Lead to Sheet"
+   ],
+   "from": {
+    "Log Lead to Sheet": "Read AI Answer"
+   },
+   "sim": [
+    "AI Triage & Draft",
+    "Log Lead to Sheet"
+   ],
+   "steps": [
+    {
+     "node": "Website Form",
+     "title": "Webhook receives JSON",
+     "sub": "name, email, phone, message"
+    },
+    {
+     "node": "Clean & Check",
+     "title": "The workflow runs",
+     "sub": "Every node after it"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Reply emailed",
+     "sub": "Real SMTP send (demo inbox)"
+    }
+   ],
+   "simNote": "Simulated: AI answer + Sheet row. Everything else ran for real.",
+   "say": "The Webhook node receives it, and *the whole workflow runs*."
+  },
+  {
+   "type": "panel",
+   "min": 3.0,
+   "img": "p_hook.png",
+   "crop": [
+    960,
+    280,
+    1880,
+    1260
+   ],
+   "hlSrc": [
+    1225,
+    385,
+    1525,
+    460
+   ],
+   "head": "\u2462 The gotcha: <span class='or'>Production URL</span>",
+   "say": "The gotcha: use the *production URL* on the live site, and activate the workflow."
+  },
+  {
+   "type": "ba",
+   "min": 3.0,
+   "afterAt": 1.2,
+   "before": [
+    "Test URL on the live site",
+    "Only works while you're testing"
+   ],
+   "after": [
+    "Production URL + Active",
+    "Every enquiry runs"
+   ],
+   "say": "Test URL: works once. Production URL: *every time*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "A website form talks to n8n through one Webhook node: the browser POSTs the form as JSON and the workflow runs.\n\nMost common mistake: pasting the Test URL on the live site. Use the Production URL and activate the workflow.\n\nReal n8n run on a demo clinic site. The AI answer and Sheet row are simulated (labelled in the video).\n\nWant the free clinic enquiry workflow? DM me FLOW.\n\n#n8n #webhook #automation #webdev #nocode",
+ "id": "v2-12-webhook",
+ "layout": "bleed"
+}

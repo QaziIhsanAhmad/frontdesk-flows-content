@@ -1,0 +1,93 @@
+{
+ "take": "t09-reviews",
+ "music": 0,
+ "post_id": "reel-09-reviews-policy",
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.6,
+   "notif": "",
+   "lines": [
+    "Review requests:",
+    "ask EVERYONE."
+   ],
+   "color": [
+    "",
+    "or"
+   ],
+   "say": "Only asking happy patients for reviews? That's *review gating*, and it breaks Google's rules."
+  },
+  {
+   "type": "result",
+   "min": 2.8,
+   "head": "What <span class='gr'>every</span> patient gets",
+   "say": "Every patient gets this. Even the unhappy ones."
+  },
+  {
+   "type": "form",
+   "min": 2.2,
+   "head": "\u2461 Visit marked <span class='gr'>complete</span>",
+   "say": "Reception marks the visit as complete."
+  },
+  {
+   "type": "run",
+   "min": 6.2,
+   "head": "\u2462 Same message for <span class='or'>everyone</span>",
+   "path": [
+    "Visit Completed",
+    "Settings",
+    "Visit Completed?",
+    "Write Thank-you",
+    "Email Every Patient",
+    "Log Request"
+   ],
+   "waitNode": "Visit Completed",
+   "steps": [
+    {
+     "node": "Visit Completed",
+     "title": "Visit completed",
+     "sub": "Webhook from the booking system"
+    },
+    {
+     "node": "Write Thank-you",
+     "title": "Same thank-you for all",
+     "sub": "No filtering by happiness"
+    },
+    {
+     "node": "Email Every Patient",
+     "title": "Emailed",
+     "sub": "Real SMTP send (demo inbox)"
+    },
+    {
+     "node": "Log Request",
+     "title": "Logged",
+     "sub": "So nobody gets asked twice"
+    }
+   ],
+   "say": "n8n sends every patient the same thank-you: a review link, plus a *separate private feedback* link."
+  },
+  {
+   "type": "ba",
+   "min": 3.2,
+   "afterAt": 1.3,
+   "before": [
+    "Filter out unhappy patients",
+    "That's review gating: not allowed"
+   ],
+   "after": [
+    "Same review link for everyone",
+    "Plus a private feedback option"
+   ],
+   "say": "Before: review gating. After: *compliant*, and still useful."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Free n8n workflow <span class='or'>for clinics</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want a free clinic workflow? *DM me FLOW*."
+  }
+ ],
+ "caption": "Review-request automations often filter out unhappy patients first. That's called review gating, and Google's review policy doesn't allow it.\n\nThis n8n workflow sends every patient the same thank-you with the review link, plus a separate private feedback link.\n\nReal n8n run with a demo booking screen and a demo inbox.\n\nWant a free clinic workflow to start with? DM me FLOW.\n\n#n8n #automation #googlereviews #clinicmarketing #dentalpractice",
+ "id": "v2-09-reviews"
+}

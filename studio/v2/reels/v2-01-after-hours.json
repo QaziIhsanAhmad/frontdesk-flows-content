@@ -1,0 +1,116 @@
+{
+ "id": "v2-01-after-hours",
+ "take": "s01-after-hours",
+ "music": 0,
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.2,
+   "notifFrom": "Website enquiry \u00b7 11:47pm",
+   "notif": "Sarah: Hi, do you have any appointments tomorrow?",
+   "lines": [
+    "Midnight enquiry.",
+    "Replied in {EMAIL}s."
+   ],
+   "color": [
+    "",
+    "gr"
+   ],
+   "say": "Midnight enquiry? This clinic replies in *two seconds*."
+  },
+  {
+   "type": "form",
+   "min": 2.6,
+   "head": "\u2460 A patient sends the <span class='or'>website form</span>",
+   "say": "A patient sends the *website form*."
+  },
+  {
+   "type": "run",
+   "min": 7.0,
+   "head": "\u2461 <span class='or'>n8n</span> runs the workflow",
+   "path": [
+    "Website Form",
+    "Settings",
+    "Clean & Check",
+    "Reply to Form",
+    "Is Valid?",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Not Spam?",
+    "Email Reply to Lead",
+    "Log Lead to Sheet"
+   ],
+   "from": {
+    "Log Lead to Sheet": "Read AI Answer"
+   },
+   "sim": [
+    "AI Triage & Draft",
+    "Log Lead to Sheet"
+   ],
+   "steps": [
+    {
+     "node": "Website Form",
+     "title": "Form received",
+     "sub": "Webhook trigger"
+    },
+    {
+     "node": "Clean & Check",
+     "title": "Spam check",
+     "sub": "Hidden honeypot + link check"
+    },
+    {
+     "node": "Reply to Form",
+     "title": "Instant thank-you",
+     "sub": "Browser gets a reply in {FORM}s"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI sorts + drafts reply",
+     "sub": "Uses only the clinic's own info"
+    },
+    {
+     "node": "Email Reply to Lead",
+     "title": "Email sent to Sarah",
+     "sub": "Real SMTP send (demo inbox)"
+    },
+    {
+     "node": "Log Lead to Sheet",
+     "title": "Lead logged",
+     "sub": "Google Sheet row"
+    }
+   ],
+   "simNote": "Simulated: AI answer + Sheet row. Everything else ran for real.",
+   "say": "n8n checks for spam, thanks her instantly, drafts a reply with AI, *emails it*, and logs the lead."
+  },
+  {
+   "type": "result",
+   "min": 2.6,
+   "head": "\u2462 In her inbox <span class='gr'>{EMAIL}s</span> later",
+   "say": "Two seconds later, it's in *her inbox*."
+  },
+  {
+   "type": "ba",
+   "min": 2.8,
+   "afterAt": 1.1,
+   "before": [
+    "Reply next morning",
+    "The enquiry waits until staff are back"
+   ],
+   "after": [
+    "Reply in {EMAIL} seconds",
+    "Even at 11:47pm, with a booking link"
+   ],
+   "say": "Before: she waits till morning. After: *straight away*."
+  },
+  {
+   "type": "cta",
+   "min": 2.6,
+   "head": "Get this <span class='or'>exact workflow</span>",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "say": "Want this exact workflow? *DM me FLOW*."
+  }
+ ],
+ "speed": 1.18,
+ "post_id": "reel-01-front-desk",
+ "caption": "Midnight enquiry, replied in about 2 seconds.\n\nThis is the free FrontDesk Flows sample running in n8n: a patient sends the website form, n8n checks it for spam, thanks them instantly, drafts a reply from the clinic's own info, emails it and logs the lead.\n\nReal n8n run on a demo clinic site. The AI answer and Sheet row are simulated (labelled in the video).\n\nWant this exact workflow? DM me FLOW.\n\n#n8n #automation #aiautomation #clinicmarketing #physiotherapy"
+}
