@@ -1,7 +1,7 @@
 """Make a Story (1080x1920, 6-10s, music only) from a built cinematic reel.
 Usage: python3 story.py <reel_id> <story_id> <kind:preview|tip|sample> "<line1|line2>" ["<sub>"] [scene_index]
 Writes work2/<story_id>/render.json + mix_norm.wav, then render with: node cine_render.js <story_id>"""
-import json, sys, os, subprocess, math
+import json, sys, os, subprocess, math, zlib
 import numpy as np, soundfile as sf
 HERE = os.path.dirname(os.path.abspath(__file__))
 rid, sid, kind, lines = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4].split('|')
@@ -37,7 +37,7 @@ WD = os.path.join(HERE, 'work2', sid); os.makedirs(WD, exist_ok=True)
 json.dump({'D': {'style': D['style'], 'sched': [sc, end], 'total': STORY_DUR + 2.2, 'subs': []}, 'frames': out}, open(os.path.join(WD, 'render.json'), 'w'))
 # music only + ticks
 SR = 44100; total = STORY_DUR + 2.2
-mus, _ = sf.read(os.path.join(HERE, 'audio', 'music%d.wav' % (hash(sid) % 3)))
+mus, _ = sf.read(os.path.join(HERE, 'audio', 'music%d.wav' % (zlib.crc32(sid.encode()) % 3)))
 mix = mus[:int(total * SR)].copy() * 0.6
 tick, _ = sf.read(os.path.join(HERE, 'audio/sfx/tick.wav'))
 for g in sc['glow']:

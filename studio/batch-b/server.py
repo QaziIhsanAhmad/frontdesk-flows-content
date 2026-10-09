@@ -39,8 +39,9 @@ class H(http.server.BaseHTTPRequestHandler):
         if 'harbourline' in host:
             p = self.path.split('?')[0]
             p = '/index.html' if p == '/' else p
-            f = D + '/site' + p
-            if os.path.exists(f):
+            root = os.path.realpath(D + '/site')
+            f = os.path.realpath(root + p)
+            if f.startswith(root + os.sep) and os.path.isfile(f):
                 ct = 'text/html' if f.endswith('.html') else ('font/woff2' if f.endswith('woff2') else 'application/octet-stream')
                 return self._send(200, open(f, 'rb').read(), ct)
         self._send(404, '{}')
@@ -84,4 +85,4 @@ class Sink:
 
 c = Controller(Sink(), hostname='127.0.0.1', port=1025)
 c.start()
-http.server.ThreadingHTTPServer(('0.0.0.0', 80), H).serve_forever()
+http.server.ThreadingHTTPServer(('127.0.0.1', 80), H).serve_forever()
