@@ -1,0 +1,397 @@
+{
+ "name": "FrontDesk Flows \u2013 Private AI Triage (redacted)",
+ "nodes": [
+  {
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "clinic-enquiry-private",
+    "responseMode": "responseNode",
+    "options": {
+     "allowedOrigins": "*"
+    }
+   },
+   "id": "da6005fe-ee5e-43a4-a0b6-5adb48197a3b",
+   "name": "Website Form",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "webhookId": "833cd20d-d5a4-487d-9980-cf201c4dd2d9"
+  },
+  {
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "2654f1c1-5e68-403b-984a-43056222b971",
+       "name": "businessName",
+       "value": "Harbourline Physio",
+       "type": "string"
+      },
+      {
+       "id": "f163ffea-a781-4e17-bd67-6be33226f10c",
+       "name": "businessType",
+       "value": "physiotherapy clinic",
+       "type": "string"
+      },
+      {
+       "id": "2211a205-c770-4f2e-bcf0-7023f06c7fc8",
+       "name": "businessInfo",
+       "value": "Opening hours: Mon-Fri 8am-7pm, Sat 9am-1pm.\nServices: physiotherapy assessment (45 min), follow-up treatment (30 min), sports massage, post-surgery rehab.\nNew patients: first assessment includes a treatment plan.\nParking: free on-site.\nInsurance: we accept most major health insurers; bring your policy number.",
+       "type": "string"
+      },
+      {
+       "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
+       "name": "bookingLink",
+       "value": "harbourlinephysio.test/book",
+       "type": "string"
+      },
+      {
+       "id": "37df4ebb-1cbf-4bf9-95ed-01bebaa28f3e",
+       "name": "responseTime",
+       "value": "one working day",
+       "type": "string"
+      },
+      {
+       "id": "01889d26-7fb1-45fa-ba02-b71c1a5b7300",
+       "name": "emergencyAdvice",
+       "value": "your local emergency number (999 in the UK, 911 in the US) or go to the nearest emergency department",
+       "type": "string"
+      },
+      {
+       "id": "0958221e-f3ca-4bb1-a2fb-4f4e12219422",
+       "name": "signature",
+       "value": "The Harbourline Physio team",
+       "type": "string"
+      },
+      {
+       "id": "accf490f-357e-449b-8a05-033db10d036e",
+       "name": "staffEmail",
+       "value": "frontdesk@harbourlinephysio.test",
+       "type": "string"
+      },
+      {
+       "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
+       "name": "fromEmail",
+       "value": "hello@harbourlinephysio.test",
+       "type": "string"
+      },
+      {
+       "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
+       "name": "llmBaseUrl",
+       "value": "http://ai.sandbox/v1",
+       "type": "string"
+      },
+      {
+       "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
+       "name": "llmModel",
+       "value": "demo-sandbox",
+       "type": "string"
+      },
+      {
+       "id": "a393a45a-ae8e-4725-8a06-76975fc3adcd",
+       "name": "sheetUrl",
+       "value": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   },
+   "id": "3f5e80fa-0f16-4d4b-acec-8b320039057f",
+   "name": "Settings",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    220,
+    300
+   ],
+   "notes": "EDIT ME: your business details, emails, AI provider and Google Sheet. Nothing else needs changing.",
+   "notesInFlow": true
+  },
+  {
+   "parameters": {
+    "jsCode": "// Clean up the form submission and catch obvious spam before spending an AI call.\nconst out = [];\nfor (const item of $input.all()) {\n  const b = item.json.body || item.json || {};\n  const pick = (...keys) => { for (const k of keys) if (b[k] !== undefined && String(b[k]).trim() !== '') return String(b[k]).trim(); return ''; };\n  const name = pick('name', 'full_name', 'fullName').slice(0, 120);\n  const email = pick('email', 'Email').toLowerCase().slice(0, 160);\n  const phone = pick('phone', 'tel', 'mobile').slice(0, 40);\n  const message = pick('message', 'enquiry', 'comments').slice(0, 3000);\n  const honeypot = pick('website', 'company_website');           // hidden field real people leave empty\n  const emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(email);\n  const links = (message.match(/https?:\\/\\//g) || []).length;\n  const valid = emailOk && message.length >= 5 && !honeypot && links < 3;\n  out.push({ json: {\n    receivedAt: new Date().toISOString(), name: name || 'there', email, phone, message,\n    source: pick('source') || 'website form', valid,\n    rejectReason: valid ? '' : (!emailOk ? 'invalid email' : honeypot ? 'honeypot filled' : links >= 3 ? 'too many links' : 'message too short'),\n  }});\n}\nreturn out;"
+   },
+   "id": "a0c7535b-ddba-4ab9-a5c4-66075e5f85d5",
+   "name": "Clean & Check",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    440,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "respondWith": "json",
+    "responseBody": "={{ JSON.stringify({ ok: $json.valid, message: $json.valid ? 'Thanks! We will be in touch shortly.' : 'Please check your email address and message.' }) }}",
+    "options": {}
+   },
+   "id": "e248cae2-0c4f-46cd-b8cf-6bc99b901d55",
+   "name": "Reply to Form",
+   "type": "n8n-nodes-base.respondToWebhook",
+   "typeVersion": 1.1,
+   "position": [
+    660,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "0aa504b2-c677-4642-be86-8a7aa2a5635b",
+       "leftValue": "={{ $json.valid }}",
+       "rightValue": true,
+       "operator": {
+        "type": "boolean",
+        "operation": "true",
+        "singleValue": true
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "cda82251-ea02-470a-a10b-61ae79756300",
+   "name": "Is Valid?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    880,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $('Settings').item.json.llmBaseUrl }}/chat/completions",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ model: $('Settings').item.json.llmModel, temperature: 0.2, response_format: { type: 'json_object' }, messages: [ { role: 'system', content: \"You are the front-desk assistant for \" + $('Settings').item.json.businessName + \", a \" + $('Settings').item.json.businessType + \". Read a website enquiry and return ONLY a JSON object with these keys: category (one of: booking, question, pricing, complaint, urgent, spam, other), urgent (true if the person describes severe pain, an injury that just happened, chest pain, breathing difficulty, heavy bleeding, or anything that sounds like an emergency; otherwise false), summary (one sentence for staff), reply (a warm, short email reply, max 110 words, signed '\" + $('Settings').item.json.signature + \"'). Rules for the reply: use ONLY the facts in BUSINESS INFO; never diagnose or give medical advice; never promise prices, availability or outcomes that are not in BUSINESS INFO; if urgent, tell them to call \" + $('Settings').item.json.emergencyAdvice + \" and do not try to help further; for bookings, share the booking link; if you don't know, say a team member will reply within \" + $('Settings').item.json.responseTime + \". Write in the same language as the enquiry. For spam, reply with an empty string.\\n\\nBUSINESS INFO:\\n\" + $('Settings').item.json.businessInfo + \"\\nBooking link: \" + $('Settings').item.json.bookingLink + \"\" }, { role: 'user', content: 'Name: ' + $json.name + '\\nEmail: ' + $json.email + '\\nPhone: ' + $json.phone + '\\nMessage: ' + $json.message }] }) }}",
+    "options": {
+     "timeout": 30000
+    }
+   },
+   "id": "67b3c865-6802-4299-8a1e-78297617af5f",
+   "name": "AI Triage & Draft",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    1320,
+    300
+   ],
+   "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
+   "retryOnFail": true,
+   "maxTries": 2,
+   "onError": "continueRegularOutput",
+   "credentials": {
+    "httpHeaderAuth": {
+     "id": "dI4jvoN1k8p2aJ2A",
+     "name": "Demo AI key (sandbox)"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Is Valid?').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
+   },
+   "id": "094727bb-f2c3-4d44-b040-86690bd65e79",
+   "name": "Read AI Answer",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1540,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose"
+     },
+     "conditions": [
+      {
+       "id": "d10ed603-ad8c-4576-bbd4-8aba677e624e",
+       "leftValue": "={{ $json.category }}",
+       "rightValue": "spam",
+       "operator": {
+        "type": "string",
+        "operation": "notEquals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   },
+   "id": "fe165842-7fec-4fd4-a0c1-c93f201a248f",
+   "name": "Not Spam?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    1760,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "fromEmail": "={{ $('Settings').item.json.fromEmail }}",
+    "toEmail": "={{ $json.email }}",
+    "subject": "=Re: your enquiry to {{ $('Settings').item.json.businessName }}",
+    "emailFormat": "text",
+    "text": "={{ $json.reply }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "id": "8551a66f-2a64-42eb-892d-0fccb9238fe3",
+   "name": "Email Reply to Lead",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1980,
+    300
+   ],
+   "credentials": {
+    "smtp": {
+     "id": "yW4WK8R21Z0oer37",
+     "name": "Demo SMTP (sandbox inbox)"
+    }
+   }
+  },
+  {
+   "id": "2332c629-de21-4b7e-91f1-3595cc122bcb",
+   "name": "Redact Health Data",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1100,
+    300
+   ],
+   "parameters": {
+    "jsCode": "// Strip identifiers before anything leaves for the AI provider.\n// The full details stay inside n8n for the email reply.\nconst rules = [\n  [/\\b(?:DOB|date of birth)\\s*:?\\s*\\d{1,2}[\\/.-]\\d{1,2}[\\/.-]\\d{2,4}/gi, '[DOB removed]'],\n  [/\\b\\d{3}\\s?\\d{3}\\s?\\d{4}\\b/g, '[NHS no. removed]'],\n  [/\\b[A-Z]{1,2}\\d[A-Z\\d]?\\s*\\d[A-Z]{2}\\b/gi, '[postcode removed]'],\n  [/\\b(?:\\+44\\s?|0)7\\d{3}\\s?\\d{6}\\b/g, '[phone removed]'],\n  [/[\\w.+-]+@[\\w-]+\\.[\\w.]+/g, '[email removed]'],\n];\nreturn $input.all().map(item => {\n  let msg = item.json.message || '';\n  let removed = 0;\n  const full = String(item.json.name || '').trim();\n  if (full.includes(' ')) msg = msg.split(full).join(full.split(' ')[0]);\n  for (const [re, tag] of rules) msg = msg.replace(re, () => { removed++; return tag; });\n  const first = String(item.json.name || '').split(' ')[0];\n  return { json: { name: first, email: '[not sent to AI]', phone: '[not sent to AI]', message: msg, removed } };\n});"
+   }
+  }
+ ],
+ "connections": {
+  "Website Form": {
+   "main": [
+    [
+     {
+      "node": "Settings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Settings": {
+   "main": [
+    [
+     {
+      "node": "Clean & Check",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Clean & Check": {
+   "main": [
+    [
+     {
+      "node": "Reply to Form",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Reply to Form": {
+   "main": [
+    [
+     {
+      "node": "Is Valid?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Is Valid?": {
+   "main": [
+    [
+     {
+      "node": "Redact Health Data",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Redact Health Data": {
+   "main": [
+    [
+     {
+      "node": "AI Triage & Draft",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "AI Triage & Draft": {
+   "main": [
+    [
+     {
+      "node": "Read AI Answer",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read AI Answer": {
+   "main": [
+    [
+     {
+      "node": "Not Spam?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Not Spam?": {
+   "main": [
+    [
+     {
+      "node": "Email Reply to Lead",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

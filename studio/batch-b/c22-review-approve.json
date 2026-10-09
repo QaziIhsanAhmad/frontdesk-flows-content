@@ -1,0 +1,39 @@
+{
+ "id": "c22-review-approve",
+ "take": "t22-review-approve",
+ "music": 2,
+ "voice": "bm_daniel",
+ "speed": 1.1,
+ "style": {"a": "#fbbf24", "b": "#f472b6"},
+ "path": ["New Google Review","Settings","AI Drafts Reply","Read Draft","Ask Owner to Approve","Wait for Approval","Approved?","Post Reply to Google"],
+ "from": {},
+ "sim": ["New Google Review","AI Drafts Reply","Post Reply to Google"],
+ "cover": "AI replies to reviews?|[a]You approve first.[/a]",
+ "coverFocus": "Wait for Approval",
+ "scenes": [
+  {"type": "hook", "min": 2.5, "nodes": ["AI Drafts Reply","Read Draft","Ask Owner to Approve"], "camW": 660, "rot": 2, "lead": 0.9, "tail": 0.15, "src": "pre",
+   "lines": ["Let AI answer", "[a]your reviews?[/a]"], "ksize": 88,
+   "trigger": {"at": 0.05, "flyAt": 0.85, "y": 980, "av": "★", "avbg": "#d97706", "t1": "Hannah Lee · 5 stars · Google", "t2": "new review",
+     "body": "Tom fixed my shoulder in three sessions. Clear exercises and he actually explained what was going on."},
+   "say": "Letting AI reply to your reviews? *Not without a human check.*"},
+  {"type": "canvas", "min": 4.4, "nodes": ["New Google Review","Settings","AI Drafts Reply","Read Draft","Ask Owner to Approve","Wait for Approval"],
+   "camW": 720, "lead": 0.3, "tail": 0.5,
+   "stepsCfg": [
+     {"node": "AI Drafts Reply", "title": "AI drafts a reply", "sub": "[b]simulated[/b] in this demo"},
+     {"node": "Ask Owner to Approve", "title": "Owner gets an email", "sub": "real SMTP · demo inbox"},
+     {"node": "Wait for Approval", "title": "Workflow pauses", "sub": "until someone taps approve"}],
+   "say": "n8n drafts a reply, emails the owner, and *pauses*."},
+  {"type": "canvas", "min": 3.2, "nodes": ["Ask Owner to Approve"], "camW": 900, "src": "end", "lead": 0.1, "tail": 0.2, "noFlow": true,
+   "result": {"at": 0.15, "y": 640, "size": 26, "mailIndex": 0, "tag": "Approve link inside · demo inbox"},
+   "say": "The owner reads the draft. *One tap to approve.*"},
+  {"type": "canvas", "min": 3.6, "nodes": ["Wait for Approval","Approved?","Post Reply to Google"],
+   "camW": 700, "lead": 0.2, "tail": 0.5,
+   "stepsCfg": [
+     {"node": "Approved?", "title": "Approved", "sub": "real resume link"},
+     {"node": "Post Reply to Google", "title": "Reply posted", "sub": "[b]simulated[/b] Google API"}],
+   "say": "Then it resumes and *posts the reply*. Nothing goes out unchecked."},
+  {"type": "cta", "min": 2.5, "lines": ["AI drafts.", "[a]You decide.[/a]"], "button": "DM “FLOW” for a free sample", "small": "Free sample · ready to import into n8n", "noBadge": true,
+   "say": "Want the approval step? *DM me FLOW*."}
+ ],
+ "caption": "Letting AI reply to your Google reviews? Add a human check.\n\nThis n8n workflow drafts a reply to each new review, emails the owner the draft with an approve link, and pauses on a Wait node. One tap resumes the workflow and posts the reply. Skip it and nothing goes out.\n\nReal n8n run. The incoming review, the AI draft and the Google post are simulated and labelled; the approval email and the pause-and-resume are real.\n\nSave this for your next client, and DM me FLOW for the free clinic workflow.\n\n#n8n #automation #aiautomation #clinicmarketing #nocode #googlereviews"
+}

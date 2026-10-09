@@ -1,0 +1,253 @@
+{
+ "name": "FrontDesk Flows \u2013 WhatsApp AI replies",
+ "active": false,
+ "nodes": [
+  {
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "whatsapp-inbound",
+    "responseMode": "onReceived",
+    "options": {
+     "allowedOrigins": "*"
+    }
+   },
+   "id": "30ee4e3a-b7ff-4daa-b29b-3e9d861e15ee",
+   "name": "WhatsApp Message",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "webhookId": "1657756c-d8b6-4390-9564-118278477684"
+  },
+  {
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "2654f1c1-5e68-403b-984a-43056222b971",
+       "name": "businessName",
+       "value": "Harbourline Physio",
+       "type": "string"
+      },
+      {
+       "id": "f163ffea-a781-4e17-bd67-6be33226f10c",
+       "name": "businessType",
+       "value": "physiotherapy clinic",
+       "type": "string"
+      },
+      {
+       "id": "2211a205-c770-4f2e-bcf0-7023f06c7fc8",
+       "name": "businessInfo",
+       "value": "Opening hours: Mon-Fri 8am-7pm, Sat 9am-1pm.\nServices: physiotherapy assessment (45 min), follow-up treatment (30 min), sports massage, post-surgery rehab.\nNew patients: first assessment includes a treatment plan.\nParking: free on-site.\nInsurance: we accept most major health insurers; bring your policy number.",
+       "type": "string"
+      },
+      {
+       "id": "51b3f707-c94a-4dc1-bdaf-668c3fac0263",
+       "name": "bookingLink",
+       "value": "harbourlinephysio.test/book",
+       "type": "string"
+      },
+      {
+       "id": "37df4ebb-1cbf-4bf9-95ed-01bebaa28f3e",
+       "name": "responseTime",
+       "value": "one working day",
+       "type": "string"
+      },
+      {
+       "id": "01889d26-7fb1-45fa-ba02-b71c1a5b7300",
+       "name": "emergencyAdvice",
+       "value": "your local emergency number (999 in the UK, 911 in the US) or go to the nearest emergency department",
+       "type": "string"
+      },
+      {
+       "id": "0958221e-f3ca-4bb1-a2fb-4f4e12219422",
+       "name": "signature",
+       "value": "The Harbourline Physio team",
+       "type": "string"
+      },
+      {
+       "id": "accf490f-357e-449b-8a05-033db10d036e",
+       "name": "staffEmail",
+       "value": "frontdesk@harbourlinephysio.test",
+       "type": "string"
+      },
+      {
+       "id": "c7c15491-c278-4c0c-b96b-554d44b1a2d3",
+       "name": "fromEmail",
+       "value": "hello@harbourlinephysio.test",
+       "type": "string"
+      },
+      {
+       "id": "8ff8520b-7df3-4a93-a2d5-11fd4bc7aeab",
+       "name": "llmBaseUrl",
+       "value": "http://ai.sandbox/v1",
+       "type": "string"
+      },
+      {
+       "id": "79df2a4c-216e-4e71-8717-2742368bcb46",
+       "name": "llmModel",
+       "value": "demo-sandbox",
+       "type": "string"
+      },
+      {
+       "id": "a393a45a-ae8e-4725-8a06-76975fc3adcd",
+       "name": "sheetUrl",
+       "value": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   },
+   "id": "0f0395e5-1a7d-4e30-bc7f-eaf1ff37b270",
+   "name": "Settings",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    240,
+    300
+   ],
+   "notes": "EDIT ME: your business details, emails, AI provider and Google Sheet. Nothing else needs changing.",
+   "notesInFlow": true
+  },
+  {
+   "id": "902fd571-b486-4482-8955-5d55b5f25802",
+   "name": "Read Message",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "parameters": {
+    "jsCode": "// WhatsApp Cloud API style payload -> one clean lead\nconst b = $json.body || {};\nconst m = b.entry?.[0]?.changes?.[0]?.value?.messages?.[0] || {};\nconst c = b.entry?.[0]?.changes?.[0]?.value?.contacts?.[0] || {};\nreturn [{ json: {\n  name: c.profile?.name || 'there',\n  phone: m.from || '',\n  email: '',\n  message: m.text?.body || '',\n  receivedAt: new Date().toISOString(),\n  channel: 'whatsapp'\n} }];"
+   },
+   "position": [
+    480,
+    300
+   ]
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "={{ $('Settings').item.json.llmBaseUrl }}/chat/completions",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ model: $('Settings').item.json.llmModel, temperature: 0.2, response_format: { type: 'json_object' }, messages: [ { role: 'system', content: \"You are the front-desk assistant for \" + $('Settings').item.json.businessName + \", a \" + $('Settings').item.json.businessType + \". Read a website enquiry and return ONLY a JSON object with these keys: category (one of: booking, question, pricing, complaint, urgent, spam, other), urgent (true if the person describes severe pain, an injury that just happened, chest pain, breathing difficulty, heavy bleeding, or anything that sounds like an emergency; otherwise false), summary (one sentence for staff), reply (a warm, short WhatsApp reply, max 60 words, no subject line, signed '\" + $('Settings').item.json.signature + \"'). Rules for the reply: use ONLY the facts in BUSINESS INFO; never diagnose or give medical advice; never promise prices, availability or outcomes that are not in BUSINESS INFO; if urgent, tell them to call \" + $('Settings').item.json.emergencyAdvice + \" and do not try to help further; for bookings, share the booking link; if you don't know, say a team member will reply within \" + $('Settings').item.json.responseTime + \". Write in the same language as the enquiry. For spam, reply with an empty string.\\n\\nBUSINESS INFO:\\n\" + $('Settings').item.json.businessInfo + \"\\nBooking link: \" + $('Settings').item.json.bookingLink + \"\" }, { role: 'user', content: 'Name: ' + $json.name + '\\nEmail: ' + $json.email + '\\nPhone: ' + $json.phone + '\\nMessage: ' + $json.message }] }) }}",
+    "options": {
+     "timeout": 30000
+    }
+   },
+   "id": "e367a33d-f330-406f-a150-d65d852ceb27",
+   "name": "AI Triage & Draft",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    720,
+    300
+   ],
+   "notes": "Any OpenAI-compatible API works (Groq free tier, OpenAI, OpenRouter, a local Ollama at http://localhost:11434/v1). Credential: Header Auth, name 'Authorization', value 'Bearer YOUR_KEY'.",
+   "retryOnFail": true,
+   "maxTries": 2,
+   "onError": "continueRegularOutput",
+   "credentials": {
+    "httpHeaderAuth": {
+     "id": "dI4jvoN1k8p2aJ2A",
+     "name": "Demo AI key (sandbox)"
+    }
+   }
+  },
+  {
+   "parameters": {
+    "jsCode": "// Read the AI's JSON safely; fall back to a polite holding reply if anything is off.\nconst s = $('Settings').first().json;\nconst lead = $('Read Message').first().json;\nlet ai = {};\ntry {\n  const content = $json.choices?.[0]?.message?.content ?? '{}';\n  ai = JSON.parse(content.replace(/^```(json)?|```$/g, '').trim());\n} catch (e) { ai = {}; }\nconst allowed = ['booking','question','pricing','complaint','urgent','spam','other'];\nconst category = allowed.includes(ai.category) ? ai.category : 'other';\nconst urgent = ai.urgent === true || category === 'urgent';\nconst fallback = `Hi ${lead.name},\\n\\nThanks for getting in touch with ${s.businessName}. A member of our team will reply within ${s.responseTime}.\\n\\n${s.signature}`;\nconst reply = (typeof ai.reply === 'string' && ai.reply.trim().length > 20) ? ai.reply.trim() : fallback;\nreturn [{ json: {\n  ...lead, category, urgent,\n  summary: String(ai.summary || lead.message.slice(0, 140)),\n  reply: category === 'spam' ? '' : reply,\n  aiOk: Object.keys(ai).length > 0,\n}}];"
+   },
+   "id": "d793ed32-2fd9-4ede-b18f-51be8a310bb4",
+   "name": "Read AI Answer",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    960,
+    300
+   ]
+  },
+  {
+   "id": "4c6e771f-919a-4ac7-8b02-64385210c2a7",
+   "name": "Send WhatsApp Reply",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "parameters": {
+    "method": "POST",
+    "url": "http://whatsapp.sandbox/v1/messages",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ JSON.stringify({ messaging_product: 'whatsapp', to: $json.phone, type: 'text', text: { body: $json.reply } }) }}",
+    "options": {}
+   },
+   "position": [
+    1200,
+    300
+   ]
+  }
+ ],
+ "connections": {
+  "WhatsApp Message": {
+   "main": [
+    [
+     {
+      "node": "Settings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Settings": {
+   "main": [
+    [
+     {
+      "node": "Read Message",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read Message": {
+   "main": [
+    [
+     {
+      "node": "AI Triage & Draft",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "AI Triage & Draft": {
+   "main": [
+    [
+     {
+      "node": "Read AI Answer",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read AI Answer": {
+   "main": [
+    [
+     {
+      "node": "Send WhatsApp Reply",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ }
+}

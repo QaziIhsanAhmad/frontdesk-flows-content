@@ -51,3 +51,18 @@ Notes:
 | Sun 18 Oct | c07-reminders |
 
 Note: the Story composer only finishes "Processing media" while the Business Suite tab is visible on screen.
+
+## Highlight covers (9 Oct 2026)
+
+Covers are branded title-card Stories (`studio/batch-b/hl.html`), posted to Instagram only and added as the first frame of each Highlight. Business Suite only lets a cover be picked from a Story inside the Highlight. The Highlights are Demos (cyan play icon), Bookings (green calendar), Reminders (amber bell) and Free Sample (violet gift).
+
+## Batch B, part 1 (made 9 Oct 2026)
+
+| Reel | Demo | Simulated parts (labelled) |
+|---|---|---|
+| c20-redact | Code node strips DOB, NHS no., postcode, phone and email before the AI step | AI answer |
+| c23-whatsapp | WhatsApp Cloud API style message in, AI reply out in the same chat | AI answer, WhatsApp API sandbox |
+| c19-csv-crm | Each enquiry appended as a row to leads.csv (no Sheet or CRM) | AI answer |
+| c22-review-approve | AI drafts a review reply, the owner approves by email, and a Wait node resumes | review trigger, AI draft, Google post |
+
+The workflow builders and reel scripts are in `studio/batch-b/`.

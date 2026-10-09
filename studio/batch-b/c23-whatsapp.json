@@ -1,0 +1,155 @@
+{
+ "id": "c23-whatsapp",
+ "take": "t23-whatsapp",
+ "music": 1,
+ "voice": "af_nova",
+ "speed": 1.1,
+ "style": {
+  "a": "#25d366",
+  "b": "#fbbf24"
+ },
+ "path": [
+  "WhatsApp Message",
+  "Settings",
+  "Read Message",
+  "AI Triage & Draft",
+  "Read AI Answer",
+  "Send WhatsApp Reply"
+ ],
+ "from": {},
+ "sim": [
+  "AI Triage & Draft",
+  "Send WhatsApp Reply"
+ ],
+ "cover": "WhatsApp enquiry?|[a]AI replies.[/a]",
+ "coverFocus": "Read Message",
+ "coverW": 1000,
+ "scenes": [
+  {
+   "type": "hook",
+   "min": 2.4,
+   "nodes": [
+    "WhatsApp Message",
+    "Settings",
+    "Read Message"
+   ],
+   "camW": 640,
+   "rot": -2,
+   "lead": 0.9,
+   "tail": 0.15,
+   "src": "pre",
+   "lines": [
+    "Patients message",
+    "[a]on WhatsApp?[/a]"
+   ],
+   "ksize": 88,
+   "trigger": {
+    "at": 0.05,
+    "flyAt": 0.85,
+    "y": 980,
+    "av": "L",
+    "avbg": "#128c7e",
+    "t1": "Liam Price \u00b7 WhatsApp",
+    "t2": "just now",
+    "body": "Hi, do you have anything Saturday morning? My neck's been really stiff all week"
+   },
+   "say": "Patients don't fill in forms. *They send a WhatsApp.*"
+  },
+  {
+   "type": "canvas",
+   "min": 4.6,
+   "nodes": [
+    "WhatsApp Message",
+    "Settings",
+    "Read Message",
+    "AI Triage & Draft",
+    "Read AI Answer",
+    "Send WhatsApp Reply"
+   ],
+   "camW": 760,
+   "lead": 0.3,
+   "tail": 0.5,
+   "stepsCfg": [
+    {
+     "node": "Read Message",
+     "title": "Read the message",
+     "sub": "name \u00b7 number \u00b7 text"
+    },
+    {
+     "node": "AI Triage & Draft",
+     "title": "AI drafts reply",
+     "sub": "[b]simulated[/b] in this demo"
+    },
+    {
+     "node": "Send WhatsApp Reply",
+     "title": "Reply sent",
+     "sub": "API [b]sandbox[/b] \u00b7 not real WhatsApp"
+    }
+   ],
+   "say": "n8n reads the message, drafts a reply from *the clinic's own info*, and sends it back."
+  },
+  {
+   "type": "form",
+   "min": 4.4,
+   "lines": [
+    "Liam gets this",
+    "[a]in seconds.[/a]"
+   ],
+   "ksize": 76,
+   "subTop": 470,
+   "py": 560,
+   "pw": 740,
+   "ph": 1080,
+   "px": 170,
+   "say": "Liam asks, and the answer lands *in the same chat*.",
+   "skip": 1.2,
+   "tailExtra": 2.2
+  },
+  {
+   "type": "code",
+   "min": 3.2,
+   "lines": [
+    "What n8n",
+    "[a]sent to the API:[/a]"
+   ],
+   "ksize": 76,
+   "title": "SEND WHATSAPP REPLY \u00b7 request body (sandbox)",
+   "cy": 600,
+   "code": [
+    {
+     "t": "{ \"messaging_product\": \"whatsapp\","
+    },
+    {
+     "t": "  \"to\": \"447700900513\",",
+     "hl": true,
+     "at": 0.4
+    },
+    {
+     "t": "  \"type\": \"text\","
+    },
+    {
+     "t": "  \"text\": { \"body\": \"Hi Liam! ... Pick",
+     "hl": true,
+     "at": 1.0
+    },
+    {
+     "t": "    a Saturday slot here: .../book\" } }"
+    }
+   ],
+   "say": "One HTTP request. *Same format* as the WhatsApp Cloud API."
+  },
+  {
+   "type": "cta",
+   "min": 2.5,
+   "lines": [
+    "Answer patients",
+    "[a]where they are[/a]"
+   ],
+   "button": "DM \u201cFLOW\u201d for a free sample",
+   "small": "Free sample \u00b7 ready to import into n8n",
+   "noBadge": true,
+   "say": "Want the WhatsApp version? *DM me FLOW*."
+  }
+ ],
+ "caption": "Patients don't fill in forms. They send a WhatsApp.\n\nThis n8n workflow reads the incoming message (name, number, text), drafts a reply from the clinic's own info, and sends it back in the same chat with one HTTP request in the WhatsApp Cloud API format.\n\nReal n8n run. The AI answer is simulated, and the reply goes to a WhatsApp API sandbox (not real WhatsApp); both are labelled.\n\nShare this with a clinic that lives on WhatsApp, and DM me FLOW for the free workflow.\n\n#n8n #automation #aiautomation #clinicmarketing #nocode #whatsappbusiness"
+}

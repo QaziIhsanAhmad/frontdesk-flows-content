@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#07090d}
+.c{width:1080px;height:1920px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%, #12161f 0, #07090d 62%);}
+.c:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff14 2px,transparent 2.5px);background-size:44px 44px;}
+.ring{position:absolute;left:50%;top:50%;width:820px;height:820px;margin:-410px 0 0 -410px;border-radius:50%;box-shadow:0 0 120px 10px var(--a)55, inset 0 0 0 6px var(--a)55;}
+.tile{position:absolute;left:50%;top:50%;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:110px;background:#1d1d22;border:10px solid var(--a);box-shadow:0 0 80px var(--a)99, 0 0 0 18px #ffffff08;display:flex;align-items:center;justify-content:center}
+.tile svg *{fill:none}.tile svg polygon{fill:var(--a)}.tile svg{width:340px;height:340px;stroke:var(--a);fill:none;stroke-width:6.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 8px var(--a))}
+.dot{position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;background:#cbd5e1}
+.l{left:calc(50% - 303px)}.r{left:calc(50% + 257px)}
+.brand{position:absolute;left:0;right:0;top:170px;display:flex;gap:18px;align-items:center;justify-content:center;font:700 44px Inter,system-ui,sans-serif;color:#e2e8f0}
+.brand i{width:64px;height:64px;border-radius:18px;background:var(--a);display:flex;align-items:center;justify-content:center;color:#111;font-style:normal;font-weight:800}
+.lbl{position:absolute;left:0;right:0;top:1460px;text-align:center;font:800 110px Inter,system-ui,sans-serif;color:#f5f7fb;letter-spacing:-2px}
+.sub{position:absolute;left:0;right:0;top:1610px;text-align:center;font:600 44px Inter,system-ui,sans-serif;color:var(--a)}
+</style></head><body><div class="c" id="c"><div class="ring"></div><div class="tile" id="t"></div><div class="dot l"></div><div class="dot r"></div><div class="brand"><i>F</i>FrontDesk Flows</div><div class="lbl" id="lbl"></div><div class="sub" id="sub"></div></div>
+<script>
+const I={
+demos:'<svg viewBox="0 0 100 100"><polygon points="36,26 76,50 36,74" style="fill:var(--a);stroke:var(--a)"/></svg>',
+bookings:'<svg viewBox="0 0 100 100"><rect x="16" y="22" width="68" height="62" rx="10"/><line x1="16" y1="42" x2="84" y2="42"/><line x1="34" y1="12" x2="34" y2="28"/><line x1="66" y1="12" x2="66" y2="28"/><polyline points="36,62 46,72 64,54"/></svg>',
+reminders:'<svg viewBox="0 0 100 100"><path d="M26 70 V46 a24 24 0 0 1 48 0 V70 l8 8 H18 z"/><path d="M42 86 a8 8 0 0 0 16 0"/><line x1="50" y1="14" x2="50" y2="22"/></svg>',
+sample:'<svg viewBox="0 0 100 100"><rect x="16" y="40" width="68" height="44" rx="6"/><rect x="10" y="28" width="80" height="14" rx="4"/><line x1="50" y1="28" x2="50" y2="84"/><path d="M50 28 C40 10 22 16 30 28 M50 28 C60 10 78 16 70 28"/></svg>'};
+window.draw=(k,a,l,u)=>{document.getElementById('lbl').textContent=l;document.getElementById('sub').textContent=u;document.getElementById('c').style.setProperty('--a',a);document.getElementById('t').innerHTML=I[k];};
+</script></body></html>
