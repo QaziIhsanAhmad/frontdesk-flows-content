@@ -1,0 +1,229 @@
+{
+ "name": "FrontDesk Flows \u2013 Review Requests (ask everyone)",
+ "nodes": [
+  {
+   "id": "7d1de39d-1f9f-46bf-a9f6-e61f987cdb0e",
+   "name": "Visit Completed",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "visit-completed",
+    "responseMode": "onReceived",
+    "options": {
+     "allowedOrigins": "*"
+    }
+   },
+   "webhookId": "84f7fb10-9b79-4db7-847c-5a354606aeb1"
+  },
+  {
+   "id": "da5b154d-63b5-4867-b798-f01477081606",
+   "name": "Settings",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    220,
+    300
+   ],
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "20eaa2f1-fb88-457b-a1b3-3e9bfac5348d",
+       "name": "businessName",
+       "value": "Harbourline Physio",
+       "type": "string"
+      },
+      {
+       "id": "ade0861b-00af-4508-b7fc-2eff5491a882",
+       "name": "reviewLink",
+       "value": "g.page/harbourline-physio/review",
+       "type": "string"
+      },
+      {
+       "id": "70d1e262-1b01-49cd-8e74-eaa0c22c64de",
+       "name": "feedbackLink",
+       "value": "harbourlinephysio.test/feedback",
+       "type": "string"
+      },
+      {
+       "id": "78bcc912-0b58-4548-ae31-7ce190361eab",
+       "name": "signature",
+       "value": "The Harbourline Physio team",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   }
+  },
+  {
+   "id": "b0b1e526-d016-4034-be3a-580870da87de",
+   "name": "Visit Completed?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    440,
+    300
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "ae7c055e-c2f5-4c9f-b7ba-8a85362e9674",
+       "leftValue": "={{ $json.body.status }}",
+       "rightValue": "completed",
+       "operator": {
+        "type": "string",
+        "operation": "equals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "c06ddea6-c45d-40f4-86df-d0b171152b4b",
+   "name": "Write Thank-you",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    660,
+    300
+   ],
+   "parameters": {
+    "jsCode": "// Same message for EVERY patient: no filtering by happiness (no review gating).\nconst b = $('Visit Completed').first().json.body; const s = $('Settings').first().json;\nconst first = b.name.split(' ')[0];\nconst text = `Hi ${first},\\n\\nThanks for visiting ${s.businessName} today.\\n\\nIf you have a minute, we'd really appreciate a Google review: ${s.reviewLink}\\n\\nAnything we could do better? Tell us privately here: ${s.feedbackLink}\\n\\n${s.signature}`;\nreturn [{ json: { to: b.email, name: b.name, subject: `Thanks for visiting today, ${first}`, text } }];"
+   }
+  },
+  {
+   "id": "ba9858b7-06f6-407b-9a3c-02faed89cc1a",
+   "name": "Email Every Patient",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    880,
+    300
+   ],
+   "parameters": {
+    "fromEmail": "hello@harbourlinephysio.test",
+    "toEmail": "={{ $json.to }}",
+    "subject": "={{ $json.subject }}",
+    "emailFormat": "text",
+    "text": "={{ $json.text }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "credentials": {
+    "smtp": {
+     "id": "",
+     "name": ""
+    }
+   }
+  },
+  {
+   "id": "6135bade-6be6-4013-9d2e-4086017e7399",
+   "name": "Log Request",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    1100,
+    300
+   ],
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "70e0c17c-be98-43d2-8767-679452792576",
+       "name": "patient",
+       "value": "={{ $(\"Write Thank-you\").item.json.name }}",
+       "type": "string"
+      },
+      {
+       "id": "134a607b-1d55-48f9-9806-c28a3e6a7f03",
+       "name": "reviewRequested",
+       "value": "yes",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   }
+  }
+ ],
+ "connections": {
+  "Visit Completed": {
+   "main": [
+    [
+     {
+      "node": "Settings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Settings": {
+   "main": [
+    [
+     {
+      "node": "Visit Completed?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Visit Completed?": {
+   "main": [
+    [
+     {
+      "node": "Write Thank-you",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Write Thank-you": {
+   "main": [
+    [
+     {
+      "node": "Email Every Patient",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Email Every Patient": {
+   "main": [
+    [
+     {
+      "node": "Log Request",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {}
+}

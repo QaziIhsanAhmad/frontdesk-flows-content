@@ -1,0 +1,290 @@
+{
+ "name": "FrontDesk Flows \u2013 No-show Follow-up",
+ "nodes": [
+  {
+   "id": "96c81bd2-5ba1-41fc-bf96-615b71660d59",
+   "name": "Booking Updated",
+   "type": "n8n-nodes-base.webhook",
+   "typeVersion": 2,
+   "position": [
+    0,
+    300
+   ],
+   "parameters": {
+    "httpMethod": "POST",
+    "path": "booking-update",
+    "responseMode": "onReceived",
+    "options": {
+     "allowedOrigins": "*"
+    }
+   },
+   "webhookId": "95248fbf-6e6a-41cb-bd85-98e19eff9e77"
+  },
+  {
+   "id": "c02f2821-42ba-4ebd-bde9-6c15a3e1507b",
+   "name": "Settings",
+   "type": "n8n-nodes-base.set",
+   "typeVersion": 3.4,
+   "position": [
+    220,
+    300
+   ],
+   "parameters": {
+    "assignments": {
+     "assignments": [
+      {
+       "id": "c15d8f98-955b-4377-a5ca-06dea627f956",
+       "name": "businessName",
+       "value": "Harbourline Physio",
+       "type": "string"
+      },
+      {
+       "id": "5080d05b-c143-4fdf-8c36-950fd4e4bf80",
+       "name": "rebookLink",
+       "value": "harbourlinephysio.test/book",
+       "type": "string"
+      },
+      {
+       "id": "c4efec6f-86f9-4702-a143-20d7ba1945bf",
+       "name": "signature",
+       "value": "The Harbourline Physio team",
+       "type": "string"
+      }
+     ]
+    },
+    "includeOtherFields": true,
+    "options": {}
+   }
+  },
+  {
+   "id": "ed0dfd4d-7b67-4a95-bb2b-ef63749f09b9",
+   "name": "Is No-Show?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    440,
+    300
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "2d046698-e198-4a10-9d63-f06c8439835b",
+       "leftValue": "={{ $json.body.status }}",
+       "rightValue": "no_show",
+       "operator": {
+        "type": "string",
+        "operation": "equals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "1f53ca6b-8ef8-4edd-9eb8-1e72fd972d71",
+   "name": "Write Kind Message",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    660,
+    200
+   ],
+   "parameters": {
+    "jsCode": "// Kind tone: no guilt, no fees.\nconst b = $('Booking Updated').first().json.body; const s = $('Settings').first().json;\nconst first = b.name.split(' ')[0];\nconst text = `Hi ${first},\\n\\nWe missed you at your ${b.time} appointment today. No problem at all, these things happen.\\n\\nWould you like to rebook? You can pick a new time here: ${s.rebookLink}\\n\\n${s.signature}`;\nreturn [{ json: { to: b.email, name: b.name, subject: `We missed you today, ${first}`, text } }];"
+   }
+  },
+  {
+   "id": "decf21dd-7739-4c57-a7c2-0c84299ee118",
+   "name": "Email Rebook Link",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    880,
+    200
+   ],
+   "parameters": {
+    "fromEmail": "hello@harbourlinephysio.test",
+    "toEmail": "={{ $json.to }}",
+    "subject": "={{ $json.subject }}",
+    "emailFormat": "text",
+    "text": "={{ $json.text }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "credentials": {
+    "smtp": {
+     "id": "",
+     "name": ""
+    }
+   }
+  },
+  {
+   "id": "82abde98-491e-42ba-9c4a-fb55ed4244ce",
+   "name": "Wait 3 Days",
+   "type": "n8n-nodes-base.wait",
+   "typeVersion": 1.1,
+   "position": [
+    1100,
+    200
+   ],
+   "parameters": {
+    "amount": 3,
+    "unit": "days"
+   },
+   "webhookId": "1fed089f-51af-42eb-a196-6d18165695ef"
+  },
+  {
+   "id": "36f8863d-2d0c-420a-981a-fd65c53e6bdf",
+   "name": "Rebooked?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.2,
+   "position": [
+    1320,
+    200
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "loose",
+      "version": 2
+     },
+     "conditions": [
+      {
+       "id": "0a2cdb50-c25b-4743-a48f-a56ded6bfc9a",
+       "leftValue": "={{ $json.rebooked }}",
+       "rightValue": "yes",
+       "operator": {
+        "type": "string",
+        "operation": "equals"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "39afaf5f-6033-4645-934e-bda3b04d315e",
+   "name": "Gentle Follow-up",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    1540,
+    300
+   ],
+   "parameters": {
+    "fromEmail": "hello@harbourlinephysio.test",
+    "toEmail": "={{ $(\"Write Kind Message\").item.json.to }}",
+    "subject": "=Still happy to see you",
+    "emailFormat": "text",
+    "text": "=Hi again, just checking in. You can rebook any time here: harbourlinephysio.test/book",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "credentials": {
+    "smtp": {
+     "id": "",
+     "name": ""
+    }
+   }
+  }
+ ],
+ "connections": {
+  "Booking Updated": {
+   "main": [
+    [
+     {
+      "node": "Settings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Settings": {
+   "main": [
+    [
+     {
+      "node": "Is No-Show?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Is No-Show?": {
+   "main": [
+    [
+     {
+      "node": "Write Kind Message",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Write Kind Message": {
+   "main": [
+    [
+     {
+      "node": "Email Rebook Link",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Email Rebook Link": {
+   "main": [
+    [
+     {
+      "node": "Wait 3 Days",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Wait 3 Days": {
+   "main": [
+    [
+     {
+      "node": "Rebooked?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Rebooked?": {
+   "main": [
+    [],
+    [
+     {
+      "node": "Gentle Follow-up",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {}
+}

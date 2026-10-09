@@ -1,0 +1,142 @@
+{
+ "name": "FrontDesk Flows \u2013 Appointment Reminders",
+ "nodes": [
+  {
+   "id": "12b66c0b-f336-451e-8c19-2c622825cd88",
+   "name": "Every Day 6pm",
+   "type": "n8n-nodes-base.scheduleTrigger",
+   "typeVersion": 1.2,
+   "position": [
+    0,
+    300
+   ],
+   "parameters": {
+    "rule": {
+     "interval": [
+      {
+       "triggerAtHour": 18
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "30b0e9f3-f070-464a-816c-6881655020db",
+   "name": "Get Tomorrow's Bookings",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.2,
+   "position": [
+    240,
+    300
+   ],
+   "parameters": {
+    "url": "http://harbourlinephysio.test/api/bookings?date=tomorrow",
+    "options": {}
+   }
+  },
+  {
+   "id": "eec18a87-8a4a-47c0-89e0-6bad973be7c2",
+   "name": "One Item per Patient",
+   "type": "n8n-nodes-base.splitOut",
+   "typeVersion": 1,
+   "position": [
+    480,
+    300
+   ],
+   "parameters": {
+    "fieldToSplitOut": "bookings",
+    "options": {}
+   }
+  },
+  {
+   "id": "501dd2e5-dda7-44ed-9ce4-ee3c3075472e",
+   "name": "Write Reminder",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    720,
+    300
+   ],
+   "parameters": {
+    "mode": "runOnceForEachItem",
+    "jsCode": "const b = $json; const first = b.name.split(' ')[0];\nreturn { json: { to: b.email, subject: `Reminder: ${b.service} tomorrow at ${b.time}`, text: `Hi ${first},\\n\\nJust a reminder of your ${b.service} at Harbourline Physio tomorrow at ${b.time}.\\n\\nNeed to change it? Reply to this email or rebook here: harbourlinephysio.test/book\\n\\nFree parking on site.\\n\\nThe Harbourline Physio team` } };"
+   }
+  },
+  {
+   "id": "040949f6-6275-45a5-8b91-138d8b586825",
+   "name": "Email Reminder",
+   "type": "n8n-nodes-base.emailSend",
+   "typeVersion": 2.1,
+   "position": [
+    960,
+    300
+   ],
+   "parameters": {
+    "fromEmail": "hello@harbourlinephysio.test",
+    "toEmail": "={{ $json.to }}",
+    "subject": "={{ $json.subject }}",
+    "emailFormat": "text",
+    "text": "={{ $json.text }}",
+    "options": {
+     "appendAttribution": false
+    }
+   },
+   "credentials": {
+    "smtp": {
+     "id": "",
+     "name": ""
+    }
+   }
+  }
+ ],
+ "connections": {
+  "Every Day 6pm": {
+   "main": [
+    [
+     {
+      "node": "Get Tomorrow's Bookings",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Get Tomorrow's Bookings": {
+   "main": [
+    [
+     {
+      "node": "One Item per Patient",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "One Item per Patient": {
+   "main": [
+    [
+     {
+      "node": "Write Reminder",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Write Reminder": {
+   "main": [
+    [
+     {
+      "node": "Email Reminder",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1"
+ },
+ "pinData": {}
+}
