@@ -36,7 +36,7 @@ Notes:
 
 - Starter Stories published on 9 Oct, about 11:52–11:56 PKT, to both IG and FB: Demos (st-demos-spam), Bookings (st-bookings-midnight), Reminders (st-reminders-6pm), Free Sample (st-free-sample).
 - Instagram Highlights created in Business Suite (Content → Stories → Instagram highlights): Demos, Bookings, Reminders, Free Sample.
-- Preview Stories (rec/story.py "preview" kind, files sp-<reel>.mp4) are scheduled to IG + FB at 20:30 PKT, 30 minutes after each Reel:
+- Preview Stories (`rec/story.py` "preview" kind, files `sp-<reel>.mp4`) are scheduled to IG + FB at 20:30 PKT, 30 minutes after each Reel:
 
 | Date | Preview of |
 |---|---|
