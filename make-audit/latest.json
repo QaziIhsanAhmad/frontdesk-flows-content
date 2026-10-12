@@ -1,7 +1,6 @@
 {
- "at": "2026-10-12T16:41:53.682315Z",
- "action": "insights_pull",
- "insights_rows": 0,
+ "at": "2026-10-12T23:12:07.485082Z",
+ "action": "audit",
  "teams": {
   "teams": [
    {
@@ -61,13 +60,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-12T17:58:30.976Z",
+    "nextExec": "2026-10-12T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 65,
-    "centicredits": 6500,
+    "operations": 68,
+    "centicredits": 6800,
     "transfer": 11961,
     "usedModules": [
      {
