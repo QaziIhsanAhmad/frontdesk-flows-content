@@ -1,5 +1,5 @@
 {
- "at": "2026-10-12T23:12:07.485082Z",
+ "at": "2026-10-13T21:31:36.783714Z",
  "action": "audit",
  "teams": {
   "teams": [
@@ -60,13 +60,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-12T23:58:30.976Z",
+    "nextExec": "2026-10-13T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 68,
-    "centicredits": 6800,
+    "operations": 79,
+    "centicredits": 7900,
     "transfer": 11961,
     "usedModules": [
      {
