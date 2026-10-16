@@ -319,8 +319,8 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
             if st.get("status") not in ("RUNNING", None) or not eid: break
             time.sleep(15)
     ds = [d for d in call("/data-stores?teamId=3012165").get("dataStores", []) if d.get("name") == "FDF YouTube uploads"]
-    if ds and act[0] != "ig_export":
-        recs = [r for r in call(f"/data-stores/{ds[0]['id']}/data?pg%5Blimit%5D=100").get("records", []) if not r.get("key", "").startswith("media_")]
+    if ds and act[0] not in ("ig_export", "fb_export"):
+        recs = [r for r in call(f"/data-stores/{ds[0]['id']}/data?pg%5Blimit%5D=100").get("records", []) if not r.get("key", "").startswith(("media_", "fb_"))]
         os.makedirs("youtube", exist_ok=True)
         json.dump(sorted([dict(r.get("data", {}), shortcode=r.get("key")) for r in recs], key=lambda r: r.get("ig_timestamp") or ""),
                   open("youtube/store.json", "w"), indent=1, ensure_ascii=False)
