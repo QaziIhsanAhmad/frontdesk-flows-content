@@ -1,0 +1,292 @@
+{
+ "Dd_6DZSkQk4": {
+  "title": "After-hours clinic enquiries answered in seconds with n8n #Shorts",
+  "description": "Clinic enquiries sent at 11pm usually wait until morning. By then, the patient may have booked somewhere else.\n\nThis n8n workflow replies in seconds, using only the clinic's own details, logs every lead in Google Sheets and flags urgent ones for staff.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "after hours enquiries",
+   "AI receptionist",
+   "google sheets crm",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-01-front-desk.mp4"
+ },
+ "DePB39eiMxQ": {
+  "title": "An AI front desk should never play doctor: urgent messages in n8n #Shorts",
+  "description": "An AI assistant should never play doctor.\n\nWhen a message sounds urgent, this workflow tells the person to contact emergency services and emails the front desk at the same moment, so a human calls back. Tested with real runs, not just a diagram.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "AI agents",
+   "healthtech",
+   "physiotherapy",
+   "AI safety",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-02-urgent.mp4"
+ },
+ "DePB9ZUjZXR": {
+  "title": "2 things AI chatbot tutorials skip: spam bots and AI outages #Shorts",
+  "description": "Most AI chatbot tutorials skip these two:\n1. Spam: a hidden honeypot and link checks stop bots before they cost an AI call.\n2. Outages: if the AI provider is down, the patient still gets a polite reply.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "AI chatbot",
+   "spam protection",
+   "honeypot",
+   "error handling",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-03-spam-outage.mp4"
+ },
+ "DePGIXmAlAO": {
+  "title": "Stop rebuilding n8n automations for every client: one Settings node #Shorts",
+  "description": "Stop rebuilding automations for every client.\n\nPut everything client-specific in one Settings node: business name, hours, services, booking link, staff email. Then a new clinic is: duplicate, edit one node, connect their accounts, test.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "freelancer",
+   "agency automation",
+   "reusable workflow",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-04-one-node.mp4"
+ },
+ "DePGPBnDWwD": {
+  "title": "The cheapest way to run an AI enquiry assistant with n8n #Shorts",
+  "description": "The cheapest way to run an AI enquiry assistant:\n• n8n Community Edition (self-hosted)\n• Groq free tier or a local model via Ollama\n• the clinic's own mailbox (SMTP)\n• Google Sheets as the CRM\n\nJust be upfront about rate limits and hosting.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "self hosted",
+   "open source",
+   "Ollama",
+   "Groq",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-05-almost-free.mp4"
+ },
+ "DePT276FAsQ": {
+  "title": "6 n8n automations every clinic can use: the FrontDesk Flows pack #Shorts",
+  "description": "The full FrontDesk Flows clinic pack:\n1. Enquiry triage with AI replies (+ WhatsApp version)\n2. Appointment reminders\n3. No-show follow-up\n4. Review requests\n5. FAQ assistant from clinic documents\n6. Weekly owner summary\n\nEach with a setup guide, test data and a video walkthrough.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "clinic workflows",
+   "appointment reminders",
+   "review requests",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-06-pack-coming.mp4"
+ },
+ "DePT964lRho": {
+  "title": "Appointment reminders: the easiest automation to sell to a clinic #Shorts",
+  "description": "Appointment reminders are the easiest automation to sell to a clinic.\n\nHourly check → 24-hour reminder → 2-hour nudge → reply to cancel frees the slot. Store 'reminder sent' in the booking row so nothing goes out twice.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "appointment reminders",
+   "dental practice",
+   "physiotherapy",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/reel-07-reminders.mp4"
+ },
+ "DeRyHpZjbAz": {
+  "title": "Stop form spam bots in n8n without a CAPTCHA (honeypot field) #Shorts",
+  "description": "This clinic's form just got hit by a spam bot. n8n caught it in one step.\n\nThe trick: a hidden 'website' field humans never see. Many bots fill every field, so the workflow marks it invalid and stops at 'Is Valid?' before any AI call or email. No CAPTCHA needed.\n\nReal n8n run on a demo clinic site. Nothing simulated in this one.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "honeypot",
+   "spam bots",
+   "website form",
+   "web development",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DeUW0shjQ1z": {
+  "title": "Respond to Webhook first: no spinner while your AI thinks (n8n) #Shorts",
+  "description": "Don't make website visitors watch a spinner while your AI thinks.\n\nPut 'Respond to Webhook' straight after validation: the browser gets a thank-you in a fraction of a second, and the AI reply, email and logging carry on in the background. No double submissions.\n\nReal n8n run on a demo clinic site. The AI answer (with a 4.5s delay) and the Sheet row are simulated, and labelled.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "respond to webhook",
+   "webhook",
+   "website form",
+   "user experience",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DeW7oXpERrs": {
+  "title": "What happens to your AI workflow when the AI provider goes down? #Shorts",
+  "description": "What happens to your AI workflow when the AI provider goes down?\n\nThis one keeps going: the AI step continues on error, a Code node parses the answer inside try/catch, and if anything is off the patient gets a polite holding reply instead of silence.\n\nReal n8n run on a demo clinic site. The outage (503) is simulated and labelled; the fallback and email are real.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "error handling",
+   "AI outage",
+   "fallback",
+   "try catch",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DeZgZETibyE": {
+  "title": "Clinic no-shows: a kind rebook message, automated with n8n #Shorts",
+  "description": "14:30. Daniel didn't show up. Reception taps 'No-show' and n8n does the rest:\n\n1. Checks it really is a no-show\n2. Sends a kind message with a rebook link (no guilt, no fees)\n3. Waits 3 days, then one gentle follow-up\n\nReal n8n run with a demo booking screen and a demo inbox.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "no show",
+   "patient follow up",
+   "physiotherapy",
+   "booking",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DecFM5vDGUn": {
+  "title": "Website form to n8n with one Webhook node (Test vs Production URL) #Shorts",
+  "description": "How a website form talks to n8n: one Webhook node. The browser POSTs the form as JSON and the workflow runs.\n\nMost common mistake: pasting the Test URL on the live site. Use the Production URL and activate the workflow.\n\nReal n8n run on a demo clinic site. The AI answer and Sheet row are simulated and labelled.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "webhook",
+   "n8n webhook",
+   "website form",
+   "beginner",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DeeqAcJDVKU": {
+  "title": "Review gating isn't allowed: ask every patient for a review the same way #Shorts",
+  "description": "Myth: only ask happy patients for reviews. Fact: that's review gating, and Google's review policy doesn't allow it.\n\nThis n8n workflow sends every patient the same thank-you after their visit, with the Google review link plus a separate private feedback link.\n\nReal n8n run with a demo booking screen and a demo inbox.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "google reviews",
+   "review requests",
+   "review gating",
+   "reputation",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ },
+ "DehO47fjEm_": {
+  "title": "Stop your AI assistant inventing prices: one prompt rule in n8n #Shorts",
+  "description": "Quiz: would your AI assistant invent a price if a patient asked? Left alone, many will.\n\nThis n8n workflow sends the AI a BUSINESS INFO block plus one rule: use only those facts, never promise prices or availability that aren't listed, and hand off to a human when unsure.\n\nReal n8n run on a demo clinic site. The AI answer is simulated and labelled; the rule shown is the real prompt n8n sent.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+  "tags": [
+   "prompt engineering",
+   "chatgpt",
+   "AI hallucination",
+   "AI receptionist",
+   "n8n",
+   "n8n tutorial",
+   "automation",
+   "AI automation",
+   "no code",
+   "clinic automation",
+   "clinic marketing",
+   "workflow automation",
+   "FrontDesk Flows",
+   "shorts"
+  ],
+  "source_url": ""
+ }
+}

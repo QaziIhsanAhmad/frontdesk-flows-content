@@ -1,6 +1,113 @@
 {
- "at": "2026-10-15T20:01:28.123853Z",
- "action": "audit",
+ "at": "2026-10-16T08:03:17.459397Z",
+ "action": "fb_export:2026-10-09:2026-10-15",
+ "patch": {
+  "scenario": {
+   "id": 7992780,
+   "name": "FDF FB reel export",
+   "teamId": 3012165,
+   "hookId": null,
+   "devices": [],
+   "deviceId": null,
+   "deviceScope": null,
+   "concept": false,
+   "description": "",
+   "folderId": null,
+   "slots": null,
+   "isinvalid": false,
+   "islinked": false,
+   "islocked": false,
+   "isPaused": false,
+   "usedPackages": [
+    "facebook-pages",
+    "datastore"
+   ],
+   "lastEdit": "2026-10-16T08:03:18.300Z",
+   "scheduling": {
+    "type": "on-demand"
+   },
+   "iswaiting": false,
+   "dlqCount": 0,
+   "allDlqCount": 0,
+   "createdByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "updatedByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "nextExec": null,
+   "created": "2026-10-16T07:59:02.991Z",
+   "chainingRole": "none",
+   "type": "scenario",
+   "isShared": false,
+   "isActive": false
+  },
+  "scenarioVersion": {
+   "scenarioId": 7992780,
+   "version": 2,
+   "draft": false
+  }
+ },
+ "export_start": {
+  "scenario": {
+   "id": 7992780,
+   "islinked": true,
+   "isActive": true
+  }
+ },
+ "export_run": {
+  "executionId": "28a8661391df444bb904a54e0c701864",
+  "status": 1
+ },
+ "export_stop": {
+  "scenario": {
+   "id": 7992780,
+   "islinked": false,
+   "isActive": false
+  }
+ },
+ "export_files": [
+  [
+   "videos/fb/2026-10-15T1501_1878567626640870.mp4",
+   1499212,
+   "Quiz: would your AI assistant invent a price if a "
+  ],
+  [
+   "videos/fb/2026-10-14T1500_1130119912825592.mp4",
+   1505605,
+   "Myth: only ask happy patients for reviews.\nFact: t"
+  ],
+  [
+   "videos/fb/2026-10-13T1500_1316845843791605.mp4",
+   1712356,
+   "How a website form talks to n8n: one Webhook node."
+  ],
+  [
+   "videos/fb/2026-10-12T1500_1891146785182767.mp4",
+   1409657,
+   "14:30. Daniel didn't show up. Reception taps 'No-s"
+  ],
+  [
+   "videos/fb/2026-10-11T1500_2192877868767223.mp4",
+   1648542,
+   "What happens to your AI workflow when the AI provi"
+  ],
+  [
+   "videos/fb/2026-10-10T1500_1731883075529331.mp4",
+   1444601,
+   "Don't make website visitors watch a spinner while "
+  ],
+  [
+   "videos/fb/2026-10-09T1501_944548495395478.mp4",
+   1607962,
+   "This clinic's form just got hit by a spam bot. n8n"
+  ]
+ ],
+ "uploads": 9,
  "teams": {
   "teams": [
    {
@@ -60,13 +167,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-15T21:58:30.976Z",
+    "nextExec": "2026-10-16T09:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 103,
-    "centicredits": 10300,
+    "operations": 109,
+    "centicredits": 10900,
     "transfer": 11961,
     "usedModules": [
      {
@@ -526,6 +633,7 @@
       "endedAt": "2026-10-08T16:00:44.146Z",
       "timestamp": "2026-10-08T15:58:33.139Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": null
      },
      "detail": {
@@ -552,6 +660,7 @@
        "transfer": 4226,
        "endedAt": "2026-10-08T16:00:44.146Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -598,6 +707,7 @@
       "endedAt": "2026-10-08T14:00:23.560Z",
       "timestamp": "2026-10-08T13:58:33.379Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": null
      },
      "detail": {
@@ -624,6 +734,7 @@
        "transfer": 3924,
        "endedAt": "2026-10-08T14:00:23.560Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -654,6 +765,7 @@
       "endedAt": "2026-10-08T13:22:50.028Z",
       "timestamp": "2026-10-08T13:20:38.465Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": "Qazi Ehsan"
      },
      "detail": {
@@ -684,6 +796,7 @@
        "transfer": 3811,
        "endedAt": "2026-10-08T13:22:50.028Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -853,6 +966,7 @@
       "endedAt": "2026-10-07T18:08:29.489Z",
       "timestamp": "2026-10-07T18:08:29.135Z",
       "status": 3,
+      "displayStatus": "ERROR",
       "authorName": null
      },
      "detail": {
@@ -887,6 +1001,7 @@
        "transfer": 0,
        "endedAt": "2026-10-07T18:08:29.489Z",
        "status": 3,
+       "displayStatus": "ERROR",
        "isReplayable": false
       }
      }
@@ -1016,6 +1131,7 @@
       "endedAt": "2026-10-01T12:55:11.825Z",
       "timestamp": "2026-10-01T12:55:11.521Z",
       "status": 3,
+      "displayStatus": "ERROR",
       "authorName": null
      },
      "detail": {
@@ -1050,6 +1166,7 @@
        "transfer": 0,
        "endedAt": "2026-10-01T12:55:11.825Z",
        "status": 3,
+       "displayStatus": "ERROR",
        "isReplayable": false
       }
      }
@@ -1070,8 +1187,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1090,11 +1207,76 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     }
    ]
+  },
+  {
+   "scenario": {
+    "id": 7992780,
+    "name": "FDF FB reel export",
+    "teamId": 3012165,
+    "hookId": null,
+    "devices": [],
+    "deviceId": null,
+    "deviceScope": null,
+    "concept": false,
+    "description": "",
+    "folderId": null,
+    "slots": null,
+    "isinvalid": false,
+    "islinked": false,
+    "islocked": false,
+    "isPaused": false,
+    "usedPackages": [
+     "facebook-pages",
+     "datastore"
+    ],
+    "lastEdit": "2026-10-16T08:03:18.300Z",
+    "scheduling": {
+     "type": "on-demand"
+    },
+    "iswaiting": false,
+    "dlqCount": 0,
+    "allDlqCount": 0,
+    "createdByUser": {
+     "id": 5359472,
+     "name": "Qazi Ehsan",
+     "email": "kaziehsan111@gmail.com"
+    },
+    "updatedByUser": {
+     "id": 5359472,
+     "name": "Qazi Ehsan",
+     "email": "kaziehsan111@gmail.com"
+    },
+    "nextExec": null,
+    "created": "2026-10-16T07:59:02.991Z",
+    "chainingRole": "none",
+    "type": "scenario",
+    "isShared": false,
+    "operations": 25,
+    "centicredits": 2500,
+    "transfer": 99725,
+    "usedModules": [
+     {
+      "moduleName": "ListVideos",
+      "packageName": "facebook-pages"
+     },
+     {
+      "moduleName": "AddRecord",
+      "packageName": "datastore"
+     }
+    ],
+    "labels": [],
+    "isActive": false
+   },
+   "blueprint": {
+    "_error": 429,
+    "_body": "Requests limit for organization exceeded, please try again later."
+   },
+   "logs": []
   }
  ]
 }
