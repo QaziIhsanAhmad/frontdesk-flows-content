@@ -2,7 +2,7 @@
 `source_url` = original render in this repo (used instead of Instagram's re-encoded copy when present)."""
 import json
 RAW = "https://raw.githubusercontent.com/QaziIhsanAhmad/frontdesk-flows-content/main/videos/"
-CTA = "Free clinic workflow: DM FLOW to @frontdeskflows on Instagram → https://www.instagram.com/frontdeskflows/"
+CTA = "Free clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/"
 FOOT = ("\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). "
         "For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/")
 BASE_TAGS = ["n8n", "n8n tutorial", "automation", "AI automation", "no code", "clinic automation", "clinic marketing",

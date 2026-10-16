@@ -134,7 +134,7 @@ elif act[0] == "insights_pull":
 elif act[0] == "yt_conns":
     c = call("/connections?teamId=3012165")
     out["connections"] = [{k: x.get(k) for k in ("id","name","accountName","accountLabel","scopes","expire","metadata")} for x in c.get("connections", []) if x.get("accountName") in ("youtube", "google")]
-elif act[0] in ("yt_setup", "yt_run", "yt_status"):
+elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export"):
     # yt_setup:<ytConnId>:backfill[:<shortcode,shortcode,...>]  -> on-demand run that uploads only the listed Reels (curated meta)
     # yt_setup:<ytConnId>:live                                  -> every 6 h: new Instagram Reels after now -> YouTube Shorts
     # yt_run  -> run the scenario now and wait; yt_status -> write youtube/uploads.json from the data store
@@ -144,7 +144,8 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status"):
             if d.get("name") == "FDF YouTube uploads": return d
         st = call("/data-structures", "POST", {"name": "FDF YouTube upload", "teamId": 3012165, "strict": False, "spec": [
             {"name": "yt_id", "type": "text"}, {"name": "title", "type": "text"}, {"name": "ig_permalink", "type": "text"},
-            {"name": "ig_timestamp", "type": "text"}, {"name": "source", "type": "text"}, {"name": "uploaded", "type": "text"}]})
+            {"name": "ig_timestamp", "type": "text"}, {"name": "source", "type": "text"}, {"name": "uploaded", "type": "text"},
+            {"name": "media_url", "type": "text"}, {"name": "caption", "type": "text"}]})
         out["structure"] = st
         return call("/data-stores", "POST", {"name": "FDF YouTube uploads", "teamId": 3012165,
                     "datastructureId": (st.get("dataStructure") or {}).get("id"), "maxSizeMB": 1}).get("dataStore")
@@ -166,10 +167,10 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status"):
                      {"a": "{{2.timestamp}}", "o": "date:greater", "b": since}]]
             limit, sched = 5, {"type": "indefinitely", "interval": 21600}
             out["since"] = since
-        footer = ("\n\nFree clinic workflow: DM FLOW to @frontdeskflows on Instagram → https://www.instagram.com/frontdeskflows/"
+        footer = ("\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/"
                   "\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). "
                   "For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation")
-        cap = "replace(replace(replace(2.caption; \"see the link in bio, or DM me FLOW\"; \"DM FLOW to @frontdeskflows on Instagram\"); \"DM me FLOW\"; \"DM FLOW to @frontdeskflows on Instagram\"); \"/[<>]/g\"; emptystring)"
+        cap = "replace(replace(replace(2.caption; \"see the link in bio, or DM me FLOW\"; \"send the word FLOW in a DM on Instagram\"); \"DM me FLOW\"; \"send the word FLOW in a DM on Instagram\"); \"/[<>]/g\"; emptystring)"
         default_tags = ["n8n", "n8n tutorial", "automation", "AI automation", "no code", "clinic automation", "clinic marketing", "workflow automation", "FrontDesk Flows", "shorts"]
         def upload(mid, src_mod, rec_id, source):
             return [
@@ -225,6 +226,42 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status"):
             out["scenario"] = call("/scenarios?confirmed=true", "POST", {"teamId": 3012165, "blueprint": json.dumps(bp), "scheduling": json.dumps(sched)})
             sid = (out["scenario"].get("scenario") or {}).get("id")
         out["start"] = call(f"/scenarios/{sid}/start", "POST", {}) if sid else "no scenario id"
+    if act[0] == "ig_export":
+        # ig_export:<shortcode,shortcode,...> -> download Instagram's copy of those Reels into videos/ig/ (no YouTube involved)
+        want = set(act[1].split(",")) if len(act) > 1 and act[1] else set()
+        ds = yt_store(); out["datastore"] = ds
+        bp = {"name": "FDF IG reel export", "flow": [
+            {"id": 1, "module": "instagram-business:GetUserMedia", "version": 1, "parameters": {"__IMTCONN__": 11476468},
+             "mapper": {"accountId": "17841416945478586", "limit": 25}, "metadata": {"designer": {"x": 0, "y": 0}}},
+            {"id": 2, "module": "datastore:AddRecord", "version": 1, "parameters": {"datastore": ds["id"]},
+             "filter": {"name": "Reels", "conditions": [[{"a": "{{1.media_product_type}}", "o": "text:equal", "b": "REELS"}]]},
+             "mapper": {"key": "media_{{1.shortcode}}", "overwrite": True, "data": {"media_url": "{{1.media_url}}", "caption": "{{1.caption}}",
+                        "ig_permalink": "{{1.permalink}}", "ig_timestamp": "{{1.timestamp}}"}},
+             "metadata": {"designer": {"x": 300, "y": 0}}}],
+            "metadata": {"version": 1, "scenario": {"roundtrips": 1, "maxErrors": 3, "autoCommit": True, "sequential": False, "confidential": False, "dataloss": False, "dlq": False}}}
+        ex = ([s for s in call("/scenarios?teamId=3012165").get("scenarios", []) if s.get("name") == "FDF IG reel export"] or [None])[0]
+        if ex:
+            call(f"/scenarios/{ex['id']}", "PATCH", {"blueprint": json.dumps(bp)}); sid = ex["id"]
+        else:
+            r = call("/scenarios?confirmed=true", "POST", {"teamId": 3012165, "blueprint": json.dumps(bp), "scheduling": json.dumps({"type": "on-demand"})})
+            out["export_create"] = r; sid = (r.get("scenario") or {}).get("id")
+        out["export_start"] = call(f"/scenarios/{sid}/start", "POST", {})
+        out["export_run"] = call(f"/scenarios/{sid}/run", "POST", {"responsive": True})
+        out["export_stop"] = call(f"/scenarios/{sid}/stop", "POST", {})
+        recs = call(f"/data-stores/{ds['id']}/data?pg%5Blimit%5D=100").get("records", [])
+        os.makedirs("videos/ig", exist_ok=True)
+        got = []
+        for r in recs:
+            k, d = r.get("key", ""), r.get("data", {})
+            if not k.startswith("media_"): continue
+            sc = k[6:]
+            if want and sc not in want: continue
+            try:
+                blob = urllib.request.urlopen(urllib.request.Request(d["media_url"], headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
+                open(f"videos/ig/{sc}.mp4", "wb").write(blob); got.append([sc, len(blob), d.get("ig_timestamp")])
+            except Exception as e:
+                got.append([sc, "error " + str(e)[:120]])
+        out["export_files"] = got
     if act[0] == "yt_run":
         sc = yt_scenario()
         out["run"] = call(f"/scenarios/{sc['id']}/run", "POST", {"responsive": True})
@@ -235,8 +272,8 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status"):
             if st.get("status") not in ("RUNNING", None) or not eid: break
             time.sleep(15)
     ds = [d for d in call("/data-stores?teamId=3012165").get("dataStores", []) if d.get("name") == "FDF YouTube uploads"]
-    if ds:
-        recs = call(f"/data-stores/{ds[0]['id']}/data?pg%5Blimit%5D=100").get("records", [])
+    if ds and act[0] != "ig_export":
+        recs = [r for r in call(f"/data-stores/{ds[0]['id']}/data?pg%5Blimit%5D=100").get("records", []) if not r.get("key", "").startswith("media_")]
         os.makedirs("youtube", exist_ok=True)
         json.dump(sorted([dict(r.get("data", {}), shortcode=r.get("key")) for r in recs], key=lambda r: r.get("ig_timestamp") or ""),
                   open("youtube/uploads.json", "w"), indent=1, ensure_ascii=False)
