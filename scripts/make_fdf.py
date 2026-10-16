@@ -191,7 +191,8 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
                  "metadata": {"designer": {"x": 1800, "y": 0}}}]
         bp = {"name": "FDF Instagram to YouTube Shorts", "flow": [
             {"id": 1, "module": "http:MakeRequest", "version": 4, "parameters": {"authenticationType": "noAuth"},
-             "mapper": {"url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/youtube/meta.json", "method": "get", "parseResponse": True},
+             "mapper": {"url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/youtube/meta.json", "method": "get", "parseResponse": True,
+                        "stopOnHttpError": True, "allowRedirects": True, "shareCookies": False, "requestCompressedContent": True, "timeout": 40},
              "metadata": {"designer": {"x": 0, "y": 0}}},
             {"id": 2, "module": "instagram-business:GetUserMedia", "version": 1, "parameters": {"__IMTCONN__": IGC},
              "mapper": {"accountId": IGA, "limit": limit}, "metadata": {"designer": {"x": 300, "y": 0}}},
@@ -213,7 +214,7 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
              "metadata": {"designer": {"x": 1050, "y": 0}}},
             {"id": 5, "module": "builtin:BasicRouter", "version": 1, "mapper": None, "metadata": {"designer": {"x": 1200, "y": 0}}, "routes": [
                 {"flow": [{"id": 6, "module": "http:DownloadFile", "version": 4, "parameters": {"authenticationType": "noAuth"},
-                           "mapper": {"url": "{{12.source_url}}"},
+                           "mapper": {"url": "{{12.source_url}}", "stopOnHttpError": True, "shareCookies": False},
                            "filter": {"name": "Original file in repo", "conditions": [[{"a": "{{12.source_url}}", "o": "exist"}]]},
                            "metadata": {"designer": {"x": 1200, "y": -200}}}] + upload(7, 6, 8, "repo original")},
                 {"flow": [{"id": 9, "module": "instagram-business:DownloadMedia", "version": 1, "parameters": {"__IMTCONN__": IGC},
