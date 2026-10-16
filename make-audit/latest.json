@@ -1,81 +1,6 @@
 {
- "at": "2026-10-16T08:21:20.747071Z",
- "action": "yt_setup:11998429:live:DeZgZETibyE,DecFM5vDGUn,DeeqAcJDVKU,DehO47fjEm_",
- "datastore": {
-  "id": 220958,
-  "name": "FDF YouTube uploads",
-  "records": 33,
-  "size": "39191",
-  "maxSize": "1048576",
-  "teamId": 3012165
- },
- "since": "2026-10-16T08:21:21Z",
- "scenario": {
-  "scenario": {
-   "id": 7993259,
-   "name": "FDF Instagram to YouTube Shorts",
-   "teamId": 3012165,
-   "hookId": null,
-   "devices": [],
-   "deviceId": null,
-   "deviceScope": null,
-   "concept": false,
-   "description": "",
-   "folderId": null,
-   "slots": null,
-   "isinvalid": false,
-   "islinked": false,
-   "islocked": false,
-   "isPaused": false,
-   "usedPackages": [
-    "http",
-    "instagram-business",
-    "datastore",
-    "util",
-    "util",
-    "builtin",
-    "http",
-    "youtube",
-    "builtin",
-    "datastore",
-    "instagram-business",
-    "youtube",
-    "builtin",
-    "datastore"
-   ],
-   "lastEdit": "2026-10-16T08:21:22.208Z",
-   "scheduling": {
-    "type": "indefinitely",
-    "interval": 21600
-   },
-   "iswaiting": false,
-   "dlqCount": 0,
-   "allDlqCount": 0,
-   "createdByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "updatedByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "nextExec": null,
-   "created": "2026-10-16T08:21:22.208Z",
-   "chainingRole": "none",
-   "type": "scenario",
-   "isShared": false,
-   "isActive": false
-  }
- },
- "start": {
-  "scenario": {
-   "id": 7993259,
-   "islinked": true,
-   "isActive": true
-  }
- },
+ "at": "2026-10-16T08:22:55.491226Z",
+ "action": "yt_status",
  "uploads": 10,
  "teams": {
   "teams": [
@@ -146,13 +71,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-16T08:21:22.707Z",
+    "nextExec": "2026-10-16T14:21:22.707Z",
     "created": "2026-10-16T08:21:22.208Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 0,
-    "centicredits": 0,
+    "operations": 1,
+    "centicredits": 100,
     "transfer": 0,
     "usedModules": [
      {
@@ -617,7 +542,110 @@
      "version": 1
     }
    },
-   "logs": []
+   "logs": [
+    {
+     "log": {
+      "imtId": "1792138885458_11ecc37d9dd44f7bbba6f12121538cf3",
+      "scenarioName": "FDF Instagram to YouTube Shorts",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "error": {
+       "name": "BundleValidationError",
+       "message": "Validation failed for 4 parameter(s)."
+      },
+      "scenarioId": 7993259,
+      "instant": false,
+      "duration": 260,
+      "centicredits": 100,
+      "operations": 1,
+      "transfer": 0,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "11ecc37d9dd44f7bbba6f12121538cf3",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-16T08:21:25.721Z",
+      "timestamp": "2026-10-16T08:21:25.458Z",
+      "status": 3,
+      "displayStatus": "ERROR",
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1792138885458_11ecc37d9dd44f7bbba6f12121538cf3",
+       "eventType": "EXECUTION_END",
+       "id": "11ecc37d9dd44f7bbba6f12121538cf3",
+       "@kindId": 7993259,
+       "timestamp": "2026-10-16T08:21:25.458Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "error": {
+        "name": "BundleValidationError",
+        "message": "Validation failed for 4 parameter(s)."
+       },
+       "scenarioId": 7993259,
+       "duration": 260,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-16T08:21:25.721Z",
+       "status": 3,
+       "displayStatus": "ERROR",
+       "isReplayable": false
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792138882707_73595123",
+      "id": "73595123",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "start",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T08:21:22.707Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792138882208_73595120",
+      "id": "73595120",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T08:21:22.208Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    }
+   ]
   },
   {
    "scenario": {
@@ -1680,8 +1708,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
