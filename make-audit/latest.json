@@ -1,7 +1,22 @@
 {
- "at": "2026-10-16T07:23:02.979276Z",
- "action": "yt_conns",
- "connections": [],
+ "at": "2026-10-16T07:33:30.865404Z",
+ "action": "yt_credreq",
+ "credreq": [
+  {
+   "path": "/credential-requests/requests",
+   "result": {
+    "_error": 400,
+    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected required property, body/credentials Unexpected property, body/provider Expected union value\",\"details\":[]}"
+   }
+  },
+  {
+   "path": "/credential-requests",
+   "result": {
+    "_error": 404,
+    "_body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /internal</pre>\n</body>\n</html>\n"
+   }
+  }
+ ],
  "teams": {
   "teams": [
    {
