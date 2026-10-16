@@ -11,6 +11,15 @@ Setup: add the repository secret `IG_ACCESS_TOKEN` (long-lived token from the Me
 Test without posting: Actions → Post next Reel → Run workflow → dry_run = 1.
 Token renewal is automatic: every 7 days the poster refreshes the token (Instagram tokens last 60 days) and keeps the refreshed one only as AES-256 ciphertext in `.token/ig_token.enc`, keyed from the `IG_ACCESS_TOKEN` secret (useless without it). Non-secret status (expiry date, refresh errors, warnings) is written to `queue.json` → `token`. A new secret only has to be pasted if the token is revoked or unused for 60 days.
 
+## YouTube (FrontDesk Flows channel, set up 16 Oct 2026)
+
+- Channel: https://www.youtube.com/@FrontDeskFlows (owned by frontdeskflows96@gmail.com). Logo = Instagram profile picture, banner `youtube/fdf-banner-2560.jpg` (source `youtube/banner.html`), watermark = logo, links to Instagram and the Facebook Page.
+- Existing Reels go up as public Shorts with the curated title/description/tags in `youtube/meta.json` (`python3 youtube/build_meta.py`). Reels 01–07 used the original renders in `videos/`; the 9–15 Oct Reels used Instagram's copies (`videos/ig/`, 720p), because their original renders aren't stored anywhere this repo can reach. `youtube/uploads.json` lists what was uploaded by hand.
+- Automation: Make scenario **FDF Instagram to YouTube Shorts** (id 7993259, every 6 h, YouTube connection "FrontDesk Flows YouTube" id 11998429). It lists the latest Instagram posts, keeps Reels newer than its setup time (plus any listed as pending), skips shortcodes already in the data store "FDF YouTube uploads", downloads the video (repo original if `meta.json` has a `source_url`, otherwise Instagram's copy), uploads it as a public Short and stores the YouTube ID. A failed upload stores nothing, so the next run retries; nothing can be uploaded twice.
+- Manage it with the "Make FrontDesk Flows audit" workflow: `yt_status` (writes `youtube/store.json`), `yt_run`, `yt_setup:11998429:live[:<pending shortcodes>]`, `yt_seed` (records hand uploads from `youtube/uploads.json`).
+- New channels have a daily upload limit until phone verification (YouTube Studio → Settings → Channel → Feature eligibility). That held back 4 Reels on 16 Oct; they retry automatically.
+- "FDF FB reel export" (id 7992780) is an inactive one-off export scenario; it does not run.
+
 ## Batch A (v3 Reels): scheduled in Meta Business Suite on 9 Oct 2026
 
 Each Reel goes to the FrontDesk Flows Facebook Page and @frontdeskflows on Instagram at 20:00 Asia/Karachi (UTC+5). Captions were checked in the Scheduled list. Keep reels-feed.xml empty so the Make/RSS lane doesn't post duplicates.
