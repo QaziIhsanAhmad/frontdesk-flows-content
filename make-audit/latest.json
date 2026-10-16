@@ -1,49 +1,20 @@
 {
- "at": "2026-10-16T08:18:28.565204Z",
- "action": "yt_seed",
- "seeded": [
-  [
-   "Dd_6DZSkQk4",
-   "ok"
-  ],
-  [
-   "DePB39eiMxQ",
-   "ok"
-  ],
-  [
-   "DePB9ZUjZXR",
-   "ok"
-  ],
-  [
-   "DePGIXmAlAO",
-   "ok"
-  ],
-  [
-   "DePGPBnDWwD",
-   "ok"
-  ],
-  [
-   "DePT276FAsQ",
-   "ok"
-  ],
-  [
-   "DePT964lRho",
-   "ok"
-  ],
-  [
-   "DeRyHpZjbAz",
-   "ok"
-  ],
-  [
-   "DeUW0shjQ1z",
-   "ok"
-  ],
-  [
-   "DeW7oXpERrs",
-   "ok"
-  ]
+ "at": "2026-10-16T08:19:56.406994Z",
+ "action": "yt_conns",
+ "connections": [
+  {
+   "id": 11998429,
+   "name": "FrontDesk Flows YouTube",
+   "accountName": "youtube",
+   "accountLabel": "YouTube",
+   "scopes": null,
+   "expire": null,
+   "metadata": {
+    "type": "text",
+    "value": "frontdesk flows <frontdeskflows96@gmail.com>"
+   }
+  }
  ],
- "uploads": 10,
  "teams": {
   "teams": [
    {
@@ -978,8 +949,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -998,8 +969,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1018,8 +989,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1033,8 +1004,8 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1071,8 +1042,40 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
+       "eventType": "EXECUTION_END",
+       "id": "7f208fb06c5b424d921bbfe0866a2eb3",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-01T12:55:11.521Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "error": {
+        "name": "DataError",
+        "message": "Error: 404 Not Found",
+        "causeModule": {
+         "name": "TriggerNewArticle",
+         "appName": "rss"
+        }
+       },
+       "scenarioId": 7717461,
+       "duration": 300,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-01T12:55:11.825Z",
+       "status": 3,
+       "displayStatus": "ERROR",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1091,8 +1094,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1111,8 +1114,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     }
    ]
@@ -1177,10 +1180,303 @@
     "isActive": false
    },
    "blueprint": {
-    "_error": 429,
-    "_body": "Requests limit for organization exceeded, please try again later."
+    "code": "OK",
+    "response": {
+     "blueprint": {
+      "flow": [
+       {
+        "id": 1,
+        "mapper": {
+         "type": "uploaded",
+         "limit": 40,
+         "page_id": "1354185007779555"
+        },
+        "module": "facebook-pages:ListVideos",
+        "version": 6,
+        "metadata": {
+         "designer": {
+          "x": 0,
+          "y": 0
+         }
+        },
+        "parameters": {
+         "__IMTCONN__": 11476526
+        }
+       },
+       {
+        "id": 2,
+        "mapper": {
+         "key": "fb_{{1.id}}",
+         "data": {
+          "caption": "{{substring(1.description; 0; 120)}}",
+          "media_url": "{{1.source}}",
+          "ig_permalink": "{{1.permalink_url}}",
+          "ig_timestamp": "{{1.created_time}}"
+         },
+         "overwrite": true
+        },
+        "module": "datastore:AddRecord",
+        "version": 1,
+        "metadata": {
+         "designer": {
+          "x": 300,
+          "y": 0
+         }
+        },
+        "parameters": {
+         "datastore": 220958
+        }
+       }
+      ],
+      "name": "FDF FB reel export",
+      "metadata": {
+       "instant": false,
+       "version": 1,
+       "scenario": {
+        "dlq": false,
+        "dataloss": false,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "roundtrips": 1,
+        "sequential": false,
+        "confidential": false
+       }
+      }
+     },
+     "scheduling": {
+      "type": "on-demand"
+     },
+     "concept": false,
+     "created": "2026-10-16T07:59:02.991Z",
+     "last_edit": "2026-10-16T08:03:18.300Z",
+     "metadata": {
+      "input_spec": [],
+      "output_spec": []
+     },
+     "idSequence": 3,
+     "version": 2
+    }
    },
-   "logs": []
+   "logs": [
+    {
+     "log": {
+      "imtId": "1792137803093_73591902",
+      "id": "73591902",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "stop",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T08:03:23.093Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137799107_28a8661391df444bb904a54e0c701864",
+      "parent": {
+       "id": null,
+       "executionId": null
+      },
+      "scenarioName": "FDF FB reel export",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7992780,
+      "instant": false,
+      "duration": 3804,
+      "centicredits": 1000,
+      "operations": 10,
+      "transfer": 62845,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "28a8661391df444bb904a54e0c701864",
+      "authorId": 5359472,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-16T08:03:22.914Z",
+      "timestamp": "2026-10-16T08:03:19.107Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1792137799107_28a8661391df444bb904a54e0c701864",
+       "eventType": "EXECUTION_END",
+       "id": "28a8661391df444bb904a54e0c701864",
+       "@kindId": 7992780,
+       "timestamp": "2026-10-16T08:03:19.107Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": 5359472,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "parent": {
+        "id": null,
+        "executionId": null
+       },
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7992780,
+       "scenarioName": "FDF FB reel export",
+       "scenarioId": 7992780,
+       "duration": 3804,
+       "centicredits": 1000,
+       "operations": 10,
+       "transfer": 62845,
+       "endedAt": "2026-10-16T08:03:22.914Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": true
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137798738_73591889",
+      "id": "73591889",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "start",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T08:03:18.738Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137798300_73591888",
+      "id": "73591888",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T08:03:18.300Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137547036_73591091",
+      "id": "73591091",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "stop",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T07:59:07.036Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137543909_2f2b6c28da0d4c0d951e4e3bd28b3c26",
+      "parent": {
+       "id": null,
+       "executionId": null
+      },
+      "scenarioName": "FDF IG reel export",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7992780,
+      "instant": false,
+      "duration": 2971,
+      "centicredits": 1500,
+      "operations": 15,
+      "transfer": 36880,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "2f2b6c28da0d4c0d951e4e3bd28b3c26",
+      "authorId": 5359472,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-16T07:59:06.884Z",
+      "timestamp": "2026-10-16T07:59:03.909Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137543437_73591081",
+      "id": "73591081",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "start",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T07:59:03.437Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
+     }
+    },
+    {
+     "log": {
+      "imtId": "1792137542991_73591079",
+      "id": "73591079",
+      "detail": {
+       "author": {
+        "name": "Qazi Ehsan",
+        "staff": false
+       }
+      },
+      "type": "modify",
+      "authorId": 5359472,
+      "timestamp": "2026-10-16T07:59:02.991Z",
+      "authorName": "Qazi Ehsan"
+     },
+     "detail": {
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
+     }
+    }
+   ]
   }
  ]
 }
