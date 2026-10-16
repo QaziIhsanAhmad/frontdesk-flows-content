@@ -1,59 +1,157 @@
 {
- "at": "2026-10-16T07:35:29.169014Z",
- "action": "yt_credreq",
- "credreq": [
-  {
-   "path": "/credential-requests/requests",
-   "keys": [
-    "teamId",
-    "name",
-    "description",
-    "provider"
+ "at": "2026-10-16T07:59:01.650300Z",
+ "action": "ig_export:DeRyHpZjbAz,DeUW0shjQ1z,DeW7oXpERrs,DeZgZETibyE,DecFM5vDGUn,DeeqAcJDVKU,DehO47fjEm_",
+ "structure": {
+  "dataStructure": {
+   "id": 640314,
+   "name": "FDF YouTube upload",
+   "teamId": 3012165,
+   "spec": [
+    {
+     "name": "yt_id",
+     "type": "text"
+    },
+    {
+     "name": "title",
+     "type": "text"
+    },
+    {
+     "name": "ig_permalink",
+     "type": "text"
+    },
+    {
+     "name": "ig_timestamp",
+     "type": "text"
+    },
+    {
+     "name": "source",
+     "type": "text"
+    },
+    {
+     "name": "uploaded",
+     "type": "text"
+    },
+    {
+     "name": "media_url",
+     "type": "text"
+    },
+    {
+     "name": "caption",
+     "type": "text"
+    }
    ],
-   "result": {
-    "_error": 400,
-    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected union value\",\"details\":[]}"
-   }
-  },
-  {
-   "path": "/credential-requests/requests",
-   "keys": [
-    "teamId",
-    "name",
-    "description",
-    "connections"
-   ],
-   "result": {
-    "_error": 400,
-    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected required property, body/connections/0/appName Expected required property, body/connections/0/appModules Expected required property, body/connections/0/appVersion Expected required property, body/connections/0/appName Expected string, body/connections/0/appModules Expected array, body/connections/0/appVersion Expected string, body/provider Expected union value\",\"details\":[]}"
-   }
-  },
-  {
-   "path": "/credential-requests/requests",
-   "keys": [
-    "teamId",
-    "name",
-    "description",
-    "provider"
-   ],
-   "result": {
-    "_error": 400,
-    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected union value\",\"details\":[]}"
-   }
-  },
-  {
-   "path": "/credential-requests/requests/create-by-credentials",
-   "keys": [
-    "teamId",
-    "name",
-    "description",
-    "connections"
-   ],
-   "result": {
-    "_error": 404,
-    "_body": "{\"message\":\"Page not found\"}"
-   }
+   "strict": false
   }
+ },
+ "datastore": {
+  "id": 220958,
+  "name": "FDF YouTube uploads",
+  "teamId": 3012165,
+  "datastructureId": 640314,
+  "records": 0,
+  "size": "0",
+  "maxSize": "1048576"
+ },
+ "export_create": {
+  "scenario": {
+   "id": 7992780,
+   "name": "FDF IG reel export",
+   "teamId": 3012165,
+   "hookId": null,
+   "devices": [],
+   "deviceId": null,
+   "deviceScope": null,
+   "concept": false,
+   "description": "",
+   "folderId": null,
+   "slots": null,
+   "isinvalid": false,
+   "islinked": false,
+   "islocked": false,
+   "isPaused": false,
+   "usedPackages": [
+    "instagram-business",
+    "datastore"
+   ],
+   "lastEdit": "2026-10-16T07:59:02.991Z",
+   "scheduling": {
+    "type": "on-demand"
+   },
+   "iswaiting": false,
+   "dlqCount": 0,
+   "allDlqCount": 0,
+   "createdByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "updatedByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "nextExec": null,
+   "created": "2026-10-16T07:59:02.991Z",
+   "chainingRole": "none",
+   "type": "scenario",
+   "isShared": false,
+   "isActive": false
+  }
+ },
+ "export_start": {
+  "scenario": {
+   "id": 7992780,
+   "islinked": true,
+   "isActive": true
+  }
+ },
+ "export_run": {
+  "executionId": "2f2b6c28da0d4c0d951e4e3bd28b3c26",
+  "status": 1
+ },
+ "export_stop": {
+  "scenario": {
+   "id": 7992780,
+   "islinked": false,
+   "isActive": false
+  }
+ },
+ "export_files": [
+  [
+   "DehO47fjEm_",
+   1479095,
+   "2026-10-15T15:01:55.000Z"
+  ],
+  [
+   "DeeqAcJDVKU",
+   1491177,
+   "2026-10-14T15:01:09.000Z"
+  ],
+  [
+   "DecFM5vDGUn",
+   1692632,
+   "2026-10-13T15:01:03.000Z"
+  ],
+  [
+   "DeZgZETibyE",
+   1409657,
+   "2026-10-12T15:00:59.000Z"
+  ],
+  [
+   "DeW7oXpERrs",
+   1648542,
+   "2026-10-11T15:01:17.000Z"
+  ],
+  [
+   "DeUW0shjQ1z",
+   1444601,
+   "2026-10-10T15:01:12.000Z"
+  ],
+  [
+   "DeRyHpZjbAz",
+   1607962,
+   "2026-10-09T15:01:58.000Z"
+  ]
  ],
  "teams": {
   "teams": [
@@ -114,13 +212,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-16T07:58:30.976Z",
+    "nextExec": "2026-10-16T09:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 108,
-    "centicredits": 10800,
+    "operations": 109,
+    "centicredits": 10900,
     "transfer": 11961,
     "usedModules": [
      {
@@ -606,6 +704,7 @@
        "transfer": 4226,
        "endedAt": "2026-10-08T16:00:44.146Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -678,6 +777,7 @@
        "transfer": 3924,
        "endedAt": "2026-10-08T14:00:23.560Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -738,6 +838,7 @@
        "transfer": 3811,
        "endedAt": "2026-10-08T13:22:50.028Z",
        "status": 1,
+       "displayStatus": "SUCCESS",
        "isReplayable": false
       }
      }
@@ -941,6 +1042,7 @@
        "transfer": 0,
        "endedAt": "2026-10-07T18:08:29.489Z",
        "status": 3,
+       "displayStatus": "ERROR",
        "isReplayable": false
       }
      }
@@ -1073,39 +1175,8 @@
       "authorName": null
      },
      "detail": {
-      "scenarioLog": {
-       "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
-       "eventType": "EXECUTION_END",
-       "id": "7f208fb06c5b424d921bbfe0866a2eb3",
-       "@kindId": 7717461,
-       "timestamp": "2026-10-01T12:55:11.521Z",
-       "type": "auto",
-       "instant": false,
-       "authorId": null,
-       "teamId": 3012165,
-       "organizationId": 9158640,
-       "replayOfExecutionId": null,
-       "replayOfExecutionName": null,
-       "replayOfExecutionTimestamp": null,
-       "@scenarioId": 7717461,
-       "scenarioName": "Integration RSS",
-       "error": {
-        "name": "DataError",
-        "message": "Error: 404 Not Found",
-        "causeModule": {
-         "name": "TriggerNewArticle",
-         "appName": "rss"
-        }
-       },
-       "scenarioId": 7717461,
-       "duration": 300,
-       "centicredits": 100,
-       "operations": 1,
-       "transfer": 0,
-       "endedAt": "2026-10-01T12:55:11.825Z",
-       "status": 3,
-       "isReplayable": false
-      }
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1124,8 +1195,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1144,11 +1215,76 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     }
    ]
+  },
+  {
+   "scenario": {
+    "id": 7992780,
+    "name": "FDF IG reel export",
+    "teamId": 3012165,
+    "hookId": null,
+    "devices": [],
+    "deviceId": null,
+    "deviceScope": null,
+    "concept": false,
+    "description": "",
+    "folderId": null,
+    "slots": null,
+    "isinvalid": false,
+    "islinked": false,
+    "islocked": false,
+    "isPaused": false,
+    "usedPackages": [
+     "instagram-business",
+     "datastore"
+    ],
+    "lastEdit": "2026-10-16T07:59:02.991Z",
+    "scheduling": {
+     "type": "on-demand"
+    },
+    "iswaiting": false,
+    "dlqCount": 0,
+    "allDlqCount": 0,
+    "createdByUser": {
+     "id": 5359472,
+     "name": "Qazi Ehsan",
+     "email": "kaziehsan111@gmail.com"
+    },
+    "updatedByUser": {
+     "id": 5359472,
+     "name": "Qazi Ehsan",
+     "email": "kaziehsan111@gmail.com"
+    },
+    "nextExec": null,
+    "created": "2026-10-16T07:59:02.991Z",
+    "chainingRole": "none",
+    "type": "scenario",
+    "isShared": false,
+    "operations": 15,
+    "centicredits": 1500,
+    "transfer": 36880,
+    "usedModules": [
+     {
+      "moduleName": "GetUserMedia",
+      "packageName": "instagram-business"
+     },
+     {
+      "moduleName": "AddRecord",
+      "packageName": "datastore"
+     }
+    ],
+    "labels": [],
+    "isActive": false
+   },
+   "blueprint": {
+    "_error": 429,
+    "_body": "Requests limit for organization exceeded, please try again later."
+   },
+   "logs": []
   }
  ]
 }
