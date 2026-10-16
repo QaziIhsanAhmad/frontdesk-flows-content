@@ -156,13 +156,14 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
         ds = yt_store(); out["datastore"] = ds
         IGC, IGA = 11476468, "17841416945478586"
         M = "get(1.data; 2.shortcode)"
+        C = "get(get(1.data; \"by_caption\"); 4.capkey)"  # curated entry matched on the first 40 caption characters (letters/digits only)
         if mode == "backfill":
             allow = act[3] if len(act) > 3 else ""
             gate = [[{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
                      {"a": "{{split(\"" + allow + "\"; \",\")}}", "o": "array:contain", "b": "{{2.shortcode}}"}]]
             limit, sched = 25, {"type": "on-demand"}
         else:
-            since = dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            since = act[4] if len(act) > 4 and act[4] else dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
             gate = [[{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
                      {"a": "{{2.timestamp}}", "o": "date:greater", "b": since}]]
             pending = act[3] if len(act) > 3 else ""
@@ -202,15 +203,16 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
             {"id": 4, "module": "util:SetVariables", "version": 1, "parameters": {},
              "mapper": {"scope": "roundtrip", "variables": [
                  {"name": "auto_title", "value": "{{substring(replace(first(split(2.caption; newline)); \"/[<>]/g\"; emptystring); 0; 88)}} #Shorts"},
-                 {"name": "auto_description", "value": "{{" + cap + "}}" + footer}]},
+                 {"name": "auto_description", "value": "{{" + cap + "}}" + footer},
+                 {"name": "capkey", "value": "{{replace(lower(substring(2.caption; 0; 40)); \"/[^a-z0-9]/g\"; emptystring)}}"}]},
              "filter": {"name": "Not uploaded yet", "conditions": [[{"a": "{{3.exist}}", "o": "boolean:equal", "b": "false"}]]},
              "metadata": {"designer": {"x": 900, "y": 0}}},
             {"id": 12, "module": "util:SetVariables", "version": 1, "parameters": {},
              "mapper": {"scope": "roundtrip", "variables": [
-                 {"name": "title", "value": "{{ifempty(get(" + M + "; \"title\"); 4.auto_title)}}"},
-                 {"name": "description", "value": "{{ifempty(get(" + M + "; \"description\"); 4.auto_description)}}"},
-                 {"name": "tags", "value": "{{ifempty(get(" + M + "; \"tags\"); split(\"" + ",".join(default_tags) + "\"; \",\"))}}"},
-                 {"name": "source_url", "value": "{{get(" + M + "; \"source_url\")}}"}]},
+                 {"name": "title", "value": "{{ifempty(get(" + M + "; \"title\"); ifempty(get(" + C + "; \"title\"); 4.auto_title))}}"},
+                 {"name": "description", "value": "{{ifempty(get(" + M + "; \"description\"); ifempty(get(" + C + "; \"description\"); 4.auto_description))}}"},
+                 {"name": "tags", "value": "{{ifempty(get(" + M + "; \"tags\"); ifempty(get(" + C + "; \"tags\"); split(\"" + ",".join(default_tags) + "\"; \",\")))}}"},
+                 {"name": "source_url", "value": "{{ifempty(get(" + M + "; \"source_url\"); get(" + C + "; \"source_url\"))}}"}]},
              "metadata": {"designer": {"x": 1050, "y": 0}}},
             {"id": 5, "module": "builtin:BasicRouter", "version": 1, "mapper": None, "metadata": {"designer": {"x": 1200, "y": 0}}, "routes": [
                 {"flow": [{"id": 6, "module": "http:DownloadFile", "version": 4, "parameters": {"authenticationType": "noAuth"},
@@ -343,6 +345,20 @@ elif act[0] == "yt_credreq":
 elif act[0] == "daily":
     out["result"] = call(f"/scenarios/{act[1]}", "PATCH", {"scheduling": json.dumps({"type": "daily", "time": act[2]})})
 
+org = call(f"/organizations/{ORG}")
+o = org.get("organization", {}) if isinstance(org, dict) else {}
+lic = o.get("license", {}) or {}
+out["plan"] = {"product": o.get("productName") or o.get("serviceName"), "operations_limit": lic.get("operations"),
+               "active_scenarios_limit": lic.get("scenarios"), "file_size_limit": lic.get("fslimit"), "transfer_limit": lic.get("transfer"),
+               "restart_period": lic.get("restartPeriod"), "next_reset": o.get("nextReset") or o.get("productRestartDate")}
+usage = call(f"/organizations/{ORG}/usage")
+out["usage_raw"] = usage
+try:
+    days = usage.get("data") or usage.get("usage") or []
+    out["usage_30d_operations"] = sum(int(d.get("operations") or 0) for d in days)
+    out["usage_30d_transfer"] = sum(int(d.get("dataTransfer") or 0) for d in days)
+except Exception as e:
+    out["usage_error"] = str(e)[:200]
 teams = call(f"/teams?organizationId={ORG}")
 out["teams"] = teams
 out["scenarios"] = []

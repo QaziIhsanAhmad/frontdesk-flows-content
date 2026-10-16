@@ -57,5 +57,30 @@ for sc, src, title, extra, body in items:
     desc = f"{body}\n\n{CTA}{FOOT}\n\n#Shorts #n8n #automation"
     tags = extra + BASE_TAGS
     meta[sc] = {"title": title, "description": desc, "tags": tags, "source_url": (RAW + src) if src else ""}
+
+# Reels scheduled in Business Suite (shortcode unknown until they post): matched on the first 40 caption characters.
+# Add a "source_url" here when the original render is committed to videos/, so YouTube gets the full-quality file.
+import re as _re
+def capkey(caption):
+    return _re.sub(r"[^a-z0-9]", "", caption[:40].lower())
+by_caption_items = [
+ ("11:47pm. A patient messages the clinic. No staff online. n8n", None,
+  "11:47pm enquiry, no staff online: n8n replies in about 2 seconds #Shorts",
+  ["after hours enquiries", "AI receptionist", "website form", "lead capture"],
+  "A patient sends the clinic's website form late at night. n8n checks it for spam, thanks them instantly, drafts a reply from the clinic's own information, emails it and logs the lead.\n\nReal n8n run on a demo clinic site. The AI answer and the Sheet row are simulated and labelled in the video."),
+ ("An AI front desk should never play doctor. When a message so", None,
+  "Urgent patient message? This n8n workflow hands it to a human #Shorts",
+  ["AI safety", "healthtech", "urgent triage", "physiotherapy"],
+  "An AI front desk should never play doctor.\n\nWhen a message sounds urgent (chest pain, breathing trouble, heavy bleeding), the workflow skips the normal reply: staff get an alert email with the phone number, and the patient is told to call 999. No diagnosis, no booking link.\n\nReal n8n run on a demo clinic site; both emails were really sent. The AI's urgent classification is simulated and labelled."),
+ ("6pm. Three patients booked tomorrow. Zero staff needed. This", None,
+  "Appointment reminders at 6pm, zero staff: a live n8n run #Shorts",
+  ["appointment reminders", "no show", "physiotherapy", "booking"],
+  "Every day at 6pm the workflow reads tomorrow's bookings, splits them into one item per patient, writes a personal reminder and emails each one with a reschedule link.\n\nReal n8n run with a demo booking system and a demo inbox."),
+]
+meta["by_caption"] = {}
+for start, src, title, extra, body in by_caption_items:
+    assert len(title) <= 100 and "<" not in title, title
+    meta["by_caption"][capkey(start)] = {"title": title, "description": f"{body}\n\n{CTA}{FOOT}\n\n#Shorts #n8n #automation",
+                                          "tags": extra + BASE_TAGS, "source_url": (RAW + src) if src else ""}
 json.dump(meta, open("youtube/meta.json", "w"), indent=1, ensure_ascii=False)
 print(len(meta), "items")
