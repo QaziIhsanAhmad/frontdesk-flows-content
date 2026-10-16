@@ -134,7 +134,7 @@ elif act[0] == "insights_pull":
 elif act[0] == "yt_conns":
     c = call("/connections?teamId=3012165")
     out["connections"] = [{k: x.get(k) for k in ("id","name","accountName","accountLabel","scopes","expire","metadata")} for x in c.get("connections", []) if x.get("accountName") in ("youtube", "google")]
-elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export"):
+elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt_seed"):
     # yt_setup:<ytConnId>:backfill[:<shortcode,shortcode,...>]  -> on-demand run that uploads only the listed Reels (curated meta)
     # yt_setup:<ytConnId>:live                                  -> every 6 h: new Instagram Reels after now -> YouTube Shorts
     # yt_run  -> run the scenario now and wait; yt_status -> write youtube/uploads.json from the data store
@@ -165,7 +165,11 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export"):
             since = dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
             gate = [[{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
                      {"a": "{{2.timestamp}}", "o": "date:greater", "b": since}]]
-            limit, sched = 5, {"type": "indefinitely", "interval": 21600}
+            pending = act[3] if len(act) > 3 else ""
+            if pending:  # older Reels still to upload (e.g. held back by YouTube's daily limit); retried every run until stored
+                gate.append([{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
+                             {"a": "{{split(\"" + pending + "\"; \",\")}}", "o": "array:contain", "b": "{{2.shortcode}}"}])
+            limit, sched = 10, {"type": "indefinitely", "interval": 21600}
             out["since"] = since
         footer = ("\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/"
                   "\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). "
@@ -297,6 +301,14 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export"):
             except Exception as e:
                 got.append([k, "error " + str(e)[:120]])
         out["export_files"] = got
+    if act[0] == "yt_seed":
+        # record Reels already uploaded by hand (youtube/uploads.json) so the scenario never uploads them again
+        ds = yt_store(); seeded = []
+        for r in json.load(open("youtube/uploads.json")):
+            res = call(f"/data-stores/{ds['id']}/data", "POST", {"key": r["shortcode"], "overwrite": True, "data": {
+                "yt_id": r["yt_id"], "title": r["title"], "ig_permalink": r["ig_permalink"], "source": r.get("source", ""), "uploaded": r.get("uploaded", "")}})
+            seeded.append([r["shortcode"], "ok" if "_error" not in res else res])
+        out["seeded"] = seeded
     if act[0] == "yt_run":
         sc = yt_scenario()
         out["run"] = call(f"/scenarios/{sc['id']}/run", "POST", {"responsive": True})
@@ -311,7 +323,7 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export"):
         recs = [r for r in call(f"/data-stores/{ds[0]['id']}/data?pg%5Blimit%5D=100").get("records", []) if not r.get("key", "").startswith("media_")]
         os.makedirs("youtube", exist_ok=True)
         json.dump(sorted([dict(r.get("data", {}), shortcode=r.get("key")) for r in recs], key=lambda r: r.get("ig_timestamp") or ""),
-                  open("youtube/uploads.json", "w"), indent=1, ensure_ascii=False)
+                  open("youtube/store.json", "w"), indent=1, ensure_ascii=False)
         out["uploads"] = len(recs)
 elif act[0] == "yt_credreq":
     # creates a Make credential request; its public link lets the owner authorise YouTube without a Make login
