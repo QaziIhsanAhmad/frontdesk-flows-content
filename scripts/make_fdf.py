@@ -134,7 +134,7 @@ elif act[0] == "insights_pull":
 elif act[0] == "yt_conns":
     c = call("/connections?teamId=3012165")
     out["connections"] = [{k: x.get(k) for k in ("id","name","accountName","accountLabel","scopes","expire","metadata")} for x in c.get("connections", []) if x.get("accountName") in ("youtube", "google")]
-elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export"):
+elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export"):
     # yt_setup:<ytConnId>:backfill[:<shortcode,shortcode,...>]  -> on-demand run that uploads only the listed Reels (curated meta)
     # yt_setup:<ytConnId>:live                                  -> every 6 h: new Instagram Reels after now -> YouTube Shorts
     # yt_run  -> run the scenario now and wait; yt_status -> write youtube/uploads.json from the data store
@@ -261,6 +261,41 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export"):
                 open(f"videos/ig/{sc}.mp4", "wb").write(blob); got.append([sc, len(blob), d.get("ig_timestamp")])
             except Exception as e:
                 got.append([sc, "error " + str(e)[:120]])
+        out["export_files"] = got
+    if act[0] == "fb_export":
+        # fb_export:<YYYY-MM-DD>:<YYYY-MM-DD> -> download the Facebook Page copies (often higher resolution) of Reels created in that range into videos/fb/
+        lo, hi = act[1], act[2]
+        ds = yt_store()
+        bp = {"name": "FDF FB reel export", "flow": [
+            {"id": 1, "module": "facebook-pages:ListVideos", "version": 6, "parameters": {"__IMTCONN__": 11476526},
+             "mapper": {"page_id": "1354185007779555", "type": "uploaded", "limit": 40}, "metadata": {"designer": {"x": 0, "y": 0}}},
+            {"id": 2, "module": "datastore:AddRecord", "version": 1, "parameters": {"datastore": ds["id"]},
+             "mapper": {"key": "fb_{{1.id}}", "overwrite": True, "data": {"media_url": "{{1.source}}", "caption": "{{substring(1.description; 0; 120)}}",
+                        "ig_permalink": "{{1.permalink_url}}", "ig_timestamp": "{{1.created_time}}"}},
+             "metadata": {"designer": {"x": 300, "y": 0}}}],
+            "metadata": {"version": 1, "scenario": {"roundtrips": 1, "maxErrors": 3, "autoCommit": True, "sequential": False, "confidential": False, "dataloss": False, "dlq": False}}}
+        ex = ([s for s in call("/scenarios?teamId=3012165").get("scenarios", []) if s.get("name") in ("FDF IG reel export", "FDF FB reel export")] or [None])[0]
+        if ex:
+            out["patch"] = call(f"/scenarios/{ex['id']}", "PATCH", {"blueprint": json.dumps(bp), "name": "FDF FB reel export"}); sid = ex["id"]
+        else:
+            r = call("/scenarios?confirmed=true", "POST", {"teamId": 3012165, "blueprint": json.dumps(bp), "scheduling": json.dumps({"type": "on-demand"})})
+            sid = (r.get("scenario") or {}).get("id")
+        out["export_start"] = call(f"/scenarios/{sid}/start", "POST", {})
+        out["export_run"] = call(f"/scenarios/{sid}/run", "POST", {"responsive": True})
+        out["export_stop"] = call(f"/scenarios/{sid}/stop", "POST", {})
+        recs = call(f"/data-stores/{ds['id']}/data?pg%5Blimit%5D=100").get("records", [])
+        os.makedirs("videos/fb", exist_ok=True)
+        got = []
+        for r in recs:
+            k, d = r.get("key", ""), r.get("data", {})
+            ts = (d.get("ig_timestamp") or "")[:10]
+            if not k.startswith("fb_") or not (lo <= ts <= hi) or not d.get("media_url"): continue
+            try:
+                blob = urllib.request.urlopen(urllib.request.Request(d["media_url"], headers={"User-Agent": "Mozilla/5.0"}), timeout=120).read()
+                fn = f"videos/fb/{d.get('ig_timestamp','')[:16].replace(':','')}_{k[3:]}.mp4"
+                open(fn, "wb").write(blob); got.append([fn, len(blob), d.get("caption", "")[:50]])
+            except Exception as e:
+                got.append([k, "error " + str(e)[:120]])
         out["export_files"] = got
     if act[0] == "yt_run":
         sc = yt_scenario()
