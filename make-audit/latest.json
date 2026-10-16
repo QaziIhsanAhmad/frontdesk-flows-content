@@ -1,6 +1,83 @@
 {
- "at": "2026-10-16T08:22:55.491226Z",
- "action": "yt_status",
+ "at": "2026-10-16T08:25:47.312413Z",
+ "action": "yt_setup:11998429:live:DeZgZETibyE,DecFM5vDGUn,DeeqAcJDVKU,DehO47fjEm_",
+ "datastore": {
+  "id": 220958,
+  "name": "FDF YouTube uploads",
+  "records": 33,
+  "size": "39191",
+  "maxSize": "1048576",
+  "teamId": 3012165
+ },
+ "since": "2026-10-16T08:25:47Z",
+ "scenario": {
+  "scenario": {
+   "id": 7993259,
+   "name": "FDF Instagram to YouTube Shorts",
+   "teamId": 3012165,
+   "hookId": null,
+   "devices": [],
+   "deviceId": null,
+   "deviceScope": null,
+   "concept": false,
+   "description": "",
+   "folderId": null,
+   "slots": null,
+   "isinvalid": false,
+   "islinked": true,
+   "islocked": false,
+   "isPaused": false,
+   "usedPackages": [
+    "http",
+    "instagram-business",
+    "datastore",
+    "util",
+    "util",
+    "builtin",
+    "http",
+    "youtube",
+    "builtin",
+    "datastore",
+    "instagram-business",
+    "youtube",
+    "builtin",
+    "datastore"
+   ],
+   "lastEdit": "2026-10-16T08:25:47.991Z",
+   "scheduling": {
+    "type": "indefinitely",
+    "interval": 21600
+   },
+   "iswaiting": false,
+   "dlqCount": 0,
+   "allDlqCount": 0,
+   "createdByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "updatedByUser": {
+    "id": 5359472,
+    "name": "Qazi Ehsan",
+    "email": "kaziehsan111@gmail.com"
+   },
+   "nextExec": "2026-10-16T14:21:22.707Z",
+   "created": "2026-10-16T08:21:22.208Z",
+   "chainingRole": "none",
+   "type": "scenario",
+   "isShared": false,
+   "isActive": true
+  },
+  "scenarioVersion": {
+   "scenarioId": 7993259,
+   "version": 2,
+   "draft": false
+  }
+ },
+ "start": {
+  "_error": 422,
+  "_body": "{\"detail\":\"Scenario is already running.\",\"message\":\"Scenario is already running (on start attempt)\",\"code\":\"IM306\"}"
+ },
  "uploads": 10,
  "teams": {
   "teams": [
@@ -53,7 +130,7 @@
      "builtin",
      "datastore"
     ],
-    "lastEdit": "2026-10-16T08:21:22.208Z",
+    "lastEdit": "2026-10-16T08:25:47.991Z",
     "scheduling": {
      "type": "indefinitely",
      "interval": 21600
@@ -150,7 +227,12 @@
         "mapper": {
          "url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/youtube/meta.json",
          "method": "get",
-         "parseResponse": true
+         "timeout": 40,
+         "shareCookies": false,
+         "parseResponse": true,
+         "allowRedirects": true,
+         "stopOnHttpError": true,
+         "requestCompressedContent": true
         },
         "module": "http:MakeRequest",
         "version": 4,
@@ -195,7 +277,7 @@
            },
            {
             "a": "{{2.timestamp}}",
-            "b": "2026-10-16T08:21:21Z",
+            "b": "2026-10-16T08:25:47Z",
             "o": "date:greater"
            }
           ],
@@ -319,7 +401,9 @@
              ]
             },
             "mapper": {
-             "url": "{{12.source_url}}"
+             "url": "{{12.source_url}}",
+             "shareCookies": false,
+             "stopOnHttpError": true
             },
             "module": "http:DownloadFile",
             "version": 4,
@@ -533,13 +617,13 @@
      },
      "concept": false,
      "created": "2026-10-16T08:21:22.208Z",
-     "last_edit": "2026-10-16T08:21:22.208Z",
+     "last_edit": "2026-10-16T08:25:47.991Z",
      "metadata": {
       "input_spec": [],
       "output_spec": []
      },
      "idSequence": 61,
-     "version": 1
+     "version": 2
     }
    },
    "logs": [
@@ -1603,8 +1687,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1618,8 +1702,8 @@
       "authorName": null
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1656,40 +1740,8 @@
       "authorName": null
      },
      "detail": {
-      "scenarioLog": {
-       "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
-       "eventType": "EXECUTION_END",
-       "id": "7f208fb06c5b424d921bbfe0866a2eb3",
-       "@kindId": 7717461,
-       "timestamp": "2026-10-01T12:55:11.521Z",
-       "type": "auto",
-       "instant": false,
-       "authorId": null,
-       "teamId": 3012165,
-       "organizationId": 9158640,
-       "replayOfExecutionId": null,
-       "replayOfExecutionName": null,
-       "replayOfExecutionTimestamp": null,
-       "@scenarioId": 7717461,
-       "scenarioName": "Integration RSS",
-       "error": {
-        "name": "DataError",
-        "message": "Error: 404 Not Found",
-        "causeModule": {
-         "name": "TriggerNewArticle",
-         "appName": "rss"
-        }
-       },
-       "scenarioId": 7717461,
-       "duration": 300,
-       "centicredits": 100,
-       "operations": 1,
-       "transfer": 0,
-       "endedAt": "2026-10-01T12:55:11.825Z",
-       "status": 3,
-       "displayStatus": "ERROR",
-       "isReplayable": false
-      }
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
@@ -1708,8 +1760,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
