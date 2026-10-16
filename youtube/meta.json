@@ -288,5 +288,70 @@
    "shorts"
   ],
   "source_url": ""
+ },
+ "by_caption": {
+  "1147pmapatientmessagestheclinic": {
+   "title": "11:47pm enquiry, no staff online: n8n replies in about 2 seconds #Shorts",
+   "description": "A patient sends the clinic's website form late at night. n8n checks it for spam, thanks them instantly, drafts a reply from the clinic's own information, emails it and logs the lead.\n\nReal n8n run on a demo clinic site. The AI answer and the Sheet row are simulated and labelled in the video.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+   "tags": [
+    "after hours enquiries",
+    "AI receptionist",
+    "website form",
+    "lead capture",
+    "n8n",
+    "n8n tutorial",
+    "automation",
+    "AI automation",
+    "no code",
+    "clinic automation",
+    "clinic marketing",
+    "workflow automation",
+    "FrontDesk Flows",
+    "shorts"
+   ],
+   "source_url": ""
+  },
+  "anaifrontdeskshouldneverplaydocto": {
+   "title": "Urgent patient message? This n8n workflow hands it to a human #Shorts",
+   "description": "An AI front desk should never play doctor.\n\nWhen a message sounds urgent (chest pain, breathing trouble, heavy bleeding), the workflow skips the normal reply: staff get an alert email with the phone number, and the patient is told to call 999. No diagnosis, no booking link.\n\nReal n8n run on a demo clinic site; both emails were really sent. The AI's urgent classification is simulated and labelled.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+   "tags": [
+    "AI safety",
+    "healthtech",
+    "urgent triage",
+    "physiotherapy",
+    "n8n",
+    "n8n tutorial",
+    "automation",
+    "AI automation",
+    "no code",
+    "clinic automation",
+    "clinic marketing",
+    "workflow automation",
+    "FrontDesk Flows",
+    "shorts"
+   ],
+   "source_url": ""
+  },
+  "6pmthreepatientsbookedtomorrowzer": {
+   "title": "Appointment reminders at 6pm, zero staff: a live n8n run #Shorts",
+   "description": "Every day at 6pm the workflow reads tomorrow's bookings, splits them into one item per patient, writes a personal reminder and emails each one with a reschedule link.\n\nReal n8n run with a demo booking system and a demo inbox.\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). For clinics, agencies and freelancers.\nInstagram: https://www.instagram.com/frontdeskflows/\n\n#Shorts #n8n #automation",
+   "tags": [
+    "appointment reminders",
+    "no show",
+    "physiotherapy",
+    "booking",
+    "n8n",
+    "n8n tutorial",
+    "automation",
+    "AI automation",
+    "no code",
+    "clinic automation",
+    "clinic marketing",
+    "workflow automation",
+    "FrontDesk Flows",
+    "shorts"
+   ],
+   "source_url": ""
+  }
  }
 }
