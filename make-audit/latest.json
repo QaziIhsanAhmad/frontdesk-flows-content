@@ -1,61 +1,10 @@
 {
- "at": "2026-10-16T07:59:01.650300Z",
- "action": "ig_export:DeRyHpZjbAz,DeUW0shjQ1z,DeW7oXpERrs,DeZgZETibyE,DecFM5vDGUn,DeeqAcJDVKU,DehO47fjEm_",
- "structure": {
-  "dataStructure": {
-   "id": 640314,
-   "name": "FDF YouTube upload",
-   "teamId": 3012165,
-   "spec": [
-    {
-     "name": "yt_id",
-     "type": "text"
-    },
-    {
-     "name": "title",
-     "type": "text"
-    },
-    {
-     "name": "ig_permalink",
-     "type": "text"
-    },
-    {
-     "name": "ig_timestamp",
-     "type": "text"
-    },
-    {
-     "name": "source",
-     "type": "text"
-    },
-    {
-     "name": "uploaded",
-     "type": "text"
-    },
-    {
-     "name": "media_url",
-     "type": "text"
-    },
-    {
-     "name": "caption",
-     "type": "text"
-    }
-   ],
-   "strict": false
-  }
- },
- "datastore": {
-  "id": 220958,
-  "name": "FDF YouTube uploads",
-  "teamId": 3012165,
-  "datastructureId": 640314,
-  "records": 0,
-  "size": "0",
-  "maxSize": "1048576"
- },
- "export_create": {
+ "at": "2026-10-16T08:03:17.459397Z",
+ "action": "fb_export:2026-10-09:2026-10-15",
+ "patch": {
   "scenario": {
    "id": 7992780,
-   "name": "FDF IG reel export",
+   "name": "FDF FB reel export",
    "teamId": 3012165,
    "hookId": null,
    "devices": [],
@@ -70,10 +19,10 @@
    "islocked": false,
    "isPaused": false,
    "usedPackages": [
-    "instagram-business",
+    "facebook-pages",
     "datastore"
    ],
-   "lastEdit": "2026-10-16T07:59:02.991Z",
+   "lastEdit": "2026-10-16T08:03:18.300Z",
    "scheduling": {
     "type": "on-demand"
    },
@@ -96,6 +45,11 @@
    "type": "scenario",
    "isShared": false,
    "isActive": false
+  },
+  "scenarioVersion": {
+   "scenarioId": 7992780,
+   "version": 2,
+   "draft": false
   }
  },
  "export_start": {
@@ -106,7 +60,7 @@
   }
  },
  "export_run": {
-  "executionId": "2f2b6c28da0d4c0d951e4e3bd28b3c26",
+  "executionId": "28a8661391df444bb904a54e0c701864",
   "status": 1
  },
  "export_stop": {
@@ -118,41 +72,42 @@
  },
  "export_files": [
   [
-   "DehO47fjEm_",
-   1479095,
-   "2026-10-15T15:01:55.000Z"
+   "videos/fb/2026-10-15T1501_1878567626640870.mp4",
+   1499212,
+   "Quiz: would your AI assistant invent a price if a "
   ],
   [
-   "DeeqAcJDVKU",
-   1491177,
-   "2026-10-14T15:01:09.000Z"
+   "videos/fb/2026-10-14T1500_1130119912825592.mp4",
+   1505605,
+   "Myth: only ask happy patients for reviews.\nFact: t"
   ],
   [
-   "DecFM5vDGUn",
-   1692632,
-   "2026-10-13T15:01:03.000Z"
+   "videos/fb/2026-10-13T1500_1316845843791605.mp4",
+   1712356,
+   "How a website form talks to n8n: one Webhook node."
   ],
   [
-   "DeZgZETibyE",
+   "videos/fb/2026-10-12T1500_1891146785182767.mp4",
    1409657,
-   "2026-10-12T15:00:59.000Z"
+   "14:30. Daniel didn't show up. Reception taps 'No-s"
   ],
   [
-   "DeW7oXpERrs",
+   "videos/fb/2026-10-11T1500_2192877868767223.mp4",
    1648542,
-   "2026-10-11T15:01:17.000Z"
+   "What happens to your AI workflow when the AI provi"
   ],
   [
-   "DeUW0shjQ1z",
+   "videos/fb/2026-10-10T1500_1731883075529331.mp4",
    1444601,
-   "2026-10-10T15:01:12.000Z"
+   "Don't make website visitors watch a spinner while "
   ],
   [
-   "DeRyHpZjbAz",
+   "videos/fb/2026-10-09T1501_944548495395478.mp4",
    1607962,
-   "2026-10-09T15:01:58.000Z"
+   "This clinic's form just got hit by a spam bot. n8n"
   ]
  ],
+ "uploads": 9,
  "teams": {
   "teams": [
    {
@@ -678,6 +633,7 @@
       "endedAt": "2026-10-08T16:00:44.146Z",
       "timestamp": "2026-10-08T15:58:33.139Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": null
      },
      "detail": {
@@ -751,6 +707,7 @@
       "endedAt": "2026-10-08T14:00:23.560Z",
       "timestamp": "2026-10-08T13:58:33.379Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": null
      },
      "detail": {
@@ -808,6 +765,7 @@
       "endedAt": "2026-10-08T13:22:50.028Z",
       "timestamp": "2026-10-08T13:20:38.465Z",
       "status": 1,
+      "displayStatus": "SUCCESS",
       "authorName": "Qazi Ehsan"
      },
      "detail": {
@@ -1008,6 +966,7 @@
       "endedAt": "2026-10-07T18:08:29.489Z",
       "timestamp": "2026-10-07T18:08:29.135Z",
       "status": 3,
+      "displayStatus": "ERROR",
       "authorName": null
      },
      "detail": {
@@ -1172,11 +1131,44 @@
       "endedAt": "2026-10-01T12:55:11.825Z",
       "timestamp": "2026-10-01T12:55:11.521Z",
       "status": 3,
+      "displayStatus": "ERROR",
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1790859311521_7f208fb06c5b424d921bbfe0866a2eb3",
+       "eventType": "EXECUTION_END",
+       "id": "7f208fb06c5b424d921bbfe0866a2eb3",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-01T12:55:11.521Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "error": {
+        "name": "DataError",
+        "message": "Error: 404 Not Found",
+        "causeModule": {
+         "name": "TriggerNewArticle",
+         "appName": "rss"
+        }
+       },
+       "scenarioId": 7717461,
+       "duration": 300,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-01T12:55:11.825Z",
+       "status": 3,
+       "displayStatus": "ERROR",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1224,7 +1216,7 @@
   {
    "scenario": {
     "id": 7992780,
-    "name": "FDF IG reel export",
+    "name": "FDF FB reel export",
     "teamId": 3012165,
     "hookId": null,
     "devices": [],
@@ -1239,10 +1231,10 @@
     "islocked": false,
     "isPaused": false,
     "usedPackages": [
-     "instagram-business",
+     "facebook-pages",
      "datastore"
     ],
-    "lastEdit": "2026-10-16T07:59:02.991Z",
+    "lastEdit": "2026-10-16T08:03:18.300Z",
     "scheduling": {
      "type": "on-demand"
     },
@@ -1264,13 +1256,13 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 15,
-    "centicredits": 1500,
-    "transfer": 36880,
+    "operations": 25,
+    "centicredits": 2500,
+    "transfer": 99725,
     "usedModules": [
      {
-      "moduleName": "GetUserMedia",
-      "packageName": "instagram-business"
+      "moduleName": "ListVideos",
+      "packageName": "facebook-pages"
      },
      {
       "moduleName": "AddRecord",
