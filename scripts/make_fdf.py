@@ -242,12 +242,18 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status"):
                   open("youtube/uploads.json", "w"), indent=1, ensure_ascii=False)
         out["uploads"] = len(recs)
 elif act[0] == "yt_credreq":
-    # creates a Make credential request; the returned public link lets the owner authorise YouTube without a Make login
-    body = {"teamId": 3012165, "name": "FrontDesk Flows YouTube", "description": "Authorise the FrontDesk Flows YouTube channel so new Instagram Reels can be uploaded as Shorts.",
-            "credentials": [{"appName": "youtube", "appModules": ["uploadVideo", "updateVideo", "addVideoPlaylist", "createPlaylist"], "nameOverride": "FrontDesk Flows YouTube"}]}
-    for path in ("/credential-requests/requests", "/credential-requests"):
+    # creates a Make credential request; its public link lets the owner authorise YouTube without a Make login
+    conn = {"type": "youtube", "nameOverride": "FrontDesk Flows YouTube",
+            "scope": ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube"],
+            "description": "Sign in with the Google account that owns the FrontDesk Flows channel."}
+    base = {"teamId": 3012165, "name": "FrontDesk Flows YouTube", "description": "Authorise the FrontDesk Flows YouTube channel so new Instagram Reels are uploaded as Shorts."}
+    tries = [("/credential-requests/requests", dict(base, provider={"connections": [conn]})),
+             ("/credential-requests/requests", dict(base, connections=[conn])),
+             ("/credential-requests/requests", dict(base, provider={"type": "credentials", "connections": [conn]})),
+             ("/credential-requests/requests/create-by-credentials", dict(base, connections=[conn]))]
+    for path, body in tries:
         r = call(path, "POST", body)
-        out.setdefault("credreq", []).append({"path": path, "result": r})
+        out.setdefault("credreq", []).append({"path": path, "keys": list(body), "result": r})
         if "_error" not in r: break
 elif act[0] == "daily":
     out["result"] = call(f"/scenarios/{act[1]}", "PATCH", {"scheduling": json.dumps({"type": "daily", "time": act[2]})})
