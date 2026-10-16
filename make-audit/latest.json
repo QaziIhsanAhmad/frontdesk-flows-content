@@ -1,19 +1,57 @@
 {
- "at": "2026-10-16T07:33:30.865404Z",
+ "at": "2026-10-16T07:35:29.169014Z",
  "action": "yt_credreq",
  "credreq": [
   {
    "path": "/credential-requests/requests",
+   "keys": [
+    "teamId",
+    "name",
+    "description",
+    "provider"
+   ],
    "result": {
     "_error": 400,
-    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected required property, body/credentials Unexpected property, body/provider Expected union value\",\"details\":[]}"
+    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected union value\",\"details\":[]}"
    }
   },
   {
-   "path": "/credential-requests",
+   "path": "/credential-requests/requests",
+   "keys": [
+    "teamId",
+    "name",
+    "description",
+    "connections"
+   ],
+   "result": {
+    "_error": 400,
+    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected required property, body/connections/0/appName Expected required property, body/connections/0/appModules Expected required property, body/connections/0/appVersion Expected required property, body/connections/0/appName Expected string, body/connections/0/appModules Expected array, body/connections/0/appVersion Expected string, body/provider Expected union value\",\"details\":[]}"
+   }
+  },
+  {
+   "path": "/credential-requests/requests",
+   "keys": [
+    "teamId",
+    "name",
+    "description",
+    "provider"
+   ],
+   "result": {
+    "_error": 400,
+    "_body": "{\"code\":\"SC400\",\"name\":\"Bad Request\",\"message\":\"body/provider Expected union value\",\"details\":[]}"
+   }
+  },
+  {
+   "path": "/credential-requests/requests/create-by-credentials",
+   "keys": [
+    "teamId",
+    "name",
+    "description",
+    "connections"
+   ],
    "result": {
     "_error": 404,
-    "_body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>Cannot GET /internal</pre>\n</body>\n</html>\n"
+    "_body": "{\"message\":\"Page not found\"}"
    }
   }
  ],
