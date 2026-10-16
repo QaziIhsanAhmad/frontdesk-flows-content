@@ -1,84 +1,6 @@
 {
- "at": "2026-10-16T09:16:32.682869Z",
- "action": "yt_setup:11998429:live:DeZgZETibyE,DecFM5vDGUn,DeeqAcJDVKU,DehO47fjEm_:2026-10-16T08:21:21Z",
- "datastore": {
-  "id": 220958,
-  "name": "FDF YouTube uploads",
-  "records": 33,
-  "size": "39191",
-  "maxSize": "1048576",
-  "teamId": 3012165
- },
- "since": "2026-10-16T08",
- "scenario": {
-  "scenario": {
-   "id": 7993259,
-   "name": "FDF Instagram to YouTube Shorts",
-   "teamId": 3012165,
-   "hookId": null,
-   "devices": [],
-   "deviceId": null,
-   "deviceScope": null,
-   "concept": false,
-   "description": "",
-   "folderId": null,
-   "slots": null,
-   "isinvalid": false,
-   "islinked": true,
-   "islocked": false,
-   "isPaused": false,
-   "usedPackages": [
-    "http",
-    "instagram-business",
-    "datastore",
-    "util",
-    "util",
-    "builtin",
-    "http",
-    "youtube",
-    "builtin",
-    "datastore",
-    "instagram-business",
-    "youtube",
-    "builtin",
-    "datastore"
-   ],
-   "lastEdit": "2026-10-16T09:16:34.077Z",
-   "scheduling": {
-    "type": "indefinitely",
-    "interval": 21600
-   },
-   "iswaiting": false,
-   "dlqCount": 0,
-   "allDlqCount": 0,
-   "createdByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "updatedByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "nextExec": "2026-10-16T14:21:22.707Z",
-   "created": "2026-10-16T08:21:22.208Z",
-   "chainingRole": "none",
-   "type": "scenario",
-   "isShared": false,
-   "isActive": true
-  },
-  "scenarioVersion": {
-   "scenarioId": 7993259,
-   "version": 3,
-   "draft": false
-  }
- },
- "start": {
-  "_error": 422,
-  "_body": "{\"detail\":\"Scenario is already running.\",\"message\":\"Scenario is already running (on start attempt)\",\"code\":\"IM306\"}"
- },
- "uploads": 10,
+ "at": "2026-10-16T19:41:38.224481Z",
+ "action": "audit",
  "plan": {
   "product": "Free",
   "operations_limit": 1000,
@@ -182,14 +104,14 @@
    },
    {
     "date": "2026-10-16T00:00:00.000+05:00",
-    "operations": 55,
-    "dataTransfer": 6220933,
-    "centicredits": 5500
+    "operations": 82,
+    "dataTransfer": 12340759,
+    "centicredits": 8200
    }
   ]
  },
- "usage_30d_operations": 157,
- "usage_30d_transfer": 6232894,
+ "usage_30d_operations": 184,
+ "usage_30d_transfer": 12352720,
  "teams": {
   "teams": [
    {
@@ -259,14 +181,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-16T14:21:22.707Z",
+    "nextExec": "2026-10-16T20:21:22.707Z",
     "created": "2026-10-16T08:21:22.208Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 23,
-    "centicredits": 2300,
-    "transfer": 6121208,
+    "operations": 45,
+    "centicredits": 4500,
+    "transfer": 12241034,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
@@ -744,6 +666,61 @@
    "logs": [
     {
      "log": {
+      "imtId": "1792160484928_87168ab6015c45439bd461808d9f418b",
+      "scenarioName": "FDF Instagram to YouTube Shorts",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7993259,
+      "instant": false,
+      "duration": 3767,
+      "centicredits": 2200,
+      "operations": 22,
+      "transfer": 6119826,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "87168ab6015c45439bd461808d9f418b",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-10-16T14:21:28.698Z",
+      "timestamp": "2026-10-16T14:21:24.928Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1792160484928_87168ab6015c45439bd461808d9f418b",
+       "eventType": "EXECUTION_END",
+       "id": "87168ab6015c45439bd461808d9f418b",
+       "@kindId": 7993259,
+       "timestamp": "2026-10-16T14:21:24.928Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 3767,
+       "centicredits": 2200,
+       "operations": 22,
+       "transfer": 6119826,
+       "endedAt": "2026-10-16T14:21:28.698Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": true
+      }
+     }
+    },
+    {
+     "log": {
       "imtId": "1792142194077_73605717",
       "id": "73605717",
       "detail": {
@@ -991,13 +968,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-10-16T09:58:30.976Z",
+    "nextExec": "2026-10-16T19:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 109,
-    "centicredits": 10900,
+    "operations": 114,
+    "centicredits": 11400,
     "transfer": 11961,
     "usedModules": [
      {
@@ -1741,8 +1718,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1756,8 +1733,8 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1794,8 +1771,40 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1791396509135_639e874e8d5e404494f5c3e9b5b0f398",
+       "eventType": "EXECUTION_END",
+       "id": "639e874e8d5e404494f5c3e9b5b0f398",
+       "@kindId": 7717461,
+       "timestamp": "2026-10-07T18:08:29.135Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7717461,
+       "scenarioName": "Integration RSS",
+       "error": {
+        "name": "DataError",
+        "message": "Error: 404 Not Found",
+        "causeModule": {
+         "appName": "rss",
+         "name": "TriggerNewArticle"
+        }
+       },
+       "scenarioId": 7717461,
+       "duration": 352,
+       "centicredits": 100,
+       "operations": 1,
+       "transfer": 0,
+       "endedAt": "2026-10-07T18:08:29.489Z",
+       "status": 3,
+       "displayStatus": "ERROR",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1814,8 +1823,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
@@ -1834,8 +1843,8 @@
       "authorName": "frontdesk flows"
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "_error": 400,
+      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
      }
     },
     {
