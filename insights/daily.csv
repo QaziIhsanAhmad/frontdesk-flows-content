@@ -88,3 +88,29 @@ date_pkt,platform,published_pkt,reel,caption_start,views,reach,viewers,likes,com
 2026-10-23,FB,2026-10-10 20:00,c16-respond-first,Don't make website visitors watch a,141,132,130,0,0,0,0,0,0,"338,367",3s,29,1,103,0
 2026-10-23,IG,2026-10-09 20:01,c13-honeypot,This clinic's form just got hit by,94,73,,0,0,0,0,0,0,4m 31s,3s,,1,103,0
 2026-10-23,FB,2026-10-09 20:01,c13-honeypot,This clinic's form just got hit by,17,11,11,0,0,0,0,0,0,"37,517",3s,4,1,103,0
+2026-10-26,IG,2026-10-19 23:19,reel-16-respond-first,n8n tip: add 'Respond to Webhook' r,48,42,,0,0,0,0,0,0,1m 56s,3s,,1,103,0
+2026-10-26,FB,2026-10-19 23:19,reel-16-respond-first,n8n tip: add 'Respond to Webhook' r,1,1,1,0,0,0,0,0,0,"2,136",2s,0,1,103,0
+2026-10-26,IG,2026-10-19 22:49,reel-14-only-your-info,The fastest way to lose a client's,7,6,,0,0,0,0,0,0,7s,1s,,1,103,0
+2026-10-26,FB,2026-10-19 22:49,reel-14-only-your-info,The fastest way to lose a client's,1,1,1,0,0,0,0,0,0,"2,336",2s,0,1,103,0
+2026-10-26,IG,2026-10-19 22:20,reel-12-webhook-basics,A website form talks to n8n throug,117,103,,1,0,0,0,1,0,5m 28s,3s,,1,103,0
+2026-10-26,FB,2026-10-19 22:19,reel-12-webhook-basics,A website form talks to n8n throug,0,0,0,0,0,0,0,0,0,0,0s,0,1,103,0
+2026-10-26,IG,2026-10-19 21:49,reel-09-reviews-policy,Review-request automations often f,7,4,,0,0,0,0,0,0,49s,12s,,1,103,0
+2026-10-26,FB,2026-10-19 21:49,reel-09-reviews-policy,Review-request automations often f,0,0,0,0,0,0,0,0,0,0,0s,0,1,103,0
+2026-10-26,IG,2026-10-19 21:20,reel-08-no-show,No-show follow-up in three steps: ,4,3,,0,0,0,0,0,0,4s,1s,,1,103,0
+2026-10-26,FB,2026-10-19 21:19,reel-08-no-show,No-show follow-up in three steps: ,0,0,0,0,0,0,0,0,0,0,0s,0,1,103,0
+2026-10-26,IG,2026-10-18 20:01,c07-reminders,6pm. Three patients booked tomorrow,15,7,,0,0,0,0,0,0,1m 5s,6s,,1,103,0
+2026-10-26,FB,2026-10-18 20:00,c07-reminders,6pm. Three patients booked tomorrow,143,126,124,0,0,0,0,0,0,"342,429",3s,32,1,103,0
+2026-10-26,IG,2026-10-17 20:01,c02-urgent,An AI front desk should never play,29,22,,0,0,0,0,0,0,1m 6s,3s,,1,103,0
+2026-10-26,FB,2026-10-17 20:00,c02-urgent,An AI front desk should never play,214,213,206,0,0,0,0,0,0,"316,960",2s,12,1,103,0
+2026-10-26,IG,2026-10-16 20:01,c01-after-hours,11:47pm. A patient messages the cli,16,5,,0,0,0,0,0,0,54s,4s,,1,103,0
+2026-10-26,FB,2026-10-16 20:00,c01-after-hours,11:47pm. A patient messages the cli,39,35,34,0,0,0,0,0,0,"83,406",2s,5,1,103,0
+2026-10-26,IG,2026-10-15 20:01,c14-only-your-info,Quiz: would your AI assistant inven,34,20,,0,0,0,0,0,0,1m 3s,2s,,1,103,0
+2026-10-26,FB,2026-10-15 20:01,c14-only-your-info,Quiz: would your AI assistant inven,194,184,180,0,0,0,0,0,0,"345,688",2s,27,1,103,0
+2026-10-26,IG,2026-10-14 20:01,c09-reviews,Myth: only ask happy patients for r,19,5,,0,0,0,0,0,0,52s,3s,,1,103,0
+2026-10-26,FB,2026-10-14 20:00,c09-reviews,Myth: only ask happy patients for r,19,19,17,0,0,0,0,0,0,"26,378",2s,1,1,103,0
+2026-10-26,IG,2026-10-13 20:01,c12-webhook,How a website form talks to n8n: on,125,102,,0,0,0,0,0,0,4m 9s,2s,,1,103,0
+2026-10-26,FB,2026-10-13 20:00,c12-webhook,How a website form talks to n8n: on,86,82,79,0,0,0,1,1,0,"194,997",2s,15,1,103,0
+2026-10-26,IG,2026-10-12 20:00,c08-no-show,14:30. Daniel didn't show up. Recep,70,54,,1,0,0,0,1,0,3m 6s,3s,,1,103,0
+2026-10-26,FB,2026-10-12 20:00,c08-no-show,14:30. Daniel didn't show up. Recep,108,99,92,0,0,0,0,0,0,"279,378",3s,15,1,103,0
+2026-10-26,IG,2026-10-11 20:01,c15-ai-outage,What happens to your AI workflow wh,129,106,,0,0,0,1,1,0,5m 16s,3s,,1,103,0
+2026-10-26,FB,2026-10-11 20:00,c15-ai-outage,What happens to your AI workflow wh,223,209,207,1,0,0,0,1,0,"477,388",2s,33,1,103,0
