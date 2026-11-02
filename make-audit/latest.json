@@ -1,7 +1,6 @@
 {
- "at": "2026-11-02T17:00:10.833855Z",
- "action": "insights_pull",
- "insights_rows": 0,
+ "at": "2026-11-02T23:40:29.928678Z",
+ "action": "audit",
  "plan": {
   "product": "Free",
   "operations_limit": 1000,
@@ -171,14 +170,20 @@
    },
    {
     "date": "2026-11-02T00:00:00.000+05:00",
-    "operations": 19,
+    "operations": 20,
     "dataTransfer": 132929,
-    "centicredits": 1900
+    "centicredits": 2000
+   },
+   {
+    "date": "2026-11-03T00:00:00.000+05:00",
+    "operations": 4,
+    "dataTransfer": 33391,
+    "centicredits": 400
    }
   ]
  },
- "usage_30d_operations": 664,
- "usage_30d_transfer": 33030223,
+ "usage_30d_operations": 669,
+ "usage_30d_transfer": 33063614,
  "teams": {
   "teams": [
    {
@@ -248,14 +253,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-02T20:21:22.707Z",
+    "nextExec": "2026-11-03T02:21:22.707Z",
     "created": "2026-10-16T08:21:22.208Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 277,
-    "centicredits": 27700,
-    "transfer": 32913285,
+    "operations": 279,
+    "centicredits": 27900,
+    "transfer": 32946676,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
@@ -731,6 +736,61 @@
     }
    },
    "logs": [
+    {
+     "log": {
+      "imtId": "1793650886789_b8484da448d3431da785bafd7d1224de",
+      "scenarioName": "FDF Instagram to YouTube Shorts",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7993259,
+      "instant": false,
+      "duration": 1393,
+      "centicredits": 200,
+      "operations": 2,
+      "transfer": 33391,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "b8484da448d3431da785bafd7d1224de",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-11-02T20:21:28.388Z",
+      "timestamp": "2026-11-02T20:21:26.789Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1793650886789_b8484da448d3431da785bafd7d1224de",
+       "eventType": "EXECUTION_END",
+       "id": "b8484da448d3431da785bafd7d1224de",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-02T20:21:26.789Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1393,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33391,
+       "endedAt": "2026-11-02T20:21:28.388Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": true
+      }
+     }
+    },
     {
      "log": {
       "imtId": "1793629284756_56cd40ad25ff43078b125decb5adb78e",
@@ -2002,37 +2062,6 @@
       "_error": 429,
       "_body": "Requests limit for organization exceeded, please try again later."
      }
-    },
-    {
-     "log": {
-      "imtId": "1793110885213_2d89320fbca943e1b480fd5bcab0532c",
-      "scenarioName": "FDF Instagram to YouTube Shorts",
-      "replayOfExecutionId": null,
-      "eventType": "EXECUTION_END",
-      "teamId": 3012165,
-      "type": "auto",
-      "scenarioId": 7993259,
-      "instant": false,
-      "duration": 970,
-      "centicredits": 200,
-      "operations": 2,
-      "transfer": 32973,
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
-      "id": "2d89320fbca943e1b480fd5bcab0532c",
-      "authorId": null,
-      "replayOfExecutionTimestamp": null,
-      "endedAt": "2026-10-27T14:21:26.589Z",
-      "timestamp": "2026-10-27T14:21:25.213Z",
-      "status": 1,
-      "displayStatus": "SUCCESS",
-      "isReplayable": true,
-      "authorName": null
-     },
-     "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
-     }
     }
    ]
   },
@@ -2077,13 +2106,13 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-02T17:58:30.976Z",
+    "nextExec": "2026-11-02T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 316,
-    "centicredits": 31600,
+    "operations": 319,
+    "centicredits": 31900,
     "transfer": 11961,
     "usedModules": [
      {
