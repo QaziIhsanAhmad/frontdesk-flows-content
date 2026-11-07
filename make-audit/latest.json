@@ -1,5 +1,5 @@
 {
- "at": "2026-11-06T21:44:37.310309Z",
+ "at": "2026-11-07T20:28:10.324626Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-09T00:00:00.000+05:00",
-    "operations": 12,
-    "dataTransfer": 0,
-    "centicredits": 1200
-   },
    {
     "date": "2026-10-10T00:00:00.000+05:00",
     "operations": 12,
@@ -188,9 +182,15 @@
    },
    {
     "date": "2026-11-07T00:00:00.000+05:00",
-    "operations": 2,
+    "operations": 13,
     "dataTransfer": 0,
-    "centicredits": 200
+    "centicredits": 1300
+   },
+   {
+    "date": "2026-11-08T00:00:00.000+05:00",
+    "operations": 1,
+    "dataTransfer": 0,
+    "centicredits": 100
    }
   ]
  },
@@ -255,14 +255,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-06T21:58:30.976Z",
+    "nextExec": "2026-11-07T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 362,
-    "centicredits": 36200,
-    "transfer": 11961,
+    "operations": 360,
+    "centicredits": 36000,
+    "transfer": 0,
     "usedModules": [
      {
       "moduleName": "TriggerNewArticle",
