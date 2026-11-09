@@ -1,6 +1,7 @@
 {
- "at": "2026-11-08T20:44:37.604259Z",
- "action": "audit",
+ "at": "2026-11-09T17:25:58.642747Z",
+ "action": "insights_pull",
+ "insights_rows": 0,
  "plan": {
   "product": "Free",
   "operations_limit": 1000,
@@ -188,13 +189,13 @@
    },
    {
     "date": "2026-11-09T00:00:00.000+05:00",
-    "operations": 1,
+    "operations": 11,
     "dataTransfer": 0,
-    "centicredits": 100
+    "centicredits": 1100
    }
   ]
  },
- "usage_30d_operations": 730,
+ "usage_30d_operations": 740,
  "usage_30d_transfer": 33547083,
  "teams": {
   "teams": [
@@ -255,7 +256,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-08T21:58:30.976Z",
+    "nextExec": "2026-11-09T17:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -1494,8 +1495,8 @@
       "authorName": "Qazi Ehsan"
      },
      "detail": {
-      "_error": 400,
-      "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     }
    ]
