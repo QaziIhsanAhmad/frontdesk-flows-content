@@ -1,5 +1,5 @@
 {
- "at": "2026-11-10T00:24:28.871936Z",
+ "at": "2026-11-10T21:56:06.831620Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-12T00:00:00.000+05:00",
-    "operations": 12,
-    "dataTransfer": 0,
-    "centicredits": 1200
-   },
    {
     "date": "2026-10-13T00:00:00.000+05:00",
     "operations": 12,
@@ -188,13 +182,19 @@
    },
    {
     "date": "2026-11-10T00:00:00.000+05:00",
-    "operations": 3,
+    "operations": 12,
     "dataTransfer": 0,
-    "centicredits": 300
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-11T00:00:00.000+05:00",
+    "operations": 1,
+    "dataTransfer": 0,
+    "centicredits": 100
    }
   ]
  },
- "usage_30d_operations": 732,
+ "usage_30d_operations": 730,
  "usage_30d_transfer": 33547083,
  "teams": {
   "teams": [
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-10T01:58:30.976Z",
+    "nextExec": "2026-11-10T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -2367,7 +2367,7 @@
       "timestamp": "2026-11-03T20:21:25.652Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2398,7 +2398,7 @@
       "timestamp": "2026-11-03T14:21:25.579Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2429,7 +2429,7 @@
       "timestamp": "2026-11-03T08:21:26.893Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2460,7 +2460,7 @@
       "timestamp": "2026-11-03T02:21:24.972Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
+      "isReplayable": false,
       "authorName": null
      },
      "detail": {
