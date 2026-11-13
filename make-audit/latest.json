@@ -1,5 +1,5 @@
 {
- "at": "2026-11-12T22:26:42.710595Z",
+ "at": "2026-11-13T22:08:31.992353Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-15T00:00:00.000+05:00",
-    "operations": 12,
-    "dataTransfer": 0,
-    "centicredits": 1200
-   },
    {
     "date": "2026-10-16T00:00:00.000+05:00",
     "operations": 82,
@@ -188,6 +182,12 @@
    },
    {
     "date": "2026-11-13T00:00:00.000+05:00",
+    "operations": 12,
+    "dataTransfer": 0,
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-14T00:00:00.000+05:00",
     "operations": 2,
     "dataTransfer": 0,
     "centicredits": 200
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-12T23:58:30.976Z",
+    "nextExec": "2026-11-13T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -1664,7 +1664,6 @@
       "timestamp": "2026-11-06T20:21:24.126Z",
       "status": 3,
       "displayStatus": "ERROR",
-      "isReplayable": true,
       "authorName": null
      },
      "detail": {
@@ -1700,7 +1699,7 @@
        "endedAt": "2026-11-06T20:21:29.443Z",
        "status": 3,
        "displayStatus": "ERROR",
-       "isReplayable": true
+       "isReplayable": false
       }
      }
     },
@@ -1727,7 +1726,6 @@
       "timestamp": "2026-11-06T14:21:25.145Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
       "authorName": null
      },
      "detail": {
@@ -1755,7 +1753,7 @@
        "endedAt": "2026-11-06T14:21:26.223Z",
        "status": 1,
        "displayStatus": "SUCCESS",
-       "isReplayable": true
+       "isReplayable": false
       }
      }
     },
@@ -1782,7 +1780,6 @@
       "timestamp": "2026-11-06T08:21:26.447Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
       "authorName": null
      },
      "detail": {
@@ -1810,7 +1807,7 @@
        "endedAt": "2026-11-06T08:21:27.497Z",
        "status": 1,
        "displayStatus": "SUCCESS",
-       "isReplayable": true
+       "isReplayable": false
       }
      }
     },
@@ -1837,7 +1834,6 @@
       "timestamp": "2026-11-06T02:21:26.348Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": true,
       "authorName": null
      },
      "detail": {
@@ -1865,7 +1861,7 @@
        "endedAt": "2026-11-06T02:21:28.412Z",
        "status": 1,
        "displayStatus": "SUCCESS",
-       "isReplayable": true
+       "isReplayable": false
       }
      }
     },
@@ -1892,7 +1888,6 @@
       "timestamp": "2026-11-05T20:21:26.717Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -1947,7 +1942,6 @@
       "timestamp": "2026-11-05T14:21:25.900Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2002,7 +1996,6 @@
       "timestamp": "2026-11-05T08:21:28.986Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2057,7 +2050,6 @@
       "timestamp": "2026-11-05T02:21:24.713Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2112,7 +2104,6 @@
       "timestamp": "2026-11-04T20:21:25.347Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2167,7 +2158,6 @@
       "timestamp": "2026-11-04T14:21:24.720Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2222,7 +2212,6 @@
       "timestamp": "2026-11-04T08:21:26.359Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2253,7 +2242,6 @@
       "timestamp": "2026-11-04T02:21:25.032Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2284,7 +2272,6 @@
       "timestamp": "2026-11-03T20:21:25.652Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2315,7 +2302,6 @@
       "timestamp": "2026-11-03T14:21:25.579Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2346,7 +2332,6 @@
       "timestamp": "2026-11-03T08:21:26.893Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2377,7 +2362,6 @@
       "timestamp": "2026-11-03T02:21:24.972Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2408,7 +2392,6 @@
       "timestamp": "2026-11-02T20:21:26.789Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2439,7 +2422,6 @@
       "timestamp": "2026-11-02T14:21:24.756Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2470,7 +2452,6 @@
       "timestamp": "2026-11-02T08:21:24.611Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2501,7 +2482,6 @@
       "timestamp": "2026-11-02T02:21:25.943Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2532,7 +2512,6 @@
       "timestamp": "2026-11-01T20:21:24.537Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2563,7 +2542,6 @@
       "timestamp": "2026-11-01T14:21:25.748Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2594,7 +2572,6 @@
       "timestamp": "2026-11-01T08:21:25.857Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
@@ -2625,7 +2602,6 @@
       "timestamp": "2026-11-01T02:21:24.728Z",
       "status": 1,
       "displayStatus": "SUCCESS",
-      "isReplayable": false,
       "authorName": null
      },
      "detail": {
