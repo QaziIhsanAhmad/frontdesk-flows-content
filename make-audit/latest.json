@@ -1,5 +1,5 @@
 {
- "at": "2026-11-13T22:08:31.992353Z",
+ "at": "2026-11-14T20:54:25.889482Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-16T00:00:00.000+05:00",
-    "operations": 82,
-    "dataTransfer": 12340759,
-    "centicredits": 8200
-   },
    {
     "date": "2026-10-17T00:00:00.000+05:00",
     "operations": 88,
@@ -188,14 +182,20 @@
    },
    {
     "date": "2026-11-14T00:00:00.000+05:00",
-    "operations": 2,
+    "operations": 12,
     "dataTransfer": 0,
-    "centicredits": 200
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-15T00:00:00.000+05:00",
+    "operations": 1,
+    "dataTransfer": 0,
+    "centicredits": 100
    }
   ]
  },
- "usage_30d_operations": 731,
- "usage_30d_transfer": 33547083,
+ "usage_30d_operations": 660,
+ "usage_30d_transfer": 21206324,
  "teams": {
   "teams": [
    {
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-13T23:58:30.976Z",
+    "nextExec": "2026-11-14T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
