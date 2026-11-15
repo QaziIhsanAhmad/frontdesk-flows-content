@@ -1,5 +1,5 @@
 {
- "at": "2026-11-14T20:54:25.889482Z",
+ "at": "2026-11-15T21:14:09.830827Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-17T00:00:00.000+05:00",
-    "operations": 88,
-    "dataTransfer": 18420441,
-    "centicredits": 8800
-   },
    {
     "date": "2026-10-18T00:00:00.000+05:00",
     "operations": 36,
@@ -188,14 +182,20 @@
    },
    {
     "date": "2026-11-15T00:00:00.000+05:00",
+    "operations": 12,
+    "dataTransfer": 0,
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-16T00:00:00.000+05:00",
     "operations": 1,
     "dataTransfer": 0,
     "centicredits": 100
    }
   ]
  },
- "usage_30d_operations": 660,
- "usage_30d_transfer": 21206324,
+ "usage_30d_operations": 584,
+ "usage_30d_transfer": 2785883,
  "teams": {
   "teams": [
    {
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-14T21:58:30.976Z",
+    "nextExec": "2026-11-15T21:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -743,9 +743,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 25,
-    "centicredits": 2500,
-    "transfer": 99725,
+    "operations": 0,
+    "centicredits": 0,
+    "transfer": 0,
     "usedModules": [
      {
       "moduleName": "ListVideos",
@@ -1140,9 +1140,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 310,
-    "centicredits": 31000,
-    "transfer": 33442106,
+    "operations": 243,
+    "centicredits": 24300,
+    "transfer": 15080724,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
