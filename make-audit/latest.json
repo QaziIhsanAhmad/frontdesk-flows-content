@@ -1,6 +1,7 @@
 {
- "at": "2026-11-15T21:14:09.830827Z",
- "action": "audit",
+ "at": "2026-11-16T16:57:41.719037Z",
+ "action": "insights_pull",
+ "insights_rows": 0,
  "plan": {
   "product": "Free",
   "operations_limit": 1000,
@@ -188,13 +189,13 @@
    },
    {
     "date": "2026-11-16T00:00:00.000+05:00",
-    "operations": 1,
+    "operations": 11,
     "dataTransfer": 0,
-    "centicredits": 100
+    "centicredits": 1100
    }
   ]
  },
- "usage_30d_operations": 584,
+ "usage_30d_operations": 594,
  "usage_30d_transfer": 2785883,
  "teams": {
   "teams": [
@@ -255,7 +256,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-15T21:58:30.976Z",
+    "nextExec": "2026-11-16T17:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -1140,9 +1141,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 243,
-    "centicredits": 24300,
-    "transfer": 15080724,
+    "operations": 189,
+    "centicredits": 18900,
+    "transfer": 2780631,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
@@ -2161,32 +2162,8 @@
       "authorName": null
      },
      "detail": {
-      "scenarioLog": {
-       "imtId": "1793802084720_c8452829f8f5416dae56c3c7012f6e1c",
-       "eventType": "EXECUTION_END",
-       "id": "c8452829f8f5416dae56c3c7012f6e1c",
-       "@kindId": 7993259,
-       "timestamp": "2026-11-04T14:21:24.720Z",
-       "type": "auto",
-       "instant": false,
-       "authorId": null,
-       "teamId": 3012165,
-       "organizationId": 9158640,
-       "replayOfExecutionId": null,
-       "replayOfExecutionName": null,
-       "replayOfExecutionTimestamp": null,
-       "@scenarioId": 7993259,
-       "scenarioName": "FDF Instagram to YouTube Shorts",
-       "scenarioId": 7993259,
-       "duration": 1132,
-       "centicredits": 200,
-       "operations": 2,
-       "transfer": 33186,
-       "endedAt": "2026-11-04T14:21:26.060Z",
-       "status": 1,
-       "displayStatus": "SUCCESS",
-       "isReplayable": false
-      }
+      "_error": 429,
+      "_body": "Requests limit for organization exceeded, please try again later."
      }
     },
     {
