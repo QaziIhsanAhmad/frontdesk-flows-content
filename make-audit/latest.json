@@ -1,5 +1,5 @@
 {
- "at": "2026-11-17T00:28:10.078780Z",
+ "at": "2026-11-17T23:38:21.879812Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-19T00:00:00.000+05:00",
-    "operations": 32,
-    "dataTransfer": 157937,
-    "centicredits": 3200
-   },
    {
     "date": "2026-10-20T00:00:00.000+05:00",
     "operations": 20,
@@ -188,14 +182,20 @@
    },
    {
     "date": "2026-11-17T00:00:00.000+05:00",
-    "operations": 3,
+    "operations": 12,
     "dataTransfer": 0,
-    "centicredits": 300
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-18T00:00:00.000+05:00",
+    "operations": 2,
+    "dataTransfer": 0,
+    "centicredits": 200
    }
   ]
  },
- "usage_30d_operations": 562,
- "usage_30d_transfer": 2618437,
+ "usage_30d_operations": 541,
+ "usage_30d_transfer": 2460500,
  "teams": {
   "teams": [
    {
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-17T01:58:30.976Z",
+    "nextExec": "2026-11-17T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -1140,9 +1140,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 183,
-    "centicredits": 18300,
-    "transfer": 2738333,
+    "operations": 159,
+    "centicredits": 15900,
+    "transfer": 2572332,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
