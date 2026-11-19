@@ -1,5 +1,5 @@
 {
- "at": "2026-11-18T23:05:48.835095Z",
+ "at": "2026-11-19T23:12:50.723176Z",
  "action": "audit",
  "plan": {
   "product": "Free",
@@ -12,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-21T00:00:00.000+05:00",
-    "operations": 20,
-    "dataTransfer": 152966,
-    "centicredits": 2000
-   },
    {
     "date": "2026-10-22T00:00:00.000+05:00",
     "operations": 20,
@@ -188,14 +182,20 @@
    },
    {
     "date": "2026-11-19T00:00:00.000+05:00",
+    "operations": 12,
+    "dataTransfer": 0,
+    "centicredits": 1200
+   },
+   {
+    "date": "2026-11-20T00:00:00.000+05:00",
     "operations": 2,
     "dataTransfer": 0,
     "centicredits": 200
    }
   ]
  },
- "usage_30d_operations": 533,
- "usage_30d_transfer": 2305691,
+ "usage_30d_operations": 525,
+ "usage_30d_transfer": 2152725,
  "teams": {
   "teams": [
    {
@@ -255,7 +255,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-18T23:58:30.976Z",
+    "nextExec": "2026-11-19T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
@@ -860,68 +860,6 @@
     },
     {
      "log": {
-      "imtId": "1792137799107_28a8661391df444bb904a54e0c701864",
-      "parent": {
-       "id": null,
-       "executionId": null
-      },
-      "scenarioName": "FDF FB reel export",
-      "replayOfExecutionId": null,
-      "eventType": "EXECUTION_END",
-      "teamId": 3012165,
-      "type": "auto",
-      "scenarioId": 7992780,
-      "instant": false,
-      "duration": 3804,
-      "centicredits": 1000,
-      "operations": 10,
-      "transfer": 62845,
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
-      "id": "28a8661391df444bb904a54e0c701864",
-      "authorId": 5359472,
-      "replayOfExecutionTimestamp": null,
-      "endedAt": "2026-10-16T08:03:22.914Z",
-      "timestamp": "2026-10-16T08:03:19.107Z",
-      "status": 1,
-      "displayStatus": "SUCCESS",
-      "authorName": "Qazi Ehsan"
-     },
-     "detail": {
-      "scenarioLog": {
-       "imtId": "1792137799107_28a8661391df444bb904a54e0c701864",
-       "eventType": "EXECUTION_END",
-       "id": "28a8661391df444bb904a54e0c701864",
-       "@kindId": 7992780,
-       "timestamp": "2026-10-16T08:03:19.107Z",
-       "type": "auto",
-       "instant": false,
-       "authorId": 5359472,
-       "teamId": 3012165,
-       "organizationId": 9158640,
-       "parent": {
-        "id": null,
-        "executionId": null
-       },
-       "replayOfExecutionId": null,
-       "replayOfExecutionName": null,
-       "replayOfExecutionTimestamp": null,
-       "@scenarioId": 7992780,
-       "scenarioName": "FDF FB reel export",
-       "scenarioId": 7992780,
-       "duration": 3804,
-       "centicredits": 1000,
-       "operations": 10,
-       "transfer": 62845,
-       "endedAt": "2026-10-16T08:03:22.914Z",
-       "status": 1,
-       "displayStatus": "SUCCESS",
-       "isReplayable": false
-      }
-     }
-    },
-    {
-     "log": {
       "imtId": "1792137798738_73591889",
       "id": "73591889",
       "detail": {
@@ -978,68 +916,6 @@
      "detail": {
       "_error": 400,
       "_body": "{\"detail\":\"Validation failed for 1 parameter(s).\",\"message\":\"Bad Request\",\"code\":\"SC400\",\"suberrors\":[{\"message\":\"Value doesn't match pattern in parameter 'executionId'.\",\"name\":\"Error\"}]}"
-     }
-    },
-    {
-     "log": {
-      "imtId": "1792137543909_2f2b6c28da0d4c0d951e4e3bd28b3c26",
-      "parent": {
-       "id": null,
-       "executionId": null
-      },
-      "scenarioName": "FDF IG reel export",
-      "replayOfExecutionId": null,
-      "eventType": "EXECUTION_END",
-      "teamId": 3012165,
-      "type": "auto",
-      "scenarioId": 7992780,
-      "instant": false,
-      "duration": 2971,
-      "centicredits": 1500,
-      "operations": 15,
-      "transfer": 36880,
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
-      "id": "2f2b6c28da0d4c0d951e4e3bd28b3c26",
-      "authorId": 5359472,
-      "replayOfExecutionTimestamp": null,
-      "endedAt": "2026-10-16T07:59:06.884Z",
-      "timestamp": "2026-10-16T07:59:03.909Z",
-      "status": 1,
-      "displayStatus": "SUCCESS",
-      "authorName": "Qazi Ehsan"
-     },
-     "detail": {
-      "scenarioLog": {
-       "imtId": "1792137543909_2f2b6c28da0d4c0d951e4e3bd28b3c26",
-       "eventType": "EXECUTION_END",
-       "id": "2f2b6c28da0d4c0d951e4e3bd28b3c26",
-       "@kindId": 7992780,
-       "timestamp": "2026-10-16T07:59:03.909Z",
-       "type": "auto",
-       "instant": false,
-       "authorId": 5359472,
-       "teamId": 3012165,
-       "organizationId": 9158640,
-       "parent": {
-        "id": null,
-        "executionId": null
-       },
-       "replayOfExecutionId": null,
-       "replayOfExecutionName": null,
-       "replayOfExecutionTimestamp": null,
-       "@scenarioId": 7992780,
-       "scenarioName": "FDF IG reel export",
-       "scenarioId": 7992780,
-       "duration": 2971,
-       "centicredits": 1500,
-       "operations": 15,
-       "transfer": 36880,
-       "endedAt": "2026-10-16T07:59:06.884Z",
-       "status": 1,
-       "displayStatus": "SUCCESS",
-       "isReplayable": false
-      }
      }
     },
     {
@@ -1140,9 +1016,9 @@
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
-    "operations": 143,
-    "centicredits": 14300,
-    "transfer": 2416702,
+    "operations": 135,
+    "centicredits": 13500,
+    "transfer": 2261994,
     "usedModules": [
      {
       "moduleName": "MakeRequest",
@@ -2215,8 +2091,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793780486359_90727f35b500403aa385541b0bf9015b",
+       "eventType": "EXECUTION_END",
+       "id": "90727f35b500403aa385541b0bf9015b",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-04T08:21:26.359Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1639,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 32817,
+       "endedAt": "2026-11-04T08:21:28.405Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -2245,8 +2145,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793758885032_759cbd1e90af4cf39e45b45d2d2b82af",
+       "eventType": "EXECUTION_END",
+       "id": "759cbd1e90af4cf39e45b45d2d2b82af",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-04T02:21:25.032Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1477,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 32821,
+       "endedAt": "2026-11-04T02:21:26.714Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
