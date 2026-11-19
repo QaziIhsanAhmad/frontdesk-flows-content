@@ -1,0 +1,28 @@
+1
+00:00:00,350 --> 00:00:04,019
+The worst way to find out an automation broke? Your client tells you.
+
+2
+00:00:04,469 --> 00:00:08,480
+So every client workflow I build gets one setting: an error workflow.
+
+3
+00:00:08,930 --> 00:00:17,165
+Here's a real run. An enquiry comes in, gets cleaned up, and then the Google Sheets step fails. The connection has no access token.
+
+4
+00:00:17,615 --> 00:00:22,777
+n8n hands the failure straight to the error workflow. It builds an alert and emails it.
+
+5
+00:00:23,227 --> 00:00:28,625
+The email names the workflow, the step that failed, the exact error, and links to the execution.
+
+6
+00:00:29,075 --> 00:00:36,989
+Pick the same alert workflow in each of your client's workflows. One tip: it only fires on live runs, not when you test in the editor.
+
+7
+00:00:37,439 --> 00:00:42,538
+Follow for the next real n8n build, or DM FLOW for the free enquiry workflow.
+
