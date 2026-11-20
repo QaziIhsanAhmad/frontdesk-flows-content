@@ -163,14 +163,16 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
                      {"a": "{{split(\"" + allow + "\"; \",\")}}", "o": "array:contain", "b": "{{2.shortcode}}"}]]
             limit, sched = 25, {"type": "on-demand"}
         else:
-            since = act[4] if len(act) > 4 and act[4] else dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            # since: optional YYYY-MM-DD (no colons: the action string is split on ':'); default = now
+            since = (act[4] + "T00:00:00Z") if len(act) > 4 and act[4] else dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
             gate = [[{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
                      {"a": "{{2.timestamp}}", "o": "date:greater", "b": since}]]
             pending = act[3] if len(act) > 3 else ""
             if pending:  # older Reels still to upload (e.g. held back by YouTube's daily limit); retried every run until stored
                 gate.append([{"a": "{{2.media_product_type}}", "o": "text:equal", "b": "REELS"},
                              {"a": "{{split(\"" + pending + "\"; \",\")}}", "o": "array:contain", "b": "{{2.shortcode}}"}])
-            limit, sched = 10, {"type": "indefinitely", "interval": 21600}
+            limit = int(act[5]) if len(act) > 5 and act[5] else 5
+            sched = {"type": "indefinitely", "interval": 21600}
             out["since"] = since
         footer = ("\n\nFree clinic workflow: send the word FLOW in a DM on Instagram → https://www.instagram.com/frontdeskflows/"
                   "\n\n—\nFrontDesk Flows: ready-to-import n8n automations for clinics (AI replies, reminders, review requests). "
@@ -191,9 +193,8 @@ elif act[0] in ("yt_setup", "yt_run", "yt_status", "ig_export", "fb_export", "yt
                             "ig_permalink": "{{2.permalink}}", "ig_timestamp": "{{2.timestamp}}", "source": source, "uploaded": "{{now}}"}},
                  "metadata": {"designer": {"x": 1800, "y": 0}}}]
         bp = {"name": "FDF Instagram to YouTube Shorts", "flow": [
-            {"id": 1, "module": "http:MakeRequest", "version": 4, "parameters": {"authenticationType": "noAuth"},
-             "mapper": {"url": "https://cdn.jsdelivr.net/gh/QaziIhsanAhmad/frontdesk-flows-content@main/youtube/meta.json", "method": "get", "parseResponse": True,
-                        "stopOnHttpError": True, "allowRedirects": True, "shareCookies": False, "requestCompressedContent": True, "timeout": 40},
+            {"id": 1, "module": "json:ParseJSON", "version": 1, "parameters": {},
+             "mapper": {"json": json.dumps({"data": json.load(open("youtube/meta.json"))}, ensure_ascii=False)},
              "metadata": {"designer": {"x": 0, "y": 0}}},
             {"id": 2, "module": "instagram-business:GetUserMedia", "version": 1, "parameters": {"__IMTCONN__": IGC},
              "mapper": {"accountId": IGA, "limit": limit}, "metadata": {"designer": {"x": 300, "y": 0}}},
