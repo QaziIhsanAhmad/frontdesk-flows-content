@@ -1,87 +1,6 @@
 {
- "at": "2026-11-20T05:03:36.977715Z",
- "action": "yt_setup:11998429:live::2026-10-11:12",
- "datastore": {
-  "id": 220958,
-  "name": "FDF YouTube uploads",
-  "records": 37,
-  "size": "40294",
-  "maxSize": "1048576",
-  "teamId": 3012165
- },
- "since": "2026-10-11T00:00:00Z",
- "scenario": {
-  "scenario": {
-   "id": 7993259,
-   "name": "FDF Instagram to YouTube Shorts",
-   "teamId": 3012165,
-   "hookId": null,
-   "devices": [],
-   "deviceId": null,
-   "deviceScope": null,
-   "concept": false,
-   "description": "",
-   "folderId": null,
-   "slots": null,
-   "isinvalid": true,
-   "islinked": false,
-   "islocked": false,
-   "isPaused": false,
-   "usedPackages": [
-    "json",
-    "instagram-business",
-    "datastore",
-    "util",
-    "util",
-    "builtin",
-    "http",
-    "youtube",
-    "builtin",
-    "datastore",
-    "instagram-business",
-    "youtube",
-    "builtin",
-    "datastore"
-   ],
-   "lastEdit": "2026-11-20T05:03:38.447Z",
-   "scheduling": {
-    "type": "indefinitely",
-    "interval": 21600
-   },
-   "iswaiting": false,
-   "dlqCount": 0,
-   "allDlqCount": 0,
-   "createdByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "updatedByUser": {
-    "id": 5359472,
-    "name": "Qazi Ehsan",
-    "email": "kaziehsan111@gmail.com"
-   },
-   "nextExec": null,
-   "created": "2026-10-16T08:21:22.208Z",
-   "chainingRole": "none",
-   "type": "scenario",
-   "isShared": false,
-   "isActive": false
-  },
-  "scenarioVersion": {
-   "scenarioId": 7993259,
-   "version": 4,
-   "draft": false
-  }
- },
- "start": {
-  "scenario": {
-   "id": 7993259,
-   "islinked": true,
-   "isActive": true
-  }
- },
- "uploads": 14,
+ "at": "2026-11-20T22:48:08.827609Z",
+ "action": "audit",
  "plan": {
   "product": "Free",
   "operations_limit": 1000,
@@ -93,12 +12,6 @@
  },
  "usage_raw": {
   "data": [
-   {
-    "date": "2026-10-22T00:00:00.000+05:00",
-    "operations": 20,
-    "dataTransfer": 151751,
-    "centicredits": 2000
-   },
    {
     "date": "2026-10-23T00:00:00.000+05:00",
     "operations": 20,
@@ -269,14 +182,20 @@
    },
    {
     "date": "2026-11-20T00:00:00.000+05:00",
-    "operations": 5,
+    "operations": 18,
+    "dataTransfer": 99901,
+    "centicredits": 1800
+   },
+   {
+    "date": "2026-11-21T00:00:00.000+05:00",
+    "operations": 2,
     "dataTransfer": 0,
-    "centicredits": 500
+    "centicredits": 200
    }
   ]
  },
- "usage_30d_operations": 528,
- "usage_30d_transfer": 2152725,
+ "usage_30d_operations": 523,
+ "usage_30d_transfer": 2100875,
  "teams": {
   "teams": [
    {
@@ -346,14 +265,14 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-20T11:03:39.232Z",
+    "nextExec": "2026-11-20T23:03:39.232Z",
     "created": "2026-10-16T08:21:22.208Z",
     "chainingRole": "none",
     "type": "scenario",
     "isShared": false,
     "operations": 133,
     "centicredits": 13300,
-    "transfer": 2223923,
+    "transfer": 2209315,
     "usedModules": [
      {
       "moduleName": "ParseJSON",
@@ -808,6 +727,116 @@
     }
    },
    "logs": [
+    {
+     "log": {
+      "imtId": "1795194225333_4cd0cbf539804a449a7594a2227d6d15",
+      "scenarioName": "FDF Instagram to YouTube Shorts",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7993259,
+      "instant": false,
+      "duration": 834,
+      "centicredits": 200,
+      "operations": 2,
+      "transfer": 33461,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "4cd0cbf539804a449a7594a2227d6d15",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-11-20T17:03:46.374Z",
+      "timestamp": "2026-11-20T17:03:45.333Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1795194225333_4cd0cbf539804a449a7594a2227d6d15",
+       "@kindId": 7993259,
+       "type": "auto",
+       "id": "4cd0cbf539804a449a7594a2227d6d15",
+       "eventType": "EXECUTION_END",
+       "timestamp": "2026-11-20T17:03:45.333Z",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 834,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33461,
+       "endedAt": "2026-11-20T17:03:46.374Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": true
+      }
+     }
+    },
+    {
+     "log": {
+      "imtId": "1795172704278_185a21184ffb4c09810da6acc6db420d",
+      "scenarioName": "FDF Instagram to YouTube Shorts",
+      "replayOfExecutionId": null,
+      "eventType": "EXECUTION_END",
+      "teamId": 3012165,
+      "type": "auto",
+      "scenarioId": 7993259,
+      "instant": false,
+      "duration": 959,
+      "centicredits": 200,
+      "operations": 2,
+      "transfer": 33220,
+      "replayOfExecutionName": null,
+      "organizationId": 9158640,
+      "id": "185a21184ffb4c09810da6acc6db420d",
+      "authorId": null,
+      "replayOfExecutionTimestamp": null,
+      "endedAt": "2026-11-20T11:05:05.645Z",
+      "timestamp": "2026-11-20T11:05:04.278Z",
+      "status": 1,
+      "displayStatus": "SUCCESS",
+      "isReplayable": true,
+      "authorName": null
+     },
+     "detail": {
+      "scenarioLog": {
+       "imtId": "1795172704278_185a21184ffb4c09810da6acc6db420d",
+       "@kindId": 7993259,
+       "type": "auto",
+       "id": "185a21184ffb4c09810da6acc6db420d",
+       "eventType": "EXECUTION_END",
+       "timestamp": "2026-11-20T11:05:04.278Z",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 959,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33220,
+       "endedAt": "2026-11-20T11:05:05.645Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": true
+      }
+     }
+    },
     {
      "log": {
       "imtId": "1795151020686_bacadffa64674fdebc66400fbe81893d",
@@ -1690,8 +1719,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793715685579_4cf38649204247f6a521e6c4ac41e9d2",
+       "eventType": "EXECUTION_END",
+       "id": "4cf38649204247f6a521e6c4ac41e9d2",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-03T14:21:25.579Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1296,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33391,
+       "endedAt": "2026-11-03T14:21:27.280Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1721,8 +1774,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793694086893_e1c3f2312fcc4504901652eb410438e1",
+       "eventType": "EXECUTION_END",
+       "id": "e1c3f2312fcc4504901652eb410438e1",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-03T08:21:26.893Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 950,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33028,
+       "endedAt": "2026-11-03T08:21:28.251Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1752,8 +1829,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793672484972_62bbecdcc673424a924bc8c8a5773297",
+       "eventType": "EXECUTION_END",
+       "id": "62bbecdcc673424a924bc8c8a5773297",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-03T02:21:24.972Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1577,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33028,
+       "endedAt": "2026-11-03T02:21:26.956Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1783,8 +1884,32 @@
       "authorName": null
      },
      "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
+      "scenarioLog": {
+       "imtId": "1793650886789_b8484da448d3431da785bafd7d1224de",
+       "eventType": "EXECUTION_END",
+       "id": "b8484da448d3431da785bafd7d1224de",
+       "@kindId": 7993259,
+       "timestamp": "2026-11-02T20:21:26.789Z",
+       "type": "auto",
+       "instant": false,
+       "authorId": null,
+       "teamId": 3012165,
+       "organizationId": 9158640,
+       "replayOfExecutionId": null,
+       "replayOfExecutionName": null,
+       "replayOfExecutionTimestamp": null,
+       "@scenarioId": 7993259,
+       "scenarioName": "FDF Instagram to YouTube Shorts",
+       "scenarioId": 7993259,
+       "duration": 1393,
+       "centicredits": 200,
+       "operations": 2,
+       "transfer": 33391,
+       "endedAt": "2026-11-02T20:21:28.388Z",
+       "status": 1,
+       "displayStatus": "SUCCESS",
+       "isReplayable": false
+      }
      }
     },
     {
@@ -1848,68 +1973,6 @@
       "_error": 429,
       "_body": "Requests limit for organization exceeded, please try again later."
      }
-    },
-    {
-     "log": {
-      "imtId": "1793586085943_449dc1ed740c411caa064f4006174f36",
-      "scenarioName": "FDF Instagram to YouTube Shorts",
-      "replayOfExecutionId": null,
-      "eventType": "EXECUTION_END",
-      "teamId": 3012165,
-      "type": "auto",
-      "scenarioId": 7993259,
-      "instant": false,
-      "duration": 1368,
-      "centicredits": 200,
-      "operations": 2,
-      "transfer": 33517,
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
-      "id": "449dc1ed740c411caa064f4006174f36",
-      "authorId": null,
-      "replayOfExecutionTimestamp": null,
-      "endedAt": "2026-11-02T02:21:27.516Z",
-      "timestamp": "2026-11-02T02:21:25.943Z",
-      "status": 1,
-      "displayStatus": "SUCCESS",
-      "isReplayable": false,
-      "authorName": null
-     },
-     "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
-     }
-    },
-    {
-     "log": {
-      "imtId": "1793564484537_25ecfb8f55474ceeba6af136f475c8fa",
-      "scenarioName": "FDF Instagram to YouTube Shorts",
-      "replayOfExecutionId": null,
-      "eventType": "EXECUTION_END",
-      "teamId": 3012165,
-      "type": "auto",
-      "scenarioId": 7993259,
-      "instant": false,
-      "duration": 1350,
-      "centicredits": 200,
-      "operations": 2,
-      "transfer": 33145,
-      "replayOfExecutionName": null,
-      "organizationId": 9158640,
-      "id": "25ecfb8f55474ceeba6af136f475c8fa",
-      "authorId": null,
-      "replayOfExecutionTimestamp": null,
-      "endedAt": "2026-11-01T20:21:26.092Z",
-      "timestamp": "2026-11-01T20:21:24.537Z",
-      "status": 1,
-      "displayStatus": "SUCCESS",
-      "isReplayable": false,
-      "authorName": null
-     },
-     "detail": {
-      "_error": 429,
-      "_body": "Requests limit for organization exceeded, please try again later."
-     }
     }
    ]
   },
@@ -1954,7 +2017,7 @@
      "name": "Qazi Ehsan",
      "email": "kaziehsan111@gmail.com"
     },
-    "nextExec": "2026-11-20T05:58:30.976Z",
+    "nextExec": "2026-11-20T23:58:30.976Z",
     "created": "2026-10-01T12:55:06.664Z",
     "chainingRole": "none",
     "type": "scenario",
