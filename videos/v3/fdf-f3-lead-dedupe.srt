@@ -1,0 +1,28 @@
+1
+00:00:00,350 --> 00:00:03,806
+One patient. Three enquiries. Three rows in your lead sheet.
+
+2
+00:00:04,256 --> 00:00:10,656
+A plain exact match misses them. Capital letters, stray spaces, and one phone number written three ways.
+
+3
+00:00:11,106 --> 00:00:16,823
+So the first step in n8n cleans the contact. Email in lowercase, phone in one format.
+
+4
+00:00:17,273 --> 00:00:19,748
+Then it searches the lead list by email or phone.
+
+5
+00:00:20,198 --> 00:00:25,105
+Already a lead? The new message is added to that lead. If not, a new lead is created.
+
+6
+00:00:25,555 --> 00:00:31,357
+Real result: four enquiries in, two leads out. Match on email or phone, never on name alone.
+
+7
+00:00:31,807 --> 00:00:36,906
+Follow for the next real n8n build, or DM FLOW for the free enquiry workflow.
+
